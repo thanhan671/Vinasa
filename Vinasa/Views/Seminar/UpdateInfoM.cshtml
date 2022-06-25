@@ -96,6 +96,8 @@
 <script>
 
 
-    $('#cancel').click(this.close())
+    $('#cancel').click(function () {
+        location.href = 'javascript:history.go(-1)';
+    })
 
 </script>
