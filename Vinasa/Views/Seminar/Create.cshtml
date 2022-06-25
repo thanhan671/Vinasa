@@ -1,0 +1,39 @@
+﻿
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/sbadmin.cshtml";
+}
+
+<div class="container col-11 centerPage">
+    <h5 class="heading">Thêm mới Hội Nghị</h5>
+    <form class="form-field" method="post" enctype="multipart/form-data">
+        <div class="input-wrapper">
+            <input class="ip-form" type="text" id="tax" required>
+            <label class="lb-form" for="tax">Tên Hội Nghị</label>
+        </div>
+
+        <div class="input-wrapper">
+            <input class="ip-form" type="text" required>
+            <label class="lb-form" for="name">Thời Gian Diễn Ra</label>
+        </div>
+
+        <div class="input-wrapper">
+            <input class="ip-form" type="text" required>
+            <label class="lb-form" for="name">Địa Điểm Diễn Ra</label>
+        </div>
+    </form>
+    <div class="button-form">
+        <button class="button-lc">Xác Nhận</button>
+        <button class="button-lc" onclick="" id="cancel">Huỷ</button>
+    </div>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+
+
+        $('#cancel').click(function () {
+        location.href = "@Url.Action("ViewList")";
+    })
+
+</script>
