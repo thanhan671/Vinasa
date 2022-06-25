@@ -1,0 +1,48 @@
+﻿
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/SbAdmin.cshtml";
+}
+<link href="@Url.Content("~/css/link.css")" rel="stylesheet">
+
+
+<div class="row">
+    <div class="col-6">
+        <h5 class="heading">Sửa Thông Tin Quản Trị</h5>
+        <form action="@Url.Action("CreateProduct")" class="form-field" method="post" enctype="multipart/form-data">
+            <div class="input-wrapper">
+                <input type="text" contenteditable="true" value="Giang Văn Thăng" required>
+                <label for="tax">Tên Hội Viên</label>
+            </div>
+            <div class="input-wrapper">
+                <input type="text" contenteditable="true" value="thang.giang113vn@gmail.com" required>
+                <label>Email</label>
+            </div>
+            <div class="input-wrapper">
+                <input type="text" contenteditable="true" value="0783626832" required>
+                <label for="name">Số Điện Thoại</label>
+            </div>
+            <div class="input-wrapper">
+                <input type="text" contenteditable="true" value="Ban Quản Trị" required>
+
+                <label for="name">Phòng Ban</label>
+            </div>
+
+        </form>
+    </div>
+
+
+</div>
+<div class="button-form">
+    <button class="button">Xác Nhận</button>
+    <button class="button" id="cancel">Huỷ</button>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+
+    $('#cancel').click(function () {
+        location.href = "@Url.Action("Index")";
+    })
+
+</script>
