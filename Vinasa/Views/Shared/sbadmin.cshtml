@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -42,7 +42,7 @@
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="@Url.Action("Index","Home")">
                 <div class="sidebar-brand-icon rotate-n-15">
-                    <i><img src="~/img/iconVinasa (2).png" style="width:30px;height:30px"/></i>
+                    <i><img src="~/img/iconVinasa (2).png" style="width:30px;height:30px" /></i>
                 </div>
                 <div class="sidebar-brand-text mx-2">Vinasa Admin</div>
             </a>
@@ -65,12 +65,18 @@
             <!-- Divider -->
             <!-- Heading -->
             <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link" href="@Url.Action("Index","Account")">
+            <li class="nav-item" href="#" data-toggle="collapse" data-target="#collapsePages"
+                aria-expanded="true" aria-controls="collapsePages">
+                <a href="#" class="nav-link">
                     <i class="fas fa-fw fa-user"></i>
-                    <span>Tài Khoản</span>
+                    <span>Tài khoản</span>
                 </a>
-
+                <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="@Url.Action("Index","Member")">Hội Viên</a>
+                        <a class="collapse-item" href="@Url.Action("Index","Admin")">Quản Trị</a>
+                    </div>
+                </div>
             </li>
 
             <!-- Nav Item - Charts -->
