@@ -1,0 +1,38 @@
+﻿
+@{
+    ViewBag.Title = "DetailInfoS";
+    Layout = "~/Views/Shared/sbadmin.cshtml";
+}
+
+<div class="container col-11 centerPage">
+    <h5 class="heading">Cập nhật Thông Tin Hội Nghị</h5>
+    <form class="form-field" method="post" enctype="multipart/form-data">
+        <div class="input-wrapper">
+            <input class="ip-form" type="text" value="Hội nghị kết nối đầu tư tổ chức tại TP. Hồ Chí Minh: chủ đề THÚC ĐẨY ĐẦU TƯ VÀ PHÁT TRIỂN HỆ SINH THÁI TÀI CHÍNH SỐ" id="tax" readonly>
+            <label class="lb-form" for="tax">Tên Hội Thảo</label>
+        </div>
+
+        <div class="input-wrapper">
+            <input class="ip-form" type="text" value="9:00 - 17:00 ngày 28/06/2022 (Thứ 3)" readonly>
+            <label class="lb-form" for="name">Thời Gian Diễn Ra</label>
+        </div>
+
+        <div class="input-wrapper">
+            <input class="ip-form" type="text" value="Sihub, 273 Điện Biên Phủ, Phường Võ Thị Sáu, Quận 3, TP. HCM" readonly>
+            <label class="lb-form" for="name">Địa Điểm Diễn Ra</label>
+        </div>
+    </form>
+    <div class="button-form">
+        <button class="button-lc" id="cancel">Quay Lại</button>
+    </div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+
+
+        $('#cancel').click(function () {
+        location.href = 'javascript:history.go(-1)';
+    })
+
+</script>
+
