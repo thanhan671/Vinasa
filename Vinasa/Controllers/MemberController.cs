@@ -17,5 +17,9 @@ namespace Vinasa.Controllers
         {
             return View();
         }
+        public ActionResult DetailMember()
+        {
+            return View();
+        }
     }
 }

@@ -8,7 +8,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>VINASA MANAGEMENT</title>
+    <title>Company Management of Vinasa</title>
 
     <!-- Custom fonts for this template-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
@@ -19,6 +19,7 @@
     <link rel="icon" href="~/img/iconVinasa (2).png" type="image/png">
     <!-- Custom styles for this template-->
     <link href="@Url.Content("~/css/sb-admin-2.css")" />
+    <link href="@Url.Content("~/css/admin-new.css")" />
     <link href="@Url.Content("~/css/sb-admin-2.min.css")" rel="stylesheet">
     <link href="@Url.Content("~/vendor/datatables/dataTables.bootstrap4.min.css")" rel="stylesheet">
 
@@ -82,21 +83,21 @@
             <li class="nav-item">
                 <a class="nav-link" href="@Url.Action("Index", "Seminar")">
                     <i class="fas fa-fw fa-chalkboard-teacher"></i>
-                    <span>Hội thảo</span>
+                    <span>Hội Nghị</span>
                 </a>
             </li>
             <!-- Nav Item - Charts -->
             <li class="nav-item">
                 <a class="nav-link" href="charts.html">
                     <i class="fas fa-fw fa-graduation-cap"></i>
-                    <span>Khóa học</span>
+                    <span>Khoá Học</span>
                 </a>
             </li>
             <!-- Nav Item - Charts -->
             <li class="nav-item">
                 <a class="nav-link" href="charts.html">
                     <i class="fas fa-fw fa-globe"></i>
-                    <span>Quan hệ quốc tế</span>
+                    <span>Quan Hệ Quốc Tế</span>
                 </a>
             </li>
 
@@ -104,7 +105,7 @@
             <li class="nav-item">
                 <a class="nav-link" href="tables.html">
                     <i class="fas fa-fw fa-award"></i>
-                    <span>Giải thưởng</span>
+                    <span>Giải Thưởng</span>
                 </a>
             </li>
 
@@ -112,7 +113,7 @@
             <li class="nav-item">
                 <a class="nav-link" href="tables.html">
                     <i class="fas fa-fw fa-network-wired"></i>
-                    <span>Dịch vụ kết nối</span>
+                    <span>Dịch Vụ Kết Nối</span>
                 </a>
             </li>
 
@@ -120,7 +121,7 @@
             <li class="nav-item">
                 <a class="nav-link" href="tables.html">
                     <i class="fas fa-fw fa-table"></i>
-                    <span>Dịch vụ khác</span>
+                    <span>Dịch Vụ Khác</span>
                 </a>
             </li>
 
@@ -138,7 +139,7 @@
             <li class="nav-item">
                 <a class="nav-link" href="tables.html">
                     <i class="fas fa-fw fa-chart-line"></i>
-                    <span>Thống kê</span>
+                    <span>Thống Kê</span>
                 </a>
             </li>
 
@@ -438,6 +439,16 @@
 
     <!-- Page level custom scripts -->
     <script src="@Url.Content("~/js/demo/datatables-demo.js")"></script>
+
+    <script>
+        const getNavItem = document.querySelectorAll('.nav-item');
+        getNavItem.forEach(item => {
+            const link = item.querySelector('.nav-link');
+            if (link.href === window.location.href) {
+                item.classList.add('active')
+            }
+        })
+    </script>
 
     @RenderSection("scripts", required: false)
 

@@ -84,8 +84,7 @@ input {
 }
 
 .button-form {
-    float: right;
-    margin-right: 70px;
+    text-align: center;
 }
 
 .button:hover {

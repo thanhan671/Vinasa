@@ -1,93 +1,93 @@
 ﻿
-
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "DetailMember";
     Layout = "~/Views/Shared/sbadmin.cshtml";
 }
+
 <link href="@Url.Content("~/css/link.css")" rel="stylesheet">
 
 <div class="row">
     <div class="col-6">
-        <h5 class="heading">Sửa Thông Tin Hội Viên</h5>
+        <h5 class="heading">Thông tin hội viên</h5>
         <form action="@Url.Action("CreateProduct")" class="form-field" method="post" enctype="multipart/form-data">
             <div class="input-wrapper">
-                <input type="text" id="tax" contenteditable="true" value="0315159393" required>
+                <input type="text" id="tax" contenteditable="true" value="0315159393" readonly>
                 <label for="tax">Mã số thuế</label>
             </div>
 
             <div class="input-wrapper">
-                <input type="text" contenteditable="true" value="Công ty Cổ phần FPT " required>
+                <input type="text" contenteditable="true" value="Công ty Cổ phần FPT " readonly>
                 <label for="name">Tên Tiếng Việt Của Công Ty</label>
             </div>
 
             <div class="input-wrapper">
-                <input type="text" contenteditable="true" value="FPT Corporation" required>
+                <input type="text" contenteditable="true" value="FPT Corporation" readonly>
                 <label for="name">Tên Tiếng Anh Của Công Ty</label>
             </div>
 
             <div class="input-wrapper">
-                <input type="text" contenteditable="true" value="FPT" required>
+                <input type="text" contenteditable="true" value="FPT" readonly>
                 <label for="name">Tên Viết Tắt</label>
             </div>
 
             <div class="input-wrapper">
-                <input type="text" contenteditable="true" value="10/06/1997" required>
+                <input type="text" contenteditable="true" value="10/06/1997" readonly>
                 <label for="name">Ngày Thành Lập</label>
             </div>
 
             <div class="input-wrapper">
-                <input type="text" contenteditable="true" value="www.fpt.com" required>
+                <input type="text" contenteditable="true" value="www.fpt.com" readonly>
                 <label for="name">Website</label>
             </div>
 
             <div class="input-wrapper">
-                <input type="number" contenteditable="true" value="02838212001" required>
+                <input type="number" contenteditable="true" value="02838212001" readonly>
                 <label for="name">Số Điện Thoại</label>
             </div>
 
             <div class="input-wrapper">
-                <input type="text" contenteditable="true" value="contact@fpt.com.vn" required>
+                <input type="text" contenteditable="true" value="contact@fpt.com.vn" readonly>
                 <label for="name">Email Công Ty</label>
             </div>
 
             <div class="input-wrapper">
-                <input type="text" contenteditable="true" value="97 Nguyễn Công Trứ, Phường Nguyễn Thái Bình, Phường Cô Giang, Quận 1, TP. HCM " required>
+                <input type="text" contenteditable="true" value="97 Nguyễn Công Trứ, Phường Nguyễn Thái Bình, Phường Cô Giang, Quận 1, TP. HCM " readonly>
                 <label for="name">Địa Chỉ Giao Dịch</label>
             </div>
 
             <div class="input-wrapper">
-                <input type="text" contenteditable="true" value="97 Nguyễn Công Trứ, Phường Nguyễn Thái Bình, Phường Cô Giang, Quận 1, TP. HCM " required>
+                <input type="text" contenteditable="true" value="97 Nguyễn Công Trứ, Phường Nguyễn Thái Bình, Phường Cô Giang, Quận 1, TP. HCM " readonly>
                 <label for="name">Địa Chỉ Ghi Trên Chứng Từ Tài Chính</label>
             </div>
 
             <div class="input-wrapper">
-                <input type="text" contenteditable="true" value="1500" required>
+                <input type="text" contenteditable="true" value="1500" readonly>
                 <label for="name">Tổng Số Nhân Sự Hiện Tại</label>
             </div>
             <div class="input-wrapper">
-                <input type="text" contenteditable="true" value="1000" required>
+                <input type="text" contenteditable="true" value="1000" readonly>
                 <label for="name">Tổng Số Lập Trình Viên</label>
             </div>
 
             <div class="input-wrapper">
-                <input type="text" contenteditable="true" value="Cơ quan chính phủ, Doanh nghiệp tư nhân, khách hàng cá nhân" required>
+                <input type="text" contenteditable="true" value="Cơ quan chính phủ, Doanh nghiệp tư nhân, khách hàng cá nhân" readonly>
                 <label for="name">Thị Trường Chính(nội địa)</label>
             </div>
             <div class="input-wrapper">
-                <input type="text" contenteditable="true" value="Nhật, Mỹ, Châu Âu, Châu Úc " required>
+                <input type="text" contenteditable="true" value="Nhật, Mỹ, Châu Âu, Châu Úc " readonly>
                 <label for="name">Thị Trường Chính(nội địa)</label>
             </div>
 
             <div class="input-wrapper">
-                <input type="text" contenteditable="true" value="Cơ quan chính phủ, Doanh nghiệp tư nhân, khách hàng cá nhân" required>
+                <input type="text" contenteditable="true" value="Cơ quan chính phủ, Doanh nghiệp tư nhân, khách hàng cá nhân" readonly>
                 <label for="name">Lĩnh Vực Hoạt Động</label>
             </div>
             <div class="input-wrapper">
-                <input type="text" contenteditable="true" value="fpt.com.vn " required>
+                <input type="text" contenteditable="true" value="fpt.com.vn " readonly>
                 <label for="name">Fanpage Đơn Vị</label>
             </div>
             <div class="input-wrapper">
-                <input type="text" contenteditable="true" value="'28/03/2022" required>
+                <input type="text" contenteditable="true" value="'28/03/2022" readonly>
                 <label for="name">Thời Gian Gia Nhập</label>
             </div>
             <div class="input-wrapper">
@@ -110,19 +110,19 @@
         </div>
         <form action="@Url.Action("CreateProduct")" class="form-field" method="post" enctype="multipart/form-data">
             <div class="input-wrapper">
-                <input type="text" id="tax" contenteditable="true" value="Trương Gia Bình " required>
+                <input type="text" id="tax" contenteditable="true" value="Trương Gia Bình " readonly>
                 <label for="tax">Người Lãnh Đạo</label>
             </div>
             <div class="input-wrapper">
-                <input type="text" id="tax" contenteditable="true" value="Chủ tịch HĐQT " required>
+                <input type="text" id="tax" contenteditable="true" value="Chủ tịch HĐQT " readonly>
                 <label for="tax">Chức Danh</label>
             </div>
             <div class="input-wrapper">
-                <input type="text" id="tax" contenteditable="true" value="0937688958" required>
+                <input type="text" id="tax" contenteditable="true" value="0937688958" readonly>
                 <label for="tax">Số Điện Thoại</label>
             </div>
             <div class="input-wrapper">
-                <input type="text" id="tax" contenteditable="true" value="manhnt@vinasa.org.vn" required>
+                <input type="text" id="tax" contenteditable="true" value="manhnt@vinasa.org.vn" readonly>
                 <label for="tax">Email</label>
             </div>
         </form>
@@ -131,19 +131,19 @@
         </div>
         <form class="form-field">
             <div class="input-wrapper">
-                <input type="text" id="tax" contenteditable="true" value="Nguyễn Ngọc Phương Anh " required>
+                <input type="text" id="tax" contenteditable="true" value="Nguyễn Ngọc Phương Anh " readonly>
                 <label for="tax">Đại Diện</label>
             </div>
             <div class="input-wrapper">
-                <input type="text" id="tax" contenteditable="true" value="Trưởng phòng " required>
+                <input type="text" id="tax" contenteditable="true" value="Trưởng phòng " readonly>
                 <label for="tax">Chức Danh</label>
             </div>
             <div class="input-wrapper">
-                <input type="text" id="tax" contenteditable="true" value="0937688958" required>
+                <input type="text" id="tax" contenteditable="true" value="0937688958" readonly>
                 <label for="tax">Số Điện Thoại</label>
             </div>
             <div class="input-wrapper">
-                <input type="text" id="tax" contenteditable="true" value="anhnp@vinasa.org.vn" required>
+                <input type="text" id="tax" contenteditable="true" value="anhnp@vinasa.org.vn" readonly>
                 <label for="tax">Email</label>
             </div>
         </form>
@@ -152,19 +152,19 @@
         </div>
         <form class="form-field">
             <div class="input-wrapper">
-                <input type="text" id="tax" contenteditable="true" value="Nguyễn Thành Đạt " required>
+                <input type="text" id="tax" contenteditable="true" value="Nguyễn Thành Đạt " readonly>
                 <label for="tax">Đại Diện</label>
             </div>
             <div class="input-wrapper">
-                <input type="text" id="tax" contenteditable="true" value="Trưởng phòng " required>
+                <input type="text" id="tax" contenteditable="true" value="Trưởng phòng " readonly>
                 <label for="tax">Chức Danh</label>
             </div>
             <div class="input-wrapper">
-                <input type="text" id="tax" contenteditable="true" value="0937688958" required>
+                <input type="text" id="tax" contenteditable="true" value="0937688958" readonly>
                 <label for="tax">Số Điện Thoại</label>
             </div>
             <div class="input-wrapper">
-                <input type="text" id="tax" contenteditable="true" value="datnn@vinasa.org.vn" required>
+                <input type="text" id="tax" contenteditable="true" value="datnn@vinasa.org.vn" readonly>
                 <label for="tax">Email</label>
             </div>
         </form>
@@ -173,34 +173,36 @@
         </div>
         <form class="form-field">
             <div class="input-wrapper">
-                <input type="text" id="tax" contenteditable="true" value="Nguyễn Thị Hoà " required>
+                <input type="text" id="tax" contenteditable="true" value="Nguyễn Thị Hoà " readonly>
                 <label for="tax">Đại diện</label>
             </div>
             <div class="input-wrapper">
-                <input type="text" id="tax" contenteditable="true" value="Kế toán trưởng " required>
+                <input type="text" id="tax" contenteditable="true" value="Kế toán trưởng " readonly>
                 <label for="tax">Chức Danh</label>
             </div>
             <div class="input-wrapper">
-                <input type="text" id="tax" contenteditable="true" value="0937688958" required>
+                <input type="text" id="tax" contenteditable="true" value="0937688958" readonly>
                 <label for="tax">Số Điện Thoại</label>
             </div>
             <div class="input-wrapper">
-                <input type="text" id="tax" contenteditable="true" value="hoant@vinasa.org.vn" required>
+                <input type="text" id="tax" contenteditable="true" value="hoant@vinasa.org.vn" readonly>
                 <label for="tax">Email</label>
             </div>
         </form>
     </div>
 
+
 </div>
 <div class="button-form">
-    <button class="button">Xác Nhận</button>
-    <button class="button" id="cancel">Huỷ</button>
+    <button class="button-lc" id="cancel">Quay Lại</button>
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
 
     $('#cancel').click(function () {
-        location.href = 'javascript:history.go(-1)';
-    })
+            location.href = 'javascript:history.go(-1)';
+            
+        })
 
 </script>
+

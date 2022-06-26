@@ -2,7 +2,7 @@
 
 @{
     ViewBag.Title = "Edit";
-    Layout = "~/Views/Shared/SbAdmin.cshtml";
+    Layout = "~/Views/Shared/sbadmin.cshtml";
 }
 <link href="@Url.Content("~/css/link.css")" rel="stylesheet">
 
@@ -10,7 +10,7 @@
 <div class="row">
     <div class="col-6">
         <h5 class="heading">Sửa Thông Tin Quản Trị</h5>
-        <form action="@Url.Action("CreateProduct")" class="form-field" method="post" enctype="multipart/form-data">
+        <form class="form-field" method="post" enctype="multipart/form-data">
             <div class="input-wrapper">
                 <input type="text" contenteditable="true" value="Giang Văn Thăng" required>
                 <label for="tax">Tên Hội Viên</label>
@@ -42,7 +42,7 @@
 <script>
 
     $('#cancel').click(function () {
-        location.href = "@Url.Action("Index")";
+        location.href = 'javascript:history.go(-1)';
     })
 
 </script>
