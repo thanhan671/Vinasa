@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Vinasa.Models
 {
@@ -12,6 +14,7 @@ namespace Vinasa.Models
         public string Email { get; set; }
         public int Quyen { get; set; }
         public int TrangThai { get; set; }
+
         public int Sdt { get; set; }
         public string PhongBan { get; set; }
         public string MatKhau { get; set; }

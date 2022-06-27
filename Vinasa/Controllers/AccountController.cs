@@ -32,12 +32,20 @@ namespace Vinasa.Controllers
                 {
                     if (checkAccount != null)
                     {
-                        return Content("Login success" + loginEmail + " " + loginPassword);
+                        return RedirectToRoute("HomeLogged");
                     }
                 }
             }
 
             return Content("Login fail" + loginEmail + " " + loginPassword);
         }
+
+
+        public ActionResult Register()
+        {
+            return View();
+        }
+
     }
+
 }
