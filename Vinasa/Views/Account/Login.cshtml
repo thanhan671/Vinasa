@@ -1,8 +1,7 @@
-<!--@using VinasaWeb.Models
-@model LoginViewModel
+@model Vinasa.Models.AdminAccountModels
 @{
     Layout = "~/Views/Shared/sblogin.cshtml";
-}-->
+}
 
 <h2>@ViewBag.Title</h2>
 <div class="row">
@@ -35,14 +34,14 @@
                                         @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
                                     </div>
                                     <div class="form-group">
-                                        @Html.PasswordFor(m => m.Password, new { @class = "form-control form-control-user", @placeholder = "Mật khẩu..." })
-                                        @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                                        @Html.PasswordFor(m => m.MatKhau, new { @class = "form-control form-control-user", @placeholder = "Mật khẩu..." })
+                                        @Html.ValidationMessageFor(m => m.MatKhau, "", new { @class = "text-danger" })
                                     </div>
                                     <div class="form-group">
                                         <div class="col-md-offset-2 col-md-10">
                                             <div class="checkbox">
-                                                @Html.CheckBoxFor(m => m.RememberMe)
-                                                @Html.LabelFor(m => m.RememberMe)
+                                                @*@Html.CheckBoxFor(m => m.RememberMe)
+                                                @Html.LabelFor(m => m.RememberMe)*@
                                             </div>
                                         </div>
                                     </div>

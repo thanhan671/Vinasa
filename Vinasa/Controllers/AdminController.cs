@@ -14,8 +14,9 @@ namespace Vinasa.Controllers
         [HttpGet]
         public ActionResult Index()
         {
-            
-            return View(db.TAIKHOANADMINs.ToList());
+            var data = db.TAIKHOANADMINs.ToList();
+            ViewBag.adminDetails = data;
+            return View();
         }
         public ActionResult Edit()
         {

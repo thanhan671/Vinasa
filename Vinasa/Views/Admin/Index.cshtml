@@ -31,21 +31,22 @@
                     </tr>
                 </thead>
                 <tbody>
+                    @foreach (var item in ViewBag.adminDetails) { 
                     <tr>
                         <td>
-                            @Html.DisplayFor(Model => Model.Ten)
+                            @item.Ten
                         </td>
                         <td>
-                            @Html.DisplayFor(Model => Model.Email)
+                            @item.Email
                         </td>
                         <td>
-                            @Html.DisplayFor(Model => Model.Sdt)
+                            @item.Sdt
                         </td>
                         <td>
-                            @Html.DisplayFor(Model => Model.PhongBan)
+                            @item.PhongBan  
                         </td>
                         <td>
-                            @Html.DisplayFor(Model => Model.TrangThai)
+                            @item.TrangThai
                         </td>
                         <td class="action" style="display:flex; justify-content:space-around; align-items:center">
                             <li class="action-item" style="list-style-type: none; font-size: 18px">
@@ -61,6 +62,7 @@
 
                         </td>
                     </tr>
+                     }
                 </tbody>
             </table>
         </div>
