@@ -32,7 +32,7 @@ namespace Vinasa.Controllers
                 {
                     if (checkAccount != null)
                     {
-                        return RedirectToRoute("HomeLogged");
+                        return Content("Login success" + loginEmail + " " + loginPassword);
                     }
                 }
             }
