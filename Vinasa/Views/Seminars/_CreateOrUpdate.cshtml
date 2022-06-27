@@ -1,0 +1,20 @@
+﻿@model Vinasa.Models.Seminar
+
+<div class="input-wrapper">
+    @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class= "ip-form", @required = "required" } })
+    @Html.LabelFor(model => model.Title, new { @class = "lb-form" })
+</div>
+<div class="input-wrapper">
+    @Html.EditorFor(model => model.OpenDate, new { htmlAttributes = new { @class = "ip-form", @required = "required" } })
+    @Html.LabelFor(model => model.OpenDate, new { @class = "lb-form" })
+</div>
+<div class="input-wrapper">
+    @Html.EditorFor(model => model.Address, new { htmlAttributes = new { @class = "ip-form", @required = "required" } })
+    @Html.LabelFor(model => model.Address, new { @class = "lb-form" })
+</div>
+<div class="button-form">
+    <button class="button">Xác Nhận</button>
+    <input type="button"
+           value="Hủy"
+           onclick="location.href='@Url.Action("Index", "Seminars")'" />
+</div>
