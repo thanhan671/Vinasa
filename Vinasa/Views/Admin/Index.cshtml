@@ -1,4 +1,4 @@
-﻿
+﻿@model Vinasa.Models.AdminAccountModels
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/sbadmin.cshtml";
@@ -8,7 +8,7 @@
 <h1 class="h3 mb-2 text-gray-800">Quản Trị Viên</h1>
 
 <!-- DataTales Example -->
-<!-- DataTales Example -->
+
 <div class="card shadow mb-4">
     <div class="card-header py-3" style=" display: flex; justify-content: space-between; align-items: center;">
         <div class="right-content">
@@ -20,7 +20,7 @@
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                 <thead>
                     <tr>
-
+                        <th hidden>ID</th>
                         <th>Tên Quản Trị </th>
                         <th>Email</th>
                         <th>Số Điện Thoại</th>
@@ -30,24 +30,30 @@
                     </tr>
                 </thead>
                 <tbody>
+                    @foreach (var item in ViewBag.adminDetails) { 
                     <tr>
-                        <td>Giang Văn Thăng</td>
-                        <td>
-                            thang.giang113vn@gmail.com
+                        <td hidden>
+                            @item.ID
                         </td>
                         <td>
-                            0783626832
+                            @item.Ten
                         </td>
                         <td>
-                            Ban Quản Trị
+                            @item.Email
                         </td>
                         <td>
-                            Hoạt Động
+                            @item.Sdt
+                        </td>
+                        <td>
+                            @item.PhongBan
+                        </td>
+                        <td>
+                            @item.TrangThai
                         </td>
                         <td class="td-action" style="display:flex; justify-content:space-around; align-items:center">
                             <li class="action-item" style="list-style-type: none; font-size: 18px">
-                                <a href="@Url.Action("Edit")" class="action-icon">
-                                    <i class="fa-solid fa-pen-to-square icon"></i>
+                                <a href="@Url.Action("Edit", "Admin", new { id = item.ID })" class="action-icon">
+                                    <i style="color: #F69928" class="fa-solid fa-pen-to-square icon"></i>
                                 </a>
                             </li>
                             <li class="action-item" style="list-style-type:none; font-size: 18px">
@@ -58,6 +64,7 @@
 
                         </td>
                     </tr>
+                     }
                 </tbody>
             </table>
         </div>

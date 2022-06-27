@@ -1,4 +1,4 @@
-﻿
+﻿@model Vinasa.Models.MemberAccountModels
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/sbadmin.cshtml";
@@ -58,23 +58,27 @@
                     </tr>
                 </thead>
                 <tbody>
+                    @foreach (var item in ViewBag.adminDetails)
+                    {
                     <tr>
-                        <td>0315159393</td>
+                        <td hidden>
+                            @item.ID
+                        <td>@item.MaSoThue</td>
                         <td>
-                            Công ty Cổ phần FPT
+                            @item.TenTiengViet
                         </td>
                         <td>
-                            FPT
+                            @item.TenVietTat
                         </td>
                         <td>
-                            contact@fpt.com.vn
+                            @item.EmailCongTy
                         </td>
                         <td>
-                            0937688958
+                            @item.SdtCongTy
                         </td>
                         <td class="action" style="display:flex; justify-content:space-around; align-items:center">
                             <li class="action-item" style="list-style-type: none; font-size: 18px">
-                                <a href="@Url.Action("Edit")" class="action-icon">
+                                <a href="@Url.Action("Edit", "Member", new { id = item.ID })" class="action-icon">
                                     <i style="color: #F69928" class="fa-solid fa-pen-to-square icon"></i>
                                 </a>
                             </li>
@@ -84,13 +88,14 @@
                                 </a>
                             </li>
                             <li class="action-item" style="list-style-type: none; font-size: 18px">
-                                <a href="@Url.Action("DetailMember")" class="action-icon">
+                                <a href="@Url.Action("DetailMember", "Member", new { id = item.ID })" class="action-icon">
                                     <i style="color: #F69928" class="fa-solid fa-circle-info icon"></i>
                                 </a>
                             </li>
                         </td>
                     </tr>
-                </tbody>
+                    }
+                    </tbody>
             </table>
         </div>
     </div>

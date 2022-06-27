@@ -1,5 +1,4 @@
-﻿
-
+﻿@model Vinasa.Models.AdminAccountModels
 @{
     ViewBag.Title = "Edit";
     Layout = "~/Views/Shared/sbadmin.cshtml";
@@ -10,25 +9,25 @@
         <h5 class="heading">Sửa Thông Tin Quản Trị</h5>
         <form class="form-field" method="post" enctype="multipart/form-data">
             <div class="input-wrapper">
-                <input class="ip-form" type="text" contenteditable="true" value="Giang Văn Thăng" required>
-                <label class="lb-form" for="tax">Tên Hội Viên</label>
+                <input class="ip-form" type="text" id="tax" contenteditable="true" @Html.TextBoxFor(m => m.Ten)
+                <label class="lb-form" for="tax">Tên Hội Viên</labelclass="lb-form">
             </div>
             <div class="input-wrapper">
-                <input class="ip-form" type="text" contenteditable="true" value="thang.giang113vn@gmail.com" required>
+                <input class="ip-form" type="text" contenteditable="true" @Html.TextBoxFor(m => m.Email)
                 <label class="lb-form">Email</label>
             </div>
             <div class="input-wrapper">
-                <input class="ip-form" type="text" contenteditable="true" value="0783626832" required>
+                <input class="ip-form" type="text" contenteditable="true" @Html.TextBoxFor(m => m.Sdt)
                 <label class="lb-form" for="name">Số Điện Thoại</label>
             </div>
             <div class="input-wrapper">
-                <input class="ip-form" type="text" contenteditable="true" value="Ban Quản Trị" required>
+                <input class="ip-form" type="text" contenteditable="true" @Html.TextBoxFor(m => m.PhongBan)
                 <label class="lb-form" for="name">Phòng Ban</label>
             </div>
             <div class="input-wrapper">
                 <label class="lb-form" for="name">Quyền</label>
-                <select class="form-control select-region"  name="type">
-                    <option value="none">Chọn Quyền</option>
+                <select class="form-control select-region" name="type">
+                    <option value="none">@Html.DisplayTextFor(m => m.Quyen)</option>
 
                     <option value="">Quản Lí</option>
                     <option value="">Quản Trị</option>
@@ -36,7 +35,7 @@
             </div>
             <div class="input-wrapper">
                 <label class="lb-form" for="name">Trạng Thái</label>
-                <select class="form-control select-region"  name="type">
+                <select class="form-control select-region" name="type">
                     <option value="none">Chọn Trạng Thái</option>
 
                     <option value="">Hoạt Động</option>
@@ -55,9 +54,7 @@
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
-
     $('#cancel').click(function () {
         location.href = 'javascript:history.go(-1)';
     })
-
 </script>
