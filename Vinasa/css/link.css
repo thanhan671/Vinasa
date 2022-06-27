@@ -1,0 +1,126 @@
+﻿.card-bet {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.input-wrapper {
+    display: flex;
+    position: relative;
+    line-height: 14px;
+    margin: 20px 10px;
+}
+
+
+label {
+    color: #bbb;
+    font-size: 11px;
+    text-transform: uppercase;
+    position: absolute;
+    z-index: 2;
+    left: 20px;
+    top: 14px;
+    padding: 0 2px;
+    pointer-events: none;
+    background: white;
+    transition: transform 100ms ease;
+    transform: translateY(-20px);
+}
+
+
+input {
+    font-size: 15px;
+    color: #555;
+    outline: none;
+    border: 1px solid #bbb;
+    padding: 10px 20px;
+    border-radius: 20px;
+    width: 100%;
+    position: relative;
+}
+
+
+    input:invalid + label {
+        transform: translateY(0);
+    }
+
+    input:focus {
+        border-color: #E7870F;
+    }
+
+        input:focus + label {
+            color: #E7870F;
+            transform: translateY(-20px);
+        }
+
+.heading {
+    color: #051D65;
+}
+
+.form-control {
+    font-size: 15px;
+    color: #555;
+    outline: none;
+    border: 1px solid #bbb;
+    border-radius: 20px;
+    width: 400px;
+}
+
+    .form-control:focus {
+        border-color: #E7870F;
+    }
+
+.address:focus {
+    color: #E7870F;
+}
+
+.button {
+    height: 40px;
+    width: 150px;
+    margin: 10px 10px;
+    background: #F69928;
+    color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+}
+
+.button-form {
+    text-align: center;
+}
+
+.button:hover {
+    background-color: #051D65;
+}
+.button-lc {
+    height: 40px;
+    width: 150px;
+    margin: 10px 10px;
+    background: #F69928;
+    color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+}
+
+    .button-lc:hover {
+        background-color: #051D65;
+    }
+
+.icon:hover {
+    color: #051D65;
+}
+
+.btn-status {
+    position: relative;
+    left: 50px;
+    font-size: 12px;
+    font-weight: bold;
+    width: 110px;
+    padding: 10px;
+    background: #F69928;
+    text-align: center;
+    text-decoration: none;
+    text-transform: uppercase;
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
