@@ -4,7 +4,6 @@
     Layout = "~/Views/Shared/sbadmin.cshtml";
 }
 
-<link href="@Url.Content("~/css/button.css")" rel="stylesheet">
 <!-- Page Heading -->
 <h1 class="h3 mb-2 text-gray-800">Quản Trị Viên</h1>
 
@@ -43,17 +42,17 @@
                             Ban Quản Trị
                         </td>
                         <td>
-                            <button class="btn-status" id="btn">Active</button>
+                            Hoạt Động
                         </td>
-                        <td class="action" style="display:flex; justify-content:space-around; align-items:center">
+                        <td class="td-action" style="display:flex; justify-content:space-around; align-items:center">
                             <li class="action-item" style="list-style-type: none; font-size: 18px">
                                 <a href="@Url.Action("Edit")" class="action-icon">
-                                    <i style="color: #F69928" class="fa-solid fa-pen-to-square icon"></i>
+                                    <i class="fa-solid fa-pen-to-square icon"></i>
                                 </a>
                             </li>
                             <li class="action-item" style="list-style-type:none; font-size: 18px">
                                 <a href="" class="action-icon" data-toggle="modal" data-target="#myModal">
-                                    <i style="color: #F69928" class="fa-solid fa-trash-can icon"></i>
+                                    <i  class="fa-solid fa-trash-can icon"></i>
                                 </a>
                             </li>
 
