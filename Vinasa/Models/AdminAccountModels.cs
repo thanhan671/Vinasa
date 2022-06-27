@@ -15,7 +15,7 @@ namespace Vinasa.Models
         public int Quyen { get; set; }
         public int TrangThai { get; set; }
 
-        public int Sdt { get; set; }
+        public string Sdt { get; set; }
         public string PhongBan { get; set; }
         public string MatKhau { get; set; }
 

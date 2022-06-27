@@ -15,13 +15,13 @@ namespace Vinasa.Models
     public partial class HOIVIEN
     {
         public int ID { get; set; }
-        public int MaSoThue { get; set; }
+        public string MaSoThue { get; set; }
         public string TenTiengViet { get; set; }
         public string TenTiengAnh { get; set; }
         public string TenVietTat { get; set; }
-        public string NgayKichHoat { get; set; }
+        public string NgayThanhLap { get; set; }
         public string Website { get; set; }
-        public int SdtCongTy { get; set; }
+        public string SdtCongTy { get; set; }
         public string EmailCongTy { get; set; }
         public string DiaChiGiaoDich { get; set; }
         public string DiaChiTrenChungTu { get; set; }
@@ -32,19 +32,19 @@ namespace Vinasa.Models
         public string LinhVucHoatDong { get; set; }
         public string LanhDao { get; set; }
         public string ChucDanhLanhDao { get; set; }
-        public int SdtLanhDao { get; set; }
+        public string SdtLanhDao { get; set; }
         public string EmailLanhDao { get; set; }
         public string DaiDienMarketing { get; set; }
         public string ChucNangMarketing { get; set; }
-        public int SdtMarketing { get; set; }
+        public string SdtMarketing { get; set; }
         public string EmailMarketing { get; set; }
         public string DaiDienNhanSu { get; set; }
         public string ChucDanhNhanSu { get; set; }
-        public int SdtNhanSu { get; set; }
+        public string SdtNhanSu { get; set; }
         public string EmailNhanSu { get; set; }
         public string DaiDienKeToan { get; set; }
         public string ChucDanhKeToan { get; set; }
-        public int SdtKeToan { get; set; }
+        public string SdtKeToan { get; set; }
         public string EmailKeToan { get; set; }
         public string Fanpage { get; set; }
         public string ThoiGianGiaNhap { get; set; }

@@ -13,10 +13,10 @@ namespace Vinasa.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class SEP25Team16Entities1 : DbContext
+    public partial class SEP25Team16Entities2 : DbContext
     {
-        public SEP25Team16Entities1()
-            : base("name=SEP25Team16Entities1")
+        public SEP25Team16Entities2()
+            : base("name=SEP25Team16Entities2")
         {
         }
     

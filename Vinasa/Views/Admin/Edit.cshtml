@@ -43,11 +43,11 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
      $('#enter').click(function () {
-        location.href = "@Url.Action("Edit")";
+        location.href = "@Url.Action();
     })
 
     $('#cancel').click(function () {
-        location.href = 'javascript:history.go(-1)';
+        location.href = "@Url.Action("Index")";
     })
 
 </script>

@@ -10,9 +10,8 @@ namespace Vinasa.Controllers
     public class AdminController : Controller
     {
         #region global variable
-        SEP25Team16Entities1 db = new SEP25Team16Entities1();
+        SEP25Team16Entities2 db = new SEP25Team16Entities2();
 
-        private int accountID;
         #endregion
 
         // GET: Admin
@@ -63,11 +62,6 @@ namespace Vinasa.Controllers
         }
 
         #region support method
-        private int FindRowID()
-        {
-
-            return accountID;
-        }
         #endregion
     }
 }
