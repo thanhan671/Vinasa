@@ -39,5 +39,11 @@ namespace Vinasa.Controllers
 
             return Content("Login fail" + loginEmail + " " + loginPassword);
         }
+
+        public ActionResult Registerr()
+        {
+            AdminAccountModels accountModels = new AdminAccountModels();
+            return View(accountModels);
+        }
     }
 }
