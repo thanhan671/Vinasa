@@ -43,7 +43,8 @@ namespace Vinasa.Controllers
 
         public ActionResult Register()
         {
-            return View();
+            AdminAccountModels accountModels = new AdminAccountModels();
+            return View(accountModels);
         }
 
     }

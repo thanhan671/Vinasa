@@ -1911,6 +1911,7 @@
     <Content Include="vendor\jquery\jquery.slim.min.js" />
     <None Include="Views\Account\Login.cshtml" />
     <None Include="Views\Shared\sblogin.cshtml" />
+    <None Include="Views\Account\Registerr.cshtml" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
