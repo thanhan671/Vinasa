@@ -172,6 +172,7 @@
           <Property Name="LinhVucHoatDong" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="LanhDao" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="ChucDanhLanhDao" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+
           <Property Name="SdtLanhDao" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="EmailLanhDao" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="DaiDienMarketing" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />

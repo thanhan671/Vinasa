@@ -16,7 +16,6 @@ namespace Vinasa
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                 //defaults: new { controller = "Account", action = "Login", id = UrlParameter.Optional }
                  defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
             );
 
@@ -25,6 +24,7 @@ namespace Vinasa
                 "{controller}/{action}/{id}", // URL with parameters
                 new { controller = "Home", action = "Index", id = UrlParameter.Optional } // Parameter defaults
             );
+
         }
     }
 }

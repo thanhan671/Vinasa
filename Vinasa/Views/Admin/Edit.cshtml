@@ -3,45 +3,58 @@
     ViewBag.Title = "Edit";
     Layout = "~/Views/Shared/sbadmin.cshtml";
 }
-<link href="@Url.Content("~/css/link.css")" rel="stylesheet">
-
 
 <div class="row">
     <div class="col-6">
         <h5 class="heading">Sửa Thông Tin Quản Trị</h5>
         <form class="form-field" method="post" enctype="multipart/form-data">
             <div class="input-wrapper">
-                @*<input type="text" contenteditable="true" value="Giang Văn Thăng" required>*@
-                @Html.TextBoxFor(m => m.Ten)
-                <label for="tax">Tên Hội Viên</label>
+                <input class="ip-form" type="text" id="tax" contenteditable="true" @Html.TextBoxFor(m => m.Ten)
+                <label class="lb-form" for="tax">Tên Hội Viên</labelclass="lb-form">
             </div>
             <div class="input-wrapper">
-                @Html.TextBoxFor(m => m.Email)
-                @*<input type="text" contenteditable="true" value="thang.giang113vn@gmail.com" required>*@
-                <label>Email</label>
+                <input class="ip-form" type="text" contenteditable="true" @Html.TextBoxFor(m => m.Email)
+                <label class="lb-form">Email</label>
             </div>
             <div class="input-wrapper">
-                @Html.TextBoxFor(m => m.Sdt)
-                @*<input type="text" contenteditable="true" value="0783626832" required>*@
-                <label for="name">Số Điện Thoại</label>
+                <input class="ip-form" type="text" contenteditable="true" @Html.TextBoxFor(m => m.Sdt)
+                <label class="lb-form" for="name">Số Điện Thoại</label>
             </div>
             <div class="input-wrapper">
-                @*<input type="text" contenteditable="true" value="Ban Quản Trị" required>*@
-                @Html.TextBoxFor(m => m.PhongBan)
-                <label for="name">Phòng Ban</label>
+                <input class="ip-form" type="text" contenteditable="true" @Html.TextBoxFor(m => m.PhongBan)
+                <label class="lb-form" for="name">Phòng Ban</label>
             </div>
+            <div class="input-wrapper">
+                <label class="lb-form" for="name">Quyền</label>
+                <select class="form-control select-region" name="type">
+                    <option value="none">@Html.DisplayTextFor(m => m.Quyen)</option>
 
+                    <option value="">Quản Lí</option>
+                    <option value="">Quản Trị</option>
+                </select>
+            </div>
+            <div class="input-wrapper">
+                <label class="lb-form" for="name">Trạng Thái</label>
+                <select class="form-control select-region" name="type">
+                    <option value="none">Chọn Trạng Thái</option>
+
+                    <option value="">Hoạt Động</option>
+                    <option value="">Vô Hiệu</option>
+
+                </select>
+            </div>
         </form>
     </div>
 
 
 </div>
 <div class="button-form">
-    <button class="button" id="enter">Xác Nhận</button>
-    <button class="button" id="cancel">Huỷ</button>
+    <button class="button-lc">Xác Nhận</button>
+    <button class="button-lc" id="cancel">Huỷ</button>
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
+
      $('#enter').click(function () {
         location.href = "@Url.Action();
     })
@@ -49,5 +62,4 @@
     $('#cancel').click(function () {
         location.href = "@Url.Action("Index")";
     })
-
 </script>
