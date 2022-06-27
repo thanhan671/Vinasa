@@ -1,4 +1,4 @@
-﻿
+﻿@model Vinasa.Models.TAIKHOANADMIN
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/sbadmin.cshtml";
@@ -32,18 +32,20 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td>Giang Văn Thăng</td>
                         <td>
-                            thang.giang113vn@gmail.com
+                            @Html.DisplayFor(Model => Model.Ten)
                         </td>
                         <td>
-                            0783626832
+                            @Html.DisplayFor(Model => Model.Email)
                         </td>
                         <td>
-                            Ban Quản Trị
+                            @Html.DisplayFor(Model => Model.Sdt)
                         </td>
                         <td>
-                            <button class="btn-status" id="btn">Active</button>
+                            @Html.DisplayFor(Model => Model.PhongBan)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(Model => Model.TrangThai)
                         </td>
                         <td class="action" style="display:flex; justify-content:space-around; align-items:center">
                             <li class="action-item" style="list-style-type: none; font-size: 18px">
