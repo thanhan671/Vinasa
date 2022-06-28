@@ -19,7 +19,6 @@
     <link rel="icon" href="~/img/iconVinasa (2).png" type="image/png">
     <!-- Custom styles for this template-->
     <link href="@Url.Content("~/css/sb-admin-2.css")" />
-    <link href="@Url.Content("~/css/admin-new.css")" />
     <link href="@Url.Content("~/css/sb-admin-2.min.css")" rel="stylesheet">
     <link href="@Url.Content("~/vendor/datatables/dataTables.bootstrap4.min.css")" rel="stylesheet">
 
@@ -167,7 +166,7 @@
                     <!-- Topbar Search -->
                     <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
                         <div class="input-group">
-                            <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
+                            <input type="text" class="form-control bg-light border-0 small" placeholder="Tìm kiếm..."
                                    aria-label="Search" aria-describedby="basic-addon2">
                             <div class="input-group-append">
                                 <button style="background-color: #E7870F;" class="btn btn-primary" type="button">
@@ -342,7 +341,7 @@
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                  aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="#">
+                                <a class="dropdown-item" href="@Url.Action("Profile","Admin")">
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Profile
                                 </a>
