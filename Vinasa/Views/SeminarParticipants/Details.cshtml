@@ -42,7 +42,6 @@
             @Html.EditorFor(model => model.Operation, new { htmlAttributes = new { @class = "ip-form", @readonly = "readonly" } })
             @Html.LabelFor(model => model.Operation, new { @class = "lb-form" })
         </div>
-
         <div class="input-wrapper">
             <label class="form-check-label">
                 @Html.CheckBoxFor(m => m.RegistrySeminar, new { @class = "form-check-input" })
@@ -52,21 +51,21 @@
 
         <div class="input-wrapper">
             <label class="form-check-label">
-                @Html.CheckBoxFor(m => m.RegistryBusinessMatching, new { @class = "form-check-input"})
+                @Html.CheckBoxFor(m => m.RegistryBusinessMatching, new { @class = "form-check-input" })
                 @Html.DisplayNameFor(model => model.RegistryBusinessMatching)
             </label>
         </div>
 
         <div class="input-wrapper">
             <label class="form-check-label">
-                @Html.CheckBoxFor(m => m.RegistryExhibition, new { @class = "form-check-input"})
+                @Html.CheckBoxFor(m => m.RegistryExhibition, new { @class = "form-check-input" })
                 @Html.DisplayNameFor(model => model.RegistryExhibition)
             </label>
         </div>
 
         <div class="input-wrapper">
             <label class="form-check-label">
-                @Html.CheckBoxFor(m => m.RegistryTicket, new { @class = "form-check-input"})
+                @Html.CheckBoxFor(m => m.RegistryTicket, new { @class = "form-check-input" })
                 @Html.DisplayNameFor(model => model.RegistryTicket)
             </label>
         </div>

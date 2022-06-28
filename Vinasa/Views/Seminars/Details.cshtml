@@ -4,7 +4,16 @@
 }
 
 <!-- Page Heading -->
-<h1 class="h3 mb-2 text-gray-800">Hội Nghị</h1>
+<div class="heading">
+    <h1 class="h3 mb-2 text-gray-800">Hội Nghị</h1>
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="@Url.Action("Index")">Danh Sách Các Hội Nghị</a></li>
+            @*<li class="breadcrumb-item"><label onclick="location.href = 'javascript:history.go(-1)'">Danh Sách Các Hội Nghị</label></li>*@
+            <li class="breadcrumb-item active" aria-current="page">Danh Sách Hội Viên Tham Gia + tên HN</li>
+        </ol>
+    </nav>
+</div>
 
 <!-- DataTales Example -->
 <div class="card shadow mb-4">
@@ -14,7 +23,7 @@
         </div>
         <div class="left-content">
             <button type="button" id="importexcel" name="importexcel" class="button-lc" style=" width: 200px;" data-toggle="modal" data-target="#importexcel-window"> 
-                Import Excel
+                Thêm File Excel
             </button>
         </div>
     </div>
