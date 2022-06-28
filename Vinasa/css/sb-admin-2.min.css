@@ -11705,3 +11705,7 @@ body.sidebar-toggled footer.sticky-footer {
     border: none;
     width: 100%;
 }
+
+.pf-ip:focus{
+    border-color: #F69928;
+}
