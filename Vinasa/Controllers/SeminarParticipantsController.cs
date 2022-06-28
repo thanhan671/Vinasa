@@ -90,9 +90,9 @@ namespace Vinasa.Controllers
         {
             if (ModelState.IsValid)
             {
-                _db.Entry(seminarParticipant).State = EntityState.Modified;
+                _db.Entry(seminarParticipant).State = System.Data.Entity.EntityState.Modified;
                 _db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Details", "Seminars", new { id = seminarParticipant.SeminarId });
             }
             return View(seminarParticipant);
         }

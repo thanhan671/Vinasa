@@ -1,5 +1,6 @@
 ﻿@model Vinasa.Models.SeminarParticipant
 
+@Html.HiddenFor(model => model.SeminarId);
 <div class="input-wrapper">
     @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "ip-form", @required = "required" } })
     @Html.LabelFor(model => model.Name, new { @class = "lb-form" })
@@ -73,8 +74,6 @@
     </label>
 </div>
 <div class="button-form">
-    <input type="submit" class="button" value="Xác Nhận"></input>
-    <input type="button"
-           value="Hủy"
-           onclick="location.href='@Url.Action("Index", "SeminarParticipants")'" />
+    <input type="submit" class="button-lc" value="Xác Nhận"></input>
+    <button class="button-lc" onclick="location.href = 'javascript:history.go(-1)'">Huỷ</button>
 </div>

@@ -10,7 +10,7 @@ namespace Vinasa.Models
     {
         public int Id { get; set; }
 
-        public int SeminarId { get; set; }
+        public int? SeminarId { get; set; }
 
         [Display(Name = "Họ và tên người tham dự")]
         public string Name { get; set; }
