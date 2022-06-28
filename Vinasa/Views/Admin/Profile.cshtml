@@ -1,0 +1,83 @@
+﻿
+
+@{
+    ViewBag.Title = "Profile";
+    Layout = "~/Views/Shared/sbadmin.cshtml";
+}
+
+<div class="row">
+    <div class="col-lg-4">
+        <div class="card mb-4">
+            <div class="card-body text-center" style=" height: 310px;">
+                <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp" alt="avatar" class="rounded-circle img-fluid" style="width: 150px;">
+                <h5 class="my-3">John Smith</h5>
+                <p class="text-muted mb-1"></p>
+                <p class="text-muted mb-4">Bay Area, San Francisco, CA</p>
+
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-8">
+        <div class="card mb-4">
+            <div class="card-body" style=" height: 310px;">
+                <div class="row">
+                    <div class="col-sm-3">
+                        <p class="mb-0">Họ Tên</p>
+                    </div>
+                    <div class="col-sm-9">
+                        <input type="text" class="text-muted mb-0 pf-ip" value="Johnatan Smith">
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-sm-3">
+                        <p class="mb-0">Email</p>
+                    </div>
+                    <div class="col-sm-9">
+                        <input type="email" class="text-muted mb-0 pf-ip" value="example@example.com">
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-sm-3">
+                        <p class="mb-0">Số Điện Thoại</p>
+                    </div>
+                    <div class="col-sm-9">
+                        <input type="tel" class="text-muted mb-0 pf-ip" value="(097) 234-5678">
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-sm-3">
+                        <p class="mb-0">Mật Khẩu</p>
+                    </div>
+                    <div class="col-sm-9">
+                        <input class="text-muted mb-0 pf-ip" value="123456">
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-sm-3">
+                        <p class="mb-0">Address</p>
+                    </div>
+                    <div class="col-sm-9">
+                        <input class="text-muted mb-0 pf-ip" value="Bay Area, San Francisco, CA">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<div class="button-form">
+    <button class="button-lc button-cancel" id="cancel">Huỷ</button>
+    <button class="button-lc">Cập nhật Tài Khoản</button>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+
+    $('#cancel').click(function () {
+        location.href = 'javascript:history.go(-1)';
+    })
+
+</script>

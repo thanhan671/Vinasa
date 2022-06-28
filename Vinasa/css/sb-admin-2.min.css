@@ -11653,7 +11653,6 @@ body.sidebar-toggled footer.sticky-footer {
 }
 
 .button-form {
-
     float:left;
 }
 
@@ -11700,3 +11699,9 @@ body.sidebar-toggled footer.sticky-footer {
     #modal-b .button-lc:hover {
         background-color: #051D65;
     }
+
+
+.pf-ip{
+    border: none;
+    width: 100%;
+}
