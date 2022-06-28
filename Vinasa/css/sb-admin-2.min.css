@@ -11708,4 +11708,5 @@ body.sidebar-toggled footer.sticky-footer {
 
 .pf-ip:focus{
     border-color: #F69928;
+    border-radius: 4px
 }
