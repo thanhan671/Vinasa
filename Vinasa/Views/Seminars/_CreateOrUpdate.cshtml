@@ -1,11 +1,11 @@
 ﻿@model Vinasa.Models.Seminar
 
 <div class="input-wrapper">
-    @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class= "ip-form", @required = "required" } })
+    @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "ip-form", @required = "required" } })
     @Html.LabelFor(model => model.Title, new { @class = "lb-form" })
 </div>
 <div class="input-wrapper">
-    @Html.EditorFor(model => model.OpenDate, new { htmlAttributes = new { @class = "ip-form", @required = "required" } })
+    @Html.EditorFor(model => model.OpenDate, new { htmlAttributes = new { @class = "ip-form", @type = "text", @id = "dtlc", @required = "required" } })
     @Html.LabelFor(model => model.OpenDate, new { @class = "lb-form" })
 </div>
 <div class="input-wrapper">
@@ -16,3 +16,14 @@
     <button class="button-lc">Xác Nhận</button>
     <button class="button-lc button-cancel" onclick="location.href = 'javascript:history.go(-1)'" id="cancel">Huỷ</button>
 </div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+    var dtl = document.getElementById('dtlc')
+    dtl.onfocus = function (event) {
+        this.type = 'datetime-local';
+        this.focus();
+    }
+    dtl.onblur = function (event) {
+        this.type = 'text';
+    }
+</script>
