@@ -11517,6 +11517,23 @@ body.sidebar-toggled footer.sticky-footer {
     width: 100%
 }
 
+.header-tb {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.breadcrumb {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0.25rem 1rem;
+    margin-bottom: 1rem;
+    list-style: none;
+    background-color: #eaecf4;
+    border-radius: .35rem;
+    font-size: 12px;
+    width: fit-content;
+}
 
 .button-lc {
     height: 40px;
@@ -11525,11 +11542,27 @@ body.sidebar-toggled footer.sticky-footer {
     background: #F69928;
     color: #fff;
     border: 1px solid #ccc;
-    border-radius: 20px;
+    border-radius: 10px;
+}
+
+.button-cancel {
+    height: 40px;
+    width: 100px;
+    margin: 10px 10px;
+    background: #ccc;
+    color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+}
+
+.button-cancel:hover{
+    background: #bbb;
+    color: #F69928;
 }
 
 .button-lc:hover {
     background-color: #051D65;
+    color: #F69928;
 }
 
 .icon {
@@ -11617,7 +11650,7 @@ body.sidebar-toggled footer.sticky-footer {
 }
 
 .action-list:hover {
-    color: #000;
+    color: #F69928;
     text-decoration: none;
 }
 
@@ -11625,9 +11658,9 @@ body.sidebar-toggled footer.sticky-footer {
     color: #E7870F;
 }
 
-.button-form {
-    text-align: center;
-}
+/*.button-form {
+    float:left;
+}*/
 
 .select-region {
     width: 500px;
@@ -11669,6 +11702,21 @@ body.sidebar-toggled footer.sticky-footer {
     border-radius: 4px;
 }
 
-    #modal-b .button-lc:hover {
-        background-color: #051D65;
-    }
+#modal-b .button-lc:hover {
+    background-color: #051D65;
+}
+
+
+.pf-ip{
+    border: none;
+    width: 100%;
+}
+
+.pf-ip:focus{
+    border-color: #F69928;
+    border-radius: 4px
+}
+
+.f-r{
+    float: right;
+}

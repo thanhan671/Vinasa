@@ -4,9 +4,17 @@
     Layout = "~/Views/Shared/sbadmin.cshtml";
 }
 
+<div class="heading">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="@Url.Action("Index", "Seminar")">Danh sách Hội Nghị</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Cập nhật + TENHOINGHI</li>
+        </ol>
+    </nav>
+</div>
 
 <div class="container col-11 centerPage">
-    <h5 class="heading">Cập nhật Hội Nghị</h5>
+    <h5 class="heading">Cập nhật + TENHOINGHI</h5>
     <form class="form-field" method="post" enctype="multipart/form-data">
         <div class="input-wrapper">
             <input class="ip-form" type="text" id="tax" required>
@@ -14,7 +22,7 @@
         </div>
 
         <div class="input-wrapper">
-            <input class="ip-form" type="text" required>
+            <input class="ip-form" type="text" id="dtlc" required>
             <label class="lb-form" for="name">Thời Gian Diễn Ra</label>
         </div>
 
@@ -24,15 +32,23 @@
         </div>
     </form>
     <div class="button-form">
+        <button class="button-cancel" id="cancel">Huỷ</button>
         <button class="button-lc">Xác Nhận</button>
-        <button class="button-lc" id="cancel">Huỷ</button>
     </div>
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
 
-        $('#cancel').click(function () {
-        location.href = 'javascript:history.go(-1)';
+    $('#cancel').click(function () {
+    location.href = 'javascript:history.go(-1)';
     })
+    var dtl = document.getElementById('dtlc')
+    dtl.onfocus = function (event) {
+        this.type = 'datetime-local';
+        this.focus();
+    }
+    dtl.onblur = function (event) {
+        this.type = 'text';
+    }
 
 </script>

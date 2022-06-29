@@ -4,12 +4,22 @@
     Layout = "~/Views/Shared/sbadmin.cshtml";
 }
 
+<div class="heading">
+
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="@Url.Action("Index", "Seminar")">Danh sách Hội Nghị</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Xem thông tin + TENHOINGHI</li>
+        </ol>
+    </nav>
+</div>
+
 <div class="container col-11 centerPage">
-    <h5 class="heading">Thông Tin Hội Nghị</h5>
+    <h5 class="heading">Thông Tin + TENHOINGHI</h5>
     <form class="form-field" method="post" enctype="multipart/form-data">
         <div class="input-wrapper">
             <input class="ip-form" type="text" value="Hội nghị kết nối đầu tư tổ chức tại TP. Hồ Chí Minh: chủ đề THÚC ĐẨY ĐẦU TƯ VÀ PHÁT TRIỂN HỆ SINH THÁI TÀI CHÍNH SỐ" id="tax" readonly>
-            <label class="lb-form" for="tax">Tên Hội Thảo</label>
+            <label class="lb-form" for="tax">Tên Hội Nghị</label>
         </div>
 
         <div class="input-wrapper">

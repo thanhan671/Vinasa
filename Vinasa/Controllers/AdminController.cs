@@ -39,6 +39,7 @@ namespace Vinasa.Controllers
             return View();
         }
 
+
         [HttpGet]
         public ActionResult Edit(int id, AdminAccountModels adminAccountModels)
         {
@@ -112,5 +113,11 @@ namespace Vinasa.Controllers
         //    return true;
         //}
         #endregion
+
+        public ActionResult Profile()
+        {
+            return View();
+        }
+
     }
 }
