@@ -1,4 +1,4 @@
-﻿
+﻿@model Vinasa.Models.AdminAccountModels
 @{
     ViewBag.Title = "DetailMember";
     Layout = "~/Views/Shared/sbadmin.cshtml";
@@ -184,15 +184,8 @@
     </div>
 </div>
 <div class="button-form">
-    <button class="button-lc" id="cancel">Quay Lại</button>
+    <button class="button-lc" onclick="location.href = 'javascript:history.go(-1)'">Quay Lại</button>
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script>
 
-    $('#cancel').click(function () {
-            location.href = 'javascript:history.go(-1)';
-            
-        })
-
-</script>
 
