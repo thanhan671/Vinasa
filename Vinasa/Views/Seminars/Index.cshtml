@@ -31,7 +31,7 @@
                         <th>
                             @Html.DisplayNameFor(model => model.Address)
                         </th>
-                        <th></th>
+                        <th>Chức năng</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -50,14 +50,14 @@
                                 @Html.DisplayFor(modelItem => item.Address)
                             </td>
                             <td class="action" style=" display:flex; justify-content:space-around; align-items:center">
-                                <li class="action-item">
+                                <li class="action-item" style="list-style-type: none; font-size: 18px">
                                     <a class="action-icon" href="@Url.Action("Edit", "Seminars", new{ id = @item.Id})">
-                                        <i class="fa-solid fa-pen-to-square icon"></i>
+                                        <i style="color: #F69928" class="fa-solid fa-pen-to-square icon"></i>
                                     </a>
                                 </li>
-                                <li class="action-item">
+                                <li class="action-item" style="list-style-type: none; font-size: 18px">
                                     <a class="action-icon delete-btn" data-id="@item.Id">
-                                        <i class="fa-solid fa-trash-can icon"></i>
+                                        <i style="color: #F69928" class="fa-solid fa-trash-can icon"></i>
                                     </a>
                                 </li>
                             </td>
