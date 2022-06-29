@@ -21,7 +21,7 @@ namespace Vinasa.Models
     
         public int IDQuyen { get; set; }
         public string TenQuyen { get; set; }
-    
+
         public virtual ICollection<TAIKHOANADMIN> TAIKHOANADMINs { get; set; }
     }
 }

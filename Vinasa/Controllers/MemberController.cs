@@ -10,9 +10,8 @@ namespace Vinasa.Controllers
     public class MemberController : Controller
     {
 
-        SEP25Team16Entities1 db = new SEP25Team16Entities1();
+        SEP25Team16Entities2 db = new SEP25Team16Entities2();
 
-        private int memberID;
         // GET: Member
         [HttpGet]
         public ActionResult Index()
@@ -112,13 +111,6 @@ namespace Vinasa.Controllers
             return Content(memberAccountModels.ID.ToString());
         }
 
-        #region support method
-        private int FindRowID()
-        {
-
-            return memberID;
-        }
-        #endregion
         public ActionResult DetailMember()
         {
             return View();

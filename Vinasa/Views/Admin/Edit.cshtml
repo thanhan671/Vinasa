@@ -1,16 +1,20 @@
-﻿@model Vinasa.Models.AdminAccountModels
+﻿@model Vinasa.Models.AdminAccountModels 
+
 @{
     ViewBag.Title = "Edit";
     Layout = "~/Views/Shared/sbadmin.cshtml";
 }
 
+@using (Html.BeginForm("Edit", "Admin", FormMethod.Post))
+{
 <div class="row">
     <div class="col-6">
-        <h5 class="heading">Sửa Thông Tin Quản Trị</h5>
+        <h5 class="heading">Sửa Thông Tin Người Dùng</h5>
+
         <form class="form-field" method="post" enctype="multipart/form-data">
             <div class="input-wrapper">
                 <input class="ip-form" type="text" id="tax" contenteditable="true" @Html.TextBoxFor(m => m.Ten)
-                <label class="lb-form" for="tax">Tên Hội Viên</labelclass="lb-form">
+                <label class="lb-form" for="tax">Tên Người Dùng</label>
             </div>
             <div class="input-wrapper">
                 <input class="ip-form" type="text" contenteditable="true" @Html.TextBoxFor(m => m.Email)
@@ -26,38 +30,43 @@
             </div>
             <div class="input-wrapper">
                 <label class="lb-form" for="name">Quyền</label>
-                <select class="form-control select-region" name="type">
-                    <option value="none">@Html.DisplayTextFor(m => m.Quyen)</option>
-
-                    <option value="">Quản Lí</option>
-                    <option value="">Quản Trị</option>
-                </select>
+                @*<select class="form-control select-region" name="type">
+                    <option value="none">@Html.DisplayTextFor(m => m.sQuyen)</option>
+                    <option value="" >Quản trị</option>
+                    <option value="" >Quản lí</option>
+                </select>*@
+                @*@Html.DropDownListFor(m => m.sQuyen)*@
             </div>
             <div class="input-wrapper">
                 <label class="lb-form" for="name">Trạng Thái</label>
                 <select class="form-control select-region" name="type">
-                    <option value="none">Chọn Trạng Thái</option>
-
-                    <option value="">Hoạt Động</option>
-                    <option value="">Vô Hiệu</option>
+                    <option value="none">@Html.DisplayTextFor(m => m.sTrangThai)</option>
+                    <option value="">Hoạt động</option>
+                    <option value="">Vô hiệu</option>
 
                 </select>
             </div>
         </form>
     </div>
 
+    @*<button class="button-lc" type="submit" name="save">Xác Nhận</button>*@
+    @*<div class="form-group">
+            <input type="submit" name="response" value="Edit" formaction=@Url.Action("Edit") formmethod="post" class="btn btn-primary" />
+            <input type="submit" value="Hủy" class="btn btn-primary btn-user btn-block" />
+        </div>*@
+    <div class="button-form">
+        @*<input type="submit" name="save" value="Xác Nhận" />*@
+        <button class="button-lc" type="submit" name="save">Xác Nhận</button>
+        <button class="button-lc" onclick="location.href='@Url.Action("Index", "Admin")'" type="button" name="cancel">Huỷ</button>
+    </div>
+</div>
 
-</div>
-<div class="button-form">
-    <button class="button-lc">Xác Nhận</button>
-    <button class="button-lc" id="cancel">Huỷ</button>
-</div>
+}
+
+
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
-
-     $('#enter').click(function () {
-        location.href = "@Url.Action();
-    })
 
     $('#cancel').click(function () {
         location.href = "@Url.Action("Index")";
