@@ -111,6 +111,36 @@ namespace Vinasa.Controllers
             }
             return View();
         }
-    }
 
+        [HttpGet]
+        public new ActionResult Profile()
+        {
+            int id; 
+            if(Session["AccountID"] != null)
+            {
+                id = (int)Session["AccountID"];
+            }
+            else
+            {
+                return RedirectToAction("Login", "Account", new { area = " " });
+            }
+
+            AdminAccountModels adminAccountModels = db.TAIKHOANADMINs.Where(acc => acc.ID.Equals(id)).Select(acc => new AdminAccountModels()
+            {
+                Ten = acc.Ten,
+                Email = acc.Email,
+                Sdt = acc.Sdt,
+                MatKhau = acc.MatKhau
+            }).SingleOrDefault();
+
+            return View(adminAccountModels);
+        }
+
+        [HttpPost]
+        public new ActionResult Profile(AdminAccountModels adminAccountModels)
+        {
+
+            return RedirectToAction("Index", "Home", new { area = " " });
+        }
+    }
 }

@@ -30,12 +30,12 @@
             </div>
             <div class="input-wrapper">
                 <label class="lb-form" for="name">Quyền</label>
-                @*<select class="form-control select-region" name="type">
+                <select class="form-control select-region" name="type">
                     <option value="none">@Html.DisplayTextFor(m => m.sQuyen)</option>
                     <option value="" >Quản trị</option>
                     <option value="" >Quản lí</option>
-                </select>*@
-                @*@Html.DropDownListFor(m => m.sQuyen)*@
+                </select>
+                @*@Html.DropDownListFor(m => m.sQuyen, Model.RoleList)*@
             </div>
             <div class="input-wrapper">
                 <label class="lb-form" for="name">Trạng Thái</label>

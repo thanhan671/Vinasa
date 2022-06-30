@@ -20,6 +20,7 @@ namespace Vinasa.Models
         public string PhongBan { get; set; }
         public string MatKhau { get; set; }
 
+        public string newMatKhau { get; set; }
         public string reMatKhau { get; set; }
         public string sQuyen { get; set; }
         public string sTrangThai { get; set; }
@@ -27,5 +28,7 @@ namespace Vinasa.Models
         public virtual QUYEN QUYEN1 { get; set; }
         public virtual TRANGTHAI TRANGTHAI1 { get; set; }
 
+        public IEnumerable<string> RoleList { get; set; }
+        public IEnumerable<SelectListItem> StatusList { get; set; }
     }
 }

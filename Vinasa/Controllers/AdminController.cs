@@ -47,6 +47,7 @@ namespace Vinasa.Controllers
             {
                 return RedirectToAction("Login", "Account", new { area = " " });
             }
+            //ViewBag.RoleList = 
 
             adminAccountModels = db.TAIKHOANADMINs.Where(acc => acc.ID.Equals(id)).Select(acc => new AdminAccountModels()
             {
@@ -70,9 +71,7 @@ namespace Vinasa.Controllers
             {
                 return RedirectToAction("Login", "Account", new { area = " " });
             }
-
-            var name = adminAccountModels.Ten.Trim();
-            var email = adminAccountModels.Email.Trim();
+            var id = adminAccountModels.ID;
             //string sRole, sStatus;
             //using (db)
             //{
@@ -83,12 +82,39 @@ namespace Vinasa.Controllers
             //}
             //var role = sRole;
             //var status = sStatus;
-            var role = adminAccountModels.Quyen;
-            var status = adminAccountModels.sTrangThai;
-            var phoneNumber = adminAccountModels.Sdt;
-            var department = adminAccountModels.PhongBan.Trim();
+            //var role = adminAccountModels.Quyen;
+            //var status = adminAccountModels.sTrangThai;
 
-            return Content(role.ToString());
+            //if(ModelState.IsValid)
+            //{
+            //    return View(adminAccountModels);
+            //}
+            //else
+            //{
+            using (db)
+            {
+                var accountdata = db.TAIKHOANADMINs.Where(acc => acc.ID.Equals(id)).FirstOrDefault();
+                {
+                    if (accountdata != null)
+                    {
+                        try
+                        {
+                            accountdata.Ten = adminAccountModels.Ten;
+                            accountdata.Email = adminAccountModels.Email;
+                            accountdata.Sdt = adminAccountModels.Sdt;
+                            accountdata.PhongBan = adminAccountModels.PhongBan;
+                            db.SaveChanges();
+                            return RedirectToAction("Index", "Admin", new { area = " " });
+                        }
+                        catch (Exception ex)
+                        {
+                            throw ex;
+                        }
+                    }
+                }
+            }
+
+            return Content(id.ToString());
         }
 
         public ActionResult Delete(int id)
@@ -113,11 +139,6 @@ namespace Vinasa.Controllers
         //    return true;
         //}
         #endregion
-
-        public ActionResult Profile()
-        {
-            return View();
-        }
 
     }
 }
