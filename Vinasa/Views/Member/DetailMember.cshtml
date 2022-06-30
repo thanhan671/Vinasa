@@ -9,7 +9,7 @@
 <div class="row">
     <div class="col-6">
         <h5 class="heading">Thông Tin Hội Viên</h5>
-        <form class="form-field" method="post" enctype="multipart/form-data">
+        <form class="form-field" method="post" enctype="multipart/form-data" action="@Url.Action("Member")">
             <div class="input-wrapper">
                 <input class="ip-form" type="text" id="tax" contenteditable="true" readonly @Html.TextBoxFor(m => m.MaSoThue)
                 <label class="lb-form" for="tax">Mã số thuế</label>
@@ -95,9 +95,9 @@
                 <select class="ip-form" name="type">
                     <option value="none">Chọn Khu Vực</option>
 
-                    <option id="1">Miền Nam</option>
-                    <option id="2">Miền Trung</option>
-                    <option id="3">Miền Bắc</option>
+                    <option name="khu" value="1">Miền Nam</option>
+                    <option name="khu" value="2">Miền Trung</option>
+                    <option name="khu" value="3">Miền Bắc</option>
 
                 </select>
             </div>

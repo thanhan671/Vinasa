@@ -67,8 +67,16 @@ namespace Vinasa.Controllers
                 SdtKeToan = mAcc.SdtKeToan,
                 EmailKeToan = mAcc.EmailKeToan,
                 Fanpage = mAcc.Fanpage,
-                ThoiGianGiaNhap = mAcc.ThoiGianGiaNhap
+                ThoiGianGiaNhap = mAcc.ThoiGianGiaNhap,
+                KhuVuc = mAcc.KhuVuc
             }).SingleOrDefault();
+
+            var abc = db.KHUVUCs.Select(k => new KhuVucModels { 
+            IDKhuVuc=k.IDKhuVuc,
+            TenKhuVuc=k.TenKhuVuc
+            }).ToList();
+
+            Session["khuvuc"] = abc;
 
             return View(memberAccountModels);
         }
