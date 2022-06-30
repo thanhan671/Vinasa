@@ -4,6 +4,7 @@
     Layout = "~/Views/Shared/sbadmin.cshtml";
 }
 
+
 <div class="heading">
     <h3 class="h3 mb-2 text-gray-800">Danh Sách Hội Viên Tham Gia + TENHOINGHI</h3>
     <nav aria-label="breadcrumb">
@@ -13,6 +14,8 @@
         </ol>
     </nav>
 </div>
+<h1 class="h3 mb-2 text-gray-800">Hội Thảo</h1>
+
 
 <!-- DataTales Example -->
 <div class="card shadow mb-4">
@@ -114,8 +117,8 @@
                             Xác nhận xóa doanh nghiệp này khỏi hội thảo?
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Huỷ</button>
-                            <button type="button" class="button-lc">Xác nhận</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Huỷ</button>
+                            <button type="button" class="btn btn-primary" style=" background: #F69928; ">Xác nhận</button>
                         </div>
                     </div>
                 </div>
@@ -126,6 +129,18 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
+
+
+    const button = document.getElementById('confirmTrigger');
+    const confirmResult = document.getElementById('confirmResult');
+    button.addEventListener('click', function (e) {
+        if (window.confirm('Bạn có chắc chắn xoá?')) {
+            confirmResult.innerText = 'Yes';
+        } else {
+            confirmResult.innerText = 'No';
+        }
+    });
+
 
 </script>
 

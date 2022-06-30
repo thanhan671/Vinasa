@@ -1,0 +1,23 @@
+﻿@model Vinasa.Models.SeminarParticipant
+@using (Html.BeginForm("Delete", "SeminarParticipants"))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title">Xoá Hội viên này khỏi hội thảo?</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            Bạn có chắc chắn xoá?
+        </div>
+        <div class="modal-footer">
+            @Html.HiddenFor(model => model.Id)
+            <input type="hidden" id="SeminarId" name="SeminarId" value="@ViewBag.SeminarId" />
+            <button type="button" class="btn btn-default" data-dismiss="modal">Huỷ</button>
+            <input type="submit" class="button-lc" value="Xác Nhận" />
+        </div>
+    </div>
+}

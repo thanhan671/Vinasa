@@ -2428,7 +2428,7 @@ a.btn.disabled, fieldset:disabled a.btn {
 
 .btn-primary {
     color: #fff;
-    background-color: #4e73df;
+    background-color: #F69928;
     border-color: #4e73df
 }
 
@@ -11547,17 +11547,24 @@ body.sidebar-toggled footer.sticky-footer {
 
 .button-cancel {
     height: 40px;
+
     width: 100px;
+=======
+    width: 200px;
+
     margin: 10px 10px;
     background: #ccc;
     color: #fff;
     border: 1px solid #ccc;
     border-radius: 10px;
+
 }
 
 .button-cancel:hover{
     background: #bbb;
     color: #F69928;
+=======
+
 }
 
 .button-lc:hover {
@@ -11615,24 +11622,24 @@ body.sidebar-toggled footer.sticky-footer {
 }
 
 
-.ip-form:invalid + .lb-form {
-    transform: translateY(0);
-}
+    .ip-form:invalid + .lb-form {
+        transform: translateY(0);
+    }
 
-.ip-form:focus {
-    border-color: #E7870F;
-}
+    .ip-form:focus {
+        border-color: #E7870F;
+    }
 
-.ip-form:focus + .lb-form {
-    color: #E7870F;
-    transform: translateY(-20px);
-}
+        .ip-form:focus + .lb-form {
+            color: #E7870F;
+            transform: translateY(-20px);
+        }
 
 .heading {
     color: #051D65;
 }
 
-.select-region  {
+.select-region {
     font-size: 15px;
     color: #555;
     outline: none;
@@ -11641,18 +11648,25 @@ body.sidebar-toggled footer.sticky-footer {
     width: 400px;
 }
 
-.select-region:focus {
-    border-color: #E7870F;
-}
+    .select-region:focus {
+        border-color: #E7870F;
+    }
 
 .action-list {
     color: #858796;
 }
 
+
 .action-list:hover {
     color: #F69928;
     text-decoration: none;
 }
+
+    .action-list:hover {
+        color: #000;
+        text-decoration: none;
+    }
+
 
 .address:focus {
     color: #E7870F;
@@ -11661,6 +11675,11 @@ body.sidebar-toggled footer.sticky-footer {
 /*.button-form {
     float:left;
 }*/
+
+.button-form {
+    float: left;
+}
+
 
 .select-region {
     width: 500px;
@@ -11702,15 +11721,25 @@ body.sidebar-toggled footer.sticky-footer {
     border-radius: 4px;
 }
 
+
 #modal-b .button-lc:hover {
     background-color: #051D65;
 }
 
 
 .pf-ip{
+
+    #modal-b .button-lc:hover {
+        background-color: #051D65;
+    }
+
+
+.pf-ip {
+
     border: none;
     width: 100%;
 }
+
 
 .pf-ip:focus{
     border-color: #F69928;
@@ -11720,3 +11749,9 @@ body.sidebar-toggled footer.sticky-footer {
 .f-r{
     float: right;
 }
+
+    .pf-ip:focus {
+        border-color: #F69928;
+        border-radius: 4px
+    }
+

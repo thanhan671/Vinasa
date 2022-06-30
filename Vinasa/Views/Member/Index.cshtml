@@ -1,4 +1,4 @@
-﻿
+﻿@model Vinasa.Models.MemberAccountModels
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/sbadmin.cshtml";
@@ -8,7 +8,6 @@
 <!-- Page Heading -->
 <h1 class="h3 mb-2 text-gray-800">Hội Viên</h1>
 
-<!-- DataTales Example -->
 <!-- DataTales Example -->
 <div class="card shadow mb-4">
     <div class="card-header py-3" style=" display: flex; justify-content: space-between; align-items: center;">
@@ -22,7 +21,7 @@
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Import Excel</h5>
+                            <h5 class="modal-title" id="exampleModalLabel">Tải lên tệp Excel</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
@@ -35,9 +34,9 @@
                             <button type="button"
                                     class="btn btn-secondary button-lc"
                                     data-dismiss="modal">
-                                Cancel
+                                Hủy
                             </button>
-                            <button type="button" class="btn btn-primary button-lc">Upload</button>
+                            <button type="button" class="btn btn-primary button-lc">Tải lên</button>
                         </div>
                     </div>
                 </div>
@@ -58,23 +57,27 @@
                     </tr>
                 </thead>
                 <tbody>
+                    @foreach (var item in ViewBag.hoivienDetail)
+                    {
                     <tr>
-                        <td>0315159393</td>
+                        <td hidden>
+                            @item.ID
+                        <td>@item.MaSoThue</td>
                         <td>
-                            Công ty Cổ phần FPT
+                            @item.TenTiengViet
                         </td>
                         <td>
-                            FPT
+                            @item.TenVietTat
                         </td>
                         <td>
-                            contact@fpt.com.vn
+                            @item.EmailCongTy
                         </td>
                         <td>
-                            0937688958
+                            @item.SdtCongTy
                         </td>
                         <td class="action" style="display:flex; justify-content:space-around; align-items:center">
                             <li class="action-item" style="list-style-type: none; font-size: 18px">
-                                <a href="@Url.Action("Edit")" class="action-icon">
+                                <a href="@Url.Action("Edit", "Member", new { id = item.ID })" class="action-icon">
                                     <i style="color: #F69928" class="fa-solid fa-pen-to-square icon"></i>
                                 </a>
                             </li>
@@ -84,13 +87,14 @@
                                 </a>
                             </li>
                             <li class="action-item" style="list-style-type: none; font-size: 18px">
-                                <a href="@Url.Action("DetailMember")" class="action-icon">
+                                <a href="@Url.Action("DetailMember", "Member", new { id = item.ID })" class="action-icon">
                                     <i style="color: #F69928" class="fa-solid fa-circle-info icon"></i>
                                 </a>
                             </li>
                         </td>
                     </tr>
-                </tbody>
+                    }
+                    </tbody>
             </table>
         </div>
     </div>

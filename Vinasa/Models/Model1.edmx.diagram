@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="cdce3e0e07c4451c86eb4556de87fc9f" Name="Diagram1">
+        <EntityTypeShape EntityType="SEP25Team16Model.HOIVIEN" Width="1.5" PointX="5" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SEP25Team16Model.KHUVUC" Width="1.5" PointX="2.75" PointY="8.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SEP25Team16Model.QUYEN" Width="1.5" PointX="0.75" PointY="1.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SEP25Team16Model.sysdiagram" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SEP25Team16Model.TAIKHOANADMIN" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="SEP25Team16Model.TRANGTHAI" Width="1.5" PointX="0.75" PointY="5.625" IsExpanded="true" />
+        <AssociationConnector Association="SEP25Team16Model.FK_HOIVIEN_KHUVUC" ManuallyRouted="false" />
+        <AssociationConnector Association="SEP25Team16Model.FK_TAIKHOANADMIN_QUYEN" ManuallyRouted="false" />
+        <AssociationConnector Association="SEP25Team16Model.FK_TAIKHOANADMIN_TRANGTHAI" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
