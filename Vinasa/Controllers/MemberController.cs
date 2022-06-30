@@ -16,6 +16,11 @@ namespace Vinasa.Controllers
         [HttpGet]
         public ActionResult Index()
         {
+            if (Session["AccountID"] == null)
+            {
+                return RedirectToAction("Login", "Account", new { area = " " });
+            }
+
             var data = db.HOIVIENs.ToList();
             ViewBag.hoivienDetail = data;
             return View();
@@ -24,6 +29,10 @@ namespace Vinasa.Controllers
         [HttpPost]
         public ActionResult Index(int memberID)
         {
+            if (Session["AccountID"] == null)
+            {
+                return RedirectToAction("Login", "Account", new { area = " " });
+            }
 
             return View();
         }
@@ -31,6 +40,11 @@ namespace Vinasa.Controllers
         [HttpGet]
         public ActionResult Edit(int id)
         {
+            if (Session["AccountID"] == null)
+            {
+                return RedirectToAction("Login", "Account", new { area = " " });
+            }
+
             MemberAccountModels memberAccountModels = db.HOIVIENs.Where(mAcc => mAcc.ID.Equals(id)).Select(mAcc => new MemberAccountModels()
             {
                 ID = mAcc.ID,
@@ -75,6 +89,11 @@ namespace Vinasa.Controllers
         [HttpPost]
         public ActionResult Edit(MemberAccountModels memberAccountModels)
         {
+            if (Session["AccountID"] == null)
+            {
+                return RedirectToAction("Login", "Account", new { area = " " });
+            }
+
             var MaSoThue = memberAccountModels.MaSoThue.Trim();
             var TenTiengViet = memberAccountModels.TenTiengViet.Trim();
             var TenTiengAnh = memberAccountModels.TenTiengAnh.Trim();
@@ -110,7 +129,6 @@ namespace Vinasa.Controllers
             var ThoiGianGiaNhap = memberAccountModels.ThoiGianGiaNhap.Trim();
             return Content(memberAccountModels.ID.ToString());
         }
-
 
         //public ActionResult DetailMember();
 
@@ -203,5 +221,10 @@ namespace Vinasa.Controllers
             return Content(memberAccountModels.ID.ToString());
         }
 
+        public ActionResult ImportExcel()
+        {
+
+            return View("Index");
+        }
     }
 }

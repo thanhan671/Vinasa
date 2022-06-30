@@ -160,18 +160,19 @@ namespace Vinasa.Controllers
                         accountCheck.Ten = name;
                         accountCheck.Email = email;
                         accountCheck.Sdt = phoneNumber;
-                    }
-                    if(newPassword != null)
-                    {
-                        if(CheckPassword(newPassword, rePassword))
+                        if (newPassword != null)
                         {
-                            accountCheck.MatKhau = newPassword;
+                            if (CheckPassword(newPassword, rePassword))
+                            {
+                                accountCheck.MatKhau = newPassword;
+                            }
+                            else
+                            {
+                                ViewBag.Message = "Mật khẩu mới và xác nhận mật khẩu không trùng";
+                                return View();
+                            }
                         }
-                        else
-                        {
-                            ViewBag.Message = "Mật khẩu mới và xác nhận mật khẩu không trùng";
-                            return View();
-                        }
+
                     }
                     db.SaveChanges();
                 }
@@ -185,14 +186,17 @@ namespace Vinasa.Controllers
             return RedirectToAction("Index", "Home", new { area = " " });
         }
 
+        #region support method
         private bool CheckPassword(string pass1, string pass2)
         {
-            if(!pass1.Trim().Equals(pass2.Trim()))
+            if (!pass1.Trim().Equals(pass2.Trim()))
             {
                 return false;
             }
             return true;
         }
+
+        #endregion
 
     }
 }

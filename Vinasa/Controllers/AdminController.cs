@@ -102,7 +102,6 @@ namespace Vinasa.Controllers
             {
                 return RedirectToAction("Login", "Account", new { area = " " });
             }
-            //ViewBag.RoleList = 
 
             adminAccountModels = db.TAIKHOANADMINs.Where(acc => acc.ID.Equals(id)).Select(acc => new AdminAccountModels()
             {
