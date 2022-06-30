@@ -5,15 +5,16 @@
 }
 
 <!-- Page Heading -->
-<h1 class="h3 mb-2 text-gray-800">Quản Trị Viên</h1>
+<h1 class="h3 mb-2 text-gray-800">Người dùng</h1>
 
 <!-- DataTales Example -->
 
 <div class="card shadow mb-4">
     <div class="card-header py-3" >
         <div class="right-content">
-            <h6 class="m-0 font-weight-bold text-primary" style="color: #19315D ">Danh sách quản trị viên</h6>
+            <h6 class="m-0 font-weight-bold text-primary" style="color: #19315D ">Danh sách người dùng</h6>
         </div>
+
     </div>
     <div class="card-body">
         <div class="table-responsive">
@@ -74,9 +75,9 @@
                     }
                 </tbody>
             </table>
+
         </div>
     </div>
-</div>
 <!-- Modal -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
@@ -91,8 +92,10 @@
                 Xác nhận xóa người dùng này ?
             </div>
             <div class="modal-footer">
+
                 <button type="button" class="btn btn-default" data-dismiss="modal">Hủy</button>
                 <button id="btnContinueDelete" type="button" class="btn btn-primary">Xác nhận</button>
+
             </div>
         </div>
     </div>
@@ -102,7 +105,7 @@
 <script>
 
     $('#create').click(function () {
-        location.href = "@Url.Action("Create")";
+        location.href = "/Account/CreateAccount";
     })
 
 </script>

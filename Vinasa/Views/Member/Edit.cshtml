@@ -1,7 +1,7 @@
 ﻿@model Vinasa.Models.MemberAccountModels
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Edit";
     Layout = "~/Views/Shared/sbadmin.cshtml";
 }
 
@@ -20,83 +20,83 @@
         <h5 class="heading">Sửa Thông Tin Hội Viên</h5>
         <form class="form-field" method="post" enctype="multipart/form-data">
             <div class="input-wrapper">
-                <input class="ip-form" type="text" id="tax" contenteditable="true" value="0315159393" required>
+                <input class="ip-form" type="text" id="tax" contenteditable="true" required @Html.TextBoxFor(m => m.MaSoThue)
                 <label class="lb-form" for="tax">Mã số thuế</label>
             </div>
 
             <div class="input-wrapper">
-                <input class="ip-form" type="text" contenteditable="true" value="Công ty Cổ phần FPT " required>
+                <input class="ip-form" type="text" contenteditable="true" required @Html.TextBoxFor(m => m.TenTiengViet)
                 <label class="lb-form" for="name">Tên Tiếng Việt Của Công Ty</label>
             </div>
 
             <div class="input-wrapper">
-                <input class="ip-form" type="text" contenteditable="true" value="FPT Corporation" required>
+                <input class="ip-form" type="text" contenteditable="true" required @Html.TextBoxFor(m => m.TenTiengAnh)
                 <label class="lb-form" for="name">Tên Tiếng Anh Của Công Ty</label>
             </div>
 
             <div class="input-wrapper">
-                <input class="ip-form" type="text" contenteditable="true" value="FPT" required>
+                <input class="ip-form" type="text" contenteditable="true" required @Html.TextBoxFor(m => m.TenVietTat)
                 <label class="lb-form" for="name">Tên Viết Tắt</label>
             </div>
 
             <div class="input-wrapper">
-                <input class="ip-form" type="text" contenteditable="true" value="10/06/1997" required>
+                <input class="ip-form" type="text" contenteditable="true" required @Html.TextBoxFor(m => m.NgayThanhLap)
                 <label class="lb-form" for="name">Ngày Thành Lập</label>
             </div>
 
             <div class="input-wrapper">
-                <input class="ip-form" type="text" contenteditable="true" value="www.fpt.com" required>
+                <input class="ip-form" type="text" contenteditable="true" required @Html.TextBoxFor(m => m.Website)
                 <label class="lb-form" for="name">Website</label>
             </div>
 
             <div class="input-wrapper">
-                <input class="ip-form" type="number" contenteditable="true" value="02838212001" required>
+                <input class="ip-form" type="number" contenteditable="true" required @Html.TextBoxFor(m => m.SdtCongTy)
                 <label class="lb-form" for="name">Số Điện Thoại</label>
             </div>
 
             <div class="input-wrapper">
-                <input class="ip-form" type="text" contenteditable="true" value="contact@fpt.com.vn" required>
+                <input class="ip-form" type="text" contenteditable="true" required @Html.TextBoxFor(m => m.EmailCongTy)
                 <label class="lb-form" for="name">Email Công Ty</label>
             </div>
 
             <div class="input-wrapper">
-                <input class="ip-form" type="text" contenteditable="true" value="97 Nguyễn Công Trứ, Phường Nguyễn Thái Bình, Phường Cô Giang, Quận 1, TP. HCM " required>
+                <input class="ip-form" type="text" contenteditable="true" required @Html.TextBoxFor(m => m.DiaChiGiaoDich)
                 <label class="lb-form" for="name">Địa Chỉ Giao Dịch</label>
             </div>
 
             <div class="input-wrapper">
-                <input class="ip-form" type="text" contenteditable="true" value="97 Nguyễn Công Trứ, Phường Nguyễn Thái Bình, Phường Cô Giang, Quận 1, TP. HCM " required>
+                <input class="ip-form" type="text" contenteditable="true" required @Html.TextBoxFor(m => m.DiaChiTrenChungTu)
                 <label class="lb-form" for="name">Địa Chỉ Ghi Trên Chứng Từ Tài Chính</label>
             </div>
 
             <div class="input-wrapper">
-                <input class="ip-form" type="text" contenteditable="true" value="1500" required>
+                <input class="ip-form" type="text" contenteditable="true" required @Html.TextBoxFor(m => m.SoLuongNhanVien)
                 <label class="lb-form" for="name">Tổng Số Nhân Sự Hiện Tại</label>
             </div>
             <div class="input-wrapper">
-                <input class="ip-form" type="text" contenteditable="true" value="1000" required>
+                <input class="ip-form" type="text" contenteditable="true" required @Html.TextBoxFor(m => m.SoLuongLapTrinhVien)
                 <label class="lb-form" for="name">Tổng Số Lập Trình Viên</label>
             </div>
 
             <div class="input-wrapper">
-                <input class="ip-form" type="text" contenteditable="true" value="Cơ quan chính phủ, Doanh nghiệp tư nhân, khách hàng cá nhân" required>
+                <input class="ip-form" type="text" contenteditable="true" required @Html.TextBoxFor(m => m.ThiTruongNoiDia)
                 <label class="lb-form" for="name">Thị Trường Chính(nội địa)</label>
             </div>
             <div class="input-wrapper">
-                <input class="ip-form" type="text" contenteditable="true" value="Nhật, Mỹ, Châu Âu, Châu Úc " required>
-                <label class="lb-form" for="name">Thị Trường Chính(nội địa)</label>
+                <input class="ip-form" type="text" contenteditable="true" required @Html.TextBoxFor(m => m.ThiTruongQuocTe)
+                <label class="lb-form" for="name">Thị Trường Chính(quốc tế)</label>
             </div>
 
             <div class="input-wrapper">
-                <input class="ip-form" type="text" contenteditable="true" value="Cơ quan chính phủ, Doanh nghiệp tư nhân, khách hàng cá nhân" required>
+                <input class="ip-form" type="text" contenteditable="true" required @Html.TextBoxFor(m => m.LinhVucHoatDong)
                 <label class="lb-form" for="name">Lĩnh Vực Hoạt Động</label>
             </div>
             <div class="input-wrapper">
-                <input class="ip-form" type="text" contenteditable="true" value="fpt.com.vn " required>
+                <input class="ip-form" type="text" contenteditable="true" required @Html.TextBoxFor(m => m.Fanpage)
                 <label class="lb-form" for="name">Fanpage Đơn Vị</label>
             </div>
             <div class="input-wrapper">
-                <input class="ip-form" type="text" contenteditable="true" value="28/03/2022" required>
+                <input class="ip-form" type="text" contenteditable="true" required @Html.TextBoxFor(m => m.ThoiGianGiaNhap)
                 <label class="lb-form" for="name">Thời Gian Gia Nhập</label>
             </div>
             <div class="input-wrapper">
@@ -119,19 +119,19 @@
         </div>
         <form action="@Url.Action("CreateProduct")" class="form-field" method="post" enctype="multipart/form-data">
             <div class="input-wrapper">
-                <input class="ip-form" type="text" id="tax" contenteditable="true" value="Trương Gia Bình " required>
+                <input class="ip-form" type="text" id="tax" contenteditable="true" required @Html.TextBoxFor(m => m.LanhDao)
                 <label class="lb-form" for="tax">Người Lãnh Đạo</label>
             </div>
             <div class="input-wrapper">
-                <input class="ip-form" type="text" id="tax" contenteditable="true" value="Chủ tịch HĐQT " required>
+                <input class="ip-form" type="text" id="tax" contenteditable="true" required @Html.TextBoxFor(m => m.ChucDanhLanhDao)
                 <label class="lb-form" for="tax">Chức Danh</label>
             </div>
             <div class="input-wrapper">
-                <input class="ip-form" type="text" id="tax" contenteditable="true" value="0937688958" required>
+                <input class="ip-form" type="text" id="tax" contenteditable="true" required @Html.TextBoxFor(m => m.SdtLanhDao)
                 <label class="lb-form" for="tax">Số Điện Thoại</label>
             </div>
             <div class="input-wrapper">
-                <input class="ip-form" type="text" id="tax" contenteditable="true" value="manhnt@vinasa.org.vn" required>
+                <input class="ip-form" type="text" id="tax" contenteditable="true" required @Html.TextBoxFor(m => m.EmailLanhDao)
                 <label class="lb-form" for="tax">Email</label>
             </div>
         </form>
@@ -140,19 +140,19 @@
         </div>
         <form class="form-field">
             <div class="input-wrapper">
-                <input class="ip-form" type="text" id="tax" contenteditable="true" value="Nguyễn Ngọc Phương Anh " required>
+                <input class="ip-form" type="text" id="tax" contenteditable="true" required @Html.TextBoxFor(m => m.DaiDienMarketing)
                 <label class="lb-form" for="tax">Đại Diện</label>
             </div>
             <div class="input-wrapper">
-                <input class="ip-form" type="text" id="tax" contenteditable="true" value="Trưởng phòng " required>
+                <input class="ip-form" type="text" id="tax" contenteditable="true" required @Html.TextBoxFor(m => m.ChucNangMarketing)
                 <label class="lb-form" for="tax">Chức Danh</label>
             </div>
             <div class="input-wrapper">
-                <input class="ip-form" type="text" id="tax" contenteditable="true" value="0937688958" required>
+                <input class="ip-form" type="text" id="tax" contenteditable="true" required @Html.TextBoxFor(m => m.SdtMarketing)
                 <label class="lb-form" for="tax">Số Điện Thoại</label>
             </div>
             <div class="input-wrapper">
-                <input class="ip-form" type="text" id="tax" contenteditable="true" value="anhnp@vinasa.org.vn" required>
+                <input class="ip-form" type="text" id="tax" contenteditable="true" required @Html.TextBoxFor(m => m.EmailMarketing)
                 <label class="lb-form" for="tax">Email</label>
             </div>
         </form>
@@ -161,19 +161,19 @@
         </div>
         <form class="form-field">
             <div class="input-wrapper">
-                <input class="ip-form" type="text" id="tax" contenteditable="true" value="Nguyễn Thành Đạt " required>
+                <input class="ip-form" type="text" id="tax" contenteditable="true" required @Html.TextBoxFor(m => m.DaiDienNhanSu)
                 <label class="lb-form" for="tax">Đại Diện</label>
             </div>
             <div class="input-wrapper">
-                <input class="ip-form" type="text" id="tax" contenteditable="true" value="Trưởng phòng " required>
+                <input class="ip-form" type="text" id="tax" contenteditable="true" required @Html.TextBoxFor(m => m.ChucDanhNhanSu)
                 <label class="lb-form" for="tax">Chức Danh</label>
             </div>
             <div class="input-wrapper">
-                <input class="ip-form" type="text" id="tax" contenteditable="true" value="0937688958" required>
+                <input class="ip-form" type="text" id="tax" contenteditable="true" required @Html.TextBoxFor(m => m.SdtNhanSu)
                 <label class="lb-form" for="tax">Số Điện Thoại</label>
             </div>
             <div class="input-wrapper">
-                <input class="ip-form" type="text" id="tax" contenteditable="true" value="datnn@vinasa.org.vn" required>
+                <input class="ip-form" type="text" id="tax" contenteditable="true" required @Html.TextBoxFor(m => m.EmailNhanSu)
                 <label class="lb-form" for="tax">Email</label>
             </div>
         </form>
@@ -182,26 +182,28 @@
         </div>
         <form class="form-field">
             <div class="input-wrapper">
-                <input class="ip-form" type="text" id="tax" contenteditable="true" value="Nguyễn Thị Hoà " required>
+                <input class="ip-form" type="text" id="tax" contenteditable="true" required @Html.TextBoxFor(m => m.DaiDienKeToan)
                 <label class="lb-form" for="tax">Đại diện</label>
             </div>
             <div class="input-wrapper">
-                <input class="ip-form" type="text" id="tax" contenteditable="true" value="Kế toán trưởng " required>
+                <input class="ip-form" type="text" id="tax" contenteditable="true" required @Html.TextBoxFor(m => m.ChucDanhKeToan)
                 <label class="lb-form" for="tax">Chức Danh</label>
             </div>
             <div class="input-wrapper">
-                <input class="ip-form" type="text" id="tax" contenteditable="true" value="0937688958" required>
+                <input class="ip-form" type="text" id="tax" contenteditable="true" required @Html.TextBoxFor(m => m.SdtKeToan)
                 <label class="lb-form" for="tax">Số Điện Thoại</label>
             </div>
             <div class="input-wrapper">
-                <input class="ip-form" type="text" id="tax" contenteditable="true" value="hoant@vinasa.org.vn" required>
+                <input class="ip-form" type="text" id="tax" contenteditable="true" required @Html.TextBoxFor(m => m.EmailKeToan)
                 <label class="lb-form" for="tax">Email</label>
             </div>
         </form>
     </div>
 </div>
 <div class="button-form f-r">
-    <button class="button-cancel" id="cancel">Huỷ</button>
+
+    <button class="button-lc button-cancel" id="cancel">Huỷ</button>
+
     <button class="button-lc">Xác Nhận</button>
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>

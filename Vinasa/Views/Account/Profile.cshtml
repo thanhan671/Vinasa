@@ -1,5 +1,5 @@
-﻿@model Vinasa.Models.AdminAccountModels
 
+﻿@model Vinasa.Models.AdminAccountModels
 @{
     ViewBag.Title = "Profile";
     Layout = "~/Views/Shared/sbadmin.cshtml";
@@ -19,13 +19,17 @@
     </div>
     <div class="col-lg-8">
         <div class="card mb-4">
-            <div class="card-body" style=" height: 310px;">
+
+            <div class="card-body" style=" height: 360px;">
+
                 <div class="row">
                     <div class="col-sm-3">
                         <p class="mb-0">Họ Tên</p>
                     </div>
                     <div class="col-sm-9">
+
                         <input type="text" class="text-muted mb-0 pf-ip" @Html.TextBoxFor(m => m.Ten)
+
                     </div>
                 </div>
                 <hr>
@@ -34,6 +38,7 @@
                         <p class="mb-0">Email</p>
                     </div>
                     <div class="col-sm-9">
+
                         <input type="email" class="text-muted mb-0 pf-ip" @Html.TextBoxFor(m => m.Email)
                     </div>
                 </div>
@@ -43,12 +48,15 @@
                         <p class="mb-0">Số Điện Thoại</p>
                     </div>
                     <div class="col-sm-9">
+
                         <input type="tel" class="text-muted mb-0 pf-ip" @Html.TextBoxFor(m => m.Sdt)
+
                     </div>
                 </div>
                 <hr>
                 <div class="row">
                     <div class="col-sm-3">
+
                         <p class="mb-0">Mật Khẩu Hiện Tại</p>
                     </div>
                     <div class="col-sm-9">
@@ -58,37 +66,34 @@
                 <hr>
                 <div class="row">
                     <div class="col-sm-3">
-                        <p class="mb-0">Mật Khẩu Mới</p>
+
+                        <p class="mb-0">Mật khẩu mới</p>
                     </div>
                     <div class="col-sm-9">
-                        <input class="text-muted mb-0 pf-ip" @Html.PasswordFor(m => m.newMatKhau,  new { @class = "form-control form-control-user", @placeholder = "Không nhập trường này nếu không cần đổi mật khẩu" })
+                        <input type="password" class="text-muted mb-0 pf-ip" value="">
+
                     </div>
                 </div>
                 <hr>
                 <div class="row">
                     <div class="col-sm-3">
-                        <p class="mb-0">Xác Nhận Mật Khẩu</p>
+
+                        <p class="mb-0">Xác nhận mật khẩu mới</p>
                     </div>
                     <div class="col-sm-9">
-                        <input class="text-muted mb-0 pf-ip" @Html.PasswordFor(m => m.reMatKhau, new { @class = "form-control form-control-user", @placeholder = "Không nhập trường này nếu không cần đổi mật khẩu" })
+                        <input type="password" class="text-muted mb-0 pf-ip" value="">
                     </div>
                 </div>
-                <hr>
+
             </div>
         </div>
 
     </div>
-    <div class="button-form f-r">
-        <button class="button-lc button-cancel" id="cancel">Huỷ</button>
-        <button class="button-lc" type="submit" name="save">Cập nhật Tài Khoản</button>
-    </div>
+
 </div>
-
+<div class="button-form f-r">
+    <button class="button-lc button-cancel" onclick="location.href = 'javascript:history.go(-1)'">Huỷ</button>
+    <button class="button-lc">Cập nhật Tài Khoản</button>
+</div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script>
 
-    $('#cancel').click(function () {
-        location.href = 'javascript:history.go(-1)';
-    })
-
-</script>

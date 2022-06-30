@@ -45,6 +45,7 @@ namespace Vinasa.Controllers
 
                 }
             }
+
             ViewBag.Message = "wrong email or password";
             return View();
         }
@@ -56,6 +57,12 @@ namespace Vinasa.Controllers
             Session.Abandon();
             return RedirectToAction("Login", "Account", new { area = " " });
         }
+
+        public ActionResult CreateAccount()
+        {
+            return View();
+        }
+        
 
         [HttpGet]
         public ActionResult Register()
