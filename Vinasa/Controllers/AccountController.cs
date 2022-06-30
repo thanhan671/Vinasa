@@ -142,7 +142,57 @@ namespace Vinasa.Controllers
         [HttpPost]
         public new ActionResult Profile(AdminAccountModels adminAccountModels)
         {
+            int id = (int)Session["AccountID"];
+            var name = adminAccountModels.Ten.Trim();
+            var email = adminAccountModels.Email.Trim();
+            var phoneNumber = adminAccountModels.Sdt.Trim();
+            var oldPassword = adminAccountModels.MatKhau;
+            var newPassword = adminAccountModels.newMatKhau;
+            var rePassword = adminAccountModels.reMatKhau;
+
+            if (oldPassword != null)
+            {
+                using (db)
+                {
+                    var accountCheck = db.TAIKHOANADMINs.Where(acc => acc.ID.Equals(id)).FirstOrDefault();
+                    if (CheckPassword(oldPassword, accountCheck.MatKhau))
+                    {
+                        accountCheck.Ten = name;
+                        accountCheck.Email = email;
+                        accountCheck.Sdt = phoneNumber;
+                    }
+                    if(newPassword != null)
+                    {
+                        if(CheckPassword(newPassword, rePassword))
+                        {
+                            accountCheck.MatKhau = newPassword;
+                        }
+                        else
+                        {
+                            ViewBag.Message = "Mật khẩu mới và xác nhận mật khẩu không trùng";
+                            return View();
+                        }
+                    }
+                    db.SaveChanges();
+                }
+            }
+            else
+            {
+                ViewBag.Message = "Nhập mật khẩu để thay đổi thông tin";
+                return View();
+            }
+
             return RedirectToAction("Index", "Home", new { area = " " });
         }
+
+        private bool CheckPassword(string pass1, string pass2)
+        {
+            if(!pass1.Trim().Equals(pass2.Trim()))
+            {
+                return false;
+            }
+            return true;
+        }
+
     }
 }
