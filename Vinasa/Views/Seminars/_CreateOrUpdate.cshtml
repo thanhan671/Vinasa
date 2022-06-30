@@ -12,12 +12,12 @@
 
 </div>
 <div class="input-wrapper">
-    @Html.EditorFor(model => model.Address, new { htmlAttributes = new { @class = "ip-form"} })
+    @Html.EditorFor(model => model.Address, new { htmlAttributes = new { @class = "ip-form" } })
     @Html.LabelFor(model => model.Address, new { @class = "lb-form" })
     @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
 
 </div>
 <div class="button-form">
-    <button class="button-lc">Xác Nhận</button>
     <button class="button-lc button-cancel" onclick="location.href = 'javascript:history.go(-1)'" id="cancel">Huỷ</button>
+    <button class="button-lc">Xác Nhận</button>
 </div>
