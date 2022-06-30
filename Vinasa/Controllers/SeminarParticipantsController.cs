@@ -37,14 +37,17 @@ namespace Vinasa.Controllers
             {
                 return HttpNotFound();
             }
+            seminarParticipant.Provinces = new SelectList(_db.Provinces, "ID", "Title", seminarParticipant.ProvinceId);
+            seminarParticipant.Seminar = _db.Seminars.Find(seminarParticipant.SeminarId);
             return View(seminarParticipant);
         }
 
         // GET: SeminarParticipants/Create
         public ActionResult Create()
         {
-            ViewBag.Provinces = new SelectList(_db.Provinces.ToList(), "ID", "Title");
-            return View();
+            var model = new SeminarParticipant();
+            model.Provinces = new SelectList(_db.Provinces, "ID", "Title", model.ProvinceId);
+            return View(model);
         }
 
         // POST: SeminarParticipants/Create
@@ -76,8 +79,8 @@ namespace Vinasa.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.Provinces = new SelectList(_db.Provinces.ToList(), "ID", "Title");
-
+            
+            seminarParticipant.Provinces = new SelectList(_db.Provinces, "ID", "Title", seminarParticipant.ProvinceId);
             return View(seminarParticipant);
         }
 
@@ -88,6 +91,11 @@ namespace Vinasa.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "Id,SeminarId,Name,TaxNumber,Company,Position,Email,PhoneNumber,ProvinceId,JobTitle,Operation,RegistrySeminar,RegistryBusinessMatching,RegistryExhibition,RegistryTicket,CreatedUtc")] SeminarParticipant seminarParticipant)
         {
+            if (!ModelState.IsValid)
+            {
+                seminarParticipant.Provinces = new SelectList(_db.Provinces, "ID", "Title", seminarParticipant.ProvinceId);
+                return View(seminarParticipant);
+            }
             if (ModelState.IsValid)
             {
                 _db.Entry(seminarParticipant).State = System.Data.Entity.EntityState.Modified;

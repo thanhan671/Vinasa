@@ -7,13 +7,13 @@ namespace Vinasa.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.4.4")]
-    public sealed partial class Seminar : IMigrationMetadata
+    public sealed partial class Seminars1 : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(Seminar));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(Seminars1));
         
         string IMigrationMetadata.Id
         {
-            get { return "202206280427072_Seminar"; }
+            get { return "202206300618525_Seminars1"; }
         }
         
         string IMigrationMetadata.Source

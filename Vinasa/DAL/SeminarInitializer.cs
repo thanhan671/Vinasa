@@ -29,7 +29,7 @@ namespace Vinasa.DAL
                 new Seminar
                 {
                     Title = "Hội nghị kết nối đầu tư tổ chức tại TP. Hồ Chí Minh: chủ đề THÚC ĐẨY ĐẦU TƯ VÀ PHÁT TRIỂN HỆ SINH THÁI TÀI CHÍNH SỐ",
-                    OpenDate = "9:00 - 17:00 ngày 28/06/2022 (Thứ 3)",
+                    OpenDate = DateTime.Now,
                     Address = "Sihub, 273 Điện Biên Phủ, Phường Võ Thị Sáu, Quận 3, TP. HCM",
                     CreatedUtc = DateTime.UtcNow
                 }
