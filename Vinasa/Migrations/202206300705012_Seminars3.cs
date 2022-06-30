@@ -1,9 +1,9 @@
-namespace Vinasa.Migrations
+﻿namespace Vinasa.Migrations
 {
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class Seminar3 : DbMigration
+    public partial class Seminars3 : DbMigration
     {
         public override void Up()
         {
