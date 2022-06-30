@@ -4,6 +4,12 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Vinasa.Models;
+using Vinasa.Services;
+using OfficeOpenXml;
+using System.IO;
+using System.Data;
+using OfficeOpenXml.Table;
+
 
 namespace Vinasa.Controllers
 {
@@ -11,6 +17,12 @@ namespace Vinasa.Controllers
     {
 
         SEP25Team16Entities2 db = new SEP25Team16Entities2();
+        //private readonly ImportManager _importManager;
+        //public MemberController()
+        //{
+        //    _importManager = new ImportManager(db);
+
+        //}
 
         // GET: Member
         [HttpGet]
@@ -221,10 +233,81 @@ namespace Vinasa.Controllers
             return Content(memberAccountModels.ID.ToString());
         }
 
+        //[HttpPost/*, ActionName("ImportExcel")*/]
+        public ActionResult ImportExcel(FormCollection formCollection)
+        {
+            var memberlist = new List<HOIVIEN>();
+            if (Request != null)
+            {
+                HttpPostedFileBase file = Request.Files["UploadedFile"];
+                if ((file != null) && (file.ContentLength > 0) && !string.IsNullOrEmpty(file.FileName))
+                {
+                    string fileName = file.FileName;
+                    string fileContentType = file.ContentType;
+                    byte[] fileBytes = new byte[file.ContentLength];
+                    var data = file.InputStream.Read(fileBytes, 0, Convert.ToInt32(file.ContentLength));
+                    using (var package = new ExcelPackage(file.InputStream))
+                    {
+                        var currentSheet = package.Workbook.Worksheets;
+                        var workSheet = currentSheet.First();
+                        var noOfCol = workSheet.Dimension.End.Column;
+                        var noOfRow = workSheet.Dimension.End.Row;
+                        for (int rowIterator = 2; rowIterator <= noOfRow; rowIterator++)
+                        {
+                            var member = new HOIVIEN();
+                            member.MaSoThue = workSheet.Cells[rowIterator, 2].Value.ToString();
+                            member.TenTiengViet = workSheet.Cells[rowIterator, 3].Value.ToString();
+                            member.TenTiengAnh = workSheet.Cells[rowIterator, 4].Value.ToString();
+                            member.TenVietTat = workSheet.Cells[rowIterator, 5].Value.ToString();
+                            member.NgayThanhLap = workSheet.Cells[rowIterator, 6].Value.ToString();
+                            member.Website = workSheet.Cells[rowIterator, 7].Value.ToString();
+                            member.SdtCongTy = workSheet.Cells[rowIterator, 8].Value.ToString();
+                            member.EmailCongTy = workSheet.Cells[rowIterator, 9].Value.ToString();
+                            member.DiaChiGiaoDich = workSheet.Cells[rowIterator, 10].Value.ToString();
+                            member.DiaChiTrenChungTu = workSheet.Cells[rowIterator, 11].Value.ToString();
+                            member.SoLuongNhanVien = Convert.ToInt32(workSheet.Cells[rowIterator, 12].Value);
+                            member.SoLuongLapTrinhVien = Convert.ToInt32(workSheet.Cells[rowIterator, 13].Value);
+                            member.ThiTruongNoiDia = workSheet.Cells[rowIterator, 14].Value.ToString();
+                            member.ThiTruongQuocTe = workSheet.Cells[rowIterator, 15].Value.ToString();
+                            member.LinhVucHoatDong = workSheet.Cells[rowIterator, 16].Value.ToString();
+                            member.LanhDao = workSheet.Cells[rowIterator, 17].Value.ToString();
+                            member.ChucDanhLanhDao = workSheet.Cells[rowIterator, 18].Value.ToString();
+                            member.SdtLanhDao = workSheet.Cells[rowIterator, 19].Value.ToString();
+                            member.EmailLanhDao = workSheet.Cells[rowIterator, 20].Value.ToString();
+                            member.DaiDienMarketing = workSheet.Cells[rowIterator, 21].Value.ToString();
+                            member.ChucNangMarketing = workSheet.Cells[rowIterator, 22].Value.ToString();
+                            member.SdtMarketing = workSheet.Cells[rowIterator, 23].Value.ToString();
+                            member.EmailMarketing = workSheet.Cells[rowIterator, 24].Value.ToString();
+                            member.DaiDienNhanSu = workSheet.Cells[rowIterator, 25].Value.ToString();
+                            member.ChucDanhNhanSu = workSheet.Cells[rowIterator, 26].Value.ToString();
+                            member.SdtNhanSu = workSheet.Cells[rowIterator, 27].Value.ToString();
+                            member.EmailNhanSu = workSheet.Cells[rowIterator, 28].Value.ToString();
+                            member.DaiDienKeToan = workSheet.Cells[rowIterator, 29].Value.ToString();
+                            member.ChucDanhKeToan = workSheet.Cells[rowIterator, 30].Value.ToString();
+                            member.SdtKeToan = workSheet.Cells[rowIterator, 31].Value.ToString();
+                            member.EmailKeToan = workSheet.Cells[rowIterator, 32].Value.ToString();
+                            member.Fanpage = workSheet.Cells[rowIterator, 33].Value.ToString();
+                            member.ThoiGianGiaNhap = workSheet.Cells[rowIterator, 34].Value.ToString();
+                            member.KhuVuc = 1;
+                            memberlist.Add(member);
+                        }
+                    }
+                }
+            }
+            using (db)
+            {
+                foreach (var item in memberlist)
+                {
+                    db.HOIVIENs.Add(item);
+                }
+                db.SaveChanges();
+            }
+            return View("Index");
+        }
+
         public ActionResult ImportExcel()
         {
-
-            return View("Index");
+            return Content("import");
         }
     }
 }
