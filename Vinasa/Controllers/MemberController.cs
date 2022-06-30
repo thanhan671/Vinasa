@@ -9,7 +9,7 @@ using OfficeOpenXml;
 using System.IO;
 using System.Data;
 using OfficeOpenXml.Table;
-
+using System.Data.Entity.Validation;
 
 namespace Vinasa.Controllers
 {
@@ -234,6 +234,7 @@ namespace Vinasa.Controllers
         }
 
         //[HttpPost/*, ActionName("ImportExcel")*/]
+        [HttpPost]
         public ActionResult ImportExcel(FormCollection formCollection)
         {
             var memberlist = new List<HOIVIEN>();
@@ -294,20 +295,38 @@ namespace Vinasa.Controllers
                     }
                 }
             }
-            using (db)
+            using(db)
             {
-                foreach (var item in memberlist)
+                //foreach (var item in memberlist)
+                //{
+                //    db.HOIVIENs.Add(item);
+                //    db.SaveChanges();
+                //}
+                try
                 {
-                    db.HOIVIENs.Add(item);
+                    foreach (var item in memberlist)
+                    {
+                        db.HOIVIENs.Add(item);
+                    }
+                    db.SaveChanges();
                 }
-                db.SaveChanges();
+                catch (DbEntityValidationException e)
+                {
+                    foreach (var eve in e.EntityValidationErrors)
+                    {
+                        Console.WriteLine("Entity of type \"{0}\" in state \"{1}\" has the following validation errors:",
+                            eve.Entry.Entity.GetType().Name, eve.Entry.State);
+                        throw new HttpException(eve.Entry.Entity.GetType().Name);
+                    }
+                    throw new HttpException(e.ToString());
+                }
             }
-            return View("Index");
+            return RedirectToAction("Index", "Member", new { area = " " });
         }
 
         public ActionResult ImportExcel()
         {
-            return Content("import");
+            return View();
         }
     }
 }

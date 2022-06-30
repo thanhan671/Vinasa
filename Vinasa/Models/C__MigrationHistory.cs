@@ -12,16 +12,11 @@ namespace Vinasa.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class QUYEN
+    public partial class C__MigrationHistory
     {
-        public QUYEN()
-        {
-            this.TAIKHOANADMINs = new HashSet<TAIKHOANADMIN>();
-        }
-    
-        public int IDQuyen { get; set; }
-        public string TenQuyen { get; set; }
-    
-        public virtual ICollection<TAIKHOANADMIN> TAIKHOANADMINs { get; set; }
+        public string MigrationId { get; set; }
+        public string ContextKey { get; set; }
+        public byte[] Model { get; set; }
+        public string ProductVersion { get; set; }
     }
 }

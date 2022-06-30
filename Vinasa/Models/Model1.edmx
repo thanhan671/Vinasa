@@ -4,7 +4,17 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="SEP25Team16Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="SEP25Team16Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="__MigrationHistory">
+          <Key>
+            <PropertyRef Name="MigrationId" />
+            <PropertyRef Name="ContextKey" />
+          </Key>
+          <Property Name="MigrationId" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="ContextKey" Type="nvarchar" MaxLength="300" Nullable="false" />
+          <Property Name="Model" Type="varbinary(max)" Nullable="false" />
+          <Property Name="ProductVersion" Type="nvarchar" MaxLength="32" Nullable="false" />
+        </EntityType>
         <EntityType Name="HOIVIEN">
           <Key>
             <PropertyRef Name="ID" />
@@ -24,7 +34,7 @@
           <Property Name="SoLuongLapTrinhVien" Type="int" Nullable="false" />
           <Property Name="ThiTruongNoiDia" Type="nvarchar(max)" Nullable="false" />
           <Property Name="ThiTruongQuocTe" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="LinhVucHoatDong" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="LinhVucHoatDong" Type="nvarchar(max)" />
           <Property Name="LanhDao" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="ChucDanhLanhDao" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="SdtLanhDao" Type="varchar" MaxLength="20" Nullable="false" />
@@ -52,12 +62,50 @@
           <Property Name="IDKhuVuc" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="TenKhuVuc" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
+        <EntityType Name="Provinces">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="nvarchar(max)" />
+        </EntityType>
         <EntityType Name="QUYEN">
           <Key>
             <PropertyRef Name="IDQuyen" />
           </Key>
           <Property Name="IDQuyen" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="TenQuyen" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SeminarParticipants">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SeminarId" Type="int" />
+          <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="TaxNumber" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Company" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Position" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Email" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="PhoneNumber" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="ProvinceId" Type="int" Nullable="false" />
+          <Property Name="JobTitle" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Operation" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="RegistrySeminar" Type="bit" Nullable="false" />
+          <Property Name="RegistryBusinessMatching" Type="bit" Nullable="false" />
+          <Property Name="RegistryExhibition" Type="bit" Nullable="false" />
+          <Property Name="RegistryTicket" Type="bit" Nullable="false" />
+          <Property Name="CreatedUtc" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Seminars">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="OpenDate" Type="datetime" Nullable="false" />
+          <Property Name="Address" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="CreatedUtc" Type="datetime" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -89,6 +137,18 @@
           <Property Name="IDTrangThai" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="TenTrangThai" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
+        <Association Name="FK_dbo_SeminarParticipants_dbo_Seminars_SeminarId">
+          <End Role="Seminars" Type="Self.Seminars" Multiplicity="0..1" />
+          <End Role="SeminarParticipants" Type="Self.SeminarParticipants" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Seminars">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SeminarParticipants">
+              <PropertyRef Name="SeminarId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_HOIVIEN_KHUVUC">
           <End Role="KHUVUC" Type="Self.KHUVUC" Multiplicity="1" />
           <End Role="HOIVIEN" Type="Self.HOIVIEN" Multiplicity="*" />
@@ -126,12 +186,20 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="SEP25Team16ModelStoreContainer">
+          <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="HOIVIEN" EntityType="Self.HOIVIEN" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="KHUVUC" EntityType="Self.KHUVUC" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Provinces" EntityType="Self.Provinces" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="QUYEN" EntityType="Self.QUYEN" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SeminarParticipants" EntityType="Self.SeminarParticipants" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Seminars" EntityType="Self.Seminars" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TAIKHOANADMIN" EntityType="Self.TAIKHOANADMIN" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TRANGTHAI" EntityType="Self.TRANGTHAI" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_dbo_SeminarParticipants_dbo_Seminars_SeminarId" Association="Self.FK_dbo_SeminarParticipants_dbo_Seminars_SeminarId">
+            <End Role="Seminars" EntitySet="Seminars" />
+            <End Role="SeminarParticipants" EntitySet="SeminarParticipants" />
+          </AssociationSet>
           <AssociationSet Name="FK_HOIVIEN_KHUVUC" Association="Self.FK_HOIVIEN_KHUVUC">
             <End Role="KHUVUC" EntitySet="KHUVUC" />
             <End Role="HOIVIEN" EntitySet="HOIVIEN" />
@@ -145,8 +213,7 @@
             <End Role="TAIKHOANADMIN" EntitySet="TAIKHOANADMIN" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="SEP25Team16Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -169,7 +236,7 @@
           <Property Name="SoLuongLapTrinhVien" Type="Int32" Nullable="false" />
           <Property Name="ThiTruongNoiDia" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="ThiTruongQuocTe" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="LinhVucHoatDong" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LinhVucHoatDong" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="LanhDao" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="ChucDanhLanhDao" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
 
@@ -296,7 +363,77 @@
             <End Role="TRANGTHAI" EntitySet="TRANGTHAIs" />
             <End Role="TAIKHOANADMIN" EntitySet="TAIKHOANADMINs" />
           </AssociationSet>
+          <EntitySet Name="C__MigrationHistory" EntityType="SEP25Team16Model.C__MigrationHistory" />
+          <EntitySet Name="Provinces" EntityType="SEP25Team16Model.Province" />
+          <EntitySet Name="SeminarParticipants" EntityType="SEP25Team16Model.SeminarParticipant" />
+          <EntitySet Name="Seminars" EntityType="SEP25Team16Model.Seminar" />
+          <AssociationSet Name="FK_dbo_SeminarParticipants_dbo_Seminars_SeminarId" Association="SEP25Team16Model.FK_dbo_SeminarParticipants_dbo_Seminars_SeminarId">
+            <End Role="Seminar" EntitySet="Seminars" />
+            <End Role="SeminarParticipant" EntitySet="SeminarParticipants" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="C__MigrationHistory">
+          <Key>
+            <PropertyRef Name="MigrationId" />
+            <PropertyRef Name="ContextKey" />
+          </Key>
+          <Property Name="MigrationId" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="ContextKey" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="Model" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
+          <Property Name="ProductVersion" Type="String" Nullable="false" MaxLength="32" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Province">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="SeminarParticipant">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SeminarId" Type="Int32" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="TaxNumber" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Company" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Position" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ProvinceId" Type="Int32" Nullable="false" />
+          <Property Name="JobTitle" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Operation" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="RegistrySeminar" Type="Boolean" Nullable="false" />
+          <Property Name="RegistryBusinessMatching" Type="Boolean" Nullable="false" />
+          <Property Name="RegistryExhibition" Type="Boolean" Nullable="false" />
+          <Property Name="RegistryTicket" Type="Boolean" Nullable="false" />
+          <Property Name="CreatedUtc" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Seminar" Relationship="SEP25Team16Model.FK_dbo_SeminarParticipants_dbo_Seminars_SeminarId" FromRole="SeminarParticipant" ToRole="Seminar" />
+        </EntityType>
+        <EntityType Name="Seminar">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="OpenDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Address" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedUtc" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="SeminarParticipants" Relationship="SEP25Team16Model.FK_dbo_SeminarParticipants_dbo_Seminars_SeminarId" FromRole="Seminar" ToRole="SeminarParticipant" />
+        </EntityType>
+        <Association Name="FK_dbo_SeminarParticipants_dbo_Seminars_SeminarId">
+          <End Type="SEP25Team16Model.Seminar" Role="Seminar" Multiplicity="0..1" />
+          <End Type="SEP25Team16Model.SeminarParticipant" Role="SeminarParticipant" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Seminar">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SeminarParticipant">
+              <PropertyRef Name="SeminarId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -390,6 +527,57 @@
               <MappingFragment StoreEntitySet="TRANGTHAI">
                 <ScalarProperty Name="IDTrangThai" ColumnName="IDTrangThai" />
                 <ScalarProperty Name="TenTrangThai" ColumnName="TenTrangThai" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="C__MigrationHistory">
+            <EntityTypeMapping TypeName="SEP25Team16Model.C__MigrationHistory">
+              <MappingFragment StoreEntitySet="__MigrationHistory">
+                <ScalarProperty Name="ProductVersion" ColumnName="ProductVersion" />
+                <ScalarProperty Name="Model" ColumnName="Model" />
+                <ScalarProperty Name="ContextKey" ColumnName="ContextKey" />
+                <ScalarProperty Name="MigrationId" ColumnName="MigrationId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Provinces">
+            <EntityTypeMapping TypeName="SEP25Team16Model.Province">
+              <MappingFragment StoreEntitySet="Provinces">
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SeminarParticipants">
+            <EntityTypeMapping TypeName="SEP25Team16Model.SeminarParticipant">
+              <MappingFragment StoreEntitySet="SeminarParticipants">
+                <ScalarProperty Name="CreatedUtc" ColumnName="CreatedUtc" />
+                <ScalarProperty Name="RegistryTicket" ColumnName="RegistryTicket" />
+                <ScalarProperty Name="RegistryExhibition" ColumnName="RegistryExhibition" />
+                <ScalarProperty Name="RegistryBusinessMatching" ColumnName="RegistryBusinessMatching" />
+                <ScalarProperty Name="RegistrySeminar" ColumnName="RegistrySeminar" />
+                <ScalarProperty Name="Operation" ColumnName="Operation" />
+                <ScalarProperty Name="JobTitle" ColumnName="JobTitle" />
+                <ScalarProperty Name="ProvinceId" ColumnName="ProvinceId" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Position" ColumnName="Position" />
+                <ScalarProperty Name="Company" ColumnName="Company" />
+                <ScalarProperty Name="TaxNumber" ColumnName="TaxNumber" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="SeminarId" ColumnName="SeminarId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Seminars">
+            <EntityTypeMapping TypeName="SEP25Team16Model.Seminar">
+              <MappingFragment StoreEntitySet="Seminars">
+                <ScalarProperty Name="CreatedUtc" ColumnName="CreatedUtc" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="OpenDate" ColumnName="OpenDate" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

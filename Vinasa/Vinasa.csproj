@@ -205,6 +205,9 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AdminAccountModels.cs" />
+    <Compile Include="Models\C__MigrationHistory.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\HOIVIEN.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -227,14 +230,20 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Model1.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Models\Province.cs" />
+    <Compile Include="Models\Province.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\QUYEN.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\RoleModels.cs" />
     <Compile Include="Models\StatusModels.cs" />
-    <Compile Include="Models\Seminar.cs" />
-    <Compile Include="Models\SeminarParticipant.cs" />
+    <Compile Include="Models\Seminar.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SeminarParticipant.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\sysdiagram.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -1993,6 +2002,7 @@
     <Content Include="Views\Seminars\_DeleteSelected.cshtml" />
     <Content Include="Views\SeminarParticipants\Details.cshtml" />
     <Content Include="Views\Account\Profile.cshtml" />
+    <Content Include="Views\Member\ImportExcel.cshtml" />
     <None Include="Views\Shared\sblogin.cshtml" />
     <None Include="Views\Account\Registerr.cshtml" />
     <Content Include="Web.config" />
