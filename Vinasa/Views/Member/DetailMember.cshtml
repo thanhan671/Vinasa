@@ -93,12 +93,20 @@
             <div class="input-wrapper">
                 <label class="lb-form" class="address" for="name">Khu vực</label>
                 <select class="ip-form" name="type">
-                    <option value="none">Chọn Khu Vực</option>
-
-                    <option name="khu" value="1">Miền Nam</option>
-                    <option name="khu" value="2">Miền Trung</option>
-                    <option name="khu" value="3">Miền Bắc</option>
-
+                    @{
+                        var khuvuc = (List<Vinasa.Models.KhuVucModels>)Session["khuvuc"];
+                        foreach (var item in khuvuc)
+                        {
+                            if (item.IDKhuVuc == Model.KhuVuc)
+                            {
+                                <option value="@item.IDKhuVuc">@item.TenKhuVuc</option>
+                            }
+                            else
+                            {
+                                <option value="@item.IDKhuVuc" selected>@item.TenKhuVuc</option>
+                            }
+                        }
+                    }
                 </select>
             </div>
 
