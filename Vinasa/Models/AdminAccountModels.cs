@@ -28,7 +28,9 @@ namespace Vinasa.Models
         public virtual QUYEN QUYEN1 { get; set; }
         public virtual TRANGTHAI TRANGTHAI1 { get; set; }
 
-        public IEnumerable<string> RoleList { get; set; }
-        public IEnumerable<SelectListItem> StatusList { get; set; }
+        [NotMapped]
+        public SelectList RoleList { get; set; }
+        [NotMapped]
+        public SelectList StatusList { get; set; }
     }
 }

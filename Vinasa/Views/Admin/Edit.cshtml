@@ -30,21 +30,23 @@
             </div>
             <div class="input-wrapper">
                 <label class="lb-form" for="name">Quyền</label>
-                <select class="form-control select-region" name="type">
-                    <option value="none">@Html.DisplayTextFor(m => m.sQuyen)</option>
-                    <option value="" >Quản trị</option>
-                    <option value="" >Quản lí</option>
-                </select>
+                @*<select class="form-control select-region" name="type">
+            <option value="none">@Html.DisplayTextFor(m => m.sQuyen)</option>
+            <option value="" >Quản trị</option>
+            <option value="" >Quản lí</option>
+        </select>*@
+                @Html.DropDownListFor(m => m.Quyen, Model.RoleList, new { @class = "form-control select-region" })
                 @*@Html.DropDownListFor(m => m.sQuyen, Model.RoleList)*@
             </div>
             <div class="input-wrapper">
                 <label class="lb-form" for="name">Trạng Thái</label>
-                <select class="form-control select-region" name="type">
-                    <option value="none">@Html.DisplayTextFor(m => m.sTrangThai)</option>
-                    <option value="">Hoạt động</option>
-                    <option value="">Vô hiệu</option>
+                @*<select class="form-control select-region" name="type">
+            <option value="none">@Html.DisplayTextFor(m => m.sTrangThai)</option>
+            <option value="">Hoạt động</option>
+            <option value="">Vô hiệu</option>
 
-                </select>
+        </select>*@
+                @Html.DropDownListFor(m => m.TrangThai, Model.StatusList, new { @class = "form-control select-region" })
             </div>
         </form>
     </div>

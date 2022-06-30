@@ -12,6 +12,7 @@ namespace Vinasa.Controllers
     {
         #region global variable
         SEP25Team16Entities2 db = new SEP25Team16Entities2();
+        int currentRole;
         #endregion
 
         // GET: Admin
@@ -43,6 +44,8 @@ namespace Vinasa.Controllers
         public ActionResult CreateAccount()
         {
             AdminAccountModels accountModels = new AdminAccountModels();
+            accountModels.RoleList = new SelectList(db.QUYENs, "IDQuyen", "TenQuyen", accountModels.Quyen);
+            accountModels.StatusList = new SelectList(db.TRANGTHAIs, "IDTrangThai", "TenTrangThai", accountModels.TrangThai);
             return View(accountModels);
         }
 
@@ -52,6 +55,13 @@ namespace Vinasa.Controllers
             var registerEmail = adminAccountModels.Email.Trim();
             var registerPassword = adminAccountModels.MatKhau.Trim();
             var registerRePassword = adminAccountModels.reMatKhau.Trim();
+
+            currentRole = (int)Session["AccountType"];
+            if (currentRole == 2)
+            {
+                ViewBag.Message = "Không thể tạo mới tài khoản với tài khoản quản trị";
+                return View();
+            }
 
             if (registerPassword.Equals(registerRePassword))
             {
@@ -74,8 +84,8 @@ namespace Vinasa.Controllers
                                 newAccount.Sdt = adminAccountModels.Sdt.Trim();
                                 newAccount.PhongBan = adminAccountModels.PhongBan.Trim();
                                 newAccount.MatKhau = registerPassword;
-                                newAccount.Quyen = 2;
-                                newAccount.TrangThai = 2;
+                                newAccount.Quyen = adminAccountModels.Quyen;
+                                newAccount.TrangThai = adminAccountModels.TrangThai;
 
                                 db.TAIKHOANADMINs.Add(newAccount);
                                 db.SaveChanges();
@@ -108,13 +118,15 @@ namespace Vinasa.Controllers
                 ID = acc.ID,
                 Ten = acc.Ten,
                 Email = acc.Email,
-                sQuyen = acc.QUYEN1.TenQuyen,
+                Quyen = acc.Quyen,
                 sTrangThai = acc.TRANGTHAI1.TenTrangThai,
                 Sdt = acc.Sdt,
                 PhongBan = acc.PhongBan,
                 MatKhau = acc.MatKhau
             }).SingleOrDefault();
 
+            adminAccountModels.RoleList = new SelectList(db.QUYENs, "IDQuyen", "TenQuyen", adminAccountModels.Quyen);
+            adminAccountModels.StatusList = new SelectList(db.TRANGTHAIs, "IDTrangThai", "TenTrangThai", adminAccountModels.TrangThai);
             return View(adminAccountModels);
         }
 
@@ -125,26 +137,15 @@ namespace Vinasa.Controllers
             {
                 return RedirectToAction("Login", "Account", new { area = " " });
             }
-            var id = adminAccountModels.ID;
-            //string sRole, sStatus;
-            //using (db)
-            //{
-            //    var checkRole = db.QUYENs.Where(q => q.IDQuyen.Equals(adminAccountModels.Quyen)).FirstOrDefault();
-            //    var checkStatus = db.TRANGTHAIs.Where(t => t.IDTrangThai.Equals(adminAccountModels.TrangThai)).FirstOrDefault();
-            //    sRole = checkRole.TenQuyen;
-            //    sStatus = checkStatus.TenTrangThai;
-            //}
-            //var role = sRole;
-            //var status = sStatus;
-            //var role = adminAccountModels.Quyen;
-            //var status = adminAccountModels.sTrangThai;
 
-            //if(ModelState.IsValid)
+            //currentRole = (int)Session["AccountType"];
+            //if (currentRole == 2)
             //{
-            //    return View(adminAccountModels);
+            //    ViewBag.Message = "Không thể sửa với tài khoản quản trị";
+            //    return View();
             //}
-            //else
-            //{
+
+            var id = adminAccountModels.ID;
             using (db)
             {
                 var accountdata = db.TAIKHOANADMINs.Where(acc => acc.ID.Equals(id)).FirstOrDefault();
@@ -157,6 +158,8 @@ namespace Vinasa.Controllers
                             accountdata.Email = adminAccountModels.Email;
                             accountdata.Sdt = adminAccountModels.Sdt;
                             accountdata.PhongBan = adminAccountModels.PhongBan;
+                            accountdata.Quyen = adminAccountModels.Quyen;
+                            accountdata.TrangThai = adminAccountModels.TrangThai;
                             db.SaveChanges();
                             return RedirectToAction("Index", "Admin", new { area = " " });
                         }
@@ -168,16 +171,22 @@ namespace Vinasa.Controllers
                 }
             }
 
-            return Content(id.ToString());
+            return RedirectToAction("Index", "Admin", new { area = " " });
         }
 
         public ActionResult Delete(int id)
         {
             var memberAccount = db.TAIKHOANADMINs.Where(t => t.ID.Equals(id)).FirstOrDefault();
-            if (memberAccount != null)
+            currentRole = (int)Session["AccountType"];
+
+            if (memberAccount != null && currentRole != 2)
             {
                 db.TAIKHOANADMINs.Remove(memberAccount);
                 db.SaveChanges();
+            }
+            else if(currentRole == 2)
+            {
+                ViewBag.Message = "Không thể xóa với tài khoản quản trị";
             }
             return RedirectToAction("Index", "Admin", new { area = " " });
         }

@@ -79,7 +79,7 @@ namespace Vinasa.Controllers
             {
                 return HttpNotFound();
             }
-            
+
             //seminarParticipant.Provinces = new SelectList(_db.Provinces, "ID", "Title", seminarParticipant.ProvinceId);
             return View(seminarParticipant);
         }
