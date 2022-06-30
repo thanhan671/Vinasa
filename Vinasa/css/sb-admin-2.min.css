@@ -2428,7 +2428,7 @@ a.btn.disabled, fieldset:disabled a.btn {
 
 .btn-primary {
     color: #fff;
-    background-color: #F69928;
+    background-color: #4e73df;
     border-color: #4e73df
 }
 
@@ -11547,7 +11547,7 @@ body.sidebar-toggled footer.sticky-footer {
 
 .button-cancel {
     height: 40px;
-    width: 200px;
+    width: 100px;
     margin: 10px 10px;
     background: #ccc;
     color: #fff;
@@ -11555,8 +11555,14 @@ body.sidebar-toggled footer.sticky-footer {
     border-radius: 10px;
 }
 
+    .button-cancel:hover {
+        background: #bbb;
+        color: #F69928;
+    }
+
 .button-lc:hover {
     background-color: #051D65;
+    color: #F69928;
 }
 
 .icon {
@@ -11644,7 +11650,7 @@ body.sidebar-toggled footer.sticky-footer {
 }
 
     .action-list:hover {
-        color: #000;
+        color: #F69928;
         text-decoration: none;
     }
 
@@ -11652,9 +11658,9 @@ body.sidebar-toggled footer.sticky-footer {
     color: #E7870F;
 }
 
-.button-form {
-    float: left;
-}
+/*.button-form {
+    float:left;
+}*/
 
 .select-region {
     width: 500px;
@@ -11710,3 +11716,7 @@ body.sidebar-toggled footer.sticky-footer {
         border-color: #F69928;
         border-radius: 4px
     }
+
+.f-r {
+    float: right;
+}

@@ -40,12 +40,14 @@ namespace Vinasa.Controllers
             return Content("Login fail" + loginEmail + " " + loginPassword);
         }
 
-
-        public ActionResult Register()
+        public ActionResult CreateAccount()
         {
             return View();
         }
-
+        public ActionResult Profile()
+        {
+            return View();
+        }
     }
 
 }

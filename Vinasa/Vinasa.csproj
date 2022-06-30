@@ -1962,6 +1962,7 @@
     <Content Include="vendor\jquery\jquery.min.js" />
     <Content Include="vendor\jquery\jquery.slim.js" />
     <Content Include="vendor\jquery\jquery.slim.min.js" />
+    <Content Include="Views\Account\CreateAccount.cshtml" />
     <None Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Provinces\Create.cshtml" />
     <Content Include="Views\Provinces\Delete.cshtml" />
@@ -1981,6 +1982,7 @@
     <Content Include="Views\Seminars\_CreateOrUpdate.cshtml" />
     <Content Include="Views\Seminars\_DeleteSelected.cshtml" />
     <Content Include="Views\SeminarParticipants\Details.cshtml" />
+    <Content Include="Views\Account\Profile.cshtml" />
     <None Include="Views\Shared\sblogin.cshtml" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">

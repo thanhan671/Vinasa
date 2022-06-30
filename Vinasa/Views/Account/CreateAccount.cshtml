@@ -1,33 +1,33 @@
 ﻿@model Vinasa.Models.AdminAccountModels
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "CreateAccount";
     Layout = "~/Views/Shared/sbadmin.cshtml";
 }
 
 <div class="row">
     <div class="col-6">
-        <h5 class="heading">Sửa Thông Tin Quản Trị</h5>
+        <h5 class="heading">Thêm người dùng mới</h5>
         <form class="form-field" method="post" enctype="multipart/form-data">
             <div class="input-wrapper">
-                <input class="ip-form" type="text" id="tax" contenteditable="true" @Html.TextBoxFor(m => m.Ten)
-                <label class="lb-form" for="tax">Tên Hội Viên</labelclass="lb-form">
+                <input class="ip-form" type="text" id="tax" contenteditable="true" required />
+                <label class="lb-form" for="tax">Họ và tên</labelclass="lb-form">
             </div>
             <div class="input-wrapper">
-                <input class="ip-form" type="text" contenteditable="true" @Html.TextBoxFor(m => m.Email)
+                <input class="ip-form" type="text" contenteditable="true" required />
                 <label class="lb-form">Email</label>
             </div>
             <div class="input-wrapper">
-                <input class="ip-form" type="text" contenteditable="true" @Html.TextBoxFor(m => m.Sdt)
+                <input class="ip-form" type="text" contenteditable="true" required />
                 <label class="lb-form" for="name">Số Điện Thoại</label>
             </div>
             <div class="input-wrapper">
-                <input class="ip-form" type="text" contenteditable="true" @Html.TextBoxFor(m => m.PhongBan)
+                <input class="ip-form" type="text" contenteditable="true" required />
                 <label class="lb-form" for="name">Phòng Ban</label>
             </div>
             <div class="input-wrapper">
                 <label class="lb-form" for="name">Quyền</label>
                 <select class="form-control select-region" name="type">
-                    <option value="none">@Html.DisplayTextFor(m => m.Quyen)</option>
+                    <option value="none">Quyền</option>
 
                     <option value="">Quản Lí</option>
                     <option value="">Quản Trị</option>
@@ -49,7 +49,7 @@
 
 </div>
 <div class="button-form">
-    <button class="button-lc button-cancel" onclick="location.href = 'javascript:history.go(-1)'">Huỷ</button>
+    <button class="button-lc button-cancel" onclick="location.href = 'javascript:history.go(-1)'"">Huỷ</button>
     <button class="button-lc">Xác Nhận</button>
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
