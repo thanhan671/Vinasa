@@ -3,7 +3,7 @@
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class InitialCreate : DbMigration
+    public partial class Seminars : DbMigration
     {
         public override void Up()
         {
@@ -21,7 +21,7 @@
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        SeminarId = c.Int(nullable: false),
+                        SeminarId = c.Int(),
                         Name = c.String(),
                         TaxNumber = c.String(),
                         Company = c.String(),
@@ -38,7 +38,7 @@
                         CreatedUtc = c.DateTime(),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Seminars", t => t.SeminarId, cascadeDelete: true)
+                .ForeignKey("dbo.Seminars", t => t.SeminarId)
                 .Index(t => t.SeminarId);
             
             CreateTable(
@@ -47,7 +47,7 @@
                     {
                         Id = c.Int(nullable: false, identity: true),
                         Title = c.String(),
-                        OpenDate = c.String(),
+                        OpenDate = c.DateTime(nullable: false),
                         Address = c.String(),
                         CreatedUtc = c.DateTime(),
                     })

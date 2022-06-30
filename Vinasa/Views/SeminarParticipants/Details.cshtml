@@ -9,6 +9,10 @@
     <h5 class="heading">Thông tin hội viên tham gia Hội Nghị</h5>
     <form class="form-field form-inputs" method="post" enctype="multipart/form-data">
         <div class="input-wrapper">
+            @Html.EditorFor(model => model.Seminar.Title, new { htmlAttributes = new { @class = "ip-form", @readonly = "readonly" } })
+            @Html.LabelFor(model => model.Seminar.Title, new { @class = "lb-form" })
+        </div>
+        <div class="input-wrapper">
             @Html.EditorFor(model => model.TaxNumber, new { htmlAttributes = new { @class = "ip-form", @readonly = "readonly" } })
             @Html.LabelFor(model => model.TaxNumber, new { @class = "lb-form" })
         </div>
@@ -28,7 +32,6 @@
             @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "ip-form", @readonly = "readonly" } })
             @Html.LabelFor(model => model.Email, new { @class = "lb-form" })
         </div>
-
         <div class="input-wrapper">
             @Html.EditorFor(model => model.PhoneNumber, new { htmlAttributes = new { @class = "ip-form", @readonly = "readonly" } })
             @Html.LabelFor(model => model.PhoneNumber, new { @class = "lb-form" })
@@ -37,7 +40,10 @@
             @Html.EditorFor(model => model.JobTitle, new { htmlAttributes = new { @class = "ip-form", @readonly = "readonly" } })
             @Html.LabelFor(model => model.JobTitle, new { @class = "lb-form" })
         </div>
-
+        <div class="input-wrapper">
+            @Html.LabelFor(model => model.ProvinceId, new { @class = "lb-form" })
+            @Html.DropDownListFor(model => model.ProvinceId, Model.Provinces, new { @class = "ip-form form-control select-region", @readonly = "readonly" })
+        </div>
         <div class="input-wrapper">
             @Html.EditorFor(model => model.Operation, new { htmlAttributes = new { @class = "ip-form", @readonly = "readonly" } })
             @Html.LabelFor(model => model.Operation, new { @class = "lb-form" })
