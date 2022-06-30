@@ -1,10 +1,10 @@
-
 ﻿@model Vinasa.Models.AdminAccountModels
 @{
     ViewBag.Title = "Profile";
     Layout = "~/Views/Shared/sbadmin.cshtml";
 }
-
+@using (Html.BeginForm("Profile", "Account", FormMethod.Post))
+{
 <div class="row">
     <div class="col-lg-4">
         <div class="card mb-4">
@@ -70,7 +70,7 @@
                         <p class="mb-0">Mật khẩu mới</p>
                     </div>
                     <div class="col-sm-9">
-                        <input type="password" class="text-muted mb-0 pf-ip" value="">
+                        <input type="password" class="text-muted mb-0 pf-ip" @Html.PasswordFor(m => m.newMatKhau)
 
                     </div>
                 </div>
@@ -81,7 +81,7 @@
                         <p class="mb-0">Xác nhận mật khẩu mới</p>
                     </div>
                     <div class="col-sm-9">
-                        <input type="password" class="text-muted mb-0 pf-ip" value="">
+                        <input type="password" class="text-muted mb-0 pf-ip" @Html.PasswordFor(m => m.reMatKhau)
                     </div>
                 </div>
 
@@ -89,11 +89,12 @@
         </div>
 
     </div>
-
+    <div class="button-form f-r">
+        <button class="button-lc button-cancel" onclick="location.href = 'javascript:history.go(-1)'">Huỷ</button>
+        <button class="button-lc" type="submit" name="save">Cập nhật Tài Khoản</button>
+    </div>
 </div>
-<div class="button-form f-r">
-    <button class="button-lc button-cancel" onclick="location.href = 'javascript:history.go(-1)'">Huỷ</button>
-    <button class="button-lc">Cập nhật Tài Khoản</button>
-</div>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+}
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 

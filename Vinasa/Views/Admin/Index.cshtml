@@ -10,11 +10,13 @@
 <!-- DataTales Example -->
 
 <div class="card shadow mb-4">
-    <div class="card-header py-3" >
+    <div class="card-header py-3">
         <div class="right-content">
             <h6 class="m-0 font-weight-bold text-primary" style="color: #19315D ">Danh sách người dùng</h6>
         </div>
-
+        <div class="left-content">
+            <button class="button-lc" style=" width: 200px" id="create">Thêm tài khoản</button>
+        </div>
     </div>
     <div class="card-body">
         <div class="table-responsive">
@@ -105,7 +107,7 @@
 <script>
 
     $('#create').click(function () {
-        location.href = "/Account/CreateAccount";
+        location.href = "/Admin/CreateAccount";
     })
 
 </script>

@@ -217,13 +217,10 @@
     <Compile Include="Models\QUYEN.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-
     <Compile Include="Models\RoleModels.cs" />
     <Compile Include="Models\StatusModels.cs" />
-
     <Compile Include="Models\Seminar.cs" />
     <Compile Include="Models\SeminarParticipant.cs" />
-
     <Compile Include="Models\sysdiagram.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -1961,7 +1958,7 @@
     <Content Include="vendor\jquery\jquery.min.js" />
     <Content Include="vendor\jquery\jquery.slim.js" />
     <Content Include="vendor\jquery\jquery.slim.min.js" />
-    <Content Include="Views\Account\CreateAccount.cshtml" />
+    <Content Include="Views\Admin\CreateAccount.cshtml" />
     <None Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Provinces\Create.cshtml" />
     <Content Include="Views\Provinces\Delete.cshtml" />

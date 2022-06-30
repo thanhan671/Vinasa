@@ -58,10 +58,6 @@ namespace Vinasa.Controllers
             return RedirectToAction("Login", "Account", new { area = " " });
         }
 
-        public ActionResult CreateAccount()
-        {
-            return View();
-        }
         
 
         [HttpGet]
@@ -146,7 +142,6 @@ namespace Vinasa.Controllers
         [HttpPost]
         public new ActionResult Profile(AdminAccountModels adminAccountModels)
         {
-
             return RedirectToAction("Index", "Home", new { area = " " });
         }
     }

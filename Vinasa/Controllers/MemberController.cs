@@ -112,17 +112,16 @@ namespace Vinasa.Controllers
         }
 
 
-        public ActionResult DetailMember()
+        //public ActionResult DetailMember();
 
         #region support method
-        private int FindRowID()
-        {
+        //private int FindRowID()
+        //{
 
-            return memberID;
-        }
+        //    //return memberID;
+        //}
         #endregion
         public ActionResult DetailMember(int id)
-
         {
             MemberAccountModels memberAccountModels = db.HOIVIENs.Where(mAcc => mAcc.ID.Equals(id)).Select(mAcc => new MemberAccountModels()
             {

@@ -39,6 +39,61 @@ namespace Vinasa.Controllers
             return View();
         }
 
+        [HttpGet]
+        public ActionResult CreateAccount()
+        {
+            AdminAccountModels accountModels = new AdminAccountModels();
+            return View(accountModels);
+        }
+
+        [HttpPost]
+        public ActionResult CreateAccount(AdminAccountModels adminAccountModels)
+        {
+            var registerEmail = adminAccountModels.Email.Trim();
+            var registerPassword = adminAccountModels.MatKhau.Trim();
+            var registerRePassword = adminAccountModels.reMatKhau.Trim();
+
+            if (registerPassword.Equals(registerRePassword))
+            {
+                using (db)
+                {
+                    var checkAccount = db.TAIKHOANADMINs.Where(acc => acc.Email.Equals(registerEmail.Trim())).FirstOrDefault();
+                    {
+                        if (checkAccount != null)
+                        {
+                            ViewBag.Message = registerEmail + " tài khoản đã tồn tại";
+                            return View();
+                        }
+                        else
+                        {
+                            try
+                            {
+                                TAIKHOANADMIN newAccount = new TAIKHOANADMIN();
+                                newAccount.Ten = adminAccountModels.Ten.Trim();
+                                newAccount.Email = registerEmail;
+                                newAccount.Sdt = adminAccountModels.Sdt.Trim();
+                                newAccount.PhongBan = adminAccountModels.PhongBan.Trim();
+                                newAccount.MatKhau = registerPassword;
+                                newAccount.Quyen = 2;
+                                newAccount.TrangThai = 2;
+
+                                db.TAIKHOANADMINs.Add(newAccount);
+                                db.SaveChanges();
+                                ViewBag.Message = newAccount.Ten + " tài khoản được tạo thành công";
+                                //return RedirectToAction("Login");
+                                return RedirectToAction("Index");
+                            }
+                            catch (Exception ex)
+                            {
+                                throw ex;
+                            }
+                        }
+                    }
+                }
+            }
+            return View();
+        }
+
 
         [HttpGet]
         public ActionResult Edit(int id, AdminAccountModels adminAccountModels)

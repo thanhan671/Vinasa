@@ -1,0 +1,81 @@
+﻿@model Vinasa.Models.AdminAccountModels
+@{
+    ViewBag.Title = "CreateAccount";
+    Layout = "~/Views/Shared/sbadmin.cshtml";
+}
+
+@using (Html.BeginForm("CreateAccount", "Admin", FormMethod.Post))
+{
+    <div class="row">
+        <div class="col-6">
+            <h5 class="heading">Sửa Thông Tin Người Dùng</h5>
+
+            <form class="form-field" method="post" enctype="multipart/form-data">
+                <div class="input-wrapper">
+                    <input class="ip-form" type="text" id="tax" contenteditable="true" @Html.TextBoxFor(m => m.Ten)
+                    <label class="lb-form" for="tax">Tên Người Dùng</label>
+                </div>
+                <div class="input-wrapper">
+                    <input class="ip-form" type="text" contenteditable="true" @Html.TextBoxFor(m => m.Email)
+                    <label class="lb-form">Email</label>
+                </div>
+                <div class="input-wrapper">
+                    <input class="ip-form" type="password" contenteditable="true" @Html.PasswordFor(m => m.MatKhau)
+                    <label class="lb-form" for="name">Mật Khẩu</label>
+                </div>
+                <div class="input-wrapper">
+                    <input class="ip-form" type="password" contenteditable="true" @Html.PasswordFor(m => m.reMatKhau)
+                    <label class="lb-form" for="name">Xác Nhận Mật Khẩu</label>
+                </div>
+                <div class="input-wrapper">
+                    <input class="ip-form" type="text" contenteditable="true" @Html.TextBoxFor(m => m.Sdt)
+                    <label class="lb-form" for="name">Số Điện Thoại</label>
+                </div>
+                <div class="input-wrapper">
+                    <input class="ip-form" type="text" contenteditable="true" @Html.TextBoxFor(m => m.PhongBan)
+                    <label class="lb-form" for="name">Phòng Ban</label>
+                </div>
+
+                <div class="input-wrapper">
+                    <label class="lb-form" for="name">Quyền</label>
+                    <select class="form-control select-region" name="type">
+                        <option value="none">@Html.DisplayTextFor(m => m.sQuyen)</option>
+                        <option value="">Quản trị</option>
+                        <option value="">Quản lí</option>
+                    </select>
+                </div>
+                <div class="input-wrapper">
+                    <label class="lb-form" for="name">Trạng Thái</label>
+                    <select class="form-control select-region" name="type">
+                        <option value="none">@Html.DisplayTextFor(m => m.sTrangThai)</option>
+                        <option value="">Hoạt động</option>
+                        <option value="">Vô hiệu</option>
+
+                    </select>
+                </div>
+            </form>
+        </div>
+
+        <div class="button-form">
+            <button class="button-lc" type="submit" name="save">Xác Nhận</button>
+            <button class="button-lc" onclick="location.href='@Url.Action("Index", "Admin")'" type="button" name="cancel">Huỷ</button>
+        </div>
+    </div>
+}
+
+@if (ViewBag.Message != null)
+{
+    <script type="text/javascript">
+        window.onload = function () {
+            alert("@ViewBag.Message");
+        };
+    </script>
+}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+
+             $('#enter').click(function () {
+                location.href = "@Url.Action();
+            })
+
+</script>
