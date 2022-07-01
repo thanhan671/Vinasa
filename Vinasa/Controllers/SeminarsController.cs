@@ -107,7 +107,7 @@ namespace Vinasa.Controllers
         public ActionResult Delete(int id)
         {
             Seminar seminar = _db.Seminars.Find(id);
-            if (seminar != null)
+            if(seminar != null)
             {
                 var seminarParticipants = _db.SeminarParticipants.Where(it => it.SeminarId == seminar.Id).ToList();
                 foreach (var seminarParticipant in seminarParticipants)
