@@ -6,55 +6,52 @@
 
 @using (Html.BeginForm("CreateAccount", "Admin", FormMethod.Post))
 {
-    <div class="row">
-        <div class="col-6">
-            <h5 class="heading">Sửa Thông Tin Người Dùng</h5>
-            <form class="form-field" method="post" enctype="multipart/form-data">
-                <div class="input-wrapper">
-                    <input class="ip-form" type="text" id="tax" contenteditable="true" @Html.TextBoxFor(m => m.Ten)
-                    <label class="lb-form" for="tax">Tên Người Dùng</label>
-                </div>
-                <div class="input-wrapper">
-                    <input class="ip-form" type="text" contenteditable="true" @Html.TextBoxFor(m => m.Email)
-                    <label class="lb-form">Email</label>
-                </div>
-                <div class="input-wrapper">
-                    <input class="ip-form" type="password" contenteditable="true" @Html.PasswordFor(m => m.MatKhau)
-                    <label class="lb-form" for="name">Mật Khẩu</label>
-                </div>
-                <div class="input-wrapper">
-                    <input class="ip-form" type="password" contenteditable="true" @Html.PasswordFor(m => m.reMatKhau)
-                    <label class="lb-form" for="name">Xác Nhận Mật Khẩu</label>
-                </div>
-                <div class="input-wrapper">
-                    <input class="ip-form" type="text" contenteditable="true" @Html.TextBoxFor(m => m.Sdt)
-                    <label class="lb-form" for="name">Số Điện Thoại</label>
-                </div>
-                <div class="input-wrapper">
-                    <input class="ip-form" type="text" contenteditable="true" @Html.TextBoxFor(m => m.PhongBan)
-                    <label class="lb-form" for="name">Phòng Ban</label>
-                </div>
+<div class="row">
+    <div class="col-6">
+        <h5 class="heading">Thêm Người Dùng</h5>
 
-                <div class="input-wrapper">
-                    <label class="lb-form" for="name">Quyền</label>
-                    @*<select class="form-control select-region" name="type">
-                            <option value="none">@Html.DisplayTextFor(m => m.sQuyen)</option>
-                            <option value="">Quản trị</option>
-                            <option value="">Quản lí</option>
-                        </select>*@
-                    @Html.DropDownListFor(m => m.Quyen, Model.RoleList, new { @class = "form-control select-region" })
-                </div>
-                <div class="input-wrapper">
-                    <label class="lb-form" for="name">Trạng Thái</label>
-                    @Html.DropDownListFor(m => m.TrangThai, Model.StatusList, new { @class = "form-control select-region" })
-                </div>
-            </form>
-        </div>
-        <div class="button-form">
-            <button class="button-lc" type="submit" name="save">Xác Nhận</button>
-            <button class="button-lc" onclick="location.href='@Url.Action("Index", "Admin")'" type="button" name="cancel">Huỷ</button>
-        </div>
+        <form class="form-field" method="post" enctype="multipart/form-data">
+            <div class="input-wrapper">
+                <input class="ip-form" type="text" id="tax" contenteditable="true" @Html.TextBoxFor(m => m.Ten)
+                <label class="lb-form" for="tax">Tên Người Dùng</label>
+            </div>
+            <div class="input-wrapper">
+                <input class="ip-form" type="text" contenteditable="true" @Html.TextBoxFor(m => m.Email)
+                <label class="lb-form">Email</label>
+            </div>
+            <div class="input-wrapper">
+                <input class="ip-form" type="password" contenteditable="true" @Html.PasswordFor(m => m.MatKhau)
+                <label class="lb-form" for="name">Mật Khẩu</label>
+            </div>
+            <div class="input-wrapper">
+                <input class="ip-form" type="password" contenteditable="true" @Html.PasswordFor(m => m.reMatKhau)
+                <label class="lb-form" for="name">Xác Nhận Mật Khẩu</label>
+            </div>
+            <div class="input-wrapper">
+                <input class="ip-form" type="text" contenteditable="true" @Html.TextBoxFor(m => m.Sdt)
+                <label class="lb-form" for="name">Số Điện Thoại</label>
+            </div>
+            <div class="input-wrapper">
+                <input class="ip-form" type="text" contenteditable="true" @Html.TextBoxFor(m => m.PhongBan)
+                <label class="lb-form" for="name">Phòng Ban</label>
+            </div>
+
+            <div class="input-wrapper">
+                <label class="lb-form" for="name">Quyền</label>
+                @Html.DropDownListFor(m => m.Quyen, Model.RoleList, new { @class = "form-control select-region" })
+            </div>
+            <div class="input-wrapper">
+                <label class="lb-form" for="name">Trạng Thái</label>
+                @Html.DropDownListFor(m => m.TrangThai, Model.StatusList, new { @class = "form-control select-region" })
+            </div>
+        </form>
     </div>
+    <div class="button-form">
+        <button class="button-lc" onclick="location.href='javascript:history.go(-1)'" type="button" name="cancel">Huỷ</button>
+        <button class="button-lc" type="submit" name="save">Xác Nhận</button>
+    </div>
+</div>
+
 }
 
 @if (ViewBag.Message != null)

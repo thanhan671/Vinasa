@@ -31,7 +31,6 @@
                 <div class="input-wrapper">
                     <label class="lb-form" for="name">Quyền</label>
                     @Html.DropDownListFor(m => m.Quyen, Model.RoleList, new { @class = "form-control select-region" })
-                    @*@Html.DropDownListFor(m => m.sQuyen, Model.RoleList)*@
                 </div>
                 <div class="input-wrapper">
                     <label class="lb-form" for="name">Trạng Thái</label>
@@ -39,10 +38,10 @@
                 </div>
             </form>
         </div>
-    </div>
-    <div class="button-form">
-        <button class="button-lc button-cancel" onclick="location.href='javascript:history.go(-1)'" type="button" name="cancel">Huỷ</button>
-        <button class="button-lc" type="submit" name="save">Xác Nhận</button>
+        <div class="button-form">
+            <button class="button-lc" onclick="location.href='javascript:history.go(-1)'" type="button" name="cancel">Huỷ</button>
+            <button class="button-lc" type="submit" name="save">Xác Nhận</button>
+        </div>
     </div>
 }
 

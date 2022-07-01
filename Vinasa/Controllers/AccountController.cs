@@ -37,7 +37,7 @@ namespace Vinasa.Controllers
                         Session["AccountType"] = checkAccount.Quyen;
                         return RedirectToAction("Index", "Home", new { area = "" });
                     }
-                    else if(checkAccount != null && !checkAccount.TrangThai.Equals(1))
+                    else if (checkAccount != null && !checkAccount.TrangThai.Equals(1))
                     {
                         ViewBag.Message = checkAccount.Email + " this account not activated, please contact the administrator to active this";
                         return View();
@@ -58,7 +58,7 @@ namespace Vinasa.Controllers
             return RedirectToAction("Login", "Account", new { area = " " });
         }
 
-        
+
 
         [HttpGet]
         public ActionResult Register()
@@ -118,8 +118,8 @@ namespace Vinasa.Controllers
         [HttpGet]
         public new ActionResult Profile()
         {
-            int id; 
-            if(Session["AccountID"] != null)
+            int id;
+            if (Session["AccountID"] != null)
             {
                 id = (int)Session["AccountID"];
             }
