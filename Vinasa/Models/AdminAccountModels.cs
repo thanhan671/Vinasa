@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Web.Mvc;
 
 namespace Vinasa.Models
 {
@@ -19,7 +20,17 @@ namespace Vinasa.Models
         public string PhongBan { get; set; }
         public string MatKhau { get; set; }
 
+        public string newMatKhau { get; set; }
+        public string reMatKhau { get; set; }
+        public string sQuyen { get; set; }
+        public string sTrangThai { get; set; }
+
         public virtual QUYEN QUYEN1 { get; set; }
         public virtual TRANGTHAI TRANGTHAI1 { get; set; }
+
+        [NotMapped]
+        public SelectList RoleList { get; set; }
+        [NotMapped]
+        public SelectList StatusList { get; set; }
     }
 }

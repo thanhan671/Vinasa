@@ -37,7 +37,7 @@ namespace Vinasa.Controllers
             {
                 return HttpNotFound();
             }
-            seminarParticipant.Provinces = new SelectList(_db.Provinces, "ID", "Title", seminarParticipant.ProvinceId);
+            //seminarParticipant.Provinces = new SelectList(_db.Provinces, "ID", "Title", seminarParticipant.ProvinceId);
             seminarParticipant.Seminar = _db.Seminars.Find(seminarParticipant.SeminarId);
             return View(seminarParticipant);
         }
@@ -46,7 +46,7 @@ namespace Vinasa.Controllers
         public ActionResult Create()
         {
             var model = new SeminarParticipant();
-            model.Provinces = new SelectList(_db.Provinces, "ID", "Title", model.ProvinceId);
+            //model.Provinces = new SelectList(_db.Provinces, "ID", "Title", model.ProvinceId);
             return View(model);
         }
 
@@ -79,8 +79,8 @@ namespace Vinasa.Controllers
             {
                 return HttpNotFound();
             }
-            
-            seminarParticipant.Provinces = new SelectList(_db.Provinces, "ID", "Title", seminarParticipant.ProvinceId);
+
+            //seminarParticipant.Provinces = new SelectList(_db.Provinces, "ID", "Title", seminarParticipant.ProvinceId);
             return View(seminarParticipant);
         }
 
@@ -93,7 +93,7 @@ namespace Vinasa.Controllers
         {
             if (!ModelState.IsValid)
             {
-                seminarParticipant.Provinces = new SelectList(_db.Provinces, "ID", "Title", seminarParticipant.ProvinceId);
+                //seminarParticipant.Provinces = new SelectList(_db.Provinces, "ID", "Title", seminarParticipant.ProvinceId);
                 return View(seminarParticipant);
             }
             if (ModelState.IsValid)

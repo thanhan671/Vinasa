@@ -30,24 +30,173 @@ namespace Vinasa.Controllers
             {
                 var checkAccount = db.TAIKHOANADMINs.Where(acc => acc.Email.Equals(loginEmail.Trim()) && acc.MatKhau.Equals(loginPassword.Trim())).FirstOrDefault();
                 {
-                    if (checkAccount != null)
+                    if (checkAccount != null && checkAccount.TrangThai.Equals(1))
                     {
-                        return RedirectToRoute("HomeLogged");
+                        Session["AccountID"] = checkAccount.ID;
+                        Session["UserName"] = checkAccount.Ten;
+                        Session["AccountType"] = checkAccount.Quyen;
+                        return RedirectToAction("Index", "Home", new { area = "" });
                     }
+                    else if(checkAccount != null && !checkAccount.TrangThai.Equals(1))
+                    {
+                        ViewBag.Message = checkAccount.Email + " this account not activated, please contact the administrator to active this";
+                        return View();
+                    }
+
                 }
             }
 
-            return Content("Login fail" + loginEmail + " " + loginPassword);
+            ViewBag.Message = "wrong email or password";
+            return View();
         }
 
-        public ActionResult CreateAccount()
+        [HttpGet]
+        public ActionResult Logout()
         {
+            Session["AccountID"] = null;
+            Session.Abandon();
+            return RedirectToAction("Login", "Account", new { area = " " });
+        }
+
+        
+
+        [HttpGet]
+        public ActionResult Register()
+        {
+            AdminAccountModels accountModels = new AdminAccountModels();
+            return View(accountModels);
+        }
+
+        [HttpPost]
+        public ActionResult Register(AdminAccountModels adminAccountModels)
+        {
+            var registerEmail = adminAccountModels.Email.Trim();
+            var registerPassword = adminAccountModels.MatKhau.Trim();
+            var registerRePassword = adminAccountModels.reMatKhau.Trim();
+
+            if (registerPassword.Equals(registerRePassword))
+            {
+                using (db)
+                {
+                    var checkAccount = db.TAIKHOANADMINs.Where(acc => acc.Email.Equals(registerEmail.Trim())).FirstOrDefault();
+                    {
+                        if (checkAccount != null)
+                        {
+                            ViewBag.Message = registerEmail + " has been existing, please change another email or contact to the admin";
+                            return View();
+                        }
+                        else
+                        {
+                            try
+                            {
+                                TAIKHOANADMIN newAccount = new TAIKHOANADMIN();
+                                newAccount.Ten = adminAccountModels.Ten.Trim();
+                                newAccount.Email = registerEmail;
+                                newAccount.Sdt = adminAccountModels.Sdt.Trim();
+                                newAccount.PhongBan = adminAccountModels.PhongBan.Trim();
+                                newAccount.MatKhau = registerPassword;
+                                newAccount.Quyen = 2;
+                                newAccount.TrangThai = 2;
+
+                                db.TAIKHOANADMINs.Add(newAccount);
+                                db.SaveChanges();
+                                ViewBag.Message = newAccount.Ten + " create successfully, please wait for admin to activate this account";
+                                //return RedirectToAction("Login");
+                                return View();
+                            }
+                            catch (Exception ex)
+                            {
+                                throw ex;
+                            }
+                        }
+                    }
+                }
+            }
             return View();
         }
-        public ActionResult Profile()
+
+        [HttpGet]
+        public new ActionResult Profile()
         {
-            return View();
+            int id; 
+            if(Session["AccountID"] != null)
+            {
+                id = (int)Session["AccountID"];
+            }
+            else
+            {
+                return RedirectToAction("Login", "Account", new { area = " " });
+            }
+
+            AdminAccountModels adminAccountModels = db.TAIKHOANADMINs.Where(acc => acc.ID.Equals(id)).Select(acc => new AdminAccountModels()
+            {
+                Ten = acc.Ten,
+                Email = acc.Email,
+                Sdt = acc.Sdt,
+                MatKhau = acc.MatKhau
+            }).SingleOrDefault();
+
+            return View(adminAccountModels);
         }
+
+        [HttpPost]
+        public new ActionResult Profile(AdminAccountModels adminAccountModels)
+        {
+            int id = (int)Session["AccountID"];
+            var name = adminAccountModels.Ten.Trim();
+            var email = adminAccountModels.Email.Trim();
+            var phoneNumber = adminAccountModels.Sdt.Trim();
+            var oldPassword = adminAccountModels.MatKhau;
+            var newPassword = adminAccountModels.newMatKhau;
+            var rePassword = adminAccountModels.reMatKhau;
+
+            if (oldPassword != null)
+            {
+                using (db)
+                {
+                    var accountCheck = db.TAIKHOANADMINs.Where(acc => acc.ID.Equals(id)).FirstOrDefault();
+                    if (CheckPassword(oldPassword, accountCheck.MatKhau))
+                    {
+                        accountCheck.Ten = name;
+                        accountCheck.Email = email;
+                        accountCheck.Sdt = phoneNumber;
+                        if (newPassword != null)
+                        {
+                            if (CheckPassword(newPassword, rePassword))
+                            {
+                                accountCheck.MatKhau = newPassword;
+                            }
+                            else
+                            {
+                                ViewBag.Message = "Mật khẩu mới và xác nhận mật khẩu không trùng";
+                                return View();
+                            }
+                        }
+
+                    }
+                    db.SaveChanges();
+                }
+            }
+            else
+            {
+                ViewBag.Message = "Nhập mật khẩu để thay đổi thông tin";
+                return View();
+            }
+
+            return RedirectToAction("Index", "Home", new { area = " " });
+        }
+
+        #region support method
+        private bool CheckPassword(string pass1, string pass2)
+        {
+            if (!pass1.Trim().Equals(pass2.Trim()))
+            {
+                return false;
+            }
+            return true;
+        }
+
+        #endregion
+
     }
-
 }

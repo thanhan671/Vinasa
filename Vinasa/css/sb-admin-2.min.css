@@ -11543,6 +11543,23 @@ body.sidebar-toggled footer.sticky-footer {
     color: #fff;
     border: 1px solid #ccc;
     border-radius: 10px;
+
+}
+
+.button-cancel {
+    height: 40px;
+    width: 100px;
+    margin: 10px 10px;
+    background: #ccc;
+    color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+}
+
+.button-cancel:hover{
+    background: #bbb;
+    color: #F69928;
+
 }
 
 .button-cancel {
@@ -11649,10 +11666,15 @@ body.sidebar-toggled footer.sticky-footer {
     color: #858796;
 }
 
+.action-list:hover {
+    color: #F69928;
+    text-decoration: none;
+}
     .action-list:hover {
         color: #F69928;
         text-decoration: none;
     }
+
 
 .address:focus {
     color: #E7870F;
@@ -11702,14 +11724,33 @@ body.sidebar-toggled footer.sticky-footer {
     border-radius: 4px;
 }
 
+
+#modal-b .button-lc:hover {
+    background-color: #051D65;
+}
+
+
+.pf-ip{
+
     #modal-b .button-lc:hover {
         background-color: #051D65;
     }
 
 
 .pf-ip {
+
     border: none;
     width: 100%;
+}
+
+
+.pf-ip:focus{
+    border-color: #F69928;
+    border-radius: 4px
+}
+
+.f-r{
+    float: right;
 }
 
     .pf-ip:focus {
@@ -11720,3 +11761,4 @@ body.sidebar-toggled footer.sticky-footer {
 .f-r {
     float: right;
 }
+

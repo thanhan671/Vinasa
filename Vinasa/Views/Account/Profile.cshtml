@@ -1,84 +1,108 @@
-﻿
-
+﻿@model Vinasa.Models.AdminAccountModels
 @{
     ViewBag.Title = "Profile";
     Layout = "~/Views/Shared/sbadmin.cshtml";
 }
+@using (Html.BeginForm("Profile", "Account", FormMethod.Post))
+{
+    <div class="row">
+        <div class="col-lg-4">
+            <div class="card mb-4">
+                <div class="card-body text-center" style=" height: 310px;">
+                    <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp" alt="avatar" class="rounded-circle img-fluid" style="width: 150px;">
+                    <h5 class="my-3">@Html.DisplayTextFor(m => m.Ten) </h5>
+                    <p class="text-muted mb-1"></p>
+                    @*<p class="text-muted mb-4">Bay Area, San Francisco, CA</p>*@
 
-<div class="row">
-    <div class="col-lg-4">
-        <div class="card mb-4">
-            <div class="card-body text-center" style=" height: 310px;">
-                <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp" alt="avatar" class="rounded-circle img-fluid" style="width: 150px;">
-                <h5 class="my-3">John Smith</h5>
-                <p class="text-muted mb-1"></p>
-
-            </div>
-        </div>
-    </div>
-    <div class="col-lg-8">
-        <div class="card mb-4">
-            <div class="card-body" style=" height: 360px;">
-                <div class="row">
-                    <div class="col-sm-3">
-                        <p class="mb-0">Họ Tên</p>
-                    </div>
-                    <div class="col-sm-9">
-                        <input type="text" class="text-muted mb-0 pf-ip" value="Johnatan Smith">
-                    </div>
-                </div>
-                <hr>
-                <div class="row">
-                    <div class="col-sm-3">
-                        <p class="mb-0">Email</p>
-                    </div>
-                    <div class="col-sm-9">
-                        <input type="email" class="text-muted mb-0 pf-ip" value="example@example.com">
-                    </div>
-                </div>
-                <hr>
-                <div class="row">
-                    <div class="col-sm-3">
-                        <p class="mb-0">Số Điện Thoại</p>
-                    </div>
-                    <div class="col-sm-9">
-                        <input type="tel" class="text-muted mb-0 pf-ip" value="(097) 234-5678">
-                    </div>
-                </div>
-                <hr>
-                <div class="row">
-                    <div class="col-sm-3">
-                        <p class="mb-0">Mật khẩu cũ</p>
-                    </div>
-                    <div class="col-sm-9">
-                        <input type="password" class="text-muted mb-0 pf-ip" value="123456">
-                    </div>
-                </div>
-                <hr>
-                <div class="row">
-                    <div class="col-sm-3">
-                        <p class="mb-0">Mật khẩu mới</p>
-                    </div>
-                    <div class="col-sm-9">
-                        <input type="password" class="text-muted mb-0 pf-ip" value="">
-                    </div>
-                </div>
-                <hr>
-                <div class="row">
-                    <div class="col-sm-3">
-                        <p class="mb-0">Xác nhận mật khẩu mới</p>
-                    </div>
-                    <div class="col-sm-9">
-                        <input type="password" class="text-muted mb-0 pf-ip" value="">
-                    </div>
                 </div>
             </div>
         </div>
+        <div class="col-lg-8">
+            <div class="card mb-4">
 
+                <div class="card-body" style=" height: 360px;">
+
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <p class="mb-0">Họ Tên</p>
+                        </div>
+                        <div class="col-sm-9">
+
+                            <input type="text" class="text-muted mb-0 pf-ip" @Html.TextBoxFor(m => m.Ten)
+
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <p class="mb-0">Email</p>
+                        </div>
+                        <div class="col-sm-9">
+
+                            <input type="email" class="text-muted mb-0 pf-ip" @Html.TextBoxFor(m => m.Email)
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <p class="mb-0">Số Điện Thoại</p>
+                        </div>
+                        <div class="col-sm-9">
+
+                            <input type="tel" class="text-muted mb-0 pf-ip" @Html.TextBoxFor(m => m.Sdt)
+
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-sm-3">
+
+                            <p class="mb-0">Mật Khẩu Hiện Tại</p>
+                        </div>
+                        <div class="col-sm-9">
+                            <input class="text-muted mb-0 pf-ip" @Html.PasswordFor(m => m.MatKhau)
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-sm-3">
+
+                            <p class="mb-0">Mật khẩu mới</p>
+                        </div>
+                        <div class="col-sm-9">
+                            <input type="password" class="text-muted mb-0 pf-ip" @Html.PasswordFor(m => m.newMatKhau)
+
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-sm-3">
+
+                            <p class="mb-0">Xác nhận mật khẩu mới</p>
+                        </div>
+                        <div class="col-sm-9">
+                            <input type="password" class="text-muted mb-0 pf-ip" @Html.PasswordFor(m => m.reMatKhau)
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+        <div class="button-form f-r">
+            <button class="button-lc button-cancel" onclick="location.href = 'javascript:history.go(-1)'">Huỷ</button>
+            <button class="button-lc" type="submit" name="save">Cập nhật Tài Khoản</button>
+        </div>
     </div>
-</div>
-<div class="button-form f-r">
-    <button class="button-lc button-cancel" onclick="location.href = 'javascript:history.go(-1)'">Huỷ</button>
-    <button class="button-lc">Cập nhật Tài Khoản</button>
-</div>
+}
+
+@if (ViewBag.Message != null)
+{
+    <script type="text/javascript">
+        window.onload = function () {
+            alert("@ViewBag.Message");
+        };
+    </script>
+}
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+

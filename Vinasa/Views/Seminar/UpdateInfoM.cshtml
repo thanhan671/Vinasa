@@ -3,10 +3,17 @@
     ViewBag.Title = "UpdateInfoM";
     Layout = "~/Views/Shared/sbadmin.cshtml";
 }
-
+<div class="heading">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="@Url.Action("Index", "Seminar")">Danh sách Hội Nghị</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Cập nhật + TENHOINGHI</li>
+        </ol>
+    </nav>
+</div>
 
 <div class="container col-11 centerPage">
-    <h5 class="heading">Cập nhật Thông Tin Doanh Nghiệp Tham Gia Hội Nghị</h5>
+    <h5 class="heading">Cập nhật + TENHOINGHI</h5>
     <form class="form-field form-inputs" method="post" enctype="multipart/form-data">
         <div class="input-wrapper">
             <input class="ip-form" type="text" id="tax" required>
@@ -86,9 +93,9 @@
         </div>
 
     </form>
-    <div class="button-form">
+    <div class="button-form f-r">
+        <button class="button-cancel" id="cancel">Huỷ</button>
         <button class="button-lc">Xác Nhận</button>
-        <button class="button-lc" id="cancel" onclick="goBack">Huỷ</button>
     </div>
 </div>
 

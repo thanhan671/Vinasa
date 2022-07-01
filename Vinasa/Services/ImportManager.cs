@@ -16,8 +16,7 @@ namespace Vinasa.Services
         #endregion
 
         #region Contructor
-        public ImportManager(
-                    SeminarContext db)
+        public ImportManager(SeminarContext db)
         {
             _db = db;
         }
