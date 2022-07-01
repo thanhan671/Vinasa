@@ -145,4 +145,8 @@
         };
         </script>
     }
+    @if (TempData["Message"] != null)
+    {
+        <p class="alert alert-success" id="successMessage">@TempData["Message"]</p>
+    }
 

@@ -15,15 +15,12 @@ namespace Vinasa.Controllers
 {
     public class MemberController : Controller
     {
-
+        #region global variable
         SEP25Team16Entities2 db = new SEP25Team16Entities2();
-        //private readonly ImportManager _importManager;
-        //public MemberController()
-        //{
-        //    _importManager = new ImportManager(db);
+        int currentRole;
+        #endregion
 
-        //}
-
+        #region main method
         // GET: Member
         [HttpGet]
         public ActionResult Index()
@@ -31,6 +28,11 @@ namespace Vinasa.Controllers
             if (Session["AccountID"] == null)
             {
                 return RedirectToAction("Login", "Account", new { area = " " });
+            }
+            currentRole = (int)Session["AccountType"];
+            if (currentRole == 2)
+            {
+                TempData["Message"] = "Lưu ý không thể xóa với tài khoản quản lí";
             }
 
             var data = db.HOIVIENs.ToList();
@@ -56,6 +58,8 @@ namespace Vinasa.Controllers
             {
                 return RedirectToAction("Login", "Account", new { area = " " });
             }
+
+            CheckRole();
 
             MemberAccountModels memberAccountModels = db.HOIVIENs.Where(mAcc => mAcc.ID.Equals(id)).Select(mAcc => new MemberAccountModels()
             {
@@ -92,9 +96,11 @@ namespace Vinasa.Controllers
                 SdtKeToan = mAcc.SdtKeToan,
                 EmailKeToan = mAcc.EmailKeToan,
                 Fanpage = mAcc.Fanpage,
-                ThoiGianGiaNhap = mAcc.ThoiGianGiaNhap
+                ThoiGianGiaNhap = mAcc.ThoiGianGiaNhap,
+                KhuVuc = mAcc.KhuVuc
             }).SingleOrDefault();
 
+            memberAccountModels.RegionList = new SelectList(db.KHUVUCs, "IDKhuVuc", "TenKhuVuc", memberAccountModels.KhuVuc);
             return View(memberAccountModels);
         }
 
@@ -106,40 +112,67 @@ namespace Vinasa.Controllers
                 return RedirectToAction("Login", "Account", new { area = " " });
             }
 
-            var MaSoThue = memberAccountModels.MaSoThue.Trim();
-            var TenTiengViet = memberAccountModels.TenTiengViet.Trim();
-            var TenTiengAnh = memberAccountModels.TenTiengAnh.Trim();
-            var TenVietTat = memberAccountModels.TenVietTat.Trim();
-            var NgayThanhLap = memberAccountModels.NgayThanhLap.Trim();
-            var Website = memberAccountModels.Website.Trim();
-            var SdtCongTy = memberAccountModels.SdtCongTy.Trim();
-            var EmailCongTy = memberAccountModels.EmailCongTy.Trim();
-            var DiaChiGiaoDich = memberAccountModels.DiaChiGiaoDich.Trim();
-            var DiaChiTrenChungTu = memberAccountModels.DiaChiTrenChungTu.Trim();
-            var SoLuongNhanVien = memberAccountModels.SoLuongNhanVien.ToString().Trim();
-            var SoLuongLapTrinhVien = memberAccountModels.SoLuongLapTrinhVien.ToString().Trim();
-            var ThiTruongNoiDia = memberAccountModels.ThiTruongNoiDia.Trim();
-            var ThiTruongQuocTe = memberAccountModels.ThiTruongQuocTe.Trim();
-            var LinhVucHoatDong = memberAccountModels.LinhVucHoatDong.Trim();
-            var LanhDao = memberAccountModels.LanhDao.Trim();
-            var ChucDanhLanhDao = memberAccountModels.ChucDanhLanhDao.Trim();
-            var SdtLanhDao = memberAccountModels.SdtLanhDao.Trim();
-            var EmailLanhDao = memberAccountModels.EmailLanhDao.Trim();
-            var DaiDienMarketing = memberAccountModels.DaiDienMarketing.Trim();
-            var ChucNangMarketing = memberAccountModels.ChucNangMarketing.Trim();
-            var SdtMarketing = memberAccountModels.SdtMarketing.Trim();
-            var EmailMarketing = memberAccountModels.EmailMarketing.Trim();
-            var DaiDienNhanSu = memberAccountModels.DaiDienNhanSu.Trim();
-            var ChucDanhNhanSu = memberAccountModels.ChucDanhNhanSu.Trim();
-            var SdtNhanSu = memberAccountModels.SdtNhanSu.Trim();
-            var EmailNhanSu = memberAccountModels.EmailNhanSu.Trim();
-            var DaiDienKeToan = memberAccountModels.DaiDienKeToan.Trim();
-            var ChucDanhKeToan = memberAccountModels.ChucDanhKeToan.Trim();
-            var SdtKeToan = memberAccountModels.SdtKeToan.Trim();
-            var EmailKeToan = memberAccountModels.EmailKeToan.Trim();
-            var Fanpage = memberAccountModels.Fanpage.Trim();
-            var ThoiGianGiaNhap = memberAccountModels.ThoiGianGiaNhap.Trim();
-            return Content(memberAccountModels.ID.ToString());
+            currentRole = (int)Session["AccountType"];
+            if (currentRole == 2)
+            {
+                return RedirectToAction("Index", "Member", new { area = " " });
+            }
+
+            var id = memberAccountModels.ID;
+            using (db)
+            {
+                var accountdata = db.HOIVIENs.Where(acc => acc.ID.Equals(id)).FirstOrDefault();
+                {
+                    if (accountdata != null)
+                    {
+                        try
+                        {
+                            accountdata.MaSoThue = memberAccountModels.MaSoThue.Trim();
+                            accountdata.TenTiengViet = memberAccountModels.TenTiengViet.Trim();
+                            accountdata.TenTiengAnh = memberAccountModels.TenTiengAnh.Trim();
+                            accountdata.TenVietTat = memberAccountModels.TenVietTat.Trim();
+                            accountdata.NgayThanhLap = memberAccountModels.NgayThanhLap.Trim();
+                            accountdata.Website = memberAccountModels.Website.Trim();
+                            accountdata.SdtCongTy = memberAccountModels.SdtCongTy.Trim();
+                            accountdata.EmailCongTy = memberAccountModels.EmailCongTy.Trim();
+                            accountdata.DiaChiGiaoDich = memberAccountModels.DiaChiGiaoDich.Trim();
+                            accountdata.DiaChiTrenChungTu = memberAccountModels.DiaChiTrenChungTu.Trim();
+                            accountdata.SoLuongNhanVien = memberAccountModels.SoLuongNhanVien;
+                            accountdata.SoLuongLapTrinhVien = memberAccountModels.SoLuongLapTrinhVien;
+                            accountdata.ThiTruongNoiDia = memberAccountModels.ThiTruongNoiDia.Trim();
+                            accountdata.ThiTruongQuocTe = memberAccountModels.ThiTruongQuocTe.Trim();
+                            accountdata.LinhVucHoatDong = memberAccountModels.LinhVucHoatDong.Trim();
+                            accountdata.LanhDao = memberAccountModels.LanhDao.Trim();
+                            accountdata.ChucDanhLanhDao = memberAccountModels.ChucDanhLanhDao.Trim();
+                            accountdata.SdtLanhDao = memberAccountModels.SdtLanhDao.Trim();
+                            accountdata.EmailLanhDao = memberAccountModels.EmailLanhDao.Trim();
+                            accountdata.DaiDienMarketing = memberAccountModels.DaiDienMarketing.Trim();
+                            accountdata.ChucNangMarketing = memberAccountModels.ChucNangMarketing.Trim();
+                            accountdata.SdtMarketing = memberAccountModels.SdtMarketing.Trim();
+                            accountdata.EmailMarketing = memberAccountModels.EmailMarketing.Trim();
+                            accountdata.DaiDienNhanSu = memberAccountModels.DaiDienNhanSu.Trim();
+                            accountdata.ChucDanhNhanSu = memberAccountModels.ChucDanhNhanSu.Trim();
+                            accountdata.SdtNhanSu = memberAccountModels.SdtNhanSu.Trim();
+                            accountdata.EmailNhanSu = memberAccountModels.EmailNhanSu.Trim();
+                            accountdata.DaiDienKeToan = memberAccountModels.DaiDienKeToan.Trim();
+                            accountdata.ChucDanhKeToan = memberAccountModels.ChucDanhKeToan.Trim();
+                            accountdata.SdtKeToan = memberAccountModels.SdtKeToan.Trim();
+                            accountdata.EmailKeToan = memberAccountModels.EmailKeToan.Trim();
+                            accountdata.Fanpage = memberAccountModels.Fanpage.Trim();
+                            accountdata.ThoiGianGiaNhap = memberAccountModels.ThoiGianGiaNhap.Trim();
+                            accountdata.KhuVuc = memberAccountModels.KhuVuc;
+
+                            db.SaveChanges();
+                            return RedirectToAction("Index", "Member", new { area = " " });
+                        }
+                        catch (Exception ex)
+                        {
+                            throw ex;
+                        }
+                    }
+                }
+            }
+            return View();
         }
 
         //public ActionResult DetailMember();
@@ -237,6 +270,12 @@ namespace Vinasa.Controllers
         [HttpPost]
         public ActionResult ImportExcel(FormCollection formCollection)
         {
+            currentRole = (int)Session["AccountType"];
+            if (currentRole == 2)
+            {
+                return RedirectToAction("Index", "Member", new { area = " " });
+            }
+
             var memberlist = new List<HOIVIEN>();
             if (Request != null)
             {
@@ -289,7 +328,7 @@ namespace Vinasa.Controllers
                             member.EmailKeToan = workSheet.Cells[rowIterator, 32].Value.ToString();
                             member.Fanpage = workSheet.Cells[rowIterator, 33].Value.ToString();
                             member.ThoiGianGiaNhap = workSheet.Cells[rowIterator, 34].Value.ToString();
-                            member.KhuVuc = 1;
+                            member.KhuVuc = Convert.ToInt32(workSheet.Cells[rowIterator, 35].Value);
                             memberlist.Add(member);
                         }
                     }
@@ -297,11 +336,6 @@ namespace Vinasa.Controllers
             }
             using(db)
             {
-                //foreach (var item in memberlist)
-                //{
-                //    db.HOIVIENs.Add(item);
-                //    db.SaveChanges();
-                //}
                 try
                 {
                     foreach (var item in memberlist)
@@ -324,9 +358,42 @@ namespace Vinasa.Controllers
             return RedirectToAction("Index", "Member", new { area = " " });
         }
 
+        
+
+        public ActionResult Delete(int id)
+        {
+            CheckRole();
+            var memberAccount = db.HOIVIENs.Where(t => t.ID.Equals(id)).FirstOrDefault();
+
+            if (memberAccount != null && currentRole != 2)
+            {
+                db.HOIVIENs.Remove(memberAccount);
+                db.SaveChanges();
+            }
+            else if (currentRole == 2)
+            {
+                ViewBag.Message = "Không thể xóa với tài khoản quản lí";
+            }
+            return RedirectToAction("Index", "Member", new { area = " " });
+        }
+
         public ActionResult ImportExcel()
         {
+            CheckRole();
             return View();
         }
+
+        #endregion
+
+        #region support method
+        private void CheckRole()
+        {
+            currentRole = (int)Session["AccountType"];
+            if (currentRole == 2)
+            {
+                TempData["Message"] = "Không thể thực hiện hành động này với tài khoản quản lí";
+            }
+        }
+        #endregion
     }
 }

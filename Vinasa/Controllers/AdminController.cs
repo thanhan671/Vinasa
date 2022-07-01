@@ -15,6 +15,7 @@ namespace Vinasa.Controllers
         int currentRole;
         #endregion
 
+        #region main method
         // GET: Admin
         [HttpGet]
         public ActionResult Index()
@@ -22,6 +23,11 @@ namespace Vinasa.Controllers
             if (Session["AccountID"] == null)
             {
                 return RedirectToAction("Login", "Account", new { area = " " });
+            }
+            currentRole = (int)Session["AccountType"];
+            if (currentRole == 2)
+            {
+                TempData["Message"] = "Lưu ý không thể xóa với tài khoản quản lí";
             }
 
             var data = db.TAIKHOANADMINs.ToList();
@@ -43,6 +49,8 @@ namespace Vinasa.Controllers
         [HttpGet]
         public ActionResult CreateAccount()
         {
+            CheckRole();
+
             AdminAccountModels accountModels = new AdminAccountModels();
             accountModels.RoleList = new SelectList(db.QUYENs, "IDQuyen", "TenQuyen", accountModels.Quyen);
             accountModels.StatusList = new SelectList(db.TRANGTHAIs, "IDTrangThai", "TenTrangThai", accountModels.TrangThai);
@@ -59,8 +67,7 @@ namespace Vinasa.Controllers
             currentRole = (int)Session["AccountType"];
             if (currentRole == 2)
             {
-                ViewBag.Message = "Không thể tạo mới tài khoản với tài khoản quản trị";
-                return View();
+                return RedirectToAction("Index", "Admin", new { area = " " });
             }
 
             if (registerPassword.Equals(registerRePassword))
@@ -112,6 +119,7 @@ namespace Vinasa.Controllers
             {
                 return RedirectToAction("Login", "Account", new { area = " " });
             }
+            CheckRole();
 
             adminAccountModels = db.TAIKHOANADMINs.Where(acc => acc.ID.Equals(id)).Select(acc => new AdminAccountModels()
             {
@@ -138,12 +146,11 @@ namespace Vinasa.Controllers
                 return RedirectToAction("Login", "Account", new { area = " " });
             }
 
-            //currentRole = (int)Session["AccountType"];
-            //if (currentRole == 2)
-            //{
-            //    ViewBag.Message = "Không thể sửa với tài khoản quản trị";
-            //    return View();
-            //}
+            currentRole = (int)Session["AccountType"];
+            if (currentRole == 2)
+            {
+                return RedirectToAction("Index", "Admin", new { area = " " });
+            }
 
             var id = adminAccountModels.ID;
             using (db)
@@ -177,7 +184,7 @@ namespace Vinasa.Controllers
         public ActionResult Delete(int id)
         {
             var memberAccount = db.TAIKHOANADMINs.Where(t => t.ID.Equals(id)).FirstOrDefault();
-            currentRole = (int)Session["AccountType"];
+            CheckRole();
 
             if (memberAccount != null && currentRole != 2)
             {
@@ -186,21 +193,21 @@ namespace Vinasa.Controllers
             }
             else if(currentRole == 2)
             {
-                ViewBag.Message = "Không thể xóa với tài khoản quản trị";
+                ViewBag.Message = "Không thể xóa với tài khoản quản lí";
             }
             return RedirectToAction("Index", "Admin", new { area = " " });
         }
+        #endregion
 
         #region support method
-        //private bool CheckLogin()
-        //{
-        //    if (Session["AccountID"] == null)
-        //    {
-        //        return false;
-        //    }
-
-        //    return true;
-        //}
+        private void CheckRole()
+        {
+            currentRole = (int)Session["AccountType"];
+            if (currentRole == 2)
+            {
+                TempData["Message"] = "Không thể thực hiện hành động này với tài khoản quản lí";
+            }
+        }
         #endregion
 
     }

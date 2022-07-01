@@ -9,142 +9,138 @@
 
 <!-- DataTales Example -->
 
-    
-    <div class="card shadow mb-4">
-        <div class="card-header py-3" style=" display: flex; justify-content: space-between; align-items: center;">
-            <div class="right-content">
-                <h6 class="m-0 font-weight-bold text-primary" style="color: #19315D ">Danh sách hội viên VINASA</h6>
-            </div>
-            <div class="left-content">
-                <button class="button-lc" style=" width: 200px" data-toggle="modal" data-target="#exampleModal">Tải lên file Excel</button>
 
-                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Tải lên file Excel</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-                                <label class="form-label" for="customFile">Chọn 1 file Excel</label>
-                                <input type="file" class="form-control" id="customFile" />
-                            </div>
-                            <div class="modal-footer" id="modal-b">
-                                <button type="button"
-                                        class="btn btn-secondary button-lc"
-                                        data-dismiss="modal">
-                                    Hủy
-                                </button>
-                                <button type="button" class="btn btn-primary button-lc" value="ImportExcel" onclick="location.href='@Url.Action("ImportExcel", "Member")'">Tải lên</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+<div class="card shadow mb-4">
+    <div class="card-header py-3" style=" display: flex; justify-content: space-between; align-items: center;">
+        <div class="right-content">
+            <h6 class="m-0 font-weight-bold text-primary" style="color: #19315D ">Danh sách hội viên VINASA</h6>
         </div>
-        <div class="card-body">
-            <div class="table-responsive">
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                    <thead>
+        <div class="left-content">
+            <button type="button" class="button-lc" style=" width: 200px" value="ImportExcel" onclick="location.href='@Url.Action("ImportExcel", "Member")'">Tải lên file Excel</button>
+
+        </div>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th hidden>ID</th>
+                        <th>Mã Số Thuế</th>
+                        <th>Tên Công Ty </th>
+                        <th>Tên Viết Tắt</th>
+                        <th>Email</th>
+                        <th>Số Điện Thoại</th>
+                        <th>Chức Năng</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in ViewBag.hoivienDetail)
+                    {
                         <tr>
-                            <th hidden>ID</th>
-                            <th>Mã Số Thuế</th>
-                            <th>Tên Công Ty </th>
-                            <th>Tên Viết Tắt</th>
-                            <th>Email</th>
-                            <th>Số Điện Thoại</th>
-                            <th>Chức Năng</th>
+                            <td hidden>
+                                @item.ID
+                            </td>
+                            <td>
+                                @item.MaSoThue
+                            </td>
+                            <td>
+                                @item.TenTiengViet
+                            </td>
+                            <td>
+                                @item.TenVietTat
+                            </td>
+                            <td>
+                                @item.EmailCongTy
+                            </td>
+                            <td>
+                                @item.SdtCongTy
+                            </td>
+                            <td class="td-action" style="display:flex; justify-content:space-around; align-items:center">
+                                <li class="action-item" style="list-style-type: none; font-size: 18px">
+                                    <a href="@Url.Action("DetailMember", "Member", new { id = item.ID })" class="action-icon">
+                                        <i style="color: #F69928" class="fa-solid fa-circle-info icon"></i>
+                                    </a>
+                                </li>
+                                <li class="action-item" style="list-style-type: none; font-size: 18px">
+                                    <a href="@Url.Action("Edit", "Member", new { id = item.ID })" class="action-icon">
+                                        <i style="color: #F69928" class="fa-solid fa-pen-to-square icon"></i>
+                                    </a>
+                                </li>
+                                <li class="action-item" style="list-style-type:none; font-size: 18px">
+                                    <a id="deleteItem" class="deleteItem" data-target="#myModal"
+                                       data-toggle="modal"
+                                       data-path="@Url.Action("Delete", "Member", new { id = item.ID })"
+                                       data-form-method="post">
+                                        <i class="fa-solid fa-trash-can icon"></i>
+                                    </a>
+                                </li>
+                            </td>
                         </tr>
-                    </thead>
-                    <tbody>
-                        @foreach (var item in ViewBag.hoivienDetail)
-                        {
-                            <tr>
-                                <td hidden>
-                                    @item.ID
-                                </td>
-                                <td>
-                                    @item.MaSoThue
-                                </td>
-                                <td>
-                                    @item.TenTiengViet
-                                </td>
-                                <td>
-                                    @item.TenVietTat
-                                </td>
-                                <td>
-                                    @item.EmailCongTy
-                                </td>
-                                <td>
-                                    @item.SdtCongTy
-                                </td>
-                                <td class="td-action" style="display:flex; justify-content:space-around; align-items:center">
-                                    <li class="action-item" style="list-style-type: none; font-size: 18px">
-                                        <a href="@Url.Action("DetailMember", "Member", new { id = item.ID })" class="action-icon">
-                                            <i style="color: #F69928" class="fa-solid fa-circle-info icon"></i>
-                                        </a>
-                                    </li>
-                                    <li class="action-item" style="list-style-type: none; font-size: 18px">
-                                        <a href="@Url.Action("Edit", "Member", new { id = item.ID })" class="action-icon">
-                                            <i style="color: #F69928" class="fa-solid fa-pen-to-square icon"></i>
-                                        </a>
-                                    </li>
-                                    <li class="action-item" style="list-style-type:none; font-size: 18px">
-                                        <a href="" class="action-icon" data-toggle="modal" data-target="#myModal">
-                                            <i class="fa-solid fa-trash-can icon"></i>
-                                        </a>
-                                    </li>
-                                </td>
-                            </tr>
-                        }
-                    </tbody>
-                </table>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel">
+                    THÔNG BÁO !
+                </h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </div>
+            <div class="modal-body">
+                Xác nhận xóa hội viên này ?
+            </div>
+            <div class="modal-footer">
+
+                <button type="button" class="btn btn-default" data-dismiss="modal">Hủy</button>
+                <button id="btnContinueDelete" type="button" class="btn btn-primary">Xác nhận</button>
+
             </div>
         </div>
     </div>
-    <!-- Modal -->
-    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title" id="myModalLabel">
-                        THÔNG BÁO !
-                    </h4>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                </div>
-                <div class="modal-body">
-                    Xác nhận xóa người dùng này ?
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="button-lc button-cancel" data-dismiss="modal">Hủy</button>
-                    <button type="button" class="button-lc">Xác nhận</button>
-                </div>
-            </div>
-        </div>
-    </div>
+</div>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
 
-        $('#create').click(function () {
-            location.href = "/Account/CreateAccount";
-        })
+    $('#create').click(function () {
+        location.href = "/Account/CreateAccount";
+    })
 
-    </script>
-    <script>
-        const btn = document.getElementById('btn');
+</script>
+<script>
+    const btn = document.getElementById('btn');
 
-        let index = 1;
+    let index = 1;
 
-        const colors = ['red', 'green'];
+    const colors = ['red', 'green'];
 
-        btn.addEventListener('click', function onClick() {
-            btn.style.backgroundColor = colors[index];
-            btn.style.color = 'white';
+    btn.addEventListener('click', function onClick() {
+        btn.style.backgroundColor = colors[index];
+        btn.style.color = 'white';
 
-            index = index >= colors.length - 1 ? 0 : index + 1;
-        });
-    </script>
+        index = index >= colors.length - 1 ? 0 : index + 1;
+    });
+</script>
+<script>
+    var path_to_delete;
+
+    $(".deleteItem").click(function (e) {
+        path_to_delete = $(this).data('path');
+    });
+
+    $('#btnContinueDelete').click(function () {
+        window.location = path_to_delete;
+    });
+</script>
+@if (TempData["Message"] != null)
+{
+    <p class="alert alert-success" id="successMessage">@TempData["Message"]</p>
+}
 

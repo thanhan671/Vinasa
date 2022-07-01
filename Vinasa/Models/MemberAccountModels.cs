@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Web.Mvc;
 
 namespace Vinasa.Models
 {
@@ -46,5 +47,7 @@ namespace Vinasa.Models
         public int KhuVuc { get; set; }
 
         public virtual KHUVUC KHUVUC1 { get; set; }
+
+        public SelectList RegionList { get; set; }
     }
 }
