@@ -1,0 +1,78 @@
+﻿@model Vinasa.Models.SeminarParticipant
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/sbadmin.cshtml";
+}
+
+<div class="container col-11 centerPage">
+    <h5 class="heading">Thông tin hội viên tham gia Hội Nghị</h5>
+    <form class="form-field form-inputs" method="post" enctype="multipart/form-data">
+        <div class="input-wrapper">
+            @Html.EditorFor(model => model.TaxNumber, new { htmlAttributes = new { @class = "ip-form", @readonly = "readonly" } })
+            @Html.LabelFor(model => model.TaxNumber, new { @class = "lb-form" })
+        </div>
+        <div class="input-wrapper">
+            @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "ip-form", @readonly = "readonly" } })
+            @Html.LabelFor(model => model.Name, new { @class = "lb-form" })
+        </div>
+        <div class="input-wrapper">
+            @Html.EditorFor(model => model.Position, new { htmlAttributes = new { @class = "ip-form", @readonly = "readonly" } })
+            @Html.LabelFor(model => model.Position, new { @class = "lb-form" })
+        </div>
+        <div class="input-wrapper">
+            @Html.EditorFor(model => model.Company, new { htmlAttributes = new { @class = "ip-form", @readonly = "readonly" } })
+            @Html.LabelFor(model => model.Company, new { @class = "lb-form" })
+        </div>
+        <div class="input-wrapper">
+            @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "ip-form", @readonly = "readonly" } })
+            @Html.LabelFor(model => model.Email, new { @class = "lb-form" })
+        </div>
+
+        <div class="input-wrapper">
+            @Html.EditorFor(model => model.PhoneNumber, new { htmlAttributes = new { @class = "ip-form", @readonly = "readonly" } })
+            @Html.LabelFor(model => model.PhoneNumber, new { @class = "lb-form" })
+        </div>
+        <div class="input-wrapper">
+            @Html.EditorFor(model => model.JobTitle, new { htmlAttributes = new { @class = "ip-form", @readonly = "readonly" } })
+            @Html.LabelFor(model => model.JobTitle, new { @class = "lb-form" })
+        </div>
+
+        <div class="input-wrapper">
+            @Html.EditorFor(model => model.Operation, new { htmlAttributes = new { @class = "ip-form", @readonly = "readonly" } })
+            @Html.LabelFor(model => model.Operation, new { @class = "lb-form" })
+        </div>
+        <div class="input-wrapper">
+            <label class="form-check-label">
+                @Html.CheckBoxFor(m => m.RegistrySeminar, new { @class = "form-check-input" })
+                @Html.DisplayNameFor(model => model.RegistrySeminar)
+            </label>
+        </div>
+
+        <div class="input-wrapper">
+            <label class="form-check-label">
+                @Html.CheckBoxFor(m => m.RegistryBusinessMatching, new { @class = "form-check-input" })
+                @Html.DisplayNameFor(model => model.RegistryBusinessMatching)
+            </label>
+        </div>
+
+        <div class="input-wrapper">
+            <label class="form-check-label">
+                @Html.CheckBoxFor(m => m.RegistryExhibition, new { @class = "form-check-input" })
+                @Html.DisplayNameFor(model => model.RegistryExhibition)
+            </label>
+        </div>
+
+        <div class="input-wrapper">
+            <label class="form-check-label">
+                @Html.CheckBoxFor(m => m.RegistryTicket, new { @class = "form-check-input" })
+                @Html.DisplayNameFor(model => model.RegistryTicket)
+            </label>
+        </div>
+    </form>
+    <div class="button-form">
+        <button class="button-lc" id="cancel" onclick="location.href = 'javascript:history.go(-1)'">Quay Lại</button>
+    </div>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
