@@ -9,7 +9,6 @@
     <div class="row">
         <div class="col-6">
             <h5 class="heading">Sửa Thông Tin Người Dùng</h5>
-
             <form class="form-field" method="post" enctype="multipart/form-data">
                 <div class="input-wrapper">
                     <input class="ip-form" type="text" id="tax" contenteditable="true" @Html.TextBoxFor(m => m.Ten)
@@ -47,17 +46,10 @@
                 </div>
                 <div class="input-wrapper">
                     <label class="lb-form" for="name">Trạng Thái</label>
-                    @*<select class="form-control select-region" name="type">
-                            <option value="none">@Html.DisplayTextFor(m => m.sTrangThai)</option>
-                            <option value="">Hoạt động</option>
-                            <option value="">Vô hiệu</option>
-
-                        </select>*@
                     @Html.DropDownListFor(m => m.TrangThai, Model.StatusList, new { @class = "form-control select-region" })
                 </div>
             </form>
         </div>
-
         <div class="button-form">
             <button class="button-lc" type="submit" name="save">Xác Nhận</button>
             <button class="button-lc" onclick="location.href='@Url.Action("Index", "Admin")'" type="button" name="cancel">Huỷ</button>
