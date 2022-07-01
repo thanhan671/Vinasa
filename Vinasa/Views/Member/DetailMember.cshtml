@@ -100,15 +100,8 @@
                 <label class="lb-form" for="name">Thời Gian Gia Nhập</label>
             </div>
             <div class="input-wrapper">
-                <label class="lb-form" class="address" for="name">Khu vực</label>
-                <select class="ip-form" @* class="form-control"*@ name="type">
-                    <option value="none">Chọn Khu Vực</option>
-
-                    <option value="">HCM</option>
-                    <option value="">HN</option>
-                    <option value="">MT</option>
-
-                </select>
+                <input class="ip-form" type="text" contenteditable="true" readonly @Html.TextBoxFor(m => m.sKhuVuc)
+                <label class="lb-form" for="name">Khu Vực</label>
             </div>
 
         </form>

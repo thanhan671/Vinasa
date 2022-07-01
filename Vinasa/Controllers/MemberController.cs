@@ -221,7 +221,8 @@ namespace Vinasa.Controllers
                 SdtKeToan = mAcc.SdtKeToan,
                 EmailKeToan = mAcc.EmailKeToan,
                 Fanpage = mAcc.Fanpage,
-                ThoiGianGiaNhap = mAcc.ThoiGianGiaNhap
+                ThoiGianGiaNhap = mAcc.ThoiGianGiaNhap,
+                sKhuVuc = mAcc.KHUVUC1.TenKhuVuc
             }).SingleOrDefault();
 
             return View(memberAccountModels);
