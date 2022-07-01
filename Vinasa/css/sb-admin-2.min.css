@@ -11504,8 +11504,10 @@ form.user .btn-user {
 }
 
 footer.sticky-footer {
-    padding: 2rem 0;
-    flex-shrink: 0
+    padding: 2rem 0 1rem 0;
+    position: absolute;
+    bottom: 0;
+    width: 84%;
 }
 
     footer.sticky-footer .copyright {
@@ -11537,7 +11539,7 @@ body.sidebar-toggled footer.sticky-footer {
 
 .button-lc {
     height: 40px;
-    width: 200px;
+    width: 160px;
     margin: 10px 10px;
     background: #F69928;
     color: #fff;
@@ -11658,11 +11660,10 @@ body.sidebar-toggled footer.sticky-footer {
     color: #E7870F;
 }
 
-/*.button-form {
-    float:left;
-}*/
-
-.select-region {
+.button-form {
+    padding: 10px 0 20px 0;
+    }
+    .select-region {
     width: 500px;
 }
 
@@ -11719,4 +11720,12 @@ body.sidebar-toggled footer.sticky-footer {
 
 .f-r{
     float: right;
+}
+
+thead{
+    background: #f5f5f5;
+}
+
+.content {
+    margin-bottom: 70px;
 }
