@@ -6,7 +6,7 @@
 
 @using (Html.BeginForm("CreateAccount", "Admin", FormMethod.Post))
 {
-    <div class="row">
+    <div class="container">
         <div class="col-6">
             <h5 class="heading">Thêm Người Dùng</h5>
 
@@ -16,7 +16,7 @@
                     <label class="lb-form" for="tax">Tên Người Dùng</label>
                 </div>
                 <div class="input-wrapper">
-                    <input class="ip-form" type="text" contenteditable="true" @Html.TextBoxFor(m => m.Email)
+                    <input class="ip-form" type="email" contenteditable="true" @Html.TextBoxFor(m => m.Email)
                     <label class="lb-form">Email</label>
                 </div>
                 <div class="input-wrapper">
@@ -28,7 +28,7 @@
                     <label class="lb-form" for="name">Xác Nhận Mật Khẩu</label>
                 </div>
                 <div class="input-wrapper">
-                    <input class="ip-form" type="text" contenteditable="true" @Html.TextBoxFor(m => m.Sdt)
+                    <input class="ip-form" type="tel" contenteditable="true" @Html.TextBoxFor(m => m.Sdt)
                     <label class="lb-form" for="name">Số Điện Thoại</label>
                 </div>
                 <div class="input-wrapper">
@@ -47,7 +47,7 @@
             </form>
         </div>
         <div class="button-form">
-            <button class="button-lc" onclick="location.href='javascript:history.go(-1)'" type="button" name="cancel">Huỷ</button>
+            <button class="button-cancel" onclick="location.href='javascript:history.go(-1)'" type="button" name="cancel">Huỷ</button>
             <button class="button-lc" type="submit" name="save">Xác Nhận</button>
         </div>
     </div>
