@@ -6,10 +6,9 @@
     @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
 </div>
 <div class="input-wrapper">
-    @Html.EditorFor(model => model.OpenDate, new { htmlAttributes = new { @class = "ip-form", @type = "datetime-local" } })
+    @Html.TextBoxFor(model => model.OpenDate, "{0:yyyy-MM-ddTHH:mm:ss}",  new { @class = "ip-form", @type = "datetime-local" })
     @Html.LabelFor(model => model.OpenDate, new { @class = "lb-form" })
     @Html.ValidationMessageFor(model => model.OpenDate, "", new { @class = "text-danger" })
-
 </div>
 <div class="input-wrapper">
     @Html.EditorFor(model => model.Address, new { htmlAttributes = new { @class = "ip-form"} })
