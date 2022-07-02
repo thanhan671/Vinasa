@@ -298,6 +298,7 @@
     </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <None Include="Properties\PublishProfiles\FTPProfile.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -2000,7 +2001,6 @@
     <Content Include="Views\SeminarParticipants\Details.cshtml" />
     <Content Include="Views\Account\Profile.cshtml" />
     <Content Include="Views\Member\ImportExcel.cshtml" />
-    <None Include="Views\Shared\sblogin.cshtml" />
     <None Include="Views\Account\Registerr.cshtml" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -2168,7 +2168,6 @@
     <Content Include="Views\Admin\Edit.cshtml" />
     <Content Include="Views\Member\Edit.cshtml" />
     <Content Include="Views\Member\DetailMember.cshtml" />
-    <Content Include="Views\Shared\login.cshtml" />
     <Content Include="Views\Shared\tables.cshtml" />
     <Content Include="vendor\bootstrap\js\bootstrap.bundle.js.map" />
     <Content Include="vendor\bootstrap\js\bootstrap.bundle.min.js.map" />
@@ -2324,7 +2323,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Properties\PublishProfiles\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

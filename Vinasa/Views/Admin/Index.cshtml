@@ -36,45 +36,45 @@
                 <tbody>
                     @foreach (var item in ViewBag.adminDetails)
                     {
-                    <tr>
-                        <td hidden>
-                            @item.ID
-                        </td>
-                        <td>
-                            @item.Ten
-                        </td>
-                        <td>
-                            @item.Email
-                        </td>
-                        <td>
-                            @item.Sdt
-                        </td>
-                        <td>
-                            @item.PhongBan
-                        </td>
-                        <td>
-                            @item.TrangThai
-                        </td>
-                        <td>
-                            @item.Quyen
-                        </td>
-                        <td class="td-action" style="display:flex; justify-content:space-around; align-items:center">
-                            <li class="action-item" style="list-style-type: none; font-size: 18px">
-                                <a href="@Url.Action("Edit", "Admin", new { id = item.ID })" class="action-icon">
-                                    <i style="color: #F69928" class="fa-solid fa-pen-to-square icon"></i>
-                                </a>
-                            </li>
-                            <li class="action-item" style="list-style-type:none; font-size: 18px">
-                                <a id="deleteItem" class="deleteItem" data-target="#myModal"
-                                   data-toggle="modal"
-                                   data-path="@Url.Action("Delete", "Admin", new { id = item.ID })"
-                                   data-form-method="post">
-                                    <i class="fa-solid fa-trash-can icon"></i>
-                                </a>
-                            </li>
+                        <tr>
+                            <td hidden>
+                                @item.ID
+                            </td>
+                            <td>
+                                @item.Ten
+                            </td>
+                            <td>
+                                @item.Email
+                            </td>
+                            <td>
+                                @item.Sdt
+                            </td>
+                            <td>
+                                @item.PhongBan
+                            </td>
+                            <td>
+                                @item.TRANGTHAI1.TenTrangThai
+                            </td>
+                            <td>
+                                @item.QUYEN1.TenQuyen
+                            </td>
+                            <td class="td-action" style="display:flex; justify-content:space-around; align-items:center">
+                                <li class="action-item" style="list-style-type: none; font-size: 18px">
+                                    <a href="@Url.Action("Edit", "Admin", new { id = item.ID })" class="action-icon">
+                                        <i style="color: #F69928" class="fa-solid fa-pen-to-square icon"></i>
+                                    </a>
+                                </li>
+                                <li class="action-item" style="list-style-type:none; font-size: 18px">
+                                    <a id="deleteItem" class="deleteItem" data-target="#myModal"
+                                       data-toggle="modal"
+                                       data-path="@Url.Action("Delete", "Admin", new { id = item.ID })"
+                                       data-form-method="post">
+                                        <i class="fa-solid fa-trash-can icon"></i>
+                                    </a>
+                                </li>
 
-                        </td>
-                    </tr>
+                            </td>
+                        </tr>
                     }
                 </tbody>
             </table>
