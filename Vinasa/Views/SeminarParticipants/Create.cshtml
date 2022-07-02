@@ -12,6 +12,6 @@
          FormMethod.Post, new { @class = "form-field" }))
     {
         @Html.AntiForgeryToken()
-        @Html.Partial("_CreateOrUpdate", Model);
+        @Html.Partial("_CreateOrUpdate", Model)
     }
 </div>
