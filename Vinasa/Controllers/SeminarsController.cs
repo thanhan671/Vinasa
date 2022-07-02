@@ -27,7 +27,11 @@ namespace Vinasa.Controllers
         // GET: Seminars
         public ActionResult Index()
         {
-            return View(_db.Seminars.ToList());
+            if (Session["AccountID"] != null)
+            {
+                return View(_db.Seminars.ToList());
+            }
+            return RedirectToAction("Login", "Account", new { area = " " });
         }
 
         // GET: Seminars/Details/5
