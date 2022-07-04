@@ -34,12 +34,12 @@
                 <div class="form-group" class="right-content">
                     <h2 class="heading-right">Nhập email & mật khẩu</h2>
                     <div class="input-wrapper">
-                        <input class="ip-form" type="text" id="email" required @Html.TextBoxFor(m => m.Email)
+                        <input class="ip-form" type="text" id="email" autocomplete="on" required @Html.TextBoxFor(m => m.Email)
                         <label class="lb-form" for="username">Email</label>
                         @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
                     </div>
                     <div class="input-wrapper">
-                        <input class="ip-form" type="password" id="password" autocomplete="off" required @Html.PasswordFor(m => m.MatKhau)
+                        <input class="ip-form" type="password" id="password" autocomplete="on" required @Html.PasswordFor(m => m.MatKhau)
                         <label class="lb-form" for="password">Mật Khẩu</label>
                         @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
                     </div>
