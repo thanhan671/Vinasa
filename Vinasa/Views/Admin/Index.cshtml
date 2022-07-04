@@ -10,7 +10,7 @@
 <!-- DataTales Example -->
 
 <div class="card shadow mb-4">
-    <div class="card-header py-3">
+    <div class="card-header py-3" style=" display: flex; justify-content: space-between; align-items: center;">
         <div class="right-content">
             <h6 class="m-0 font-weight-bold text-primary" style="color: #19315D ">Danh sách người dùng</h6>
         </div>
@@ -29,6 +29,7 @@
                         <th>Số Điện Thoại</th>
                         <th>Phòng Ban</th>
                         <th>Trạng Thái</th>
+                        <th>Quyền</th>
                         <th>Chức Năng</th>
                     </tr>
                 </thead>
@@ -54,6 +55,10 @@
                             <td>
                                 @item.TRANGTHAI1.TenTrangThai
                             </td>
+                            <td>
+                                @item.QUYEN1.TenQuyen
+
+                            </td>
                             <td class="td-action" style="display:flex; justify-content:space-around; align-items:center">
                                 <li class="action-item" style="list-style-type: none; font-size: 18px">
                                     <a href="@Url.Action("Edit", "Admin", new { id = item.ID })" class="action-icon">
@@ -67,9 +72,6 @@
                                        data-form-method="post">
                                         <i class="fa-solid fa-trash-can icon"></i>
                                     </a>
-                                    @*<a href="@Url.Action("Delete", "Admin", new { id = item.ID })" class="action-icon" data-toggle="modal" data-target="#myModal">
-                                            <i class="fa-solid fa-trash-can icon"></i>
-                                        </a>*@
                                 </li>
 
                             </td>
@@ -96,7 +98,7 @@
                 <div class="modal-footer">
 
                     <button type="button" class="btn btn-default" data-dismiss="modal">Hủy</button>
-                    <button id="btnContinueDelete" type="button" class="btn btn-primary">Xác nhận</button>
+                    <button id="btnContinueDelete" type="button" class="button-lc">Xác nhận</button>
 
                 </div>
             </div>
@@ -108,7 +110,7 @@
     <script>
 
         $('#create').click(function () {
-            location.href = "/Admin/CreateAccount";
+            location.href = "@Url.Action("CreateAccount","Admin")";
         })
 
     </script>
@@ -149,4 +151,3 @@
     {
         <p class="alert alert-success" id="successMessage">@TempData["Message"]</p>
     }
-

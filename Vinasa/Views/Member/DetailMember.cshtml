@@ -9,7 +9,7 @@
     @*<h1 class="h3 mb-2 text-gray-800">Hội Nghị</h1>*@
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="@Url.Action("Index", "Member")">Danh sách Hội Viên</a></li>
+            <li class="breadcrumb-item" onclick="location.href = 'javascript:history.go(-1)'" style="color:blue; cursor:pointer;>Danh sách Hội Viên</li>
             <li class="breadcrumb-item active" aria-current="page">Xem thông tin Hội Viên</li>
         </ol>
     </nav>
@@ -18,7 +18,7 @@
 <div class="row">
     <div class="col-6">
         <h5 class="heading">Thông Tin Hội Viên</h5>
-        <form class="form-field" method="post" enctype="multipart/form-data">
+        <form class="form-field" method="post" enctype="multipart/form-data" action="@Url.Action("Member")">
             <div class="input-wrapper">
                 <input class="ip-form" type="text" id="tax" contenteditable="true" readonly @Html.TextBoxFor(m => m.MaSoThue)
                 <label class="lb-form" for="tax">Mã số thuế</label>
@@ -101,7 +101,7 @@
             </div>
             <div class="input-wrapper">
                 <input class="ip-form" type="text" contenteditable="true" readonly @Html.TextBoxFor(m => m.sKhuVuc)
-                <label class="lb-form" for="name">Khu Vực</label>
+                <label class="lb-form" for="name">Khu vực</label>
             </div>
 
         </form>

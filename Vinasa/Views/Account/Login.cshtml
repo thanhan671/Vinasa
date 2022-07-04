@@ -1,83 +1,75 @@
 @model Vinasa.Models.AdminAccountModels
 @{
-    Layout = "~/Views/Shared/sblogin.cshtml";
+    ViewBag.Title = "Đăng nhập";
+    Layout = null;
 }
+<!DOCTYPE html>
+<html lang="en">
+<head>
 
-<h2>@ViewBag.Title</h2>
-<div class="row">
-    <div class="container">
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-        <!-- Outer Row -->
-        <div class="row justify-content-center">
+    <title>QUẢN LÝ HỘI VIÊN VINASA - ĐĂNG NHẬP</title>
 
-            <div class="col-xl-10 col-lg-12 col-md-9">
+    <!-- Custom fonts for this template-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Custom styles for this template-->
+    <link href="~/css/style.css" rel="stylesheet" />
 
-                <div class="card o-hidden border-0 shadow-lg my-5">
-                    <div class="card-body p-0">
-                        <!-- Nested Row within Card Body -->
-                        <div class="row">
-                            <div class="col-lg-6 d-none d-lg-block bg-login-image"></div>
-                            <div class="col-lg-6">
-                                <div class="p-5">
-                                    <div class="text-center">
-                                        <h1 class="h4 text-gray-900 mb-4">Chào mừng trở lại!</h1>
-                                    </div>
-                                    @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = " user form-horizontal", role = "form" }))
-                                    {
-                                        @Html.AntiForgeryToken()
-                                        @*<div class="form-group">
-                                                <input type="email" class="form-control form-control-user" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Enter Email Address...">
-                                            </div>*@
-                                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                                        <div class="form-group">
-                                            @Html.TextBoxFor(m => m.Email, new { @class = "form-control form-control-user", @placeholder = "Nhập Email..." })
-                                            @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
-                                        </div>
-                                        <div class="form-group">
-                                            @Html.PasswordFor(m => m.MatKhau, new { @class = "form-control form-control-user", @placeholder = "Mật khẩu..." })
-                                            @Html.ValidationMessageFor(m => m.MatKhau, "", new { @class = "text-danger" })
-                                        </div>
-                                        <div class="form-group">
-                                            <div class="col-md-offset-2 col-md-10">
-                                                <div class="checkbox">
-                                                    @*@Html.CheckBoxFor(m => m.RememberMe)
-                                                        @Html.LabelFor(m => m.RememberMe)*@
-                                                </div>
-                                            </div>
-                                        </div>
-                                        @*<a href="index.html" class="btn btn-primary btn-user btn-block">
-                                                Login
-                                            </a>*@
-                                        <div class="form-group">
-                                            <input type="submit" value="Đăng nhập" class="btn btn-primary btn-user btn-block" />
-                                        </div>
-                                    }
-                                    <hr>
-
-                                    <div class="text-center">
-                                        <a class="small" href="@Url.Action("Register", "Account" )">Tạo tài khoản mới!</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
+</head>
+<body class="bg-gradient-primary">
+    <div class="container-lg">
+        <div class="login-form">
+            <div class="left-content">
+                <h2 class="heading-left">
+                    Đăng nhập để tiếp tục</p>
+                    <img src="~/img/big-catalog-16062358931 (1).png" alt="" class="logo" />
             </div>
-
+            @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = " user form-horizontal", role = "form" }))
+            {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-group" class="right-content">
+                    <h2 class="heading-right">Nhập email & mật khẩu</h2>
+                    <div class="input-wrapper">
+                        <input class="ip-form" type="text" id="email" required @Html.TextBoxFor(m => m.Email)
+                        <label class="lb-form" for="username">Email</label>
+                        @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="input-wrapper">
+                        <input class="ip-form" type="password" id="password" autocomplete="off" required @Html.PasswordFor(m => m.MatKhau)
+                        <label class="lb-form" for="password">Mật Khẩu</label>
+                        @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+                    </div>
+                    <input type="submit" value="Đăng nhập" class="button-login" />
+                </div>
+            }
         </div>
-
     </div>
 
-</div>
-@if (ViewBag.Message != null)
-{
-    <script type="text/javascript">
+    @if (ViewBag.Message != null)
+    {
+        <script type="text/javascript">
         window.onload = function () {
             alert("@ViewBag.Message");
         };
-    </script>
-}
+        </script>
+    }
+    <!-- Bootstrap core JavaScript-->
+    <script src="@Url.Content("~/vendor/jquery/jquery.min.js")"></script>
+    <script src="@Url.Content("~/vendor/bootstrap/js/bootstrap.bundle.min.js")"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="@Url.Content("~/vendor/jquery-easing/jquery.easing.min.js")"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="@Url.Content("~/js/sb-admin-2.min.js")"></script>
+</body>
+
+</html>
+@*@RenderSection("scripts", required: false)*@
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }

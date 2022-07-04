@@ -191,7 +191,7 @@ namespace Vinasa.Controllers
                 db.TAIKHOANADMINs.Remove(memberAccount);
                 db.SaveChanges();
             }
-            else if(currentRole == 2)
+            else if (currentRole == 2)
             {
                 ViewBag.Message = "Không thể xóa với tài khoản quản lí";
             }

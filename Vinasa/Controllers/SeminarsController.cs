@@ -27,7 +27,11 @@ namespace Vinasa.Controllers
         // GET: Seminars
         public ActionResult Index()
         {
-            return View(_db.Seminars.ToList());
+            if (Session["AccountID"] != null)
+            {
+                return View(_db.Seminars.ToList());
+            }
+            return RedirectToAction("Login", "Account", new { area = " " });
         }
 
         // GET: Seminars/Details/5
@@ -107,6 +111,15 @@ namespace Vinasa.Controllers
         public ActionResult Delete(int id)
         {
             Seminar seminar = _db.Seminars.Find(id);
+            if(seminar != null)
+            {
+                var seminarParticipants = _db.SeminarParticipants.Where(it => it.SeminarId == seminar.Id).ToList();
+                foreach (var seminarParticipant in seminarParticipants)
+                {
+                    _db.SeminarParticipants.Remove(seminarParticipant);
+                }
+            }
+
             _db.Seminars.Remove(seminar);
             _db.SaveChanges();
             return RedirectToAction("Index");

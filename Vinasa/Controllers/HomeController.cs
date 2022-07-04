@@ -10,12 +10,12 @@ namespace Vinasa.Controllers
     {
         public ActionResult Index()
         {
-            if(Session["AccountID"] != null)
+            if (Session["AccountID"] != null)
             {
                 return View();
             }
 
-            return RedirectToAction("Login", "Account", new { area  = " "});
+            return RedirectToAction("Login", "Account", new { area = " " });
         }
 
         public ActionResult About()
