@@ -57,13 +57,6 @@
                 </a>
             </li>
 
-            <!-- Divider -->
-            <!-- Heading -->
-            <!-- Nav Item - Pages Collapse Menu -->
-            <!-- Nav Item - Utilities Collapse Menu -->
-            <!-- Divider -->
-            <!-- Heading -->
-            <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item" href="#" data-toggle="collapse" data-target="#collapsePages"
                 aria-expanded="true" aria-controls="collapsePages">
                 <a href="#" class="nav-link">
@@ -71,7 +64,7 @@
                     <span>Tài khoản</span>
                 </a>
                 <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
+                    <div class="bg-submenu py-2 collapse-inner rounded">
                         <a class="collapse-item" href="@Url.Action("Index","Member")">Hội Viên</a>
                         <a class="collapse-item" href="@Url.Action("Index","Admin")">Người Dùng</a>
                     </div>
@@ -263,7 +256,7 @@
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-default" type="button" data-dismiss="modal">Hủy</button>
-                    <button class="button-lc" type ="button" onclick="location.href='@Url.Action("Logout", "Account")'">Đồng ý</button>
+                    <button class="button-lc" type="button" onclick="location.href='@Url.Action("Logout", "Account")'">Đồng ý</button>
                 </div>
             </div>
         </div>
