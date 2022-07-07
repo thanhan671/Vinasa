@@ -70,39 +70,42 @@ namespace Vinasa.Controllers
                 return RedirectToAction("Index", "Admin", new { area = " " });
             }
 
-            if (registerPassword.Equals(registerRePassword))
+            if (ModelState.IsValid)
             {
-                using (db)
+                if (registerPassword.Equals(registerRePassword))
                 {
-                    var checkAccount = db.TAIKHOANADMINs.Where(acc => acc.Email.Equals(registerEmail.Trim())).FirstOrDefault();
+                    using (db)
                     {
-                        if (checkAccount != null)
+                        var checkAccount = db.TAIKHOANADMINs.Where(acc => acc.Email.Equals(registerEmail.Trim())).FirstOrDefault();
                         {
-                            ViewBag.Message = registerEmail + " tài khoản đã tồn tại";
-                            return View();
-                        }
-                        else
-                        {
-                            try
+                            if (checkAccount != null)
                             {
-                                TAIKHOANADMIN newAccount = new TAIKHOANADMIN();
-                                newAccount.Ten = adminAccountModels.Ten.Trim();
-                                newAccount.Email = registerEmail;
-                                newAccount.Sdt = adminAccountModels.Sdt.Trim();
-                                newAccount.PhongBan = adminAccountModels.PhongBan.Trim();
-                                newAccount.MatKhau = registerPassword;
-                                newAccount.Quyen = adminAccountModels.Quyen;
-                                newAccount.TrangThai = adminAccountModels.TrangThai;
-
-                                db.TAIKHOANADMINs.Add(newAccount);
-                                db.SaveChanges();
-                                ViewBag.Message = newAccount.Ten + " tài khoản được tạo thành công";
-                                //return RedirectToAction("Login");
-                                return RedirectToAction("Index");
+                                ViewBag.Message = registerEmail + " tài khoản đã tồn tại";
+                                return View();
                             }
-                            catch (Exception ex)
+                            else
                             {
-                                throw ex;
+                                try
+                                {
+                                    TAIKHOANADMIN newAccount = new TAIKHOANADMIN();
+                                    newAccount.Ten = adminAccountModels.Ten.Trim();
+                                    newAccount.Email = registerEmail;
+                                    newAccount.Sdt = adminAccountModels.Sdt.Trim();
+                                    newAccount.PhongBan = adminAccountModels.PhongBan.Trim();
+                                    newAccount.MatKhau = registerPassword;
+                                    newAccount.Quyen = adminAccountModels.Quyen;
+                                    newAccount.TrangThai = adminAccountModels.TrangThai;
+
+                                    db.TAIKHOANADMINs.Add(newAccount);
+                                    db.SaveChanges();
+                                    ViewBag.Message = newAccount.Ten + " tài khoản được tạo thành công";
+                                    //return RedirectToAction("Login");
+                                    return RedirectToAction("Index");
+                                }
+                                catch (Exception ex)
+                                {
+                                    throw ex;
+                                }
                             }
                         }
                     }

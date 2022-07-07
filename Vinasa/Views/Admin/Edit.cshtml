@@ -17,7 +17,7 @@
                     <label class="lb-form" for="tax">Tên Người Dùng</label>
                 </div>
                 <div class="input-wrapper">
-                    <input class="ip-form" type="email" contenteditable="true" @Html.TextBoxFor(m => m.Email)
+                    <input class="ip-form" type="email" contenteditable="true" @Html.TextBoxFor(m => m.Email, new { @readonly = true})
                     <label class="lb-form">Email</label>
                 </div>
                 <div class="input-wrapper">

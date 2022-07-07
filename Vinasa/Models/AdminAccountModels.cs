@@ -18,9 +18,14 @@ namespace Vinasa.Models
 
         public string Sdt { get; set; }
         public string PhongBan { get; set; }
+
+        [MinLength(6, ErrorMessage = "Mật khẩu phải trên 6 ký tự")]
         public string MatKhau { get; set; }
 
+        [MinLength(6, ErrorMessage = "Mật khẩu phải trên 6 ký tự")]
         public string newMatKhau { get; set; }
+
+        [MinLength(6, ErrorMessage = "Mật khẩu phải trên 6 ký tự")]
         public string reMatKhau { get; set; }
         public string sQuyen { get; set; }
         public string sTrangThai { get; set; }

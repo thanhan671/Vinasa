@@ -9,9 +9,15 @@ namespace Vinasa.Controllers
 {
     public class AccountController : Controller
     {
+        #region global variable
+
         SEP25Team16Entities2 db = new SEP25Team16Entities2();
         private string loginEmail;
         private string loginPassword;
+
+        #endregion
+
+        #region main method
         // GET: Account
         [HttpGet]
         public ActionResult Login()
@@ -93,41 +99,45 @@ namespace Vinasa.Controllers
             var newPassword = adminAccountModels.newMatKhau;
             var rePassword = adminAccountModels.reMatKhau;
 
-            if (oldPassword != null)
+            if (ModelState.IsValid)
             {
-                using (db)
+                if (oldPassword != null)
                 {
-                    var accountCheck = db.TAIKHOANADMINs.Where(acc => acc.ID.Equals(id)).FirstOrDefault();
-                    if (CheckPassword(oldPassword, accountCheck.MatKhau))
+                    using (db)
                     {
-                        accountCheck.Ten = name;
-                        accountCheck.Email = email;
-                        accountCheck.Sdt = phoneNumber;
-                        if (newPassword != null)
+                        var accountCheck = db.TAIKHOANADMINs.Where(acc => acc.ID.Equals(id)).FirstOrDefault();
+                        if (CheckPassword(oldPassword, accountCheck.MatKhau))
                         {
-                            if (CheckPassword(newPassword, rePassword))
+                            accountCheck.Ten = name;
+                            accountCheck.Email = email;
+                            accountCheck.Sdt = phoneNumber;
+                            if (newPassword != null)
                             {
-                                accountCheck.MatKhau = newPassword;
+                                if (CheckPassword(newPassword, rePassword))
+                                {
+                                    accountCheck.MatKhau = newPassword;
+                                }
+                                else
+                                {
+                                    ViewBag.Message = "Mật khẩu mới và xác nhận mật khẩu không trùng";
+                                    return View();
+                                }
                             }
-                            else
-                            {
-                                ViewBag.Message = "Mật khẩu mới và xác nhận mật khẩu không trùng";
-                                return View();
-                            }
-                        }
 
+                        }
+                        db.SaveChanges();
                     }
-                    db.SaveChanges();
                 }
-            }
-            else
-            {
-                ViewBag.Message = "Nhập mật khẩu để thay đổi thông tin";
-                return View();
+                else
+                {
+                    ViewBag.Message = "Nhập mật khẩu để thay đổi thông tin";
+                    return View();
+                }
             }
 
             return RedirectToAction("Index", "Home", new { area = " " });
         }
+        #endregion
 
         #region support method
         private bool CheckPassword(string pass1, string pass2)
