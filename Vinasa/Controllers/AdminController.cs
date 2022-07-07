@@ -81,9 +81,10 @@ namespace Vinasa.Controllers
                             if (checkAccount != null)
                             {
                                 ViewBag.Message = registerEmail + " tài khoản đã tồn tại";
-                                return View();
+
+                                return RedirectToAction("CreateAccount");
                             }
-                            else if(checkAccount == null/* && registerPassword.Equals(registerRePassword)*/)
+                            else
                             {
                                 try
                                 {
@@ -99,7 +100,6 @@ namespace Vinasa.Controllers
                                     db.TAIKHOANADMINs.Add(newAccount);
                                     db.SaveChanges();
                                     ViewBag.Message = newAccount.Ten + " tài khoản được tạo thành công";
-                                    //return RedirectToAction("Login");
                                     return RedirectToAction("Index");
                                 }
                                 catch (Exception ex)
@@ -111,7 +111,7 @@ namespace Vinasa.Controllers
                     }
                 }
             }
-            return View();
+            return RedirectToAction("CreateAccount");
         }
 
 
@@ -130,14 +130,23 @@ namespace Vinasa.Controllers
                 Ten = acc.Ten,
                 Email = acc.Email,
                 Quyen = acc.Quyen,
-                sTrangThai = acc.TRANGTHAI1.TenTrangThai,
+                TrangThai = acc.TrangThai,
                 Sdt = acc.Sdt,
                 PhongBan = acc.PhongBan,
                 MatKhau = acc.MatKhau
             }).SingleOrDefault();
 
+            if(Session["AccountID"].Equals(id))
+            {
+                adminAccountModels.isEditMode = false;
+            }    
+            else
+            {
+                adminAccountModels.isEditMode = true;
+            }
             adminAccountModels.RoleList = new SelectList(db.QUYENs, "IDQuyen", "TenQuyen", adminAccountModels.Quyen);
             adminAccountModels.StatusList = new SelectList(db.TRANGTHAIs, "IDTrangThai", "TenTrangThai", adminAccountModels.TrangThai);
+
             return View(adminAccountModels);
         }
 
@@ -188,6 +197,11 @@ namespace Vinasa.Controllers
         {
             var memberAccount = db.TAIKHOANADMINs.Where(t => t.ID.Equals(id)).FirstOrDefault();
             CheckRole();
+
+            if (Session["AccountID"].Equals(id))
+            {
+                return View("Index");
+            }
 
             if (memberAccount != null && currentRole != 2)
             {
