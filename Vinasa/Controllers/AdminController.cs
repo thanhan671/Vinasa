@@ -83,7 +83,7 @@ namespace Vinasa.Controllers
                                 ViewBag.Message = registerEmail + " tài khoản đã tồn tại";
                                 return View();
                             }
-                            else
+                            else if(checkAccount == null/* && registerPassword.Equals(registerRePassword)*/)
                             {
                                 try
                                 {

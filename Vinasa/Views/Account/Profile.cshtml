@@ -52,6 +52,7 @@
                             </div>
                             <div class="col-sm-9">
                                 <input class="text-muted mb-0 pf-ip" @Html.PasswordFor(m => m.MatKhau)
+                                        @Html.ValidationMessageFor(m => m.MatKhau, "", new { @class = "text-danger" })
                             </div>
                         </div>
                         <hr>
