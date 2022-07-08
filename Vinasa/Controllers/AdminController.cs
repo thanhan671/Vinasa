@@ -200,7 +200,7 @@ namespace Vinasa.Controllers
 
             if (Session["AccountID"].Equals(id))
             {
-                return View("Index");
+                return RedirectToAction("Login", "Account", new { area = " " });
             }
 
             if (memberAccount != null && currentRole != 2)
