@@ -17,7 +17,7 @@
                     <label class="lb-form" for="tax">Tên Người Dùng</label>
                 </div>
                 <div class="input-wrapper">
-                    <input class="ip-form" type="email" contenteditable="true" @Html.TextBoxFor(m => m.Email)
+                    <input class="ip-form" type="email" contenteditable="true" @Html.TextBoxFor(m => m.Email, new { @readonly = true })
                     <label class="lb-form">Email</label>
                 </div>
                 <div class="input-wrapper">
@@ -30,11 +30,27 @@
                 </div>
                 <div class="input-wrapper">
                     <label class="lb-form" for="name">Quyền</label>
-                    @Html.DropDownListFor(m => m.Quyen, Model.RoleList, new { @class = "form-control select-region" })
+                    @*@Html.DropDownListFor(m => m.Quyen, Model.RoleList, new { @class = "form-control select-region" })*@
+                    @if (Model.isEditMode == false)
+                    {
+                        @Html.DropDownListFor(m => m.Quyen, Model.RoleList, new { @class = "form-control select-region", @disabled = "disabled" })
+                    }
+                    else
+                    {
+                        @Html.DropDownListFor(m => m.Quyen, Model.RoleList, new { @class = "form-control select-region" })
+                    }
                 </div>
                 <div class="input-wrapper">
                     <label class="lb-form" for="name">Trạng Thái</label>
-                    @Html.DropDownListFor(m => m.TrangThai, Model.StatusList, new { @class = "form-control select-region" })
+                    @*@Html.DropDownListFor(m => m.TrangThai, Model.StatusList, new { @class = "form-control select-region" })*@
+                    @if (Model.isEditMode == false)
+                    {
+                        @Html.DropDownListFor(m => m.Quyen, Model.StatusList, new { @class = "form-control select-region", @disabled = "disabled" })
+                    }
+                    else
+                    {
+                        @Html.DropDownListFor(m => m.Quyen, Model.StatusList, new { @class = "form-control select-region" })
+                    }
                 </div>
             </form>
         </div>

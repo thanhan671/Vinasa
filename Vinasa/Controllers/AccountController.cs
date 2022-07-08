@@ -93,7 +93,7 @@ namespace Vinasa.Controllers
             var newPassword = adminAccountModels.newMatKhau;
             var rePassword = adminAccountModels.reMatKhau;
 
-            if (oldPassword != null)
+            if (oldPassword != null && newPassword != null && rePassword != null)
             {
                 using (db)
                 {
@@ -122,7 +122,7 @@ namespace Vinasa.Controllers
             }
             else
             {
-                ViewBag.Message = "Nhập mật khẩu để thay đổi thông tin";
+                ViewBag.Message = "Vui lòng nhập đầy đủ thông tin để tiếp tục cập nhật";
                 return View();
             }
 

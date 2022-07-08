@@ -24,10 +24,12 @@ namespace Vinasa.Models
         public string reMatKhau { get; set; }
         public string sQuyen { get; set; }
         public string sTrangThai { get; set; }
-
+        [Required(ErrorMessage = "Vui lòng điền trường này!")]
         public virtual QUYEN QUYEN1 { get; set; }
         public virtual TRANGTHAI TRANGTHAI1 { get; set; }
 
+        public bool isEditMode { get; set; }
+        
         [NotMapped]
         public SelectList RoleList { get; set; }
         [NotMapped]
