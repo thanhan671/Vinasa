@@ -9,9 +9,15 @@ namespace Vinasa.Controllers
 {
     public class AccountController : Controller
     {
+        #region global variable
+
         SEP25Team16Entities2 db = new SEP25Team16Entities2();
         private string loginEmail;
         private string loginPassword;
+
+        #endregion
+
+        #region main method
         // GET: Account
         [HttpGet]
         public ActionResult Login()
@@ -128,6 +134,7 @@ namespace Vinasa.Controllers
 
             return RedirectToAction("Index", "Home", new { area = " " });
         }
+        #endregion
 
         #region support method
         private bool CheckPassword(string pass1, string pass2)

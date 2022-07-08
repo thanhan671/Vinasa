@@ -11,16 +11,29 @@ namespace Vinasa.Models
     public class AdminAccountModels
     {
         public int ID { get; set; }
+
+        //[Required(ErrorMessage = "Vui lòng điền trường này!")]
         public string Ten { get; set; }
+
+        //[Required(ErrorMessage = "Vui lòng điền trường này!")]
         public string Email { get; set; }
         public int Quyen { get; set; }
         public int TrangThai { get; set; }
 
+        //[Required(ErrorMessage = "Vui lòng điền trường này!")]
         public string Sdt { get; set; }
+
+        //[Required(ErrorMessage = "Vui lòng điền trường này!")]
         public string PhongBan { get; set; }
+
+        [Required(ErrorMessage = "Vui lòng điền trường này!")]
+        [MinLength(6, ErrorMessage = "Mật khẩu phải trên 6 ký tự")]
         public string MatKhau { get; set; }
 
+        [MinLength(6, ErrorMessage = "Mật khẩu phải trên 6 ký tự")]
         public string newMatKhau { get; set; }
+
+        [MinLength(6, ErrorMessage = "Mật khẩu phải trên 6 ký tự")]
         public string reMatKhau { get; set; }
         public string sQuyen { get; set; }
         public string sTrangThai { get; set; }
