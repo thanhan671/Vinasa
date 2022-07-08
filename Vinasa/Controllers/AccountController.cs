@@ -99,37 +99,40 @@ namespace Vinasa.Controllers
             var newPassword = adminAccountModels.newMatKhau;
             var rePassword = adminAccountModels.reMatKhau;
 
-            if (oldPassword != null && newPassword != null && rePassword != null)
+            if (ModelState.IsValid)
             {
-                using (db)
+                if (oldPassword != null)
                 {
-                    var accountCheck = db.TAIKHOANADMINs.Where(acc => acc.ID.Equals(id)).FirstOrDefault();
-                    if (CheckPassword(oldPassword, accountCheck.MatKhau))
+                    using (db)
                     {
-                        accountCheck.Ten = name;
-                        accountCheck.Email = email;
-                        accountCheck.Sdt = phoneNumber;
-                        if (newPassword != null)
+                        var accountCheck = db.TAIKHOANADMINs.Where(acc => acc.ID.Equals(id)).FirstOrDefault();
+                        if (CheckPassword(oldPassword, accountCheck.MatKhau))
                         {
-                            if (CheckPassword(newPassword, rePassword))
+                            accountCheck.Ten = name;
+                            accountCheck.Email = email;
+                            accountCheck.Sdt = phoneNumber;
+                            if (newPassword != null)
                             {
-                                accountCheck.MatKhau = newPassword;
+                                if (CheckPassword(newPassword, rePassword))
+                                {
+                                    accountCheck.MatKhau = newPassword;
+                                }
+                                else
+                                {
+                                    ViewBag.Message = "Mật khẩu mới và xác nhận mật khẩu không trùng";
+                                    return View();
+                                }
                             }
-                            else
-                            {
-                                ViewBag.Message = "Mật khẩu mới và xác nhận mật khẩu không trùng";
-                                return View();
-                            }
-                        }
 
+                        }
+                        db.SaveChanges();
                     }
-                    db.SaveChanges();
                 }
-            }
-            else
-            {
-                ViewBag.Message = "Vui lòng nhập đầy đủ thông tin để tiếp tục cập nhật";
-                return View();
+                else
+                {
+                    ViewBag.Message = "Nhập mật khẩu để thay đổi thông tin";
+                    return View();
+                }
             }
 
             return RedirectToAction("Index", "Home", new { area = " " });

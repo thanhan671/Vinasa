@@ -12,7 +12,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <title>QUẢN LÝ HỘI VIÊN VINASA - ĐĂNG NHẬP</title>
-
+    
     <link rel="icon" href="~/img/iconVinasa (2).png" type="image/png">
     <!-- Custom fonts for this template-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -20,7 +20,7 @@
     <link href="~/css/style.css" rel="stylesheet" />
 
 </head>
-<body class="bg-gradient-primary">
+<body class="bg-gradient-primary ">
     <div class="container-lg">
         <div class="login-form">
             <div class="left-content">
@@ -35,12 +35,12 @@
                 <div class="form-group" class="right-content">
                     <h2 class="heading-right">Nhập email & mật khẩu</h2>
                     <div class="input-wrapper">
-                        <input class="ip-form" type="text" id="email" autocomplete="on" required @Html.TextBoxFor(m => m.Email)
+                        <input class="ip-form" type="text" id="email" required @Html.TextBoxFor(m => m.Email)
                         <label class="lb-form" for="username">Email</label>
                         @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
                     </div>
                     <div class="input-wrapper">
-                        <input class="ip-form" type="password" id="password" autocomplete="on" required @Html.PasswordFor(m => m.MatKhau)
+                        <input class="ip-form" type="password" id="password" required @Html.PasswordFor(m => m.MatKhau)
                         <label class="lb-form" for="password">Mật Khẩu</label>
                         @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
                     </div>

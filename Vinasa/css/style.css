@@ -1,5 +1,8 @@
 ﻿body {
-    background-color: #19315d;
+    /*background-color: #19315d;*/
+    background-image: url('../img/background.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 .container-lg {
