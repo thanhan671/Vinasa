@@ -125,6 +125,10 @@ namespace Vinasa.Controllers
                             }
 
                         }
+                        else
+                        {
+                            return View();
+                        }    
                         db.SaveChanges();
                     }
                 }
