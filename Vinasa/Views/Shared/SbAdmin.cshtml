@@ -57,9 +57,9 @@
                 </a>
             </li>
 
-            <li class="nav-item" href="#" data-toggle="collapse" data-target="#collapsePages"
+            <li class="nav-item @(ViewContext.RouteData.Values["Action"].ToString() == "Index" ? "active" :"")" href="#" data-toggle="collapse" data-target="#collapsePages"
                 aria-expanded="true" aria-controls="collapsePages">
-                <a href="#" class="nav-link">
+                <a href="#" class="nav-link ">
                     <i class="fas fa-fw fa-user"></i>
                     <span>Tài khoản</span>
                 </a>
