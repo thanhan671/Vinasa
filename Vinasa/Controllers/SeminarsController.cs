@@ -157,5 +157,14 @@ namespace Vinasa.Controllers
                 return RedirectToAction(nameof(Details), new { id = id, erorr = exc });
             }
         }
+
+        public FileResult Download()
+        {
+            string path = Server.MapPath("~/Content/Files");
+            string filename = Path.GetFileName("MauSuKien.xlsx");
+
+            string fullPath = Path.Combine(path, filename);
+            return File(fullPath,"download/xlsx", "MauSuKien.xlsx");
+        }
     }
 }

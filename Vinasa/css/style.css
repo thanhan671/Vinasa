@@ -1,6 +1,6 @@
 ﻿body {
     /*background-color: #19315d;*/
-    background-image: url('../img/bg.png');
+    background-image: url('../img/background.jpg');
     background-size: cover;
     background-repeat: no-repeat;
     position: relative;
@@ -19,9 +19,9 @@
     position: relative;
     border-radius: 1.25rem;
     background-color: #fff;
-    left: 30%;
+    left: 50%;
     transform: translateX(-50%);
-    top: 20%;
+    top: 35%;
 }
 
 .heading-left,
