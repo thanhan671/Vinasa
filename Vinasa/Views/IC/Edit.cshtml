@@ -1,0 +1,45 @@
+﻿
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/sbadmin.cshtml";
+}
+
+<div class="row">
+    <div class="col-6">
+        <h5 class="heading">Sửa Thông Tin Hội Nghị Quốc Tế</h5>
+        <form class="form-field" method="post" enctype="multipart/form-data">
+            <div class="input-wrapper">
+                <input class="ip-form" type="text" id="tax" contenteditable="true" value="Ngày CNTT Nhật Bản 2022" required />
+                <label class="lb-form" for="tax">Tên</label>
+            </div>
+            <div class="input-wrapper">
+                <input class="ip-form" type="datetime-local" value="15/08/2022 05:00 PM" contenteditable="true">
+                <label class="lb-form" for="name">Thời gian diễn ra</label>
+            </div>
+            <div class="input-wrapper">
+                <input class="ip-form" type="text" contenteditable="true" value="Hà Nội/HCMC + Đà Nẵng">
+                <label class="lb-form" for="name">Địa điểm Diễn Ra</label>
+            </div>
+
+        </form>
+    </div>
+
+</div>
+<div class="button-form f-l">
+    <button class="button-cancel" id="cancel">Huỷ</button>
+    <button class="button-lc" type="submit" name="save">Xác Nhận</button>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+
+    $('#cancel').click(function () {
+        location.href = 'javascript:history.go(-1)';
+    })
+
+</script>
+@if (TempData["Message"] != null)
+{
+    <p class="alert alert-success" id="successMessage">@TempData["Message"]</p>
+}

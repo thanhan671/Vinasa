@@ -2453,8 +2453,7 @@ a.btn.disabled, fieldset:disabled a.btn {
         border-color: #4e73df
     }
 
-    .btn-primary:not(:disabled):not(.disabled).active, .btn-primary:not(:disabled):not(.disabled):active, .
-    > .btn-primary.dropdown-toggle {
+    .btn-primary:not(:disabled):not(.disabled).active, .btn-primary:not(:disabled):not(.disabled):active, . > .btn-primary.dropdown-toggle {
         color: #fff;
         background-color: #2653d4;
         border-color: #244ec9
@@ -6457,6 +6456,7 @@ a.bg-dark:focus, a.bg-dark:hover, button.bg-dark:focus, button.bg-dark:hover {
 .bg-white {
     background-color: #fff !important
 }
+
 .bg-submenu {
     background-color: #dceaf5
 }
@@ -11551,6 +11551,19 @@ body.sidebar-toggled footer.sticky-footer {
     border: 1px solid #ccc;
     border-radius: 10px;
 }
+.button-download {
+    height: 40px;
+    width: 160px;
+    margin: 10px 10px;
+    background: #1f6021;
+    color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+}
+.button-download:hover {
+    background-color: #051D65;
+    color: #F69928;
+}
 
 .button-cancel {
     height: 40px;
@@ -11781,4 +11794,13 @@ thead {
     color: lightblue;
     font-size: 20px;
     margin-right: 20px;
+}
+
+.action-column {
+    width: 90px !important;
+}
+
+.form-inputs-odd {
+    display: flex !important;
+    flex-wrap: wrap !important;
 }

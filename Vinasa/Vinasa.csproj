@@ -177,7 +177,11 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\AwardController.cs" />
+    <Compile Include="Controllers\AwardParticipantsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ICController.cs" />
+    <Compile Include="Controllers\ICParticipantsController.cs" />
     <Compile Include="Controllers\MemberController.cs" />
     <Compile Include="Controllers\ProvincesController.cs" />
     <Compile Include="Controllers\SeminarParticipantsController.cs" />
@@ -2325,6 +2329,18 @@
     <Content Include="vendor\jquery\jquery.slim.min.map" />
     <Content Include="Views\Shared\sbadmin.cshtml" />
     <Content Include="Views\Account\Profile.cshtml" />
+    <Content Include="Views\Award\Index.cshtml" />
+    <Content Include="Views\Award\Create.cshtml" />
+    <Content Include="Views\Award\Edit.cshtml" />
+    <Content Include="Views\AwardParticipants\Index.cshtml" />
+    <Content Include="Views\AwardParticipants\Detail.cshtml" />
+    <Content Include="Views\AwardParticipants\Edit.cshtml" />
+    <Content Include="Views\IC\Index.cshtml" />
+    <Content Include="Views\IC\Edit.cshtml" />
+    <Content Include="Views\IC\Create.cshtml" />
+    <Content Include="Views\ICParticipants\Index.cshtml" />
+    <Content Include="Views\ICParticipants\Edit.cshtml" />
+    <Content Include="Views\ICParticipants\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
