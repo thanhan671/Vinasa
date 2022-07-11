@@ -27,11 +27,7 @@ namespace Vinasa.Controllers
         // GET: Seminars
         public ActionResult Index()
         {
-            if (Session["AccountID"] != null)
-            {
-                return View(_db.Seminars.ToList());
-            }
-            return RedirectToAction("Login", "Account", new { area = " " });
+            return View(_db.Seminars.ToList());
         }
 
         // GET: Seminars/Details/5
@@ -111,7 +107,7 @@ namespace Vinasa.Controllers
         public ActionResult Delete(int id)
         {
             Seminar seminar = _db.Seminars.Find(id);
-            if(seminar != null)
+            if (seminar != null)
             {
                 var seminarParticipants = _db.SeminarParticipants.Where(it => it.SeminarId == seminar.Id).ToList();
                 foreach (var seminarParticipant in seminarParticipants)
@@ -144,6 +140,8 @@ namespace Vinasa.Controllers
             {
                 if (importexcelfile != null && importexcelfile.ContentLength > 0)
                 {
+                    _db.SeminarParticipants.RemoveRange(_db.SeminarParticipants.ToList());
+
                     await _importManager.ImportSeminarParticipantFromXlsx((int)id, importexcelfile.InputStream);
                 }
                 else
@@ -156,15 +154,6 @@ namespace Vinasa.Controllers
             {
                 return RedirectToAction(nameof(Details), new { id = id, erorr = exc });
             }
-        }
-
-        public FileResult Download()
-        {
-            string path = Server.MapPath("~/Content/Files");
-            string filename = Path.GetFileName("MauSuKien.xlsx");
-
-            string fullPath = Path.Combine(path, filename);
-            return File(fullPath,"download/xlsx", "MauSuKien.xlsx");
         }
     }
 }
