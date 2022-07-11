@@ -127,6 +127,7 @@ namespace Vinasa.Controllers
                         }
                         else
                         {
+                            TempData["Message"] = "Mật khẩu cũ không chính xác";
                             return View();
                         }
                         db.SaveChanges();

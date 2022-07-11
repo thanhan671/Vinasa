@@ -29,8 +29,33 @@
                     <label class="lb-form" for="name">Phòng Ban</label>
                 </div>
                 <div class="input-wrapper">
+                    @if (Model.isEditMode == false)
+                    {
+                        <input class="ip-form" type="password" id="password" autocomplete="off" @Html.PasswordFor(m => m.newMatKhau, new { @class = "form-control", @disabled = "disabled" })
+                        <label class="lb-form" for="password">Mật Khẩu Mới</label>
+                    }
+                    else
+                    {
+                        <input class="ip-form" type="password" id="password" autocomplete="off" @Html.PasswordFor(m => m.newMatKhau)
+                        <label class="lb-form" for="password">Mật Khẩu Mới</label>
+                        @Html.ValidationMessageFor(m => m.newMatKhau, "", new { @class = "text-danger" })
+                    }
+                </div>
+                <div class="input-wrapper">
+                    @if (Model.isEditMode == false)
+                    {
+                        <input class="ip-form" type="password" id="password" autocomplete="off" @Html.PasswordFor(m => m.reMatKhau, new { @class = "form-control", @disabled = "disabled" })
+                        <label class="lb-form" for="password">Xác Nhận Mật Khẩu</label>
+                    }
+                    else
+                    {
+                        <input class="ip-form" type="password" id="password" autocomplete="off" @Html.PasswordFor(m => m.reMatKhau)
+                        <label class="lb-form" for="password">Xác Nhận Mật Khẩu</label>
+                        @*@Html.ValidationMessageFor(m => m.reMatKhau, "", new { @class = "text-danger" })*@
+                    }
+                </div>
+                <div class="input-wrapper">
                     <label class="lb-form" for="name">Quyền</label>
-                    @*@Html.DropDownListFor(m => m.Quyen, Model.RoleList, new { @class = "form-control select-region" })*@
                     @if (Model.isEditMode == false)
                     {
                         @Html.DropDownListFor(m => m.Quyen, Model.RoleList, new { @class = "form-control select-region", @disabled = "disabled" })
@@ -42,7 +67,6 @@
                 </div>
                 <div class="input-wrapper">
                     <label class="lb-form" for="name">Trạng Thái</label>
-                    @*@Html.DropDownListFor(m => m.TrangThai, Model.StatusList, new { @class = "form-control select-region" })*@
                     @if (Model.isEditMode == false)
                     {
                         @Html.DropDownListFor(m => m.TrangThai, Model.StatusList, new { @class = "form-control select-region", @disabled = "disabled" })
@@ -55,8 +79,17 @@
             </form>
         </div>
         <div class="button-form">
-            <button class="button-cancel" onclick="location.href='javascript:history.go(-1)'" type="button" name="cancel">Huỷ</button>
-            <button class="button-lc" type="submit" name="save">Xác Nhận</button>
+            @*<button class="button-cancel" onclick="location.href='javascript:history.go(-1)'" type="button" name="cancel">Huỷ</button>
+                <button class="button-lc" type="submit" name="save">Xác Nhận</button>*@
+            @if (Model.isEditMode == false)
+            {
+                <button class="button-cancel" onclick="location.href='javascript:history.go(-1)'" type="button" name="cancel">Huỷ</button>
+            }
+            else
+            {
+                <button class="button-cancel" onclick="location.href='javascript:history.go(-1)'" type="button" name="cancel">Huỷ</button>
+                <button class="button-lc" type="submit" name="save">Xác Nhận</button>
+            }
         </div>
     </div>
 }

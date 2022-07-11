@@ -179,6 +179,8 @@
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\AwardController.cs" />
     <Compile Include="Controllers\AwardParticipantsController.cs" />
+    <Compile Include="Controllers\CourseController.cs" />
+    <Compile Include="Controllers\CourseParticipantsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ICController.cs" />
     <Compile Include="Controllers\ICParticipantsController.cs" />
@@ -2341,6 +2343,12 @@
     <Content Include="Views\ICParticipants\Index.cshtml" />
     <Content Include="Views\ICParticipants\Edit.cshtml" />
     <Content Include="Views\ICParticipants\Details.cshtml" />
+    <Content Include="Views\Course\Index.cshtml" />
+    <Content Include="Views\Course\Edit.cshtml" />
+    <Content Include="Views\Course\Create.cshtml" />
+    <Content Include="Views\CourseParticipants\Index.cshtml" />
+    <Content Include="Views\CourseParticipants\Edit.cshtml" />
+    <Content Include="Views\CourseParticipants\Detail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

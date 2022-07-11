@@ -97,6 +97,16 @@
         };
     </script>
 }
+@if (TempData["Message"] != null)
+{
+    <p class="alert alert-success" id="errorMessage">@TempData["Message"]</p>
+}
+
+<script type="text/javascript">
+    $(function () {
+        $('#errorMessage').hide(1000);
+    });
+</script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
-<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>s
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
