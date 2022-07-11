@@ -45,11 +45,11 @@
                     @*@Html.DropDownListFor(m => m.TrangThai, Model.StatusList, new { @class = "form-control select-region" })*@
                     @if (Model.isEditMode == false)
                     {
-                        @Html.DropDownListFor(m => m.Quyen, Model.StatusList, new { @class = "form-control select-region", @disabled = "disabled" })
+                        @Html.DropDownListFor(m => m.TrangThai, Model.StatusList, new { @class = "form-control select-region", @disabled = "disabled" })
                     }
                     else
                     {
-                        @Html.DropDownListFor(m => m.Quyen, Model.StatusList, new { @class = "form-control select-region" })
+                        @Html.DropDownListFor(m => m.TrangThai, Model.StatusList, new { @class = "form-control select-region" })
                     }
                 </div>
             </form>
