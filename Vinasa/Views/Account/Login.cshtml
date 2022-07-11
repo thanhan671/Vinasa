@@ -41,7 +41,7 @@
                     <div class="input-wrapper">
                         <input class="ip-form" type="password" id="password" autocomplete="off" required @Html.PasswordFor(m => m.MatKhau)
                         <label class="lb-form" for="password">Mật Khẩu</label>
-                        @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+                        @Html.ValidationMessageFor(m => m.MatKhau, "", new { @class = "text-danger" })
                     </div>
                     <input type="submit" value="Đăng nhập" class="button-login" />
                 </div>

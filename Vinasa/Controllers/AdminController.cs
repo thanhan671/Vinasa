@@ -179,6 +179,15 @@ namespace Vinasa.Controllers
                             accountdata.PhongBan = adminAccountModels.PhongBan;
                             accountdata.Quyen = adminAccountModels.Quyen;
                             accountdata.TrangThai = adminAccountModels.TrangThai;
+
+                            if(adminAccountModels.newMatKhau != null)
+                            {
+                                if(adminAccountModels.newMatKhau.Equals(adminAccountModels.reMatKhau))
+                                {
+                                    accountdata.MatKhau = adminAccountModels.newMatKhau;
+                                }    
+                            }
+
                             db.SaveChanges();
                             return RedirectToAction("Index", "Admin", new { area = " " });
                         }
