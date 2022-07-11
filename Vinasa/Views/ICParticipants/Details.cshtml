@@ -1,0 +1,107 @@
+﻿
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/sbadmin.cshtml";
+}
+
+<div class="heading">
+    @*<h1 class="h3 mb-2 text-gray-800">Hội Nghị</h1>*@
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item" onclick="location.href = 'javascript:history.go(-1)'" style="color:blue; cursor:pointer" ;>Danh sách Các Quan Hệ Quốc Tế</li>
+            <li class="breadcrumb-item active" aria-current="page">Xem thông tin thành viên tham gia</li>
+        </ol>
+    </nav>
+</div>
+@*using (Html.BeginForm("Edit", "Member", FormMethod.Post))*@
+
+<div class="row">
+    <div class="col-6">
+        <h5 class="heading">Ngày CNTT Nhật Bản 2022</h5>
+        <form class="form-field" method="post" enctype="multipart/form-data">
+            <div class="input-wrapper">
+                <input class="ip-form" type="text" id="tax" contenteditable="true" value="Công Ty Cổ Phần FPT" readonly />
+                <label class="lb-form" for="tax">Tên Đơn Vị</label>
+            </div>
+
+            <div class="input-wrapper">
+                <input class="ip-form" type="text" contenteditable="true" value="Doanh nghiệp CNTT" readonly />
+                <label class="lb-form" for="name">Đơn Vị Chúng Tôi Là</label>
+            </div>
+
+            <div class="input-wrapper">
+                <input class="ip-form" type="text" contenteditable="true" value="97 Nguyễn Công Trứ, Phường Nguyễn Thái Bình, Phường Cô Giang, Quận 1, TP. HCM " readonly />
+                <label class="lb-form" for="name">Địa Chỉ</label>
+            </div>
+            <div class="input-wrapper">
+                <input class="ip-form" type="text" contenteditable="true" value="0937688958" readonly />
+                <label class="lb-form" for="name">Điện Thoại</label>
+            </div>
+            <div class="input-wrapper">
+                <input class="ip-form" type="text" contenteditable="true" value="Trương Gia Bình " readonly />
+                <label class="lb-form" for="name">Đại Diện Liên Hệ</label>
+            </div>
+            <div class="input-wrapper">
+                <input class="ip-form" type="text" contenteditable="true" value="Chủ tịch HĐQT" readonly />
+                <label class="lb-form" for="name">Chức Vụ</label>
+            </div>
+            <div class="input-wrapper">
+                <input class="ip-form" type="text" contenteditable="true" value="0937688958" readonly />
+                <label class="lb-form" for="name">Di Động</label>
+            </div>
+            <div class="input-wrapper">
+                <input class="ip-form" type="text" contenteditable="true" value="manhnt@vinasa.org.vn" readonly />
+                <label class="lb-form" for="name">Email</label>
+            </div>
+            <div class="input-wrapper">
+                <input type="checkbox">
+                <label class="form-check-label"> Đăng Kí Tham Dự</label>
+            </div>
+            <div class="input-wrapper">
+                <input type="checkbox">
+                <label class="form-check-label"> Đăng Kí Bài Phát Biểu</label>
+            </div>
+            <div class="input-wrapper">
+                <input type="checkbox">
+                <label class="form-check-label"> Đăng Kí Gian Hàng Triển Lãm</label>
+            </div>
+            <div class="input-wrapper">
+                <input type="checkbox">
+                <label class="form-check-label"> Đăng Kí Business Matching Online</label>
+            </div>
+            <div class="input-wrapper">
+                <input type="checkbox">
+                <label class="form-check-label"> Đăng Kí Business Matching Offline</label>
+            </div>
+            <div class="input-wrapper">
+                <input type="checkbox">
+                <label class="form-check-label"> Đăng Kí Tài Trợ</label>
+            </div>
+            <div class="input-wrapper">
+                <input type="checkbox">
+                <label class="form-check-label"> Đăng Kí Quãng Cáo</label>
+            </div>
+
+
+        </form>
+    </div>
+</div>
+
+<div class="button-form f-l">
+    <button class="button-cancel" id="cancel">Huỷ</button>
+    <button class="button-lc" type="submit" name="save">Xác Nhận</button>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+
+    $('#cancel').click(function () {
+        location.href = 'javascript:history.go(-1)';
+    })
+
+</script>
+@if (TempData["Message"] != null)
+{
+    <p class="alert alert-success" id="successMessage">@TempData["Message"]</p>
+}

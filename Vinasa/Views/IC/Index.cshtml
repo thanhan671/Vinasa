@@ -1,0 +1,137 @@
+﻿
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/sbadmin.cshtml";
+}
+
+<!-- Page Heading -->
+<h1 class="h3 mb-2 text-gray-800">Quan Hệ Quốc Tế</h1>
+
+<!-- DataTales Example -->
+<div class="card shadow mb-4">
+    <div class="card-header py-3" style=" display: flex; justify-content: space-between; align-items: center;">
+        <div class="right-content">
+            <h6 class="m-0 font-weight-bold text-primary" style="color: #19315D ">Danh sách quản lý các sự kiện quốc tế</h6>
+        </div>
+        <div class="left-content">
+            <button class="button-lc" id="create">Thêm Mới</button>
+
+        </div>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>
+                            Tên
+                        </th>
+                        <th>
+                            Địa Điểm
+                        </th>
+                        <th>
+                            Thời Gian
+                        </th>
+                        <th>Chức năng</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @*foreach (var item in Model) *@
+                    <tr>
+                        <td>
+                            <a href=@Url.Action("Index", "ICParticipants")>Ngày CNTT Nhật Bản 2022</a>
+                        </td>
+                        <td>
+                            Hà Nội/HCMC + Đà Nẵng
+                        </td>
+                        <td>
+                            15/08/2022
+                        </td>
+                        <td class="td-action" style="display:flex; justify-content:space-around; align-items:center">
+                            <li class="action-item" style="list-style-type: none; font-size: 18px">
+                                @*<a class="action-icon" href="@Url.Action("Edit", "Seminars", new{ id = @item.Id})">*@
+                                <a class="action-icon" href=@Url.Action("Edit", "IC")>
+                                    <i class="fa-solid fa-pen-to-square icon"></i>
+                                </a>
+                            </li>
+                            <li class="action-item" style="list-style-type:none; font-size: 18px">
+                                <a data-toggle="modal" data-target="#myModal">
+                                    <i class="fa-solid fa-trash-can icon"></i>
+                                </a>
+                            </li>
+                        </td>
+                    </tr>               
+                    <tr>
+                        <td>
+                            <a href=@Url.Action("Index", "ICParticipants")>Ngày CNTT Hàn Quốc 2022</a>
+                        </td>
+                        <td>
+                            Hà Nội/HCMC + Đà Nẵng
+                        </td>
+                        <td>
+                            19/08/2022
+                        </td>
+                        <td class="td-action" style="display:flex; justify-content:space-around; align-items:center">
+                            <li class="action-item" style="list-style-type: none; font-size: 18px">
+                                @*<a class="action-icon" href="@Url.Action("Edit", "Seminars", new{ id = @item.Id})">*@
+                                <a class="action-icon" href=@Url.Action("Edit", "IC")>
+                                    <i class="fa-solid fa-pen-to-square icon"></i>
+                                </a>
+                            </li>
+                            <li class="action-item" style="list-style-type:none; font-size: 18px">
+                                <a  data-toggle="modal" data-target="#myModal">
+                                    <i class="fa-solid fa-trash-can icon"></i>
+                                </a>
+                            </li>
+                        </td>
+                    </tr>
+
+                </tbody>
+            </table>
+            <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog">
+                <div class="modal-dialog" role="document">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="myModalLabel">THÔNG BÁO !</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                </div>
+                <div class="modal-body">
+                    Xác nhận xóa quan hệ quốc tế này và tất cả thành viên có trong sự kiện này ?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Hủy</button>
+                    <button type="button" class="button-lc">Xác nhận</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+
+        $('#create').click(function () {
+            location.href = "@Url.Action("CreateOrUpdate","IC")";
+        })
+
+    </script>
+    <script>
+                    $(".delete-btn").on("click", function () {
+                        var id = $(this).data("id");
+                        $.ajax({
+                            url: "@Url.Action("DeleteSelected", "Seminars")",
+                            data: { id: id },
+                            success: function (data) {
+                                console.log(data);
+                                $("#deleteModal .modal-dialog").html(data);
+                                $("#deleteModal").modal("show");
+                            }
+                        });
+                    });
+    </script>
+</div>
