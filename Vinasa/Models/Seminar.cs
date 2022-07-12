@@ -18,6 +18,7 @@ namespace Vinasa.Models
 
         [Display(Name = "Tên Hội Nghị")]
         [Required(ErrorMessage = "Vui lòng điền trường này!")]
+        [SeminarRequired(ErrorMessage = "Đã tồn tại hội nghị!")]
         [StringRequired(ErrorMessage = "Vui lòng điền trường này!")]
         public string Title { get; set; }
 

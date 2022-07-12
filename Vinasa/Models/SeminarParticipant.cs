@@ -23,6 +23,8 @@ namespace Vinasa.Models
         [Display(Name = "Mã số thuế")]
         [Required(ErrorMessage = "Vui lòng điền trường này!")]
         [StringRequired(ErrorMessage = "Vui lòng điền trường này!")]
+        [RegularExpression(@"^[0-9]*$", ErrorMessage = "Không hợp lệ")]
+
         public string TaxNumber { get; set; }
 
         [Display(Name = "Tên đơn vị")]
@@ -38,11 +40,13 @@ namespace Vinasa.Models
         [Display(Name = "Email")]
         [Required(ErrorMessage = "Vui lòng điền trường này!")]
         [StringRequired(ErrorMessage = "Vui lòng điền trường này!")]
+        [RegularExpression("^[a-zA-Z0-9_\\.-]+@([a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$", ErrorMessage = "Không hợp lệ")]
         public string Email { get; set; }
 
         [Display(Name = "Di động")]
         [Required(ErrorMessage = "Vui lòng điền trường này!")]
         [StringRequired(ErrorMessage = "Vui lòng điền trường này!")]
+        [RegularExpression(@"^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$", ErrorMessage = "Không hợp lệ")]
         public string PhoneNumber { get; set; }
 
         [Display(Name = "Tỉnh thành")]
