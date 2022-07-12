@@ -99,7 +99,7 @@ namespace Vinasa.Controllers
             var newPassword = adminAccountModels.newMatKhau;
             var rePassword = adminAccountModels.reMatKhau;
 
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 if (oldPassword != null)
                 {
@@ -129,7 +129,6 @@ namespace Vinasa.Controllers
                             TempData["Message"] = "Mật khẩu cũ không chính xác";
                             return View();
                         }
-
                         db.SaveChanges();
                     }
                 }
