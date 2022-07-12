@@ -14,12 +14,20 @@
     <title>QUẢN LÝ HỘI VIÊN VINASA - ĐĂNG NHẬP</title>
 
     <!-- Custom fonts for this template-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <!-- Custom styles for this template-->
+
     <link href="~/css/style.css" rel="stylesheet" />
 
+    <link rel="icon" href="~/img/iconVinasa (2).png" type="image/png">
+
+    <!-- Custom styles for this template-->
+
 </head>
-<body class="bg-gradient-primary">
+<body class="bg-gradient-primary ">
     <div class="container-lg">
         <div class="login-form">
             <div class="left-content">
@@ -39,7 +47,7 @@
                         @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
                     </div>
                     <div class="input-wrapper">
-                        <input class="ip-form" type="password" id="password" autocomplete="off" required @Html.PasswordFor(m => m.MatKhau)
+                        <input class="ip-form" type="password" id="password" required @Html.PasswordFor(m => m.MatKhau)
                         <label class="lb-form" for="password">Mật Khẩu</label>
                         @Html.ValidationMessageFor(m => m.MatKhau, "", new { @class = "text-danger" })
                     </div>

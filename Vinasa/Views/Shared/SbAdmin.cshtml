@@ -57,9 +57,9 @@
                 </a>
             </li>
 
-            <li class="nav-item" href="#" data-toggle="collapse" data-target="#collapsePages"
-                aria-expanded="true" aria-controls="collapsePages">
-                <a href="#" class="nav-link">
+            <li class="nav-item"" href="#" data-toggle="collapse" data-target="#collapsePages"
+                aria-expanded="false" aria-controls="collapsePages">
+                <a class="nav-link " href="#">
                     <i class="fas fa-fw fa-user"></i>
                     <span>Tài khoản</span>
                 </a>
@@ -78,29 +78,28 @@
                     <span>Hội Nghị</span>
                 </a>
             </li>
-            <!-- Nav Item - Charts -->
             <li class="nav-item">
-                <a class="nav-link" href="charts.html">
-                    <i class="fas fa-fw fa-graduation-cap"></i>
-                    <span>Khoá Học</span>
-                </a>
-            </li>
-            <!-- Nav Item - Charts -->
-            <li class="nav-item">
-                <a class="nav-link" href="charts.html">
-                    <i class="fas fa-fw fa-globe"></i>
-                    <span>Quan Hệ Quốc Tế</span>
-                </a>
-            </li>
-
-            <!-- Nav Item - Tables -->
-            <li class="nav-item">
-                <a class="nav-link" href="tables.html">
+                <a class="nav-link" href="@Url.Action("Index","Award")">
                     <i class="fas fa-fw fa-award"></i>
                     <span>Giải Thưởng</span>
                 </a>
             </li>
+            <!-- Nav Item - Charts -->
+            <li class="nav-item">
+                <a class="nav-link" href="@Url.Action("Index","Course")">
+                    <i class="fas fa-fw fa-graduation-cap"></i>
+                    <span>Khoá Đào Tạo</span>
+                </a>
+            </li>
+            <!-- Nav Item - Charts -->
+            <li class="nav-item">
+                <a class="nav-link" href="@Url.Action("Index","IC")">
+                    <i class="fas fa-fw fa-globe"></i>
+                    <span>Hội Nghị Quốc Tế</span>
+                </a>
+            </li>
 
+            <!-- Nav Item - Tables -->
             <!-- Nav Item - Tables -->
             <li class="nav-item">
                 <a class="nav-link" href="tables.html">

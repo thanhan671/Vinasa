@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using Vinasa.DAL;
 
 namespace Vinasa.Validation
 {
+
     public class StringRequired : ValidationAttribute
     {
         public override bool IsValid(object value)
@@ -37,4 +39,18 @@ namespace Vinasa.Validation
             return iValue > 0;
         }
     }
+    public class SeminarRequired : ValidationAttribute
+    {
+        private readonly SeminarContext _db = new SeminarContext();
+
+        public override bool IsValid(object value)
+        {
+            if (value == null)
+                return false;
+
+            var seminar = _db.Seminars.FirstOrDefault(it => it.Title == value.ToString());
+            return !(seminar != null && seminar.Id > 0);
+        }
+    }
+
 }

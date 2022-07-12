@@ -1,6 +1,6 @@
 ﻿@model Vinasa.Models.SeminarParticipant
 
-@Html.HiddenFor(model => model.SeminarId);
+@Html.HiddenFor(model => model.SeminarId)
 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
 <div class="input-wrapper">
@@ -85,7 +85,7 @@
     </label>
 </div>
 <div class="button-form">
-    <input type="submit" class="button-lc" value="Xác Nhận"></input>
     <button class="button-cancel" onclick="location.href = 'javascript:history.go(-1)'">Huỷ</button>
+    <input type="submit" class="button-lc" value="Xác Nhận"></input>
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>

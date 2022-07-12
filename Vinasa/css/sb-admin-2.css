@@ -12255,7 +12255,10 @@ form.user .btn-user {
         clip: rect(67px, 9999px, 68px, 0);
     }
 }
-
+.form-inputs-odd {
+    display: flex !important;
+    flex-wrap: wrap !important;
+}
 .error:before {
     content: attr(data-text);
     position: absolute;
@@ -12282,3 +12285,17 @@ footer.sticky-footer {
 body.sidebar-toggled footer.sticky-footer {
     width: 100%;
 }
+.button-download {
+    height: 40px;
+    width: 160px;
+    margin: 10px 10px;
+    background: #1f6021;
+    color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+}
+
+    .button-download:hover {
+        background-color: #051D65;
+        color: #F69928;
+    }

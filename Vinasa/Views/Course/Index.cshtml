@@ -1,0 +1,97 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/sbadmin.cshtml";
+}
+
+<!-- Page Heading -->
+<h1 class="h3 mb-2 text-gray-800">Đào Tạo</h1>
+
+<!-- DataTales Example -->
+<div class="card shadow mb-4">
+    <div class="card-header py-3" style=" display: flex; justify-content: space-between; align-items: center;">
+        <div class="right-content">
+            <h6 class="m-0 font-weight-bold text-primary" style="color: #19315D ">Danh sách các khóa đào tạo</h6>
+        </div>
+        <div class="left-content">
+            <button class="button-lc" onclick="location.href='@Url.Action("Create", "Course")'">Thêm Mới</button>
+        </div>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>
+                            Tên khóa đào tạo
+                        </th>
+                        <th>
+                            Thời gian bắt đầu
+                        </th>
+                        <th>
+                            Thời gian kết thúc
+                        </th>
+                        <th>
+                            Hình thức
+                        </th>
+                        <th class="action-column">Chức năng</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    <tr>
+                        <td>
+                            <a href="@Url.Action("Index","CourseParticipants")">
+                                Nhà đầu tư start-up công nghệ số
+                            </a>
+                        </td>
+                        <td>
+                            24/09/2022
+                        </td>
+                        <td>
+                            26/09/2022
+                        </td>
+                        <td>
+                            Online
+                        </td>
+                        <td class="td-action" style="display:flex; justify-content:space-around; align-items:center">
+                            <li class="action-item" style="list-style-type: none; font-size: 18px">
+                                <a class="action-icon" href="@Url.Action("Edit","Course")">
+                                    <i class="fa-solid fa-pen-to-square icon"></i>
+                                </a>
+                            </li>
+                            <li class="action-item" style="list-style-type: none; font-size: 18px">
+                                <a class="action-icon delete-btn" data-id="" data-toggle="modal" data-target="#myModal">
+                                    <i class="fa-solid fa-trash-can icon"></i>
+                                </a>
+                            </li>
+                        </td>
+                    </tr>
+
+                </tbody>
+            </table>
+            <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog">
+                <div class="modal-dialog" role="document">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="myModalLabel">THÔNG BÁO !</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                </div>
+                <div class="modal-body">
+                    Xác nhận xóa khóa học và tất cả thành viên của khóa học này ?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Hủy</button>
+                    <button type="button" class="button-lc">Xác nhận</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

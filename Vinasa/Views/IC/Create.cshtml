@@ -1,0 +1,44 @@
+﻿
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/sbadmin.cshtml";
+}
+
+<div class="row">
+    <div class="col-6">
+        <h5 class="heading">Thêm Hội Nghị Quốc Tế</h5>
+        <form class="form-field" method="post" enctype="multipart/form-data">
+            <div class="input-wrapper">
+                <input class="ip-form" type="text" id="tax" contenteditable="true" required />
+                <label class="lb-form" for="tax">Tên Hội Nghị Quốc Tế</label>
+            </div>
+            <div class="input-wrapper">
+                <input class="ip-form" type="datetime-local" contenteditable="true" />
+                <label class="lb-form">Thời Gian Diễn Ra</label>
+            </div>
+            <div class="input-wrapper">
+                <input class="ip-form" type="text" contenteditable="true" />
+                <label class="lb-form" for="name">Địa Điểm Diễn Ra</label>
+            </div>
+        </form>
+    </div>
+
+</div>
+<div class="button-form f-l">
+    <button class="button-cancel" id="cancel">Huỷ</button>
+    <button class="button-lc" type="submit" name="save">Xác Nhận</button>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+
+    $('#cancel').click(function () {
+        location.href = 'javascript:history.go(-1)';
+    })
+
+</script>
+@if (TempData["Message"] != null)
+{
+    <p class="alert alert-success" id="successMessage">@TempData["Message"]</p>
+}

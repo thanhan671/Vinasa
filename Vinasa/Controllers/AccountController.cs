@@ -128,7 +128,8 @@ namespace Vinasa.Controllers
                         {
                             TempData["Message"] = "Mật khẩu cũ không chính xác";
                             return View();
-                        }    
+                        }
+
                         db.SaveChanges();
                     }
                 }

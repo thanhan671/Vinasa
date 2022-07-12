@@ -228,8 +228,6 @@ namespace Vinasa.Controllers
             return View(memberAccountModels);
         }
 
-
-        //[HttpPost/*, ActionName("ImportExcel")*/]
         [HttpPost]
         public ActionResult ImportExcel(FormCollection formCollection)
         {
@@ -340,6 +338,14 @@ namespace Vinasa.Controllers
             return RedirectToAction("Index", "Member", new { area = " " });
         }
 
+        public FileResult Download()
+        {
+            string path = Server.MapPath("~/Content/Files");
+            string filename = Path.GetFileName("MauHoiVien.xlsx");
+
+            string fullPath = Path.Combine(path, filename);
+            return File(fullPath, "download/xlsx", "MauHoiVien.xlsx");
+        }
         //public ActionResult ImportExcel()
         //{
         //    CheckRole();

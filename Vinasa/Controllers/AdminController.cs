@@ -136,10 +136,10 @@ namespace Vinasa.Controllers
                 MatKhau = acc.MatKhau
             }).SingleOrDefault();
 
-            if(Session["AccountID"].Equals(id))
+            if (Session["AccountID"].Equals(id))
             {
                 adminAccountModels.isEditMode = false;
-            }    
+            }
             else
             {
                 adminAccountModels.isEditMode = true;

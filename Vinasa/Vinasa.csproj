@@ -177,7 +177,13 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\AwardController.cs" />
+    <Compile Include="Controllers\AwardParticipantsController.cs" />
+    <Compile Include="Controllers\CourseController.cs" />
+    <Compile Include="Controllers\CourseParticipantsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ICController.cs" />
+    <Compile Include="Controllers\ICParticipantsController.cs" />
     <Compile Include="Controllers\MemberController.cs" />
     <Compile Include="Controllers\ProvincesController.cs" />
     <Compile Include="Controllers\SeminarParticipantsController.cs" />
@@ -270,6 +276,8 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="img\background.jpg" />
+    <Content Include="img\bg.png" />
     <Content Include="img\big-catalog-16062358931 %281%29.png" />
     <Content Include="img\iconVinasa %282%29.png" />
     <Content Include="img\undraw_posting_photo.svg" />
@@ -299,6 +307,8 @@
     </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Content\Files\MauHoiVien.xlsx" />
+    <Content Include="Content\Files\MauSuKien.xlsx" />
     <None Include="Properties\PublishProfiles\FTPProfile.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
@@ -2321,6 +2331,24 @@
     <Content Include="vendor\jquery\jquery.slim.min.map" />
     <Content Include="Views\Shared\sbadmin.cshtml" />
     <Content Include="Views\Account\Profile.cshtml" />
+    <Content Include="Views\Award\Index.cshtml" />
+    <Content Include="Views\Award\Create.cshtml" />
+    <Content Include="Views\Award\Edit.cshtml" />
+    <Content Include="Views\AwardParticipants\Index.cshtml" />
+    <Content Include="Views\AwardParticipants\Detail.cshtml" />
+    <Content Include="Views\AwardParticipants\Edit.cshtml" />
+    <Content Include="Views\IC\Index.cshtml" />
+    <Content Include="Views\IC\Edit.cshtml" />
+    <Content Include="Views\IC\Create.cshtml" />
+    <Content Include="Views\ICParticipants\Index.cshtml" />
+    <Content Include="Views\ICParticipants\Edit.cshtml" />
+    <Content Include="Views\ICParticipants\Details.cshtml" />
+    <Content Include="Views\Course\Index.cshtml" />
+    <Content Include="Views\Course\Edit.cshtml" />
+    <Content Include="Views\Course\Create.cshtml" />
+    <Content Include="Views\CourseParticipants\Index.cshtml" />
+    <Content Include="Views\CourseParticipants\Edit.cshtml" />
+    <Content Include="Views\CourseParticipants\Detail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
