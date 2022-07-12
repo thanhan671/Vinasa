@@ -123,7 +123,6 @@ namespace Vinasa.Controllers
                                     return View();
                                 }
                             }
-
                         }
                         else
                         {
