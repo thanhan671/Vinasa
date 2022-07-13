@@ -99,7 +99,7 @@ namespace Vinasa.Controllers
             var newPassword = adminAccountModels.newMatKhau;
             var rePassword = adminAccountModels.reMatKhau;
 
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 if (oldPassword != null)
                 {
@@ -123,7 +123,6 @@ namespace Vinasa.Controllers
                                     return View();
                                 }
                             }
-
                         }
                         else
                         {
