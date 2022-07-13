@@ -32,7 +32,6 @@
         <div class="login-form">
             <div class="left-content">
                 <h2 class="heading-left">
-                    Đăng nhập để tiếp tục</p>
                     <img src="~/img/big-catalog-16062358931 (1).png" alt="" class="logo" />
             </div>
             @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = " user form-horizontal", role = "form" }))
@@ -40,7 +39,7 @@
                 @Html.AntiForgeryToken()
                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                 <div class="form-group" class="right-content">
-                    <h2 class="heading-right">Nhập email & mật khẩu</h2>
+                    <h2 class="heading-right">ĐĂNG NHẬP ĐỂ TIẾP TỤC</h2>
                     <div class="input-wrapper">
                         <input class="ip-form" type="text" id="email" required @Html.TextBoxFor(m => m.Email)
                         <label class="lb-form" for="username">Email</label>
