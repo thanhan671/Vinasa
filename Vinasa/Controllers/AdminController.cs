@@ -67,7 +67,7 @@ namespace Vinasa.Controllers
             currentRole = (int)Session["AccountType"];
             if (currentRole == 2)
             {
-                return RedirectToAction("Index", "Admin", new { area = " " });
+                return RedirectToAction("ManageAccount", "Admin", new { area = " " });
             }
 
             if (ModelState.IsValid)
@@ -100,7 +100,7 @@ namespace Vinasa.Controllers
                                     db.TAIKHOANADMINs.Add(newAccount);
                                     db.SaveChanges();
                                     ViewBag.Message = newAccount.Ten + " tài khoản được tạo thành công";
-                                    return RedirectToAction("Index");
+                                    return RedirectToAction("ManageAccount");
                                 }
                                 catch (Exception ex)
                                 {
@@ -161,7 +161,7 @@ namespace Vinasa.Controllers
             currentRole = (int)Session["AccountType"];
             if (currentRole == 2)
             {
-                return RedirectToAction("Index", "Admin", new { area = " " });
+                return RedirectToAction("ManageAccount", "Admin", new { area = " " });
             }
 
             var id = adminAccountModels.ID;
@@ -189,7 +189,7 @@ namespace Vinasa.Controllers
                             }
 
                             db.SaveChanges();
-                            return RedirectToAction("Index", "Admin", new { area = " " });
+                            return RedirectToAction("ManageAccount", "Admin", new { area = " " });
                         }
                         catch (Exception ex)
                         {
@@ -199,7 +199,7 @@ namespace Vinasa.Controllers
                 }
             }
 
-            return RedirectToAction("Index", "Admin", new { area = " " });
+            return RedirectToAction("ManageAccount", "Admin", new { area = " " });
         }
 
         public ActionResult Delete(int id)
@@ -221,7 +221,7 @@ namespace Vinasa.Controllers
             {
                 ViewBag.Message = "Không thể xóa với tài khoản quản lí";
             }
-            return RedirectToAction("Index", "Admin", new { area = " " });
+            return RedirectToAction("ManageAccount", "Admin", new { area = " " });
         }
         #endregion
 

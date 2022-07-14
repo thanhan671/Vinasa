@@ -11604,12 +11604,17 @@ body.sidebar-toggled footer.sticky-footer {
     display: flex;
     position: relative;
     line-height: 14px;
-    margin: 20px 10px;
+    margin: 15px 10px;
+}
+.message-error {
+    display: flex;
+    position: relative;
+    line-height: 2px;
+    margin-left: 30px;
 }
 
-
 .lb-form {
-    color: #bbb;
+    color: #989898;
     font-size: 11px;
     text-transform: uppercase;
     position: absolute;
