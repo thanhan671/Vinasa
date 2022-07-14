@@ -279,6 +279,7 @@
     <Content Include="img\background.jpg" />
     <Content Include="img\bg.png" />
     <Content Include="img\big-catalog-16062358931 %281%29.png" />
+    <Content Include="img\iconuser.png" />
     <Content Include="img\iconVinasa %282%29.png" />
     <Content Include="img\undraw_posting_photo.svg" />
     <Content Include="img\undraw_profile.svg" />
@@ -2025,7 +2026,7 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Member\Index.cshtml" />
+    <Content Include="Views\Member\ManageMember.cshtml" />
     <Content Include="vendor\bootstrap\js\bootstrap.bundle.js.map" />
     <Content Include="vendor\bootstrap\js\bootstrap.bundle.min.js.map" />
     <Content Include="vendor\bootstrap\js\bootstrap.js.map" />
@@ -2175,7 +2176,7 @@
     <Content Include="vendor\fontawesome-free\webfonts\fa-solid-900.woff2" />
     <Content Include="vendor\jquery\jquery.min.map" />
     <Content Include="vendor\jquery\jquery.slim.min.map" />
-    <Content Include="Views\Admin\Index.cshtml" />
+    <Content Include="Views\Admin\ManageAccount.cshtml" />
     <Content Include="Views\Admin\Edit.cshtml" />
     <Content Include="Views\Member\Edit.cshtml" />
     <Content Include="Views\Member\DetailMember.cshtml" />

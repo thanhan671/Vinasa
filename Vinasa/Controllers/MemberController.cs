@@ -23,7 +23,7 @@ namespace Vinasa.Controllers
         #region main method
         // GET: Member
         [HttpGet]
-        public ActionResult Index()
+        public ActionResult ManageMember()
         {
             if (Session["AccountID"] == null)
             {
@@ -41,7 +41,7 @@ namespace Vinasa.Controllers
         }
 
         [HttpPost]
-        public ActionResult Index(int memberID)
+        public ActionResult ManageMember(int memberID)
         {
             if (Session["AccountID"] == null)
             {

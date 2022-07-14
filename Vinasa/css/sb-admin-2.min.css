@@ -10501,16 +10501,16 @@ a:focus {
             position: absolute;
             left: calc(6.5rem + 1.5rem / 2);
             z-index: 1;
-            top: 2px
+            top: 2px;
         }
 
             .sidebar .nav-item .collapse .collapse-inner {
                 border-radius: .35rem;
-                box-shadow: 0 .15rem 1.75rem 0 rgba(58,59,69,.15)
+                box-shadow: 0 .15rem 1.75rem 0 rgba(58,59,69,.15);
             }
 
         .sidebar .nav-item .collapsing {
-            display: none;
+            display: block;
             transition: none
         }
 
@@ -10518,7 +10518,7 @@ a:focus {
                 padding: .5rem 0;
                 min-width: 10rem;
                 font-size: .85rem;
-                margin: 0 0 1rem 0
+                margin: 0 0 1rem 0;
             }
 
                 .sidebar .nav-item .collapse .collapse-inner .collapse-header, .sidebar .nav-item .collapsing .collapse-inner .collapse-header {
@@ -10528,7 +10528,8 @@ a:focus {
                     text-transform: uppercase;
                     font-weight: 800;
                     font-size: .65rem;
-                    color: #b7b9cc
+                    color: #b7b9cc;
+
                 }
 
                 .sidebar .nav-item .collapse .collapse-inner .collapse-item, .sidebar .nav-item .collapsing .collapse-inner .collapse-item {
@@ -11569,14 +11570,14 @@ body.sidebar-toggled footer.sticky-footer {
     height: 40px;
     width: 100px;
     margin: 10px 10px;
-    background: #ccc;
+    background: #8d8d8d;
     color: #fff;
     border: 1px solid #ccc;
     border-radius: 10px;
 }
 
     .button-cancel:hover {
-        background: #bbb;
+        background: #838383;
         color: #F69928;
     }
 
