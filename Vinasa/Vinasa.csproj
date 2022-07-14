@@ -188,6 +188,7 @@
     <Compile Include="Controllers\ProvincesController.cs" />
     <Compile Include="Controllers\SeminarParticipantsController.cs" />
     <Compile Include="Controllers\SeminarsController.cs" />
+    <Compile Include="DAL\CourseContext.cs" />
     <Compile Include="DAL\SeminarContext.cs" />
     <Compile Include="DAL\SeminarInitializer.cs" />
     <Compile Include="Global.asax.cs">
