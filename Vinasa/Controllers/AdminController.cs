@@ -67,10 +67,10 @@ namespace Vinasa.Controllers
             currentRole = (int)Session["AccountType"];
             if (currentRole == 2)
             {
-                return RedirectToAction("Index", "Admin", new { area = " " });
+                return RedirectToAction("ManageAccount", "Admin", new { area = " " });
             }
 
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 if (registerPassword.Equals(registerRePassword))
                 {
@@ -100,7 +100,7 @@ namespace Vinasa.Controllers
                                     db.TAIKHOANADMINs.Add(newAccount);
                                     db.SaveChanges();
                                     ViewBag.Message = newAccount.Ten + " tài khoản được tạo thành công";
-                                    return RedirectToAction("Index");
+                                    return RedirectToAction("ManageAccount");
                                 }
                                 catch (Exception ex)
                                 {

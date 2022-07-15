@@ -45,14 +45,14 @@ namespace Vinasa.Controllers
                     }
                     else if (checkAccount != null && !checkAccount.TrangThai.Equals(1))
                     {
-                        ViewBag.Message = checkAccount.Email + " tài khoản này chưa được kích hoạt, vui lòng liên hệ với quản trị viên để kích hoạt tài khoản này";
+                        ViewBag.Message = checkAccount.Email + " tai khoan nay chua duoc kich hoat, vui long lien he voi quan tri vien de kich hoat tai khoan nay";
                         return View();
                     }
 
                 }
             }
 
-            ViewBag.Message = "Tài khoản hoặc mật khẩu không đúng";
+            ViewBag.Message = "Tai khoan hoac mat khau khong dung";
             return View();
         }
 
