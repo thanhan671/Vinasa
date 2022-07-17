@@ -42,7 +42,7 @@
         </div>
         <div class="input-wrapper">
             @Html.LabelFor(model => model.ProvinceId, new { @class = "lb-form" })
-            @Html.DropDownListFor(model => model.ProvinceId, Model.Provinces, new { @class = "ip-form form-control select-region", @readonly = "readonly" })
+            @Html.DropDownListFor(model => model.ProvinceId, Model.Provinces, new { @class = "ip-form", @readonly = "readonly" })
         </div>
         <div class="input-wrapper">
             @Html.EditorFor(model => model.Operation, new { htmlAttributes = new { @class = "ip-form", @readonly = "readonly" } })

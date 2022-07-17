@@ -221,7 +221,7 @@ namespace Vinasa.Controllers
             {
                 ViewBag.Message = "Không thể xóa với tài khoản quản lí";
             }
-            return RedirectToAction("Index", "Admin", new { area = " " });
+            return RedirectToAction("ManageAccount", "Admin", new { area = " " });
         }
         #endregion
 

@@ -45,7 +45,9 @@ namespace Vinasa.Controllers
                     }
                     else if (checkAccount != null && !checkAccount.TrangThai.Equals(1))
                     {
-                        ViewBag.Message = checkAccount.Email + " tai khoan nay chua duoc kich hoat, vui long lien he voi quan tri vien de kich hoat tai khoan nay";
+
+                        ViewBag.Message = checkAccount.Email + "  tai khoan nay chua duoc kich hoat, vui long lien he voi quan tri vien de kich hoat tai khoan";
+
                         return View();
                     }
 
@@ -119,7 +121,7 @@ namespace Vinasa.Controllers
                                 }
                                 else
                                 {
-                                    ViewBag.Message = "Mật khẩu mới và xác nhận mật khẩu không trùng";
+                                    ViewBag.Message = "Mat khau moi va xac nhan mat khau khong trung khop!";
                                     return View();
                                 }
                             }

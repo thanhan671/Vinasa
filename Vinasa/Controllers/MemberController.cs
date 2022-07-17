@@ -115,7 +115,7 @@ namespace Vinasa.Controllers
             currentRole = (int)Session["AccountType"];
             if (currentRole == 2)
             {
-                return RedirectToAction("Index", "Member", new { area = " " });
+                return RedirectToAction("ManageMember", "Member", new { area = " " });
             }
 
             var id = memberAccountModels.ID;
@@ -163,7 +163,7 @@ namespace Vinasa.Controllers
                             accountdata.KhuVuc = memberAccountModels.KhuVuc;
 
                             db.SaveChanges();
-                            return RedirectToAction("Index", "Member", new { area = " " });
+                            return RedirectToAction("ManageMember", "Member", new { area = " " });
                         }
                         catch (Exception ex)
                         {
@@ -178,11 +178,6 @@ namespace Vinasa.Controllers
         //public ActionResult DetailMember();
 
         #region support method
-        //private int FindRowID()
-        //{
-
-        //    //return memberID;
-        //}
         #endregion
         [HttpGet]
         public ActionResult DetailMember(int id)
@@ -234,7 +229,7 @@ namespace Vinasa.Controllers
             currentRole = (int)Session["AccountType"];
             if (currentRole == 2)
             {
-                return RedirectToAction("Index", "Member", new { area = " " });
+                return RedirectToAction("ManageMember", "Member", new { area = " " });
             }
 
             var memberlist = new List<HOIVIEN>();
@@ -316,7 +311,7 @@ namespace Vinasa.Controllers
                     throw new HttpException(e.ToString());
                 }
             }
-            return RedirectToAction("Index", "Member", new { area = " " });
+            return RedirectToAction("ManageMember", "Member", new { area = " " });
         }
 
         
@@ -335,7 +330,7 @@ namespace Vinasa.Controllers
             {
                 ViewBag.Message = "Không thể xóa với tài khoản quản lí";
             }
-            return RedirectToAction("Index", "Member", new { area = " " });
+            return RedirectToAction("ManageMember", "Member", new { area = " " });
         }
 
         public FileResult Download()
