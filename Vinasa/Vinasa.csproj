@@ -185,6 +185,7 @@
     <Compile Include="Controllers\ICController.cs" />
     <Compile Include="Controllers\ICParticipantsController.cs" />
     <Compile Include="Controllers\MemberController.cs" />
+    <Compile Include="Controllers\NguoiNhanGiaiThuongController.cs" />
     <Compile Include="Controllers\ProvincesController.cs" />
     <Compile Include="Controllers\SeminarParticipantsController.cs" />
     <Compile Include="Controllers\SeminarsController.cs" />
@@ -209,11 +210,16 @@
     <Compile Include="Migrations\202206300705012_Seminars3.designer.cs">
       <DependentUpon>202206300705012_Seminars3.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202207151922339_GiaiThuong.cs" />
+    <Compile Include="Migrations\202207151922339_GiaiThuong.designer.cs">
+      <DependentUpon>202207151922339_GiaiThuong.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AdminAccountModels.cs" />
     <Compile Include="Models\C__MigrationHistory.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\GiaiThuong.cs" />
     <Compile Include="Models\HOIVIEN.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -237,9 +243,8 @@
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
     </Compile>
-    <Compile Include="Models\Province.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
+    <Compile Include="Models\NguoiNhanGiaiThuong.cs" />
+    <Compile Include="Models\Province.cs" />
     <Compile Include="Models\QUYEN.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -2382,6 +2387,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202206300705012_Seminars3.resx">
       <DependentUpon>202206300705012_Seminars3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202207151922339_GiaiThuong.resx">
+      <DependentUpon>202207151922339_GiaiThuong.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

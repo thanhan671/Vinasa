@@ -1,0 +1,17 @@
+﻿@model Vinasa.Models.NguoiNhanGiaiThuong
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/sbadmin.cshtml";
+}
+
+<div class="container col-11 centerPage">
+    <h5 class="heading">Cập nhật Thông Tin người nhận giải thưởng</h5>
+    @using (Html.BeginForm("Create", "NguoiNhanGiaiThuong",
+         new { ReturnUrl = ViewBag.ReturnUrl },
+         FormMethod.Post, new { @class = "form-field" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.Partial("_CreateOrUpdate", Model);
+    }
+</div>

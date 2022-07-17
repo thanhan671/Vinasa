@@ -52,5 +52,17 @@ namespace Vinasa.Validation
             return !(seminar != null && seminar.Id > 0);
         }
     }
+    public class GiaiThuongRequired : ValidationAttribute
+    {
+        private readonly SeminarContext _db = new SeminarContext();
 
+        public override bool IsValid(object value)
+        {
+            if (value == null)
+                return false;
+
+            var giaiThuong = _db.GiaiThuong.FirstOrDefault(it => it.Title == value.ToString());
+            return !(giaiThuong != null && giaiThuong.Id > 0);
+        }
+    }
 }
