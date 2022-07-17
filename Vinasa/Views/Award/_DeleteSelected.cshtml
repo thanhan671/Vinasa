@@ -1,0 +1,23 @@
+﻿@model Vinasa.Models.GiaiThuong
+@using (Html.BeginForm("Delete", "Award"))
+{
+    @Html.AntiForgeryToken()
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title">THÔNG BÁO !</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            Xác nhận xóa giải thưởng và tất cả thành viên của giải thưởng này ?
+        </div>
+        <div class="modal-footer">
+            @Html.HiddenFor(model => model.Id)
+            <button type="button" class="btn btn-default" data-dismiss="modal">Huỷ</button>
+            <button class="button-lc">Xác nhận</button>
+        </div>
+    </div>
+}
+
+

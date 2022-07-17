@@ -1,13 +1,13 @@
 ﻿@model Vinasa.Models.NguoiNhanGiaiThuong
 
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "Create";
     Layout = "~/Views/Shared/sbadmin.cshtml";
 }
 
 <div class="container col-11 centerPage">
-    <h5 class="heading">Cập nhật doanh nghiệp tham gia Giải thưởng</h5>
-    @using (Html.BeginForm("Edit", "AwardParticipants",
+    <h5 class="heading">Cập nhật Thông Tin doanh nghiệp tham gia giải thưởng</h5>
+    @using (Html.BeginForm("Create", "AwardParticipants",
          new { ReturnUrl = ViewBag.ReturnUrl },
          FormMethod.Post, new { @class = "form-field" }))
     {

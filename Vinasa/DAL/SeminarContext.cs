@@ -8,7 +8,7 @@ using Vinasa.Models;
 
 namespace Vinasa.DAL
 {
-    public class SeminarContext : DbContext 
+    public class SeminarContext : DbContext
     {
         public SeminarContext() : base("SeminarContext")
         {

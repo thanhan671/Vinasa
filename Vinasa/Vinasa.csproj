@@ -185,7 +185,6 @@
     <Compile Include="Controllers\ICController.cs" />
     <Compile Include="Controllers\ICParticipantsController.cs" />
     <Compile Include="Controllers\MemberController.cs" />
-    <Compile Include="Controllers\NguoiNhanGiaiThuongController.cs" />
     <Compile Include="Controllers\ProvincesController.cs" />
     <Compile Include="Controllers\SeminarParticipantsController.cs" />
     <Compile Include="Controllers\SeminarsController.cs" />
@@ -314,7 +313,7 @@
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Content\Files\MauHoiVien.xlsx" />
-    <Content Include="Content\Files\MauSuKien.xlsx" />
+    <Content Include="Content\Files\MauHoiNghi.xlsx" />
     <None Include="Properties\PublishProfiles\FTPProfile.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
@@ -2341,7 +2340,6 @@
     <Content Include="Views\Award\Create.cshtml" />
     <Content Include="Views\Award\Edit.cshtml" />
     <Content Include="Views\AwardParticipants\Index.cshtml" />
-    <Content Include="Views\AwardParticipants\Detail.cshtml" />
     <Content Include="Views\AwardParticipants\Edit.cshtml" />
     <Content Include="Views\IC\Index.cshtml" />
     <Content Include="Views\IC\Edit.cshtml" />
@@ -2355,6 +2353,14 @@
     <Content Include="Views\CourseParticipants\Index.cshtml" />
     <Content Include="Views\CourseParticipants\Edit.cshtml" />
     <Content Include="Views\CourseParticipants\Detail.cshtml" />
+    <Content Include="Views\Award\Details.cshtml" />
+    <Content Include="Views\Award\_DeleteSelected.cshtml" />
+    <Content Include="Views\Award\_CreateOrUpdate.cshtml" />
+    <Content Include="Views\AwardParticipants\Details.cshtml" />
+    <Content Include="Views\AwardParticipants\Create.cshtml" />
+    <Content Include="Views\AwardParticipants\_DeleteSelected.cshtml" />
+    <Content Include="Views\AwardParticipants\_CreateOrUpdate.cshtml" />
+    <Content Include="Views\AwardParticipants\_List.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
