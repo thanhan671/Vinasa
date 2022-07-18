@@ -2338,6 +2338,7 @@
     <Content Include="Views\CourseParticipants\Details.cshtml" />
     <Content Include="Views\CourseParticipants\_DeleteSelected.cshtml" />
     <Content Include="Views\CourseParticipants\_List.cshtml" />
+    <Content Include="Views\Course\_DeleteSelected.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

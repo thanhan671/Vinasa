@@ -69,5 +69,27 @@ namespace Vinasa.Controllers
             }
             return View(courseParticipants);
         }
+
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult Delete(int id, int courseId = -1)
+        {
+            var courseParticipants = _db.THAMGIAKHOAHOCs.Find(id);
+            _db.THAMGIAKHOAHOCs.Remove(courseParticipants);
+            _db.SaveChanges();
+            if (courseId > 0)
+                return RedirectToAction("Index", "CourseParticipants", new { id = courseId });
+            else
+                return RedirectToAction(nameof(Index));
+
+        }
+
+        public ActionResult DeleteSelected(int id, int courseId = -1)
+        {
+            var model = _db.THAMGIAKHOAHOCs.Where(m => m.Id == id).FirstOrDefault();
+            ViewBag.IdKhoahoc = courseId;
+            return PartialView("_DeleteSelected", model);
+        }
+
     }
 }
