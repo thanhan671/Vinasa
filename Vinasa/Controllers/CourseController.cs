@@ -17,12 +17,12 @@ namespace Vinasa.Controllers
 {
     public class CourseController : Controller
     {
-        private readonly SeminarContext _db = new SeminarContext();
+        private readonly SEP25Team16Entities2 _db = new SEP25Team16Entities2();
 
         // GET: Course
         public ActionResult Index()
         {
-            return View();
+            return View(_db.KHOAHOCs.ToList());
         }
         
 
@@ -51,12 +51,12 @@ namespace Vinasa.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Seminar seminar = _db.Seminars.Find(id);
-            if (seminar == null)
+            KHOAHOC khoaHoc = _db.KHOAHOCs.Find(id);
+            if (khoaHoc == null)
             {
                 return HttpNotFound();
             }
-            return View(seminar);
+            return View(khoaHoc);
         }
 
         [HttpPost]
@@ -69,6 +69,7 @@ namespace Vinasa.Controllers
                 _db.SaveChanges();
                 return RedirectToAction("Index");
             }
+
             return View(khoaHoc);
         }
 

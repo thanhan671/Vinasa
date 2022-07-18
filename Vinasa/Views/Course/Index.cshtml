@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Vinasa.Models.Seminar>
+﻿@model IEnumerable<Vinasa.Models.KHOAHOC>
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/sbadmin.cshtml";
@@ -23,51 +23,52 @@
                 <thead>
                     <tr>
                         <th>
-                            Tên khóa đào tạo
+                            @Html.DisplayNameFor(m => m.TenKhoaDaoTao)
                         </th>
                         <th>
-                            Thời gian bắt đầu
+                            @Html.DisplayNameFor(m => m.NgayBatDau)
                         </th>
                         <th>
-                            Thời gian kết thúc
+                            @Html.DisplayNameFor(m => m.NgayKetThuc)
                         </th>
                         <th>
-                            Hình thức
+                            @Html.DisplayNameFor(m => m.HinhThuc)
                         </th>
                         <th class="action-column">Chức năng</th>
                     </tr>
                 </thead>
                 <tbody>
-
-                    <tr>
-                        <td>
-                            <a href="@Url.Action("Index","CourseParticipants")">
-                                Nhà đầu tư start-up công nghệ số
-                            </a>
-                        </td>
-                        <td>
-                            24/09/2022
-                        </td>
-                        <td>
-                            26/09/2022
-                        </td>
-                        <td>
-                            Online
-                        </td>
-                        <td class="td-action" style="display:flex; justify-content:space-around; align-items:center">
-                            <li class="action-item" style="list-style-type: none; font-size: 18px">
-                                <a class="action-icon" href="@Url.Action("Edit","Course")">
-                                    <i class="fa-solid fa-pen-to-square icon"></i>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                <a href="@Url.Action("Index", "CourseParticipants", new { id = @item.Id })">
+                                    @Html.DisplayFor(m => item.TenKhoaDaoTao)
                                 </a>
-                            </li>
-                            <li class="action-item" style="list-style-type: none; font-size: 18px">
-                                <a class="action-icon delete-btn" data-id="" data-toggle="modal" data-target="#myModal">
-                                    <i class="fa-solid fa-trash-can icon"></i>
-                                </a>
-                            </li>
-                        </td>
-                    </tr>
-
+                            </td>
+                            <td>
+                                @Html.DisplayFor(m => item.NgayBatDau)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(m => item.NgayKetThuc)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(m => item.HinhThuc)
+                            </td>
+                            <td class="td-action" style="display:flex; justify-content:space-around; align-items:center">
+                                <li class="action-item" style="list-style-type: none; font-size: 18px">
+                                    <a class="action-icon" href="@Url.Action("Edit", "Course", new{ id = @item.Id})">
+                                        <i class="fa-solid fa-pen-to-square icon"></i>
+                                    </a>
+                                </li>
+                                <li class="action-item" style="list-style-type: none; font-size: 18px">
+                                    <a class="action-icon delete-btn" data-id="@item.Id">
+                                        <i class="fa-solid fa-trash-can icon"></i>
+                                    </a>
+                                </li>
+                            </td>
+                        </tr>
+                    }
                 </tbody>
             </table>
             <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog">
@@ -76,22 +77,20 @@
             </div>
         </div>
     </div>
-    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title" id="myModalLabel">THÔNG BÁO !</h4>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                </div>
-                <div class="modal-body">
-                    Xác nhận xóa khóa học và tất cả thành viên của khóa học này ?
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Hủy</button>
-                    <button type="button" class="button-lc">Xác nhận</button>
-                </div>
-            </div>
-        </div>
-    </div>
 </div>
 
+@section Scripts {
+    <script>
+        $(".delete-btn").on("click", function () {
+            var id = $(this).data("id");
+            $.ajax({
+                url: "@Url.Action("DeleteSelected", "Course")",
+                data: { id: id},
+                success: function (data) {
+                    $("#deleteModal .modal-dialog").html(data);
+                    $("#deleteModal").modal("show");
+                }
+            });
+        });
+    </script>
+}

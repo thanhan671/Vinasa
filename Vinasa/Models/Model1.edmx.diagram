@@ -14,11 +14,13 @@
         <AssociationConnector Association="SEP25Team16Model.FK_HOIVIEN_KHUVUC" ManuallyRouted="false" />
         <AssociationConnector Association="SEP25Team16Model.FK_TAIKHOANADMIN_QUYEN" ManuallyRouted="false" />
         <AssociationConnector Association="SEP25Team16Model.FK_TAIKHOANADMIN_TRANGTHAI" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="SEP25Team16Model.C__MigrationHistory" Width="1.5" PointX="9.25" PointY="0.75" />
         <EntityTypeShape EntityType="SEP25Team16Model.Province" Width="1.5" PointX="8.25" PointY="9.75" />
         <EntityTypeShape EntityType="SEP25Team16Model.SeminarParticipant" Width="1.5" PointX="10.5" PointY="4" />
         <EntityTypeShape EntityType="SEP25Team16Model.Seminar" Width="1.5" PointX="8.25" PointY="5.125" />
         <AssociationConnector Association="SEP25Team16Model.FK_dbo_SeminarParticipants_dbo_Seminars_SeminarId" />
+        <EntityTypeShape EntityType="SEP25Team16Model.KHOAHOC" Width="1.5" PointX="10.375" PointY="10.375" />
+        <EntityTypeShape EntityType="SEP25Team16Model.THAMGIAKHOAHOC" Width="1.5" PointX="12.625" PointY="10" />
+        <AssociationConnector Association="SEP25Team16Model.FK_THAMGIAKHOAHOC_KHOAHOC" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

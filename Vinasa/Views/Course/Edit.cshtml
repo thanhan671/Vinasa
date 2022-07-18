@@ -1,35 +1,41 @@
-﻿
+﻿@model Vinasa.Models.KHOAHOC
 @{
     ViewBag.Title = "Edit";
     Layout = "~/Views/Shared/sbadmin.cshtml";
 }
+@using (Html.BeginForm("Edit", "Course", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
 
-<div class="container">
-    <div class="col-6">
-        <h5 class="heading">Sửa Thông Tin Khóa Đào Tạo</h5>
+    <div class="container">
+        <div class="col-6">
+            <h5 class="heading">Sửa Thông Tin Khóa Đào Tạo</h5>
 
-        <form class="form-field" method="post" enctype="multipart/form-data">
-            <div class="input-wrapper">
-                <input class="ip-form" type="text" id="tax" contenteditable="true" value="Nhà đầu tư start-up công nghệ số" />
-                <label class="lb-form" for="tax">Tên khóa đào tạo</label>
+            <form class="form-field" method="post" enctype="multipart/form-data">
+                <div class="input-wrapper">
+                    @Html.EditorFor(m => m.TenKhoaDaoTao, new { htmlAttributes = new { @class = "ip-form", @required = "required" } })
+                    @Html.LabelFor(m => m.TenKhoaDaoTao, new { @class = "lb-form" })
+                </div>
+                <div class="input-wrapper">
+                    @Html.TextBoxFor(m => m.NgayBatDau, "{0:yyyy-MM-dd}", new { @class = "ip-form", @type = "date", @required = "required" })
+                    @Html.LabelFor(m => m.NgayBatDau, new { @class = "lb-form" })
+                </div>
+                <div class="input-wrapper">
+                    @Html.TextBoxFor(m => m.NgayKetThuc, "{0:yyyy-MM-dd}", new { @class = "ip-form", @type = "date", @required = "required" })
+                    @Html.LabelFor(m => m.NgayKetThuc, new { @class = "lb-form" })
+                </div>
+                <div class="input-wrapper">
+                    @Html.EditorFor(m => m.HinhThuc, new { htmlAttributes = new { @class = "ip-form", @required = "required" } })
+                    @Html.LabelFor(m => m.HinhThuc, new { @class = "lb-form" })
+                </div>
+            </form>
+            <div class="button-form">
+                <button class="button-cancel" onclick="location.href='@Url.Action("Index", "Course")'" type="button" name="cancel">Huỷ</button>
+                <button class="button-lc" type="submit" name="save">Xác Nhận</button>
             </div>
-            <div class="input-wrapper">
-                <input class="ip-form" type="date" contenteditable="true">
-                <label class="lb-form" for="name">Thời gian bắt đầu</label>
-            </div>
-            <div class="input-wrapper">
-                <input class="ip-form" type="date" contenteditable="true">
-                <label class="lb-form" for="name">Thời gian kết thúc</label>
-            </div>
-            <div class="input-wrapper">
-                <input class="ip-form" type="text" contenteditable="true" value="Online">
-                <label class="lb-form" for="name">Hình thức</label>
-            </div>
-        </form>
+        </div>
+
     </div>
-    <div class="button-form">
-        <button class="button-cancel" onclick="location.href='javascript:history.go(-1)'" type="button" name="cancel">Huỷ</button>
-        <button class="button-lc" type="submit" name="save">Xác Nhận</button>
-    </div>
-</div>
+}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 

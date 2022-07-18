@@ -5,16 +5,6 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="SEP25Team16Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityType Name="__MigrationHistory">
-          <Key>
-            <PropertyRef Name="MigrationId" />
-            <PropertyRef Name="ContextKey" />
-          </Key>
-          <Property Name="MigrationId" Type="nvarchar" MaxLength="150" Nullable="false" />
-          <Property Name="ContextKey" Type="nvarchar" MaxLength="300" Nullable="false" />
-          <Property Name="Model" Type="varbinary(max)" Nullable="false" />
-          <Property Name="ProductVersion" Type="nvarchar" MaxLength="32" Nullable="false" />
-        </EntityType>
         <EntityType Name="HOIVIEN">
           <Key>
             <PropertyRef Name="ID" />
@@ -54,6 +44,16 @@
           <Property Name="Fanpage" Type="nvarchar(max)" Nullable="false" />
           <Property Name="ThoiGianGiaNhap" Type="nvarchar" MaxLength="10" Nullable="false" />
           <Property Name="KhuVuc" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="KHOAHOC">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TenKhoaDaoTao" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="NgayBatDau" Type="date" Nullable="false" />
+          <Property Name="NgayKetThuc" Type="date" Nullable="false" />
+          <Property Name="HinhThuc" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="KHUVUC">
           <Key>
@@ -130,6 +130,20 @@
           <Property Name="PhongBan" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="MatKhau" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
+        <EntityType Name="THAMGIAKHOAHOC">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="HoTen" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="CongTyToChucCoQuan" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="ChucDanh" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Sdt" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="SoLuongHocVien" Type="int" Nullable="false" />
+          <Property Name="HoiVienVinasa" Type="bit" Nullable="false" />
+          <Property Name="IdKhoaHoc" Type="int" />
+        </EntityType>
         <EntityType Name="TRANGTHAI">
           <Key>
             <PropertyRef Name="IDTrangThai" />
@@ -185,9 +199,21 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_THAMGIAKHOAHOC_KHOAHOC">
+          <End Role="KHOAHOC" Type="Self.KHOAHOC" Multiplicity="0..1" />
+          <End Role="THAMGIAKHOAHOC" Type="Self.THAMGIAKHOAHOC" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="KHOAHOC">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="THAMGIAKHOAHOC">
+              <PropertyRef Name="IdKhoaHoc" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="SEP25Team16ModelStoreContainer">
-          <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="HOIVIEN" EntityType="Self.HOIVIEN" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="KHOAHOC" EntityType="Self.KHOAHOC" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="KHUVUC" EntityType="Self.KHUVUC" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Provinces" EntityType="Self.Provinces" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="QUYEN" EntityType="Self.QUYEN" Schema="dbo" store:Type="Tables" />
@@ -195,6 +221,7 @@
           <EntitySet Name="Seminars" EntityType="Self.Seminars" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TAIKHOANADMIN" EntityType="Self.TAIKHOANADMIN" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="THAMGIAKHOAHOC" EntityType="Self.THAMGIAKHOAHOC" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TRANGTHAI" EntityType="Self.TRANGTHAI" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_dbo_SeminarParticipants_dbo_Seminars_SeminarId" Association="Self.FK_dbo_SeminarParticipants_dbo_Seminars_SeminarId">
             <End Role="Seminars" EntitySet="Seminars" />
@@ -211,6 +238,10 @@
           <AssociationSet Name="FK_TAIKHOANADMIN_TRANGTHAI" Association="Self.FK_TAIKHOANADMIN_TRANGTHAI">
             <End Role="TRANGTHAI" EntitySet="TRANGTHAI" />
             <End Role="TAIKHOANADMIN" EntitySet="TAIKHOANADMIN" />
+          </AssociationSet>
+          <AssociationSet Name="FK_THAMGIAKHOAHOC_KHOAHOC" Association="Self.FK_THAMGIAKHOAHOC_KHOAHOC">
+            <End Role="KHOAHOC" EntitySet="KHOAHOC" />
+            <End Role="THAMGIAKHOAHOC" EntitySet="THAMGIAKHOAHOC" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -363,7 +394,6 @@
             <End Role="TRANGTHAI" EntitySet="TRANGTHAIs" />
             <End Role="TAIKHOANADMIN" EntitySet="TAIKHOANADMINs" />
           </AssociationSet>
-          <EntitySet Name="C__MigrationHistory" EntityType="SEP25Team16Model.C__MigrationHistory" />
           <EntitySet Name="Provinces" EntityType="SEP25Team16Model.Province" />
           <EntitySet Name="SeminarParticipants" EntityType="SEP25Team16Model.SeminarParticipant" />
           <EntitySet Name="Seminars" EntityType="SEP25Team16Model.Seminar" />
@@ -371,17 +401,13 @@
             <End Role="Seminar" EntitySet="Seminars" />
             <End Role="SeminarParticipant" EntitySet="SeminarParticipants" />
           </AssociationSet>
+          <EntitySet Name="KHOAHOCs" EntityType="SEP25Team16Model.KHOAHOC" />
+          <EntitySet Name="THAMGIAKHOAHOCs" EntityType="SEP25Team16Model.THAMGIAKHOAHOC" />
+          <AssociationSet Name="FK_THAMGIAKHOAHOC_KHOAHOC" Association="SEP25Team16Model.FK_THAMGIAKHOAHOC_KHOAHOC">
+            <End Role="KHOAHOC" EntitySet="KHOAHOCs" />
+            <End Role="THAMGIAKHOAHOC" EntitySet="THAMGIAKHOAHOCs" />
+          </AssociationSet>
         </EntityContainer>
-        <EntityType Name="C__MigrationHistory">
-          <Key>
-            <PropertyRef Name="MigrationId" />
-            <PropertyRef Name="ContextKey" />
-          </Key>
-          <Property Name="MigrationId" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
-          <Property Name="ContextKey" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="true" />
-          <Property Name="Model" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
-          <Property Name="ProductVersion" Type="String" Nullable="false" MaxLength="32" FixedLength="false" Unicode="true" />
-        </EntityType>
         <EntityType Name="Province">
           <Key>
             <PropertyRef Name="Id" />
@@ -431,6 +457,44 @@
             </Principal>
             <Dependent Role="SeminarParticipant">
               <PropertyRef Name="SeminarId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="KHOAHOC">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TenKhoaDaoTao" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="NgayBatDau" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="NgayKetThuc" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="HinhThuc" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="THAMGIAKHOAHOCs" Relationship="SEP25Team16Model.FK_THAMGIAKHOAHOC_KHOAHOC" FromRole="KHOAHOC" ToRole="THAMGIAKHOAHOC" />
+        </EntityType>
+        <EntityType Name="THAMGIAKHOAHOC">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="HoTen" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CongTyToChucCoQuan" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ChucDanh" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Sdt" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="SoLuongHocVien" Type="Int32" Nullable="false" />
+          <Property Name="HoiVienVinasa" Type="Boolean" Nullable="false" />
+          <Property Name="IdKhoaHoc" Type="Int32" />
+          <NavigationProperty Name="KHOAHOC" Relationship="SEP25Team16Model.FK_THAMGIAKHOAHOC_KHOAHOC" FromRole="THAMGIAKHOAHOC" ToRole="KHOAHOC" />
+        </EntityType>
+        <Association Name="FK_THAMGIAKHOAHOC_KHOAHOC">
+          <End Type="SEP25Team16Model.KHOAHOC" Role="KHOAHOC" Multiplicity="0..1" />
+          <End Type="SEP25Team16Model.THAMGIAKHOAHOC" Role="THAMGIAKHOAHOC" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="KHOAHOC">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="THAMGIAKHOAHOC">
+              <PropertyRef Name="IdKhoaHoc" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -530,16 +594,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="C__MigrationHistory">
-            <EntityTypeMapping TypeName="SEP25Team16Model.C__MigrationHistory">
-              <MappingFragment StoreEntitySet="__MigrationHistory">
-                <ScalarProperty Name="ProductVersion" ColumnName="ProductVersion" />
-                <ScalarProperty Name="Model" ColumnName="Model" />
-                <ScalarProperty Name="ContextKey" ColumnName="ContextKey" />
-                <ScalarProperty Name="MigrationId" ColumnName="MigrationId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Provinces">
             <EntityTypeMapping TypeName="SEP25Team16Model.Province">
               <MappingFragment StoreEntitySet="Provinces">
@@ -577,6 +631,32 @@
                 <ScalarProperty Name="Address" ColumnName="Address" />
                 <ScalarProperty Name="OpenDate" ColumnName="OpenDate" />
                 <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="KHOAHOCs">
+            <EntityTypeMapping TypeName="SEP25Team16Model.KHOAHOC">
+              <MappingFragment StoreEntitySet="KHOAHOC">
+                <ScalarProperty Name="HinhThuc" ColumnName="HinhThuc" />
+                <ScalarProperty Name="NgayKetThuc" ColumnName="NgayKetThuc" />
+                <ScalarProperty Name="NgayBatDau" ColumnName="NgayBatDau" />
+                <ScalarProperty Name="TenKhoaDaoTao" ColumnName="TenKhoaDaoTao" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="THAMGIAKHOAHOCs">
+            <EntityTypeMapping TypeName="SEP25Team16Model.THAMGIAKHOAHOC">
+              <MappingFragment StoreEntitySet="THAMGIAKHOAHOC">
+                <ScalarProperty Name="IdKhoaHoc" ColumnName="IdKhoaHoc" />
+                <ScalarProperty Name="HoiVienVinasa" ColumnName="HoiVienVinasa" />
+                <ScalarProperty Name="SoLuongHocVien" ColumnName="SoLuongHocVien" />
+                <ScalarProperty Name="Sdt" ColumnName="Sdt" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="ChucDanh" ColumnName="ChucDanh" />
+                <ScalarProperty Name="CongTyToChucCoQuan" ColumnName="CongTyToChucCoQuan" />
+                <ScalarProperty Name="HoTen" ColumnName="HoTen" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
