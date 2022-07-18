@@ -10,18 +10,13 @@
 namespace Vinasa.Models
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class QUYEN
+    public partial class sp_helpdiagrams_Result
     {
-        public QUYEN()
-        {
-            this.TAIKHOANADMINs = new HashSet<TAIKHOANADMIN>();
-        }
-    
-        public int IDQuyen { get; set; }
-        public string TenQuyen { get; set; }
-    
-        public virtual ICollection<TAIKHOANADMIN> TAIKHOANADMINs { get; set; }
+        public string Database { get; set; }
+        public string Name { get; set; }
+        public int ID { get; set; }
+        public string Owner { get; set; }
+        public int OwnerID { get; set; }
     }
 }

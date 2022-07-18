@@ -215,11 +215,14 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AdminAccountModels.cs" />
-    <Compile Include="Models\C__MigrationHistory.cs">
+    <Compile Include="Models\GiaiThuong.cs" />
+    <Compile Include="Models\HOINGHIQUOCTE.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\GiaiThuong.cs" />
     <Compile Include="Models\HOIVIEN.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\KHOAHOC.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\KHUVUC.cs">
@@ -243,7 +246,9 @@
       <AutoGen>True</AutoGen>
     </Compile>
     <Compile Include="Models\NguoiNhanGiaiThuong.cs" />
-    <Compile Include="Models\Province.cs" />
+    <Compile Include="Models\Province.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\QUYEN.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -254,11 +259,23 @@
     <Compile Include="Models\SeminarParticipant.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\sp_helpdiagramdefinition_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_helpdiagrams_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\StatusModels.cs" />
     <Compile Include="Models\sysdiagram.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\TAIKHOANADMIN.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\THAMGIAHOINGHIQUOCTE.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\THAMGIAKHOAHOC.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\TRANGTHAI.cs">
@@ -2361,6 +2378,13 @@
     <Content Include="Views\AwardParticipants\_DeleteSelected.cshtml" />
     <Content Include="Views\AwardParticipants\_CreateOrUpdate.cshtml" />
     <Content Include="Views\AwardParticipants\_List.cshtml" />
+    <Content Include="Views\IC\_DeleteSelected.cshtml" />
+    <Content Include="Views\IC\Details.cshtml" />
+    <Content Include="Views\IC\_CreateOrUpdate.cshtml" />
+    <Content Include="Views\ICParticipants\Create.cshtml" />
+    <Content Include="Views\ICParticipants\_List.cshtml" />
+    <Content Include="Views\ICParticipants\_CreateOrUpdate.cshtml" />
+    <Content Include="Views\ICParticipants\_DeleteSelected.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

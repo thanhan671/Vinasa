@@ -1,0 +1,27 @@
+﻿@model Vinasa.Models.HOINGHIQUOCTE
+@Html.ValidationSummary(true, "", new { @class = "text-danger" })
+<div class="input-wrapper">
+    @Html.EditorFor(model => model.Ten, new { htmlAttributes = new { @class = "ip-form", @required = "required" } })
+    <label class="lb-form" for="tax">Tên Hội Nghị</label>
+    @Html.ValidationMessageFor(model => model.Ten, "", new { @class = "text-danger" })
+</div>
+<div class="input-wrapper">
+    @Html.TextBoxFor(model => model.ThoiGianBatDau, "{0:yyyy-MM-ddTHH:mm:ss}", new { @class = "ip-form", @type = "datetime-local" })
+    <label class="lb-form" for="tax">Thời gian bắt đầu</label>
+    @Html.ValidationMessageFor(model => model.ThoiGianBatDau, "", new { @class = "text-danger" })
+</div>
+<div class="input-wrapper">
+    @Html.TextBoxFor(model => model.ThoiGianKetThuc, "{0:yyyy-MM-ddTHH:mm:ss}", new { @class = "ip-form", @type = "datetime-local" })
+    <label class="lb-form" for="tax">Thời gian kết thúc</label>
+    @Html.ValidationMessageFor(model => model.ThoiGianKetThuc, "", new { @class = "text-danger" })
+</div>
+<div class="input-wrapper">
+    @Html.EditorFor(model => model.DiaDiem, new { htmlAttributes = new { @class = "ip-form", @required = "required" } })
+    <label class="lb-form" for="tax">Địa điểm</label>
+    @Html.ValidationMessageFor(model => model.DiaDiem, "", new { @class = "text-danger" })
+
+</div>
+<div class="button-form">
+    <input type="button" class="button-lc button-cancel" onclick="location.href='@Url.Action("Index", "IC")'" value="Hủy"/>
+    <button class="button-lc">Xác Nhận</button>
+</div>
