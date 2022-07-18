@@ -2372,6 +2372,9 @@
     <Content Include="Views\AwardParticipants\_DeleteSelected.cshtml" />
     <Content Include="Views\AwardParticipants\_CreateOrUpdate.cshtml" />
     <Content Include="Views\AwardParticipants\_List.cshtml" />
+    <Content Include="Views\IC\_DeleteSelected.cshtml" />
+    <Content Include="Views\IC\Details.cshtml" />
+    <Content Include="Views\IC\_CreateOrUpdate.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

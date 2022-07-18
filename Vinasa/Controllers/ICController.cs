@@ -23,7 +23,23 @@ namespace Vinasa.Controllers
             return View(_db.HOINGHIQUOCTEs.ToList());
         }
 
+        // GET: HoiNghiQT/Details/
+        public ActionResult Details(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            HOINGHIQUOCTE hoinghiquocte = _db.HOINGHIQUOCTEs.Find(id);
+            if (hoinghiquocte == null)
+            {
+                return HttpNotFound();
+            }
 
+            hoinghiquocte.THAMGIAHOINGHIQUOCTEs = _db.THAMGIAHOINGHIQUOCTEs.Where(m => m.ID == hoinghiquocte.ID).ToList();
+
+            return View(hoinghiquocte);
+        }
         public ActionResult Create()
         {
             return View();
@@ -78,10 +94,10 @@ namespace Vinasa.Controllers
             HOINGHIQUOCTE hoinghiquocte = _db.HOINGHIQUOCTEs.Find(id);
             if (hoinghiquocte != null)
             {
-                var thamGiaHoiNghiQTs = _db.THAMGIAHOINGHIQUOCTEs.Where(it => it.HoiNghiQT_ID == hoinghiquocte.ID).ToList();
-                foreach (var thamGiaHoiNghiQT in thamGiaHoiNghiQTs)
+                var giaiThuongParticipants = _db.THAMGIAHOINGHIQUOCTEs.Where(it => it.HoiNghiQT_ID == hoinghiquocte.ID).ToList();
+                foreach (var giaiThuongParticipant in giaiThuongParticipants)
                 {
-                    _db.THAMGIAHOINGHIQUOCTEs.Remove(thamGiaHoiNghiQT);
+                    _db.THAMGIAHOINGHIQUOCTEs.Remove(giaiThuongParticipant);
                 }
             }
 
@@ -95,5 +111,6 @@ namespace Vinasa.Controllers
             var model = _db.HOINGHIQUOCTEs.Where(m => m.ID == id).FirstOrDefault();
             return PartialView("_DeleteSelected", model);
         }
+
     }
 }

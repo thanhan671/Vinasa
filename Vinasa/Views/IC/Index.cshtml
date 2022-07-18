@@ -1,4 +1,4 @@
-﻿
+﻿@model IEnumerable<Vinasa.Models.HOINGHIQUOCTE>
 
 @{
     ViewBag.Title = "Index";
@@ -24,43 +24,52 @@
                 <thead>
                     <tr>
                         <th>
-                            Tên
+                            @Html.DisplayNameFor(model => model.Ten)
                         </th>
                         <th>
-                            Địa Điểm
+                            @Html.DisplayNameFor(model => model.ThoiGianBatDau)
                         </th>
                         <th>
-                            Thời Gian
+                            @Html.DisplayNameFor(model => model.ThoiGianKetThuc)
                         </th>
-                        <th class="action-column">Chức năng</thclass="action-column">
+                        <th>
+                            @Html.DisplayNameFor(model => model.DiaDiem)
+                        </th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
-                    @*foreach (var item in Model) *@
+                    @foreach (var item in Model)
+                    {
                     <tr>
                         <td>
-                            <a href=@Url.Action("Index", "ICParticipants")>Ngày CNTT Nhật Bản 2022</a>
+                            <a href="@Url.Action("Details", "IC", new{ id = @item.ID})">
+                                @Html.DisplayFor(modelItem => item.Ten)
+                            </a>
                         </td>
                         <td>
-                            Hà Nội/HCMC + Đà Nẵng
+                            @Html.DisplayFor(modelItem => item.ThoiGianBatDau)
                         </td>
                         <td>
-                            15/08/2022 05:00:00 PM
+                            @Html.DisplayFor(modelItem => item.ThoiGianKetThuc)
                         </td>
-                        <td class="td-action" style="display:flex; justify-content:space-around; align-items:center">
-                            <li class="action-item" style="list-style-type: none; font-size: 18px">
-                                @*<a class="action-icon" href="@Url.Action("Edit", "Seminars", new{ id = @item.Id})">*@
-                                <a class="action-icon" href=@Url.Action("Edit", "IC")>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DiaDiem)
+                        </td>
+                        <td class="action" style=" display:flex; justify-content:space-around; align-items:center">
+                            <li class="action-item">
+                                <a class="action-icon" href="@Url.Action("Edit", "IC", new{ id = @item.ID})">
                                     <i class="fa-solid fa-pen-to-square icon"></i>
                                 </a>
                             </li>
-                            <li class="action-item" style="list-style-type:none; font-size: 18px">
-                                <a data-toggle="modal" data-target="#myModal">
+                            <li class="action-item">
+                                <a class="action-icon delete-btn" data-id="@item.ID">
                                     <i class="fa-solid fa-trash-can icon"></i>
                                 </a>
                             </li>
                         </td>
                     </tr>
+                    }
                 </tbody>
             </table>
             <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog">
@@ -69,21 +78,21 @@
             </div>
         </div>
     </div>
-    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title" id="myModalLabel">THÔNG BÁO !</h4>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                </div>
-                <div class="modal-body">
-                    Xác nhận xóa hội nghị quốc tế và tất cả thành viên có trong hội nghị này ?
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Hủy</button>
-                    <button type="button" class="button-lc">Xác nhận</button>
-                </div>
-            </div>
-        </div>
-    </div>
 </div>
+
+@section Scripts {
+    <script>
+            $(".delete-btn").on("click", function () {
+                var id = $(this).data("id");
+                $.ajax({
+                    url: "@Url.Action("DeleteSelected", "IC")",
+                    data: { id: id },
+                    success: function (data) {
+                        console.log(data);
+                        $("#deleteModal .modal-dialog").html(data);
+                        $("#deleteModal").modal("show");
+                    }
+                });
+            });
+    </script>
+}
