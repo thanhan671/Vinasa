@@ -18,8 +18,6 @@ namespace Vinasa.DAL
         public DbSet<Seminar> Seminars { get; set; }
         public DbSet<SeminarParticipant> SeminarParticipants { get; set; }
         public DbSet<Province> Provinces { get; set; }
-        //public DbSet<KHOAHOC> KHOAHOCs { get; set; }
-        //public DbSet<THAMGIAKHOAHOC> THAMGIAKHOAHOCs { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -27,8 +25,6 @@ namespace Vinasa.DAL
             modelBuilder.Entity<Seminar>().ToTable("Seminars");
             modelBuilder.Entity<SeminarParticipant>().ToTable("SeminarParticipants");
             modelBuilder.Entity<Province>().ToTable("Provinces");
-            //modelBuilder.Entity<KHOAHOC>().ToTable("KHOAHOCs");
-            //modelBuilder.Entity<THAMGIAKHOAHOC>().ToTable("THAMGIAKHOAHOCs");
         }
     }
 }

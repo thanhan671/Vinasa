@@ -188,7 +188,6 @@
     <Compile Include="Controllers\ProvincesController.cs" />
     <Compile Include="Controllers\SeminarParticipantsController.cs" />
     <Compile Include="Controllers\SeminarsController.cs" />
-    <Compile Include="DAL\CourseContext.cs" />
     <Compile Include="DAL\SeminarContext.cs" />
     <Compile Include="DAL\SeminarInitializer.cs" />
     <Compile Include="Global.asax.cs">
@@ -2336,8 +2335,9 @@
     <Content Include="Views\Course\Create.cshtml" />
     <Content Include="Views\CourseParticipants\Index.cshtml" />
     <Content Include="Views\CourseParticipants\Edit.cshtml" />
-    <Content Include="Views\CourseParticipants\Detail.cshtml" />
+    <Content Include="Views\CourseParticipants\Details.cshtml" />
     <Content Include="Views\CourseParticipants\_DeleteSelected.cshtml" />
+    <Content Include="Views\CourseParticipants\_List.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

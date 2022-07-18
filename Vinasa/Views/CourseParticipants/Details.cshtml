@@ -1,6 +1,6 @@
-﻿
+﻿@model Vinasa.Models.THAMGIAKHOAHOC
 @{
-    ViewBag.Title = "Detail";
+    ViewBag.Title = "Details";
     Layout = "~/Views/Shared/sbadmin.cshtml";
 }
 
@@ -8,45 +8,45 @@
     <h5 class="heading">Thông Tin Doanh Nghiệp Tham Gia</h5>
     <form class="form-field form-inputs-odd" method="post" enctype="multipart/form-data">
         <div class="input-wrapper">
-            <input class="ip-form" type="text" id="tax" value="Nguyễn Văn Khoa" contenteditable="true" readonly>
+            @Html.EditorFor(m => m.HoTen, new { htmlAttributes = new { @class = "ip-form", @readonly = "readonly" } })
             <label class="lb-form" for="tax">
                 Họ tên người đại diện
             </label>
         </div>
         <div class="input-wrapper">
-            <input class="ip-form" type="text" id="tax" value="Công ty Cổ phần FPT" contenteditable="true" readonly>
+            @Html.EditorFor(m => m.CongTyToChucCoQuan, new { htmlAttributes = new { @class = "ip-form", @readonly = "readonly" } })
             <label class="lb-form" for="tax">Tên đơn vị </label>
         </div>
         <div class="input-wrapper">
-            <input class="ip-form" type="text" id="tax" value="CEO" contenteditable="true" readonly>
+            @Html.EditorFor(m => m.ChucDanh, new { htmlAttributes = new { @class = "ip-form", @readonly = "readonly" } })
             <label class="lb-form" for="tax">
                 Chức danh
             </label>
         </div>
         <div class="input-wrapper">
-            <input class="ip-form" type="email" id="tax" value="khoa@vinasa.org.vn" contenteditable="true" readonly>
+            @Html.EditorFor(m => m.Email, new { htmlAttributes = new { @class = "ip-form", @readonly = "readonly" } })
             <label class="lb-form" for="tax">
                 Email
             </label>
         </div>
         <div class="input-wrapper">
-            <input class="ip-form" type="tel" id="tax" value="0789562562" contenteditable="true" readonly>
+            @Html.EditorFor(m => m.Sdt, new { htmlAttributes = new { @class = "ip-form", @readonly = "readonly" } })
             <label class="lb-form" for="tax">
                 Di động
             </label>
         </div>
         <div class="input-wrapper">
-            <input class="ip-form" type="text" id="tax" value="2" contenteditable="true" readonly>
+            @Html.EditorFor(m => m.SoLuongHocVien, new { htmlAttributes = new { @class = "ip-form", @readonly = "readonly" } })
             <label class="lb-form" for="tax">
                 Số lượng học viên
             </label>
         </div>
         <div class="input-wrapper">
-            <input type="checkbox" readonly>
+            @Html.CheckBoxFor(m => m.HoiVienVinasa, new { @class = "form-check-input" })
             <label class="form-check-label">Hội viên Vinasa</label>
         </div>
     </form>
 </div>
 <div class="button-form f-r">
-    <button class="button-lc" onclick="location.href = 'javascript:history.go(-1)'">Quay Lại</button>
+    <button class="button-lc" onclick="location.href = '@Url.Action("Index", "CourseParticipants")'">Quay Lại</button>
 </div>

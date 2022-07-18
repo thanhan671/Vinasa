@@ -10,8 +10,6 @@ using System.Web;
 using System.Web.Mvc;
 using Vinasa.Services;
 using Vinasa.Models;
-using Vinasa.DAL;
-
 
 namespace Vinasa.Controllers
 {
