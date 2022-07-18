@@ -12,16 +12,18 @@ namespace Vinasa.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class QUYEN
+    public partial class THAMGIAKHOAHOC
     {
-        public QUYEN()
-        {
-            this.TAIKHOANADMINs = new HashSet<TAIKHOANADMIN>();
-        }
+        public int Id { get; set; }
+        public string HoTen { get; set; }
+        public string CongTyToChucCoQuan { get; set; }
+        public string ChucDanh { get; set; }
+        public string Email { get; set; }
+        public string Sdt { get; set; }
+        public int SoLuongHocVien { get; set; }
+        public bool HoiVienVinasa { get; set; }
+        public Nullable<int> IdKhoaHoc { get; set; }
     
-        public int IDQuyen { get; set; }
-        public string TenQuyen { get; set; }
-    
-        public virtual ICollection<TAIKHOANADMIN> TAIKHOANADMINs { get; set; }
+        public virtual KHOAHOC KHOAHOC { get; set; }
     }
 }

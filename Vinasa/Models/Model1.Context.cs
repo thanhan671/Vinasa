@@ -31,9 +31,12 @@ namespace Vinasa.Models
         public DbSet<sysdiagram> sysdiagrams { get; set; }
         public DbSet<TAIKHOANADMIN> TAIKHOANADMINs { get; set; }
         public DbSet<TRANGTHAI> TRANGTHAIs { get; set; }
-        public DbSet<C__MigrationHistory> C__MigrationHistory { get; set; }
         public DbSet<Province> Provinces { get; set; }
         public DbSet<SeminarParticipant> SeminarParticipants { get; set; }
         public DbSet<Seminar> Seminars { get; set; }
+        public DbSet<HOINGHIQUOCTE> HOINGHIQUOCTEs { get; set; }
+        public DbSet<KHOAHOC> KHOAHOCs { get; set; }
+        public DbSet<THAMGIAHOINGHIQUOCTE> THAMGIAHOINGHIQUOCTEs { get; set; }
+        public DbSet<THAMGIAKHOAHOC> THAMGIAKHOAHOCs { get; set; }
     }
 }
