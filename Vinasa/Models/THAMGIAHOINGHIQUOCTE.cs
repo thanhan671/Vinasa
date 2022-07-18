@@ -30,7 +30,7 @@ namespace Vinasa.Models
         public bool DangKyBusinessMatchingOffline { get; set; }
         public bool DangKyTaiTro { get; set; }
         public bool DangKyQuangCao { get; set; }
-        public int HoiNghiQT_ID { get; set; }
+        public Nullable<int> HoiNghiQT_ID { get; set; }
     
         public virtual HOINGHIQUOCTE HOINGHIQUOCTE { get; set; }
     }

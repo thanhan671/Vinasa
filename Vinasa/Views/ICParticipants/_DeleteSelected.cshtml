@@ -1,7 +1,8 @@
-﻿@model Vinasa.Models.HOINGHIQUOCTE
-@using (Html.BeginForm("Delete", "IC"))
+﻿@model Vinasa.Models.THAMGIAHOINGHIQUOCTE
+@using (Html.BeginForm("Delete", "ICParticipants"))
 {
     @Html.AntiForgeryToken()
+
     <div class="modal-content">
         <div class="modal-header">
             <h5 class="modal-title">THÔNG BÁO !</h5>
@@ -10,14 +11,13 @@
             </button>
         </div>
         <div class="modal-body">
-            Xác nhận xóa hội nghị và tất cả thành viên của hội nghị này?
+            Xác nhận xoá Hội viên này khỏi hội thảo?
         </div>
         <div class="modal-footer">
             @Html.HiddenFor(model => model.ID)
+            <input type="hidden" id="HoiNghiQT_ID" name="HoiNghiQT_ID" value="@ViewBag.HoiNghiQT_ID" />
             <button type="button" class="btn btn-default" data-dismiss="modal">Huỷ</button>
-            <button class="button-lc">Xác nhận</button>
+            <input type="submit" class="button-lc" value="Xác Nhận" />
         </div>
     </div>
 }
-
-

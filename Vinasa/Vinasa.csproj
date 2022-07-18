@@ -259,6 +259,12 @@
     <Compile Include="Models\SeminarParticipant.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\sp_helpdiagramdefinition_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_helpdiagrams_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\StatusModels.cs" />
     <Compile Include="Models\sysdiagram.cs">
       <DependentUpon>Model1.tt</DependentUpon>
@@ -2375,6 +2381,10 @@
     <Content Include="Views\IC\_DeleteSelected.cshtml" />
     <Content Include="Views\IC\Details.cshtml" />
     <Content Include="Views\IC\_CreateOrUpdate.cshtml" />
+    <Content Include="Views\ICParticipants\Create.cshtml" />
+    <Content Include="Views\ICParticipants\_List.cshtml" />
+    <Content Include="Views\ICParticipants\_CreateOrUpdate.cshtml" />
+    <Content Include="Views\ICParticipants\_DeleteSelected.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

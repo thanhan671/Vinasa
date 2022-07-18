@@ -22,6 +22,7 @@ namespace Vinasa.Controllers
             return View(_db.THAMGIAHOINGHIQUOCTEs.ToList());
         }
 
+        // GET: NguoiNhanGiaiThuong/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -33,10 +34,37 @@ namespace Vinasa.Controllers
             {
                 return HttpNotFound();
             }
-            ICParticipants.HOINGHIQUOCTE = _db.HOINGHIQUOCTEs.Find(ICParticipants.HoiNghiQT_ID);
+            ICParticipants.HOINGHIQUOCTE = _db.HOINGHIQUOCTEs.Find(ICParticipants.ID);
             return View(ICParticipants);
         }
 
+        // GET: NguoiNhanGiaiThuong/Create
+        public ActionResult Create()
+        {
+            var model = new THAMGIAHOINGHIQUOCTE();
+            //model.Provinces = new SelectList(_db.Provinces, "ID", "Title", model.ProvinceId);
+            return View(model);
+        }
+
+        // POST: NguoiNhanGiaiThuong/Create
+        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
+        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create([Bind(Include = "ID, TenDonVi, DonViChungToiLa, DiaChi, DienThoai, DaiDienLienHe, ChucVu, DiDong, " +
+            "Email, DangKyThamDu, DangKyPhatBieu, DangKyGianHangTrienLam, DangKyBusinessMatchingOnline, DangKyBusinessMatchingOffline, DangKyTaiTro, DangKyQuangCao, HoiNghiQT_ID")] THAMGIAHOINGHIQUOCTE ICParticipants)
+        {
+            if (ModelState.IsValid)
+            {
+                _db.THAMGIAHOINGHIQUOCTEs.Add(ICParticipants);
+                _db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+
+            return View(ICParticipants);
+        }
+
+        // GET: NguoiNhanGiaiThuong/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -52,10 +80,12 @@ namespace Vinasa.Controllers
             return View(ICParticipants);
         }
 
+        // POST: NguoiNhanGiaiThuong/Edit/5
+        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
+        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID, TenDonVi, DonViChungToiLa, DiaChi, DienThoai, DaiDienLienHe, ChucVu, DiDong, " +
-            "Email, DangKyThamDu, DangKyPhatBieu, DangKyGianHangTrienLam, DangKyBusinessMatchingOnline, DangKyBusinessMatchingOffline, DangKyTaiTro, DangKyQuangCao, HoiNghiQT_ID")] THAMGIAHOINGHIQUOCTE ICParticipants)
+        public ActionResult Edit([Bind(Include = "ID, TenDonVi, DonViChungToiLa, DiaChi, DienThoai, DaiDienLienHe, ChucVu, DiDong, Email, DangKyThamDu, DangKyPhatBieu, DangKyGianHangTrienLam, DangKyBusinessMatchingOnline, DangKyBusinessMatchingOffline, DangKyTaiTro, DangKyQuangCao, HoiNghiQT_ID")] THAMGIAHOINGHIQUOCTE ICParticipants)
         {
             if (!ModelState.IsValid)
             {
@@ -65,9 +95,39 @@ namespace Vinasa.Controllers
             {
                 _db.Entry(ICParticipants).State = System.Data.Entity.EntityState.Modified;
                 _db.SaveChanges();
-                return RedirectToAction("Index", "ICParticipants", new { id = ICParticipants.HoiNghiQT_ID });
+                return RedirectToAction("Details", "IC", new { id = ICParticipants.ID });
             }
             return View(ICParticipants);
+        }
+
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult Delete(int id, int hoiNghiQTId = -1)
+        {
+            var thamGiaHoiThaoQT = _db.THAMGIAHOINGHIQUOCTEs.Find(id);
+            _db.THAMGIAHOINGHIQUOCTEs.Remove(thamGiaHoiThaoQT);
+            _db.SaveChanges();
+            if (hoiNghiQTId > 0)
+                return RedirectToAction("Details", "IC", new { id = hoiNghiQTId });
+            else
+                return RedirectToAction(nameof(Index));
+
+        }
+
+        public ActionResult DeleteSelected(int id, int hoiNghiQTId = -1)
+        {
+            var model = _db.THAMGIAHOINGHIQUOCTEs.Where(m => m.ID == id).FirstOrDefault();
+            ViewBag.HoiNghiQT_ID = hoiNghiQTId;
+            return PartialView("_DeleteSelected", model);
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                _db.Dispose();
+            }
+            base.Dispose(disposing);
         }
     }
 }

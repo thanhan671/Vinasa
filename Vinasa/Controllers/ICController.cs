@@ -94,8 +94,8 @@ namespace Vinasa.Controllers
             HOINGHIQUOCTE hoinghiquocte = _db.HOINGHIQUOCTEs.Find(id);
             if (hoinghiquocte != null)
             {
-                var giaiThuongParticipants = _db.THAMGIAHOINGHIQUOCTEs.Where(it => it.HoiNghiQT_ID == hoinghiquocte.ID).ToList();
-                foreach (var giaiThuongParticipant in giaiThuongParticipants)
+                var ICParticipants = _db.THAMGIAHOINGHIQUOCTEs.Where(it => it.ID == hoinghiquocte.ID).ToList();
+                foreach (var giaiThuongParticipant in ICParticipants)
                 {
                     _db.THAMGIAHOINGHIQUOCTEs.Remove(giaiThuongParticipant);
                 }

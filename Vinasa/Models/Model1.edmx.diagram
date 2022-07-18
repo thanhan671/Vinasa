@@ -18,12 +18,12 @@
         <EntityTypeShape EntityType="SEP25Team16Model.SeminarParticipant" Width="1.5" PointX="10.5" PointY="4" />
         <EntityTypeShape EntityType="SEP25Team16Model.Seminar" Width="1.5" PointX="8.25" PointY="5.125" />
         <AssociationConnector Association="SEP25Team16Model.FK_dbo_SeminarParticipants_dbo_Seminars_SeminarId" />
-        <EntityTypeShape EntityType="SEP25Team16Model.HOINGHIQUOCTE" Width="1.5" PointX="13.375" PointY="2.25" />
         <EntityTypeShape EntityType="SEP25Team16Model.KHOAHOC" Width="1.5" PointX="10.375" PointY="10.375" />
-        <EntityTypeShape EntityType="SEP25Team16Model.THAMGIAHOINGHIQUOCTE" Width="1.5" PointX="15.625" PointY="1" />
         <EntityTypeShape EntityType="SEP25Team16Model.THAMGIAKHOAHOC" Width="1.5" PointX="12.625" PointY="10" />
-        <AssociationConnector Association="SEP25Team16Model.FK_THAMGIAHOINGHIQUOCTE_HOINGHIQUOCTE" />
         <AssociationConnector Association="SEP25Team16Model.FK_THAMGIAKHOAHOC_KHOAHOC" />
+        <EntityTypeShape EntityType="SEP25Team16Model.HOINGHIQUOCTE" Width="1.5" PointX="13.375" PointY="2.25" />
+        <EntityTypeShape EntityType="SEP25Team16Model.THAMGIAHOINGHIQUOCTE" Width="1.5" PointX="15.625" PointY="1" />
+        <AssociationConnector Association="SEP25Team16Model.FK_THAMGIAHOINGHIQUOCTE_HOINGHIQUOCTE" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

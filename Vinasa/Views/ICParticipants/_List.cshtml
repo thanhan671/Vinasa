@@ -1,0 +1,71 @@
+﻿
+@model IEnumerable<Vinasa.Models.THAMGIAHOINGHIQUOCTE>
+
+
+<div class="card-body">
+    <div class="table-responsive">
+        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+            <thead>
+                <tr>
+                    <th>
+                        Tên đơn vị
+                    </th>
+                    <th>
+                        Điện thoại
+                    </th>
+                    <th>
+                        Đại diện liên hệ
+                    </th>
+                    <th>
+                        Di động
+                    </th>
+                    <th>
+                        Email
+                    </th>
+                    <th>
+                        Chức năng
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TenDonVi)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DienThoai)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DaiDienLienHe)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DiDong)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Email)
+                        </td>
+                        <td class="action" style="display:flex; justify-content:space-around; align-items:center">
+                            <li class="action-item">
+                                <a href="@Url.Action("Details", "ICParticipants", new{ id = @item.ID})" class="action-icon">
+                                    <i class="fa-solid fa-circle-info icon"></i>
+                                </a>
+                            </li>
+                            <li class="action-item">
+                                <a href="@Url.Action("Edit", "ICParticipants", new{ id = @item.ID})" class="action-icon">
+                                    <i class="fa-solid fa-pen-to-square icon"></i>
+                                </a>
+                            </li>
+                            <li class="action-item">
+                                <a class="action-icon delete-btn" data-id="@item.ID" data-hoinghiQTid="@item.HoiNghiQT_ID">
+                                    <i class="fa-solid fa-trash-can icon"></i>
+                                </a>
+                            </li>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

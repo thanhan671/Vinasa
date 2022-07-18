@@ -160,7 +160,7 @@
           <Property Name="DangKyBusinessMatchingOffline" Type="bit" Nullable="false" />
           <Property Name="DangKyTaiTro" Type="bit" Nullable="false" />
           <Property Name="DangKyQuangCao" Type="bit" Nullable="false" />
-          <Property Name="HoiNghiQT_ID" Type="int" Nullable="false" />
+          <Property Name="HoiNghiQT_ID" Type="int" />
         </EntityType>
         <EntityType Name="THAMGIAKHOAHOC">
           <Key>
@@ -232,7 +232,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_THAMGIAHOINGHIQUOCTE_HOINGHIQUOCTE">
-          <End Role="HOINGHIQUOCTE" Type="Self.HOINGHIQUOCTE" Multiplicity="1" />
+          <End Role="HOINGHIQUOCTE" Type="Self.HOINGHIQUOCTE" Multiplicity="0..1" />
           <End Role="THAMGIAHOINGHIQUOCTE" Type="Self.THAMGIAHOINGHIQUOCTE" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="HOINGHIQUOCTE">
@@ -255,6 +255,37 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+        <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <EntityContainer Name="SEP25Team16ModelStoreContainer">
           <EntitySet Name="HOINGHIQUOCTE" EntityType="Self.HOINGHIQUOCTE" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="HOIVIEN" EntityType="Self.HOIVIEN" Schema="dbo" store:Type="Tables" />
@@ -451,18 +482,48 @@
             <End Role="Seminar" EntitySet="Seminars" />
             <End Role="SeminarParticipant" EntitySet="SeminarParticipants" />
           </AssociationSet>
-          <EntitySet Name="HOINGHIQUOCTEs" EntityType="SEP25Team16Model.HOINGHIQUOCTE" />
           <EntitySet Name="KHOAHOCs" EntityType="SEP25Team16Model.KHOAHOC" />
-          <EntitySet Name="THAMGIAHOINGHIQUOCTEs" EntityType="SEP25Team16Model.THAMGIAHOINGHIQUOCTE" />
           <EntitySet Name="THAMGIAKHOAHOCs" EntityType="SEP25Team16Model.THAMGIAKHOAHOC" />
-          <AssociationSet Name="FK_THAMGIAHOINGHIQUOCTE_HOINGHIQUOCTE" Association="SEP25Team16Model.FK_THAMGIAHOINGHIQUOCTE_HOINGHIQUOCTE">
-            <End Role="HOINGHIQUOCTE" EntitySet="HOINGHIQUOCTEs" />
-            <End Role="THAMGIAHOINGHIQUOCTE" EntitySet="THAMGIAHOINGHIQUOCTEs" />
-          </AssociationSet>
           <AssociationSet Name="FK_THAMGIAKHOAHOC_KHOAHOC" Association="SEP25Team16Model.FK_THAMGIAKHOAHOC_KHOAHOC">
             <End Role="KHOAHOC" EntitySet="KHOAHOCs" />
             <End Role="THAMGIAKHOAHOC" EntitySet="THAMGIAKHOAHOCs" />
           </AssociationSet>
+          <EntitySet Name="HOINGHIQUOCTEs" EntityType="SEP25Team16Model.HOINGHIQUOCTE" />
+          <EntitySet Name="THAMGIAHOINGHIQUOCTEs" EntityType="SEP25Team16Model.THAMGIAHOINGHIQUOCTE" />
+          <AssociationSet Name="FK_THAMGIAHOINGHIQUOCTE_HOINGHIQUOCTE" Association="SEP25Team16Model.FK_THAMGIAHOINGHIQUOCTE_HOINGHIQUOCTE">
+            <End Role="HOINGHIQUOCTE" EntitySet="HOINGHIQUOCTEs" />
+            <End Role="THAMGIAHOINGHIQUOCTE" EntitySet="THAMGIAHOINGHIQUOCTEs" />
+          </AssociationSet>
+          <FunctionImport Name="sp_alterdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_creatediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_dropdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(SEP25Team16Model.sp_helpdiagramdefinition_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(SEP25Team16Model.sp_helpdiagrams_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_renamediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="new_diagramname" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_upgraddiagrams" />
         </EntityContainer>
         <EntityType Name="Province">
           <Key>
@@ -516,17 +577,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="HOINGHIQUOCTE">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Ten" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Name="DiaDiem" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="true" />
-          <Property Name="ThoiGianBatDau" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="ThoiGianKetThuc" Type="DateTime" Nullable="false" Precision="3" />
-          <NavigationProperty Name="THAMGIAHOINGHIQUOCTEs" Relationship="SEP25Team16Model.FK_THAMGIAHOINGHIQUOCTE_HOINGHIQUOCTE" FromRole="HOINGHIQUOCTE" ToRole="THAMGIAHOINGHIQUOCTE" />
-        </EntityType>
         <EntityType Name="KHOAHOC">
           <Key>
             <PropertyRef Name="Id" />
@@ -537,6 +587,44 @@
           <Property Name="NgayKetThuc" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="HinhThuc" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="THAMGIAKHOAHOCs" Relationship="SEP25Team16Model.FK_THAMGIAKHOAHOC_KHOAHOC" FromRole="KHOAHOC" ToRole="THAMGIAKHOAHOC" />
+        </EntityType>
+        <EntityType Name="THAMGIAKHOAHOC">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="HoTen" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CongTyToChucCoQuan" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ChucDanh" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Sdt" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="SoLuongHocVien" Type="Int32" Nullable="false" />
+          <Property Name="HoiVienVinasa" Type="Boolean" Nullable="false" />
+          <Property Name="IdKhoaHoc" Type="Int32" />
+          <NavigationProperty Name="KHOAHOC" Relationship="SEP25Team16Model.FK_THAMGIAKHOAHOC_KHOAHOC" FromRole="THAMGIAKHOAHOC" ToRole="KHOAHOC" />
+        </EntityType>
+        <Association Name="FK_THAMGIAKHOAHOC_KHOAHOC">
+          <End Type="SEP25Team16Model.KHOAHOC" Role="KHOAHOC" Multiplicity="0..1" />
+          <End Type="SEP25Team16Model.THAMGIAKHOAHOC" Role="THAMGIAKHOAHOC" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="KHOAHOC">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="THAMGIAKHOAHOC">
+              <PropertyRef Name="IdKhoaHoc" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="HOINGHIQUOCTE">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Ten" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="DiaDiem" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="ThoiGianBatDau" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ThoiGianKetThuc" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="THAMGIAHOINGHIQUOCTEs" Relationship="SEP25Team16Model.FK_THAMGIAHOINGHIQUOCTE_HOINGHIQUOCTE" FromRole="HOINGHIQUOCTE" ToRole="THAMGIAHOINGHIQUOCTE" />
         </EntityType>
         <EntityType Name="THAMGIAHOINGHIQUOCTE">
           <Key>
@@ -558,26 +646,11 @@
           <Property Name="DangKyBusinessMatchingOffline" Type="Boolean" Nullable="false" />
           <Property Name="DangKyTaiTro" Type="Boolean" Nullable="false" />
           <Property Name="DangKyQuangCao" Type="Boolean" Nullable="false" />
-          <Property Name="HoiNghiQT_ID" Type="Int32" Nullable="false" />
+          <Property Name="HoiNghiQT_ID" Type="Int32" />
           <NavigationProperty Name="HOINGHIQUOCTE" Relationship="SEP25Team16Model.FK_THAMGIAHOINGHIQUOCTE_HOINGHIQUOCTE" FromRole="THAMGIAHOINGHIQUOCTE" ToRole="HOINGHIQUOCTE" />
         </EntityType>
-        <EntityType Name="THAMGIAKHOAHOC">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="HoTen" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="CongTyToChucCoQuan" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="ChucDanh" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Email" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="Sdt" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="SoLuongHocVien" Type="Int32" Nullable="false" />
-          <Property Name="HoiVienVinasa" Type="Boolean" Nullable="false" />
-          <Property Name="IdKhoaHoc" Type="Int32" />
-          <NavigationProperty Name="KHOAHOC" Relationship="SEP25Team16Model.FK_THAMGIAKHOAHOC_KHOAHOC" FromRole="THAMGIAKHOAHOC" ToRole="KHOAHOC" />
-        </EntityType>
         <Association Name="FK_THAMGIAHOINGHIQUOCTE_HOINGHIQUOCTE">
-          <End Type="SEP25Team16Model.HOINGHIQUOCTE" Role="HOINGHIQUOCTE" Multiplicity="1" />
+          <End Type="SEP25Team16Model.HOINGHIQUOCTE" Role="HOINGHIQUOCTE" Multiplicity="0..1" />
           <End Type="SEP25Team16Model.THAMGIAHOINGHIQUOCTE" Role="THAMGIAHOINGHIQUOCTE" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="HOINGHIQUOCTE">
@@ -588,18 +661,17 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_THAMGIAKHOAHOC_KHOAHOC">
-          <End Type="SEP25Team16Model.KHOAHOC" Role="KHOAHOC" Multiplicity="0..1" />
-          <End Type="SEP25Team16Model.THAMGIAKHOAHOC" Role="THAMGIAKHOAHOC" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="KHOAHOC">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="THAMGIAKHOAHOC">
-              <PropertyRef Name="IdKhoaHoc" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
+        <ComplexType Name="sp_helpdiagramdefinition_Result">
+          <Property Type="Int32" Name="version" Nullable="true" />
+          <Property Type="Binary" Name="definition" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_helpdiagrams_Result">
+          <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+          <Property Type="Int32" Name="OwnerID" Nullable="false" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -737,17 +809,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="HOINGHIQUOCTEs">
-            <EntityTypeMapping TypeName="SEP25Team16Model.HOINGHIQUOCTE">
-              <MappingFragment StoreEntitySet="HOINGHIQUOCTE">
-                <ScalarProperty Name="ThoiGianKetThuc" ColumnName="ThoiGianKetThuc" />
-                <ScalarProperty Name="ThoiGianBatDau" ColumnName="ThoiGianBatDau" />
-                <ScalarProperty Name="DiaDiem" ColumnName="DiaDiem" />
-                <ScalarProperty Name="Ten" ColumnName="Ten" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="KHOAHOCs">
             <EntityTypeMapping TypeName="SEP25Team16Model.KHOAHOC">
               <MappingFragment StoreEntitySet="KHOAHOC">
@@ -756,6 +817,32 @@
                 <ScalarProperty Name="NgayBatDau" ColumnName="NgayBatDau" />
                 <ScalarProperty Name="TenKhoaDaoTao" ColumnName="TenKhoaDaoTao" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="THAMGIAKHOAHOCs">
+            <EntityTypeMapping TypeName="SEP25Team16Model.THAMGIAKHOAHOC">
+              <MappingFragment StoreEntitySet="THAMGIAKHOAHOC">
+                <ScalarProperty Name="IdKhoaHoc" ColumnName="IdKhoaHoc" />
+                <ScalarProperty Name="HoiVienVinasa" ColumnName="HoiVienVinasa" />
+                <ScalarProperty Name="SoLuongHocVien" ColumnName="SoLuongHocVien" />
+                <ScalarProperty Name="Sdt" ColumnName="Sdt" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="ChucDanh" ColumnName="ChucDanh" />
+                <ScalarProperty Name="CongTyToChucCoQuan" ColumnName="CongTyToChucCoQuan" />
+                <ScalarProperty Name="HoTen" ColumnName="HoTen" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HOINGHIQUOCTEs">
+            <EntityTypeMapping TypeName="SEP25Team16Model.HOINGHIQUOCTE">
+              <MappingFragment StoreEntitySet="HOINGHIQUOCTE">
+                <ScalarProperty Name="ThoiGianKetThuc" ColumnName="ThoiGianKetThuc" />
+                <ScalarProperty Name="ThoiGianBatDau" ColumnName="ThoiGianBatDau" />
+                <ScalarProperty Name="DiaDiem" ColumnName="DiaDiem" />
+                <ScalarProperty Name="Ten" ColumnName="Ten" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -782,21 +869,30 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="THAMGIAKHOAHOCs">
-            <EntityTypeMapping TypeName="SEP25Team16Model.THAMGIAKHOAHOC">
-              <MappingFragment StoreEntitySet="THAMGIAKHOAHOC">
-                <ScalarProperty Name="IdKhoaHoc" ColumnName="IdKhoaHoc" />
-                <ScalarProperty Name="HoiVienVinasa" ColumnName="HoiVienVinasa" />
-                <ScalarProperty Name="SoLuongHocVien" ColumnName="SoLuongHocVien" />
-                <ScalarProperty Name="Sdt" ColumnName="Sdt" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="ChucDanh" ColumnName="ChucDanh" />
-                <ScalarProperty Name="CongTyToChucCoQuan" ColumnName="CongTyToChucCoQuan" />
-                <ScalarProperty Name="HoTen" ColumnName="HoTen" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="SEP25Team16Model.Store.sp_alterdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="SEP25Team16Model.Store.sp_creatediagram" />
+          <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="SEP25Team16Model.Store.sp_dropdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="SEP25Team16Model.Store.sp_helpdiagramdefinition">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SEP25Team16Model.sp_helpdiagramdefinition_Result">
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="SEP25Team16Model.Store.sp_helpdiagrams">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SEP25Team16Model.sp_helpdiagrams_Result">
+                <ScalarProperty Name="Database" ColumnName="Database" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Owner" ColumnName="Owner" />
+                <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="SEP25Team16Model.Store.sp_renamediagram" />
+          <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="SEP25Team16Model.Store.sp_upgraddiagrams" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
