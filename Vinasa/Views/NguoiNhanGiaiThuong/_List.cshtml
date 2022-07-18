@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Vinasa.Models.NguoiNhanGiaiThuong>
+﻿@model IEnumerable<Vinasa.Models.NGUOINHANGIAITHUONG>
 
 
 <div class="card-body">
@@ -44,12 +44,12 @@
                         </td>
                         <td class="action" style="display:flex; justify-content:space-around; align-items:center">
                             <li class="action-item">
-                                <a href="@Url.Action("Details", "NguoiNhanGiaiThuong", new{ id = @item.Id})" class="action-icon">
+                                <a href="@Url.Action("Details", "NGUOINHANGIAITHUONG", new{ id = @item.Id})" class="action-icon">
                                     <i class="fa-solid fa-circle-info icon"></i>
                                 </a>
                             </li>
                             <li class="action-item">
-                                <a href="@Url.Action("Edit", "NguoiNhanGiaiThuong", new{ id = @item.Id})" class="action-icon">
+                                <a href="@Url.Action("Edit", "NGUOINHANGIAITHUONG", new{ id = @item.Id})" class="action-icon">
                                     <i class="fa-solid fa-pen-to-square icon"></i>
                                 </a>
                             </li>
@@ -60,7 +60,7 @@
                             </li>
                         </td>
                     </tr>
-                }
+                } 
             </tbody>
         </table>
     </div>

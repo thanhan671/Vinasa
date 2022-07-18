@@ -7,13 +7,14 @@ using Vinasa.Validation;
 
 namespace Vinasa.Models
 {
-    public class GiaiThuong
+    public class GIAITHUONG
     {
-        public GiaiThuong()
+        public GIAITHUONG()
         {
-            NguoiNhanGiaiThuong = new List<NguoiNhanGiaiThuong>();
+            NguoiNhanGiaiThuong = new List<NGUOINHANGIAITHUONG>();
         }
         public int Id { get; set; }
+
         [Display(Name = "Tên Giải Thưởng")]
         [Required(ErrorMessage = "Vui lòng điền trường này!")]
         [GiaiThuongRequired(ErrorMessage = "Đã tồn tại hội nghị!")]
@@ -37,6 +38,6 @@ namespace Vinasa.Models
         [Display(Name = "Ngày tạo")]
         public DateTime? CreatedUtc { get; set; }
 
-        public List<NguoiNhanGiaiThuong> NguoiNhanGiaiThuong { get; set; }
+        public List<NGUOINHANGIAITHUONG> NguoiNhanGiaiThuong { get; set; }
     }
 }

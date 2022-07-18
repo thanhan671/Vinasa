@@ -169,7 +169,7 @@ namespace Vinasa.Services
 
             for (var iRow = 1; iRow < worksheet.PhysicalNumberOfRows; iRow++)
             {
-                var nguoiNhanGiaiThuong = new NguoiNhanGiaiThuong()
+                var nguoiNhanGiaiThuong = new NGUOINHANGIAITHUONG()
                 {
                     GiaiThuongId = giaiThuongId
                 };
@@ -235,7 +235,7 @@ namespace Vinasa.Services
                 }
                 if (isSave)
                 {
-                    _db.NguoiNhanGiaiThuongs.Add(nguoiNhanGiaiThuong);
+                    _db.NGUOINHANGIAITHUONG.Add(nguoiNhanGiaiThuong);
                     await _db.SaveChangesAsync();
                 }
             }

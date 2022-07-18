@@ -13,11 +13,11 @@ using Vinasa.Services;
 
 namespace Vinasa.Controllers
 {
-    public class GiaiThuongsController : Controller
+    public class GIAITHUONGController : Controller
     {
         private SeminarContext _db = new SeminarContext();
         private readonly ImportManager _importManager;
-        public GiaiThuongsController()
+        public GIAITHUONGController()
         {
             _importManager = new ImportManager(_db);
 
@@ -25,7 +25,7 @@ namespace Vinasa.Controllers
         // GET: GiaiThuong
         public ActionResult Index()
         {
-            return View(_db.GiaiThuong.ToList());
+            return View(_db.GIAITHUONG.ToList());
         }
 
         // GET: GiaiThuong/Details/5
@@ -35,13 +35,13 @@ namespace Vinasa.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            GiaiThuong giaiThuong = _db.GiaiThuong.Find(id);
+            GIAITHUONG giaiThuong = _db.GIAITHUONG.Find(id);
             if (giaiThuong == null)
             {
                 return HttpNotFound();
             }
 
-            giaiThuong.NguoiNhanGiaiThuong = _db.NguoiNhanGiaiThuongs.Where(m => m.GiaiThuongId == giaiThuong.Id).ToList();
+            giaiThuong.NguoiNhanGiaiThuong = _db.NGUOINHANGIAITHUONG.Where(m => m.GiaiThuongId == giaiThuong.Id).ToList();
 
             return View(giaiThuong);
         }
@@ -57,11 +57,11 @@ namespace Vinasa.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Title,OpenDate,Address,CreatedUtc")] GiaiThuong giaiThuong)
+        public ActionResult Create([Bind(Include = "Id,Title,OpenDate,Address,CreatedUtc")] GIAITHUONG giaiThuong)
         {
             if (ModelState.IsValid)
             {
-                _db.GiaiThuong.Add(giaiThuong);
+                _db.GIAITHUONG.Add(giaiThuong);
                 _db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -76,7 +76,7 @@ namespace Vinasa.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            GiaiThuong giaiThuong = _db.GiaiThuong.Find(id);
+            GIAITHUONG giaiThuong = _db.GIAITHUONG.Find(id);
             if (giaiThuong == null)
             {
                 return HttpNotFound();
@@ -89,7 +89,7 @@ namespace Vinasa.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Title,OpenDate,Address,CreatedUtc")] GiaiThuong giaiThuong)
+        public ActionResult Edit([Bind(Include = "Id,Title,OpenDate,Address,CreatedUtc")] GIAITHUONG giaiThuong)
         {
             if (ModelState.IsValid)
             {
@@ -104,24 +104,24 @@ namespace Vinasa.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Delete(int id)
         {
-            GiaiThuong giaiThuong = _db.GiaiThuong.Find(id);
+            GIAITHUONG giaiThuong = _db.GIAITHUONG.Find(id);
             if (giaiThuong != null)
             {
-                var giaiThuongParticipants = _db.NguoiNhanGiaiThuongs.Where(it => it.GiaiThuongId == giaiThuong.Id).ToList();
+                var giaiThuongParticipants = _db.NGUOINHANGIAITHUONG.Where(it => it.GiaiThuongId == giaiThuong.Id).ToList();
                 foreach (var giaiThuongParticipant in giaiThuongParticipants)
                 {
-                    _db.NguoiNhanGiaiThuongs.Remove(giaiThuongParticipant);
+                    _db.NGUOINHANGIAITHUONG.Remove(giaiThuongParticipant);
                 }
             }
 
-            _db.GiaiThuong.Remove(giaiThuong);
+            _db.GIAITHUONG.Remove(giaiThuong);
             _db.SaveChanges();
             return RedirectToAction("Index");
         }
 
         public ActionResult DeleteSelected(int id)
         {
-            var model = _db.GiaiThuong.Where(m => m.Id == id).FirstOrDefault();
+            var model = _db.GIAITHUONG.Where(m => m.Id == id).FirstOrDefault();
             return PartialView("_DeleteSelected", model);
         }
 
@@ -138,7 +138,7 @@ namespace Vinasa.Controllers
             {
                 if (importexcelfile != null && importexcelfile.ContentLength > 0)
                 {
-                    _db.NguoiNhanGiaiThuongs.RemoveRange(_db.NguoiNhanGiaiThuongs.ToList());
+                    _db.NGUOINHANGIAITHUONG.RemoveRange(_db.NGUOINHANGIAITHUONG.ToList());
 
                     await _importManager.ImportNguoiNhanGiaiThuongsFromXlsx((int)id, importexcelfile.InputStream);
                 }

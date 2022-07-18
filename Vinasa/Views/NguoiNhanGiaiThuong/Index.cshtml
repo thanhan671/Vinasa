@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Vinasa.Models.NguoiNhanGiaiThuong>
+﻿@model IEnumerable<Vinasa.Models.NGUOINHANGIAITHUONG>
 
 @{
     ViewBag.Title = "Index";
@@ -24,7 +24,7 @@
         $(".delete-btn").on("click", function () {
             var id = $(this).data("id");
             $.ajax({
-                url: "@Url.Action("DeleteSelected", "NguoiNhanGiaiThuong")",
+                url: "@Url.Action("DeleteSelected", "NGUOINHANGIAITHUONG")",
                 data: { id: id},
                 success: function (data) {
                     $("#deleteModal .modal-dialog").html(data);

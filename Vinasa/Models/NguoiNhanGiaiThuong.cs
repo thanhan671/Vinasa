@@ -9,7 +9,7 @@ using Vinasa.Validation;
 
 namespace Vinasa.Models
 {
-    public class NguoiNhanGiaiThuong
+    public class NGUOINHANGIAITHUONG
     {
         public int Id { get; set; }
         public int? GiaiThuongId { get; set; }
@@ -86,6 +86,6 @@ namespace Vinasa.Models
         [NotMapped]
         public SelectList Provinces { get; set; }
         [NotMapped]
-        public GiaiThuong GiaiThuong { get; set; }
+        public GIAITHUONG GiaiThuong { get; set; }
     }
 }

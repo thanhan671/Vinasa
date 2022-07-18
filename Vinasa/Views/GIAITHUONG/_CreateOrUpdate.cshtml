@@ -1,4 +1,4 @@
-﻿@model Vinasa.Models.GiaiThuong
+﻿@model Vinasa.Models.GIAITHUONG
 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 <div class="input-wrapper">
     @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "ip-form" } })
@@ -18,7 +18,7 @@
 </div>
 <div class="button-form">
     <button class="button-lc">Xác Nhận</button>
-    <button class="button-lc button-cancel" onclick="location.href='@Url.Action("Index", "Seminars")'" id="cancel">Huỷ</button>
+    <button class="button-lc button-cancel" onclick="location.href='@Url.Action("Index", "GIAITHUONG")'" id="cancel">Huỷ</button>
     @*<input type="button"
            value="Hủy"
            onclick="location.href='@Url.Action("Index", "Seminars")'"

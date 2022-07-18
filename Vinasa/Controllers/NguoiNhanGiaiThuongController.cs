@@ -11,14 +11,14 @@ using Vinasa.Models;
 
 namespace Vinasa.Controllers
 {
-    public class NguoiNhanGiaiThuongController : Controller
+    public class NGUOINHANGIAITHUONGController : Controller
     {
         private SeminarContext _db = new SeminarContext();
 
         // GET: NguoiNhanGiaiThuong
         public ActionResult Index()
         {
-            return View(_db.NguoiNhanGiaiThuongs.ToList());
+            return View(_db.NGUOINHANGIAITHUONG.ToList());
         }
 
         // GET: NguoiNhanGiaiThuong/Details/5
@@ -28,20 +28,20 @@ namespace Vinasa.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            NguoiNhanGiaiThuong nguoiNhanGiaiThuong = _db.NguoiNhanGiaiThuongs.Find(id);
+            NGUOINHANGIAITHUONG nguoiNhanGiaiThuong = _db.NGUOINHANGIAITHUONG.Find(id);
             if (nguoiNhanGiaiThuong == null)
             {
                 return HttpNotFound();
             }
             nguoiNhanGiaiThuong.Provinces = new SelectList(_db.Provinces, "ID", "Title", nguoiNhanGiaiThuong.ProvinceId);
-            nguoiNhanGiaiThuong.GiaiThuong = _db.GiaiThuong.Find(nguoiNhanGiaiThuong.GiaiThuongId);
+            nguoiNhanGiaiThuong.GiaiThuong = _db.GIAITHUONG.Find(nguoiNhanGiaiThuong.GiaiThuongId);
             return View(nguoiNhanGiaiThuong);
         }
 
         // GET: NguoiNhanGiaiThuong/Create
         public ActionResult Create()
         {
-            var model = new NguoiNhanGiaiThuong();
+            var model = new NGUOINHANGIAITHUONG();
             model.Provinces = new SelectList(_db.Provinces, "ID", "Title", model.ProvinceId);
             return View(model);
         }
@@ -51,11 +51,11 @@ namespace Vinasa.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,GiaiThuongId,MaSoThue,TenDonVi,TenNguoiDaiDienPhapLuat,ChucDanh,Email,DiDong,TenNguoiLienHeVoiBTC,ChucDanhNguoiLienHe,EmailNguoiLienHe,DiDongNguoiLienHe,ProvinceId,DiaChi,PhieuDangKy")] NguoiNhanGiaiThuong nguoiNhanGiaiThuong)
+        public ActionResult Create([Bind(Include = "Id,GiaiThuongId,MaSoThue,TenDonVi,TenNguoiDaiDienPhapLuat,ChucDanh,Email,DiDong,TenNguoiLienHeVoiBTC,ChucDanhNguoiLienHe,EmailNguoiLienHe,DiDongNguoiLienHe,ProvinceId,DiaChi,PhieuDangKy")] NGUOINHANGIAITHUONG nguoiNhanGiaiThuong)
         {
             if (ModelState.IsValid)
             {
-                _db.NguoiNhanGiaiThuongs.Add(nguoiNhanGiaiThuong);
+                _db.NGUOINHANGIAITHUONG.Add(nguoiNhanGiaiThuong);
                 _db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -70,7 +70,7 @@ namespace Vinasa.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            NguoiNhanGiaiThuong nguoiNhanGiaiThuong = _db.NguoiNhanGiaiThuongs.Find(id);
+            NGUOINHANGIAITHUONG nguoiNhanGiaiThuong = _db.NGUOINHANGIAITHUONG.Find(id);
             if (nguoiNhanGiaiThuong == null)
             {
                 return HttpNotFound();
@@ -85,7 +85,7 @@ namespace Vinasa.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,GiaiThuongId,MaSoThue,TenDonVi,TenNguoiDaiDienPhapLuat,ChucDanh,Email,DiDong,TenNguoiLienHeVoiBTC,ChucDanhNguoiLienHe,EmailNguoiLienHe,DiDongNguoiLienHe,ProvinceId,DiaChi,PhieuDangKy")] NguoiNhanGiaiThuong nguoiNhanGiaiThuong)
+        public ActionResult Edit([Bind(Include = "Id,GiaiThuongId,MaSoThue,TenDonVi,TenNguoiDaiDienPhapLuat,ChucDanh,Email,DiDong,TenNguoiLienHeVoiBTC,ChucDanhNguoiLienHe,EmailNguoiLienHe,DiDongNguoiLienHe,ProvinceId,DiaChi,PhieuDangKy")] NGUOINHANGIAITHUONG nguoiNhanGiaiThuong)
         {
             if (!ModelState.IsValid)
             {
@@ -106,8 +106,8 @@ namespace Vinasa.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Delete(int id, int giaiThuongId = -1)
         {
-            var nguoiNhanGiaiThuong = _db.NguoiNhanGiaiThuongs.Find(id);
-            _db.NguoiNhanGiaiThuongs.Remove(nguoiNhanGiaiThuong);
+            var nguoiNhanGiaiThuong = _db.NGUOINHANGIAITHUONG.Find(id);
+            _db.NGUOINHANGIAITHUONG.Remove(nguoiNhanGiaiThuong);
             _db.SaveChanges();
             if (giaiThuongId > 0)
                 return RedirectToAction("Details", "GiaiThuongs", new { id = giaiThuongId });
@@ -118,7 +118,7 @@ namespace Vinasa.Controllers
 
         public ActionResult DeleteSelected(int id, int giaiThuongId = -1)
         {
-            var model = _db.NguoiNhanGiaiThuongs.Where(m => m.Id == id).FirstOrDefault();
+            var model = _db.NGUOINHANGIAITHUONG.Where(m => m.Id == id).FirstOrDefault();
             ViewBag.GiaiThuongId = giaiThuongId;
             return PartialView("_DeleteSelected", model);
         }

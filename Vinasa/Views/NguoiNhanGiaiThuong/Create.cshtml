@@ -1,4 +1,4 @@
-﻿@model Vinasa.Models.NguoiNhanGiaiThuong
+﻿@model Vinasa.Models.NGUOINHANGIAITHUONG
 
 @{
     ViewBag.Title = "Create";
@@ -7,7 +7,7 @@
 
 <div class="container col-11 centerPage">
     <h5 class="heading">Cập nhật Thông Tin người nhận giải thưởng</h5>
-    @using (Html.BeginForm("Create", "NguoiNhanGiaiThuong",
+    @using (Html.BeginForm("Create", "NGUOINHANGIAITHUONG",
          new { ReturnUrl = ViewBag.ReturnUrl },
          FormMethod.Post, new { @class = "form-field" }))
     {

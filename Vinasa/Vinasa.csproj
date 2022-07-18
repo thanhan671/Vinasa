@@ -163,10 +163,10 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
-    <Compile Include="Controllers\GiaiThuongsController.cs" />
+    <Compile Include="Controllers\GIAITHUONGController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MemberController.cs" />
-    <Compile Include="Controllers\NguoiNhanGiaiThuongController.cs" />
+    <Compile Include="Controllers\NGUOINHANGIAITHUONGController.cs" />
     <Compile Include="Controllers\ProvincesController.cs" />
     <Compile Include="Controllers\SeminarParticipantsController.cs" />
     <Compile Include="Controllers\SeminarsController.cs" />
@@ -175,29 +175,13 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202206300612309_Seminars.cs" />
-    <Compile Include="Migrations\202206300612309_Seminars.designer.cs">
-      <DependentUpon>202206300612309_Seminars.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202206300618525_Seminars1.cs" />
-    <Compile Include="Migrations\202206300618525_Seminars1.designer.cs">
-      <DependentUpon>202206300618525_Seminars1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202206300636405_Seminars2.cs" />
-    <Compile Include="Migrations\202206300636405_Seminars2.designer.cs">
-      <DependentUpon>202206300636405_Seminars2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202206300705012_Seminars3.cs" />
-    <Compile Include="Migrations\202206300705012_Seminars3.designer.cs">
-      <DependentUpon>202206300705012_Seminars3.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202207151922339_GiaiThuong.cs" />
-    <Compile Include="Migrations\202207151922339_GiaiThuong.designer.cs">
-      <DependentUpon>202207151922339_GiaiThuong.cs</DependentUpon>
+    <Compile Include="Migrations\202207181503260_Initial.cs" />
+    <Compile Include="Migrations\202207181503260_Initial.designer.cs">
+      <DependentUpon>202207181503260_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AdminAccountModels.cs" />
-    <Compile Include="Models\GiaiThuong.cs" />
+    <Compile Include="Models\GIAITHUONG.cs" />
     <Compile Include="Models\HOIVIEN.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -220,7 +204,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Model1.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Models\NguoiNhanGiaiThuong.cs" />
+    <Compile Include="Models\NGUOINHANGIAITHUONG.cs" />
     <Compile Include="Models\Province.cs" />
     <Compile Include="Models\QUYEN.cs">
       <DependentUpon>Model1.tt</DependentUpon>
@@ -1984,19 +1968,20 @@
     <Content Include="Views\Seminars\_CreateOrUpdate.cshtml" />
     <Content Include="Views\Seminars\_DeleteSelected.cshtml" />
     <Content Include="Views\SeminarParticipants\Details.cshtml" />
-    <Content Include="Views\GiaiThuongs\_CreateOrUpdate.cshtml" />
-    <Content Include="Views\GiaiThuongs\_DeleteSelected.cshtml" />
-    <Content Include="Views\GiaiThuongs\Create.cshtml" />
-    <Content Include="Views\GiaiThuongs\Details.cshtml" />
-    <Content Include="Views\GiaiThuongs\Edit.cshtml" />
-    <Content Include="Views\GiaiThuongs\Index.cshtml" />
-    <Content Include="Views\NguoiNhanGiaiThuong\_CreateOrUpdate.cshtml" />
-    <Content Include="Views\NguoiNhanGiaiThuong\_DeleteSelected.cshtml" />
-    <Content Include="Views\NguoiNhanGiaiThuong\_List.cshtml" />
-    <Content Include="Views\NguoiNhanGiaiThuong\Create.cshtml" />
-    <Content Include="Views\NguoiNhanGiaiThuong\Details.cshtml" />
-    <Content Include="Views\NguoiNhanGiaiThuong\Edit.cshtml" />
-    <Content Include="Views\NguoiNhanGiaiThuong\Index.cshtml" />
+    <Content Include="Views\GIAITHUONG\_CreateOrUpdate.cshtml" />
+    <Content Include="Views\GIAITHUONG\_DeleteSelected.cshtml" />
+    <Content Include="Views\GIAITHUONG\Create.cshtml" />
+    <Content Include="Views\GIAITHUONG\Details.cshtml" />
+    <Content Include="Views\GIAITHUONG\Edit.cshtml" />
+    <Content Include="Views\GIAITHUONG\Index.cshtml" />
+    <Content Include="Views\NGUOINHANGIAITHUONG\_CreateOrUpdate.cshtml" />
+    <Content Include="Views\NGUOINHANGIAITHUONG\_DeleteSelected.cshtml" />
+    <Content Include="Views\NGUOINHANGIAITHUONG\_List.cshtml" />
+    <Content Include="Views\NGUOINHANGIAITHUONG\Create.cshtml" />
+    <Content Include="Views\NGUOINHANGIAITHUONG\Details.cshtml" />
+    <Content Include="Views\NGUOINHANGIAITHUONG\Edit.cshtml" />
+    <Content Include="Views\NGUOINHANGIAITHUONG\Index.cshtml" />
+    <Content Include="Views\NGUOINHANGIAITHUONG\Delete.cshtml" />
     <None Include="Views\Shared\sblogin.cshtml" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -2342,20 +2327,8 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202206300612309_Seminars.resx">
-      <DependentUpon>202206300612309_Seminars.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202206300618525_Seminars1.resx">
-      <DependentUpon>202206300618525_Seminars1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202206300636405_Seminars2.resx">
-      <DependentUpon>202206300636405_Seminars2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202206300705012_Seminars3.resx">
-      <DependentUpon>202206300705012_Seminars3.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202207151922339_GiaiThuong.resx">
-      <DependentUpon>202207151922339_GiaiThuong.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202207181503260_Initial.resx">
+      <DependentUpon>202207181503260_Initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
