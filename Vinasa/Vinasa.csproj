@@ -180,6 +180,7 @@
     <Compile Include="Controllers\CourseController.cs" />
     <Compile Include="Controllers\CourseParticipantsController.cs" />
     <Compile Include="Controllers\GIAITHUONGController.cs" />
+    <Compile Include="Controllers\ICController.cs" />
     <Compile Include="Controllers\NGUOINHANGIAITHUONGController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MemberController.cs" />
@@ -2365,6 +2366,7 @@
     <Content Include="Views\CourseParticipants\Edit.cshtml" />
     <Content Include="Views\CourseParticipants\_DeleteSelected.cshtml" />
     <Content Include="Views\CourseParticipants\_List.cshtml" />
+    <Content Include="Views\IC\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

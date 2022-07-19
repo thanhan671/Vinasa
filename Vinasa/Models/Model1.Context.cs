@@ -36,5 +36,7 @@ namespace Vinasa.Models
         public DbSet<Seminar> Seminars { get; set; }
         public DbSet<KHOAHOC> KHOAHOCs { get; set; }
         public DbSet<THAMGIAKHOAHOC> THAMGIAKHOAHOCs { get; set; }
+        public DbSet<HOINGHIQUOCTE> HOINGHIQUOCTEs { get; set; }
+        public DbSet<THAMGIAHOINGHIQUOCTE> THAMGIAHOINGHIQUOCTEs { get; set; }
     }
 }
