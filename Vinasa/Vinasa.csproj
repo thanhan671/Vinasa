@@ -177,6 +177,8 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\CourseController.cs" />
+    <Compile Include="Controllers\CourseParticipantsController.cs" />
     <Compile Include="Controllers\GIAITHUONGController.cs" />
     <Compile Include="Controllers\NGUOINHANGIAITHUONGController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -2354,6 +2356,15 @@
     <Content Include="Views\NGUOINHANGIAITHUONG\Edit.cshtml" />
     <Content Include="Views\NGUOINHANGIAITHUONG\Index.cshtml" />
     <Content Include="Views\NGUOINHANGIAITHUONG\Delete.cshtml" />
+    <Content Include="Views\Course\Index.cshtml" />
+    <Content Include="Views\Course\Create.cshtml" />
+    <Content Include="Views\Course\Edit.cshtml" />
+    <Content Include="Views\Course\_DeleteSelected.cshtml" />
+    <Content Include="Views\CourseParticipants\Index.cshtml" />
+    <Content Include="Views\CourseParticipants\Details.cshtml" />
+    <Content Include="Views\CourseParticipants\Edit.cshtml" />
+    <Content Include="Views\CourseParticipants\_DeleteSelected.cshtml" />
+    <Content Include="Views\CourseParticipants\_List.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

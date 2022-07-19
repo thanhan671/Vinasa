@@ -1,0 +1,39 @@
+﻿@model Vinasa.Models.KHOAHOC
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/sbadmin.cshtml";
+}
+@using (Html.BeginForm("Create", "Course", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="container">
+        <div class="col-6">
+            <h5 class="heading">Thêm Khóa Đào Tạo</h5>
+
+            <form class="form-field" method="post" enctype="multipart/form-data">
+                <div class="input-wrapper">
+                    @Html.EditorFor(m => m.TenKhoaDaoTao, new { htmlAttributes = new { @class = "ip-form", @required = "required" } })
+                    @Html.LabelFor(m => m.TenKhoaDaoTao, new { @class = "lb-form" })
+                </div>
+                <div class="input-wrapper">
+                    @Html.TextBoxFor(m => m.NgayBatDau, "{0:yyyy-MM-dd}", new { @class = "ip-form", @type = "date", @required = "required" })
+                    @Html.LabelFor(m => m.NgayBatDau, new { @class = "lb-form" })
+                </div>
+                <div class="input-wrapper">
+                    @Html.TextBoxFor(m => m.NgayKetThuc, "{0:yyyy-MM-dd}", new { @class = "ip-form", @type = "date", @required = "required" })
+                    @Html.LabelFor(m => m.NgayKetThuc, new { @class = "lb-form" })
+                </div>
+                <div class="input-wrapper">
+                    @Html.EditorFor(m => m.HinhThuc, new { htmlAttributes = new { @class = "ip-form", @required = "required" } })
+                    @Html.LabelFor(m => m.HinhThuc, new { @class = "lb-form" })
+                </div>
+            </form>
+            <div class="button-form">
+                <button class="button-cancel" onclick="location.href='@Url.Action("Index", "Course")'" type="button" name="cancel">Huỷ</button>
+                <button class="button-lc" type="submit" name="save">Xác Nhận</button>
+            </div>
+        </div>
+
+    </div>
+}

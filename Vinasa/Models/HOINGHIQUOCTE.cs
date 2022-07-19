@@ -11,20 +11,20 @@ namespace Vinasa.Models
 {
     using System;
     using System.Collections.Generic;
-
+    
     public partial class HOINGHIQUOCTE
     {
         public HOINGHIQUOCTE()
         {
             this.THAMGIAHOINGHIQUOCTEs = new HashSet<THAMGIAHOINGHIQUOCTE>();
         }
-
+    
         public int ID { get; set; }
         public string Ten { get; set; }
         public string DiaDiem { get; set; }
         public System.DateTime ThoiGianBatDau { get; set; }
         public System.DateTime ThoiGianKetThuc { get; set; }
-
+    
         public virtual ICollection<THAMGIAHOINGHIQUOCTE> THAMGIAHOINGHIQUOCTEs { get; set; }
     }
 }
