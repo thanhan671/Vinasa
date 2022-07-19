@@ -2367,6 +2367,9 @@
     <Content Include="Views\CourseParticipants\_DeleteSelected.cshtml" />
     <Content Include="Views\CourseParticipants\_List.cshtml" />
     <Content Include="Views\IC\Index.cshtml" />
+    <Content Include="Views\IC\Create.cshtml" />
+    <Content Include="Views\IC\Edit.cshtml" />
+    <Content Include="Views\IC\_DeleteSelected.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
