@@ -61,7 +61,7 @@ namespace Vinasa.Validation
             if (value == null)
                 return false;
 
-            var giaiThuong = _db.GiaiThuong.FirstOrDefault(it => it.Title == value.ToString());
+            var giaiThuong = _db.GIAITHUONG.FirstOrDefault(it => it.Title == value.ToString());
             return !(giaiThuong != null && giaiThuong.Id > 0);
         }
     }

@@ -1,0 +1,91 @@
+﻿@model Vinasa.Models.GIAITHUONG
+@{
+    ViewData["Title"] = "Details";
+}
+
+<!-- Page Heading -->
+<div class="heading">
+    <h1 class="h3 mb-2 text-gray-800">Giải thưởng - @{ @Model.Title} </h1>
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="@Url.Action("Index")">Danh Sách Các Giải thưởng</a></li>
+            @*<li class="breadcrumb-item"><label onclick="location.href = 'javascript:history.go(-1)'">Danh Sách Các Giải thưởng</label></li>*@
+            <li class="breadcrumb-item active" aria-current="page">Danh Sách Người nhận giải thưởng</li>
+        </ol>
+    </nav>
+</div>
+
+<!-- DataTales Example -->
+<div class="card shadow mb-4">
+    <div class="card-header py-3" style=" display: flex; justify-content: space-between; align-items: center;">
+        <div class="right-content">
+            <h6 class="m-0 font-weight-bold text-primary" style="color: #19315D ">Danh sách Người nhận giải thưởng</h6>
+        </div>
+        <div class="left-content">
+            <button type="button" id="importexcel" name="importexcel" class="button-lc" style=" width: 200px;" data-toggle="modal" data-target="#importexcel-window"> 
+                Thêm File Excel
+            </button>
+        </div>
+    </div>
+    @Html.Partial("~/Views/NguoiNhanGiaiThuong/_List.cshtml", Model.NguoiNhanGiaiThuong)
+</div>
+ <div class="modal fade" id="importexcel-window" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Import Excel</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div> 
+            <div class="modal-body">
+                @using (Html.BeginForm("ImportExcel", "GIAITHUONG",
+                    new { Id = @Model.Id },
+                    FormMethod.Post, new { enctype = "multipart/form-data" }))
+                {
+                        @Html.AntiForgeryToken()
+                        <div class="form-group">
+                            <div class="modal-body">
+                                <label class="form-label" for="customFile">Chọn 1 file Excel</label>
+                            </div>
+                            <div class="col-md-10">
+                                <input type="file" id="importexcelfile" name="importexcelfile" />
+                            </div>
+                        </div>
+                        <div class="modal-footer" id="modal-b">
+                            <button type="button"
+                                    class="btn btn-secondary button-lc"
+                                    data-dismiss="modal">
+                                Hủy
+                            </button>
+                            <button type="submit" class="btn btn-primary button-lc">
+                                Tải lên
+                            </button>
+                        </div>
+                    }
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+    </div>
+</div>
+
+@section scripts{
+    <script>
+        $(".delete-btn").on("click", function () {
+            var id = $(this).data("id");
+            var giaithuongid = $(this).data("giaithuongid");
+            $.ajax({
+                url: "@Url.Action("DeleteSelected", "NguoiNhanGiaiThuong")",
+                data: { id: id,
+                        giaithuongid: giaithuongid},
+                success: function (data) {
+                    $("#deleteModal .modal-dialog").html(data);
+                    $("#deleteModal").modal("show");
+                }
+            });
+        });
+    </script>
+}

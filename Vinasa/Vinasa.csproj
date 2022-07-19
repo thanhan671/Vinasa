@@ -177,13 +177,9 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
-    <Compile Include="Controllers\AwardController.cs" />
-    <Compile Include="Controllers\AwardParticipantsController.cs" />
-    <Compile Include="Controllers\CourseController.cs" />
-    <Compile Include="Controllers\CourseParticipantsController.cs" />
+    <Compile Include="Controllers\GIAITHUONGController.cs" />
+    <Compile Include="Controllers\NGUOINHANGIAITHUONGController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\ICController.cs" />
-    <Compile Include="Controllers\ICParticipantsController.cs" />
     <Compile Include="Controllers\MemberController.cs" />
     <Compile Include="Controllers\ProvincesController.cs" />
     <Compile Include="Controllers\SeminarParticipantsController.cs" />
@@ -193,36 +189,14 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202206300612309_Seminars.cs" />
-    <Compile Include="Migrations\202206300612309_Seminars.designer.cs">
-      <DependentUpon>202206300612309_Seminars.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202206300618525_Seminars1.cs" />
-    <Compile Include="Migrations\202206300618525_Seminars1.designer.cs">
-      <DependentUpon>202206300618525_Seminars1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202206300636405_Seminars2.cs" />
-    <Compile Include="Migrations\202206300636405_Seminars2.designer.cs">
-      <DependentUpon>202206300636405_Seminars2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202206300705012_Seminars3.cs" />
-    <Compile Include="Migrations\202206300705012_Seminars3.designer.cs">
-      <DependentUpon>202206300705012_Seminars3.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202207151922339_GiaiThuong.cs" />
-    <Compile Include="Migrations\202207151922339_GiaiThuong.designer.cs">
-      <DependentUpon>202207151922339_GiaiThuong.cs</DependentUpon>
+    <Compile Include="Migrations\202207181503260_Initial.cs" />
+    <Compile Include="Migrations\202207181503260_Initial.designer.cs">
+      <DependentUpon>202207181503260_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AdminAccountModels.cs" />
-    <Compile Include="Models\GiaiThuong.cs" />
-    <Compile Include="Models\HOINGHIQUOCTE.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
+    <Compile Include="Models\GIAITHUONG.cs" />
     <Compile Include="Models\HOIVIEN.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\KHOAHOC.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\KHUVUC.cs">
@@ -245,10 +219,8 @@
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
     </Compile>
-    <Compile Include="Models\NguoiNhanGiaiThuong.cs" />
-    <Compile Include="Models\Province.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
+    <Compile Include="Models\NGUOINHANGIAITHUONG.cs" />
+    <Compile Include="Models\Province.cs" />
     <Compile Include="Models\QUYEN.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -259,23 +231,11 @@
     <Compile Include="Models\SeminarParticipant.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\sp_helpdiagramdefinition_Result.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\sp_helpdiagrams_Result.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\StatusModels.cs" />
     <Compile Include="Models\sysdiagram.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\TAIKHOANADMIN.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\THAMGIAHOINGHIQUOCTE.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\THAMGIAKHOAHOC.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\TRANGTHAI.cs">
@@ -2353,38 +2313,20 @@
     <Content Include="vendor\jquery\jquery.slim.min.map" />
     <Content Include="Views\Shared\sbadmin.cshtml" />
     <Content Include="Views\Account\Profile.cshtml" />
-    <Content Include="Views\Award\Index.cshtml" />
-    <Content Include="Views\Award\Create.cshtml" />
-    <Content Include="Views\Award\Edit.cshtml" />
-    <Content Include="Views\AwardParticipants\Index.cshtml" />
-    <Content Include="Views\AwardParticipants\Edit.cshtml" />
-    <Content Include="Views\IC\Index.cshtml" />
-    <Content Include="Views\IC\Edit.cshtml" />
-    <Content Include="Views\IC\Create.cshtml" />
-    <Content Include="Views\ICParticipants\Index.cshtml" />
-    <Content Include="Views\ICParticipants\Edit.cshtml" />
-    <Content Include="Views\ICParticipants\Details.cshtml" />
-    <Content Include="Views\Course\Index.cshtml" />
-    <Content Include="Views\Course\Edit.cshtml" />
-    <Content Include="Views\Course\Create.cshtml" />
-    <Content Include="Views\CourseParticipants\Index.cshtml" />
-    <Content Include="Views\CourseParticipants\Edit.cshtml" />
-    <Content Include="Views\CourseParticipants\Detail.cshtml" />
-    <Content Include="Views\Award\Details.cshtml" />
-    <Content Include="Views\Award\_DeleteSelected.cshtml" />
-    <Content Include="Views\Award\_CreateOrUpdate.cshtml" />
-    <Content Include="Views\AwardParticipants\Details.cshtml" />
-    <Content Include="Views\AwardParticipants\Create.cshtml" />
-    <Content Include="Views\AwardParticipants\_DeleteSelected.cshtml" />
-    <Content Include="Views\AwardParticipants\_CreateOrUpdate.cshtml" />
-    <Content Include="Views\AwardParticipants\_List.cshtml" />
-    <Content Include="Views\IC\_DeleteSelected.cshtml" />
-    <Content Include="Views\IC\Details.cshtml" />
-    <Content Include="Views\IC\_CreateOrUpdate.cshtml" />
-    <Content Include="Views\ICParticipants\Create.cshtml" />
-    <Content Include="Views\ICParticipants\_List.cshtml" />
-    <Content Include="Views\ICParticipants\_CreateOrUpdate.cshtml" />
-    <Content Include="Views\ICParticipants\_DeleteSelected.cshtml" />
+    <Content Include="Views\GIAITHUONG\_CreateOrUpdate.cshtml" />
+    <Content Include="Views\GIAITHUONG\_DeleteSelected.cshtml" />
+    <Content Include="Views\GIAITHUONG\Create.cshtml" />
+    <Content Include="Views\GIAITHUONG\Details.cshtml" />
+    <Content Include="Views\GIAITHUONG\Edit.cshtml" />
+    <Content Include="Views\GIAITHUONG\Index.cshtml" />
+    <Content Include="Views\NGUOINHANGIAITHUONG\_CreateOrUpdate.cshtml" />
+    <Content Include="Views\NGUOINHANGIAITHUONG\_DeleteSelected.cshtml" />
+    <Content Include="Views\NGUOINHANGIAITHUONG\_List.cshtml" />
+    <Content Include="Views\NGUOINHANGIAITHUONG\Create.cshtml" />
+    <Content Include="Views\NGUOINHANGIAITHUONG\Details.cshtml" />
+    <Content Include="Views\NGUOINHANGIAITHUONG\Edit.cshtml" />
+    <Content Include="Views\NGUOINHANGIAITHUONG\Index.cshtml" />
+    <Content Include="Views\NGUOINHANGIAITHUONG\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -2406,20 +2348,8 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202206300612309_Seminars.resx">
-      <DependentUpon>202206300612309_Seminars.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202206300618525_Seminars1.resx">
-      <DependentUpon>202206300618525_Seminars1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202206300636405_Seminars2.resx">
-      <DependentUpon>202206300636405_Seminars2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202206300705012_Seminars3.resx">
-      <DependentUpon>202206300705012_Seminars3.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202207151922339_GiaiThuong.resx">
-      <DependentUpon>202207151922339_GiaiThuong.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202207181503260_Initial.resx">
+      <DependentUpon>202207181503260_Initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

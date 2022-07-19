@@ -34,9 +34,5 @@ namespace Vinasa.Models
         public DbSet<Province> Provinces { get; set; }
         public DbSet<SeminarParticipant> SeminarParticipants { get; set; }
         public DbSet<Seminar> Seminars { get; set; }
-        public DbSet<HOINGHIQUOCTE> HOINGHIQUOCTEs { get; set; }
-        public DbSet<KHOAHOC> KHOAHOCs { get; set; }
-        public DbSet<THAMGIAHOINGHIQUOCTE> THAMGIAHOINGHIQUOCTEs { get; set; }
-        public DbSet<THAMGIAKHOAHOC> THAMGIAKHOAHOCs { get; set; }
     }
 }

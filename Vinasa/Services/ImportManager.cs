@@ -16,7 +16,8 @@ namespace Vinasa.Services
         #endregion
 
         #region Contructor
-        public ImportManager(SeminarContext db)
+        public ImportManager(
+                    SeminarContext db)
         {
             _db = db;
         }
@@ -97,7 +98,7 @@ namespace Vinasa.Services
                             break;
 
                         case "Tỉnh thành":
-                            int.TryParse(cellValue,out int value );
+                            int.TryParse(cellValue, out int value);
                             participant.ProvinceId = value;
                             break;
 
@@ -126,7 +127,7 @@ namespace Vinasa.Services
                             break;
                     }
                 }
-                if(isSave)
+                if (isSave)
                 {
                     _db.SeminarParticipants.Add(participant);
                     await _db.SaveChangesAsync();
@@ -168,7 +169,7 @@ namespace Vinasa.Services
 
             for (var iRow = 1; iRow < worksheet.PhysicalNumberOfRows; iRow++)
             {
-                var nguoiNhanGiaiThuong = new NguoiNhanGiaiThuong()
+                var nguoiNhanGiaiThuong = new NGUOINHANGIAITHUONG()
                 {
                     GiaiThuongId = giaiThuongId
                 };
@@ -234,7 +235,7 @@ namespace Vinasa.Services
                 }
                 if (isSave)
                 {
-                    _db.NguoiNhanGiaiThuongs.Add(nguoiNhanGiaiThuong);
+                    _db.NGUOINHANGIAITHUONG.Add(nguoiNhanGiaiThuong);
                     await _db.SaveChangesAsync();
                 }
             }

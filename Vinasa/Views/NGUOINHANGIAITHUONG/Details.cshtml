@@ -1,0 +1,69 @@
+﻿@model Vinasa.Models.NGUOINHANGIAITHUONG
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/sbadmin.cshtml";
+}
+
+<div class="container col-11 centerPage">
+    <h5 class="heading">Thông tin người nhận giải thưởng</h5>
+    <form class="form-field form-inputs" method="post" enctype="multipart/form-data">
+        <div class="input-wrapper">
+            @Html.EditorFor(model => model.GiaiThuong.Title, new { htmlAttributes = new { @class = "ip-form", @readonly = "readonly" } })
+            @Html.LabelFor(model => model.GiaiThuong.Title, new { @class = "lb-form" })
+        </div>
+        <div class="input-wrapper">
+            @Html.EditorFor(model => model.TenDonVi, new { htmlAttributes = new { @class = "ip-form", @readonly = "readonly" } })
+            @Html.LabelFor(model => model.TenDonVi, new { @class = "lb-form" })
+        </div>
+        <div class="input-wrapper">
+            @Html.EditorFor(model => model.TenNguoiDaiDienPhapLuat, new { htmlAttributes = new { @class = "ip-form", @readonly = "readonly" } })
+            @Html.LabelFor(model => model.TenNguoiDaiDienPhapLuat, new { @class = "lb-form" })
+        </div>
+        <div class="input-wrapper">
+            @Html.EditorFor(model => model.ChucDanh, new { htmlAttributes = new { @class = "ip-form", @readonly = "readonly" } })
+            @Html.LabelFor(model => model.ChucDanh, new { @class = "lb-form" })
+        </div>
+        <div class="input-wrapper">
+            @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "ip-form", @readonly = "readonly" } })
+            @Html.LabelFor(model => model.Email, new { @class = "lb-form" })
+        </div>
+        <div class="input-wrapper">
+            @Html.EditorFor(model => model.DiDong, new { htmlAttributes = new { @class = "ip-form", @readonly = "readonly" } })
+            @Html.LabelFor(model => model.DiDong, new { @class = "lb-form" })
+        </div>
+        <div class="input-wrapper">
+            @Html.EditorFor(model => model.TenNguoiLienHeVoiBTC, new { htmlAttributes = new { @class = "ip-form", @readonly = "readonly" } })
+            @Html.LabelFor(model => model.TenNguoiLienHeVoiBTC, new { @class = "lb-form" })
+        </div>
+        <div class="input-wrapper">
+            @Html.EditorFor(model => model.ChucDanhNguoiLienHe, new { htmlAttributes = new { @class = "ip-form", @readonly = "readonly" } })
+            @Html.LabelFor(model => model.ChucDanhNguoiLienHe, new { @class = "lb-form" })
+        </div>
+        <div class="input-wrapper">
+            @Html.EditorFor(model => model.EmailNguoiLienHe, new { htmlAttributes = new { @class = "ip-form", @readonly = "readonly" } })
+            @Html.LabelFor(model => model.EmailNguoiLienHe, new { @class = "lb-form" })
+        </div>
+        <div class="input-wrapper">
+            @Html.EditorFor(model => model.DiDongNguoiLienHe, new { htmlAttributes = new { @class = "ip-form", @readonly = "readonly" } })
+            @Html.LabelFor(model => model.DiDongNguoiLienHe, new { @class = "lb-form" })
+        </div>
+        <div class="input-wrapper">
+            @Html.LabelFor(model => model.ProvinceId, new { @class = "lb-form" })
+            @Html.DropDownListFor(model => model.ProvinceId, Model.Provinces, new { @class = "ip-form form-control select-region", @readonly = "readonly" })
+        </div>
+        <div class="input-wrapper">
+            @Html.EditorFor(model => model.DiaChi, new { htmlAttributes = new { @class = "ip-form", @readonly = "readonly" } })
+            @Html.LabelFor(model => model.DiaChi, new { @class = "lb-form" })
+        </div>
+        <div class="input-wrapper">
+            @Html.EditorFor(model => model.PhieuDangKy, new { htmlAttributes = new { @class = "ip-form", @readonly = "readonly" } })
+            @Html.LabelFor(model => model.PhieuDangKy, new { @class = "lb-form" })
+        </div>
+    </form>
+    <div class="button-form">
+        <button class="button-lc" id="cancel" onclick="location.href = 'javascript:history.go(-1)'">Quay Lại</button>
+    </div>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
