@@ -11,7 +11,7 @@ namespace Vinasa.Models
 {
     using System;
     using System.Collections.Generic;
-    
+
     public partial class HOIVIEN
     {
         public int ID { get; set; }
@@ -49,7 +49,7 @@ namespace Vinasa.Models
         public string Fanpage { get; set; }
         public string ThoiGianGiaNhap { get; set; }
         public int KhuVuc { get; set; }
-    
+
         public virtual KHUVUC KHUVUC1 { get; set; }
     }
 }

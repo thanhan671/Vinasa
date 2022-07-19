@@ -5,6 +5,26 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="SEP25Team16Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="__MigrationHistory">
+          <Key>
+            <PropertyRef Name="MigrationId" />
+            <PropertyRef Name="ContextKey" />
+          </Key>
+          <Property Name="MigrationId" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="ContextKey" Type="nvarchar" MaxLength="300" Nullable="false" />
+          <Property Name="Model" Type="varbinary(max)" Nullable="false" />
+          <Property Name="ProductVersion" Type="nvarchar" MaxLength="32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="GIAITHUONG">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="OpenDate" Type="datetime" Nullable="false" />
+          <Property Name="Address" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="CreatedUtc" Type="datetime" />
+        </EntityType>
         <EntityType Name="HOINGHIQUOCTE">
           <Key>
             <PropertyRef Name="ID" />
@@ -71,6 +91,26 @@
           </Key>
           <Property Name="IDKhuVuc" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="TenKhuVuc" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="NGUOINHANGIAITHUONG">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="GiaiThuongId" Type="int" />
+          <Property Name="MaSoThue" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="TenDonVi" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="TenNguoiDaiDienPhapLuat" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="ChucDanh" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Email" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="DiDong" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="TenNguoiLienHeVoiBTC" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="ChucDanhNguoiLienHe" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="EmailNguoiLienHe" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="DiDongNguoiLienHe" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="ProvinceId" Type="int" Nullable="false" />
+          <Property Name="DiaChi" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="PhieuDangKy" Type="nvarchar(max)" Nullable="false" />
         </EntityType>
         <EntityType Name="Provinces">
           <Key>
@@ -183,6 +223,18 @@
           <Property Name="IDTrangThai" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="TenTrangThai" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
+        <Association Name="FK_dbo_NGUOINHANGIAITHUONG_dbo_GIAITHUONG_GiaiThuongId">
+          <End Role="GIAITHUONG" Type="Self.GIAITHUONG" Multiplicity="0..1" />
+          <End Role="NGUOINHANGIAITHUONG" Type="Self.NGUOINHANGIAITHUONG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GIAITHUONG">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="NGUOINHANGIAITHUONG">
+              <PropertyRef Name="GiaiThuongId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_dbo_SeminarParticipants_dbo_Seminars_SeminarId">
           <End Role="Seminars" Type="Self.Seminars" Multiplicity="0..1" />
           <End Role="SeminarParticipants" Type="Self.SeminarParticipants" Multiplicity="*" />
@@ -287,10 +339,13 @@
         </Function>
         <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <EntityContainer Name="SEP25Team16ModelStoreContainer">
+          <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GIAITHUONG" EntityType="Self.GIAITHUONG" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="HOINGHIQUOCTE" EntityType="Self.HOINGHIQUOCTE" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="HOIVIEN" EntityType="Self.HOIVIEN" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="KHOAHOC" EntityType="Self.KHOAHOC" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="KHUVUC" EntityType="Self.KHUVUC" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="NGUOINHANGIAITHUONG" EntityType="Self.NGUOINHANGIAITHUONG" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Provinces" EntityType="Self.Provinces" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="QUYEN" EntityType="Self.QUYEN" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SeminarParticipants" EntityType="Self.SeminarParticipants" Schema="dbo" store:Type="Tables" />
@@ -300,6 +355,10 @@
           <EntitySet Name="THAMGIAHOINGHIQUOCTE" EntityType="Self.THAMGIAHOINGHIQUOCTE" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="THAMGIAKHOAHOC" EntityType="Self.THAMGIAKHOAHOC" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TRANGTHAI" EntityType="Self.TRANGTHAI" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_dbo_NGUOINHANGIAITHUONG_dbo_GIAITHUONG_GiaiThuongId" Association="Self.FK_dbo_NGUOINHANGIAITHUONG_dbo_GIAITHUONG_GiaiThuongId">
+            <End Role="GIAITHUONG" EntitySet="GIAITHUONG" />
+            <End Role="NGUOINHANGIAITHUONG" EntitySet="NGUOINHANGIAITHUONG" />
+          </AssociationSet>
           <AssociationSet Name="FK_dbo_SeminarParticipants_dbo_Seminars_SeminarId" Association="Self.FK_dbo_SeminarParticipants_dbo_Seminars_SeminarId">
             <End Role="Seminars" EntitySet="Seminars" />
             <End Role="SeminarParticipants" EntitySet="SeminarParticipants" />
@@ -524,6 +583,13 @@
             <Parameter Name="new_diagramname" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="sp_upgraddiagrams" />
+          <EntitySet Name="C__MigrationHistory" EntityType="SEP25Team16Model.C__MigrationHistory" />
+          <EntitySet Name="GIAITHUONGs" EntityType="SEP25Team16Model.GIAITHUONG" />
+          <EntitySet Name="NGUOINHANGIAITHUONGs" EntityType="SEP25Team16Model.NGUOINHANGIAITHUONG" />
+          <AssociationSet Name="FK_dbo_NGUOINHANGIAITHUONG_dbo_GIAITHUONG_GiaiThuongId" Association="SEP25Team16Model.FK_dbo_NGUOINHANGIAITHUONG_dbo_GIAITHUONG_GiaiThuongId">
+            <End Role="GIAITHUONG" EntitySet="GIAITHUONGs" />
+            <End Role="NGUOINHANGIAITHUONG" EntitySet="NGUOINHANGIAITHUONGs" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Province">
           <Key>
@@ -672,6 +738,60 @@
           <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
           <Property Type="Int32" Name="OwnerID" Nullable="false" />
         </ComplexType>
+        <EntityType Name="C__MigrationHistory">
+          <Key>
+            <PropertyRef Name="MigrationId" />
+            <PropertyRef Name="ContextKey" />
+          </Key>
+          <Property Name="MigrationId" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="ContextKey" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="Model" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
+          <Property Name="ProductVersion" Type="String" Nullable="false" MaxLength="32" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="GIAITHUONG">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="OpenDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Address" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedUtc" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="NGUOINHANGIAITHUONGs" Relationship="SEP25Team16Model.FK_dbo_NGUOINHANGIAITHUONG_dbo_GIAITHUONG_GiaiThuongId" FromRole="GIAITHUONG" ToRole="NGUOINHANGIAITHUONG" />
+        </EntityType>
+        <EntityType Name="NGUOINHANGIAITHUONG">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GiaiThuongId" Type="Int32" />
+          <Property Name="MaSoThue" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="TenDonVi" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="TenNguoiDaiDienPhapLuat" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ChucDanh" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DiDong" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="TenNguoiLienHeVoiBTC" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ChucDanhNguoiLienHe" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="EmailNguoiLienHe" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DiDongNguoiLienHe" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ProvinceId" Type="Int32" Nullable="false" />
+          <Property Name="DiaChi" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhieuDangKy" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="GIAITHUONG" Relationship="SEP25Team16Model.FK_dbo_NGUOINHANGIAITHUONG_dbo_GIAITHUONG_GiaiThuongId" FromRole="NGUOINHANGIAITHUONG" ToRole="GIAITHUONG" />
+        </EntityType>
+        <Association Name="FK_dbo_NGUOINHANGIAITHUONG_dbo_GIAITHUONG_GiaiThuongId">
+          <End Type="SEP25Team16Model.GIAITHUONG" Role="GIAITHUONG" Multiplicity="0..1" />
+          <End Type="SEP25Team16Model.NGUOINHANGIAITHUONG" Role="NGUOINHANGIAITHUONG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GIAITHUONG">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="NGUOINHANGIAITHUONG">
+              <PropertyRef Name="GiaiThuongId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -893,6 +1013,48 @@
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="SEP25Team16Model.Store.sp_renamediagram" />
           <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="SEP25Team16Model.Store.sp_upgraddiagrams" />
+          <EntitySetMapping Name="C__MigrationHistory">
+            <EntityTypeMapping TypeName="SEP25Team16Model.C__MigrationHistory">
+              <MappingFragment StoreEntitySet="__MigrationHistory">
+                <ScalarProperty Name="ProductVersion" ColumnName="ProductVersion" />
+                <ScalarProperty Name="Model" ColumnName="Model" />
+                <ScalarProperty Name="ContextKey" ColumnName="ContextKey" />
+                <ScalarProperty Name="MigrationId" ColumnName="MigrationId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GIAITHUONGs">
+            <EntityTypeMapping TypeName="SEP25Team16Model.GIAITHUONG">
+              <MappingFragment StoreEntitySet="GIAITHUONG">
+                <ScalarProperty Name="CreatedUtc" ColumnName="CreatedUtc" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="OpenDate" ColumnName="OpenDate" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NGUOINHANGIAITHUONGs">
+            <EntityTypeMapping TypeName="SEP25Team16Model.NGUOINHANGIAITHUONG">
+              <MappingFragment StoreEntitySet="NGUOINHANGIAITHUONG">
+                <ScalarProperty Name="PhieuDangKy" ColumnName="PhieuDangKy" />
+                <ScalarProperty Name="DiaChi" ColumnName="DiaChi" />
+                <ScalarProperty Name="ProvinceId" ColumnName="ProvinceId" />
+                <ScalarProperty Name="DiDongNguoiLienHe" ColumnName="DiDongNguoiLienHe" />
+                <ScalarProperty Name="EmailNguoiLienHe" ColumnName="EmailNguoiLienHe" />
+                <ScalarProperty Name="ChucDanhNguoiLienHe" ColumnName="ChucDanhNguoiLienHe" />
+                <ScalarProperty Name="TenNguoiLienHeVoiBTC" ColumnName="TenNguoiLienHeVoiBTC" />
+                <ScalarProperty Name="DiDong" ColumnName="DiDong" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="ChucDanh" ColumnName="ChucDanh" />
+                <ScalarProperty Name="TenNguoiDaiDienPhapLuat" ColumnName="TenNguoiDaiDienPhapLuat" />
+                <ScalarProperty Name="TenDonVi" ColumnName="TenDonVi" />
+                <ScalarProperty Name="MaSoThue" ColumnName="MaSoThue" />
+                <ScalarProperty Name="GiaiThuongId" ColumnName="GiaiThuongId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

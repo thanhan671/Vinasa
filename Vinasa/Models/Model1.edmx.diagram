@@ -24,6 +24,10 @@
         <EntityTypeShape EntityType="SEP25Team16Model.HOINGHIQUOCTE" Width="1.5" PointX="13.375" PointY="2.25" />
         <EntityTypeShape EntityType="SEP25Team16Model.THAMGIAHOINGHIQUOCTE" Width="1.5" PointX="15.625" PointY="1" />
         <AssociationConnector Association="SEP25Team16Model.FK_THAMGIAHOINGHIQUOCTE_HOINGHIQUOCTE" />
+        <EntityTypeShape EntityType="SEP25Team16Model.C__MigrationHistory" Width="1.5" PointX="8.375" PointY="0.75" />
+        <EntityTypeShape EntityType="SEP25Team16Model.GIAITHUONG" Width="1.5" PointX="7.375" PointY="15" />
+        <EntityTypeShape EntityType="SEP25Team16Model.NGUOINHANGIAITHUONG" Width="1.5" PointX="9.625" PointY="14" />
+        <AssociationConnector Association="SEP25Team16Model.FK_dbo_NGUOINHANGIAITHUONG_dbo_GIAITHUONG_GiaiThuongId" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
