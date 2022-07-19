@@ -12,18 +12,18 @@ using Vinasa.Models;
 using OfficeOpenXml;
 using System.Data.Entity.Validation;
 
-
 namespace Vinasa.Controllers
 {
     public class CourseParticipantsController : Controller
     {
         private readonly SEP25Team16Entities2 _db = new SEP25Team16Entities2();
 
+
         public ActionResult Index()
         {
             return View(_db.THAMGIAKHOAHOCs.ToList());
         }
-       
+
         public ActionResult Details(int? id)
         {
             if (id == null)

@@ -1,96 +1,126 @@
-﻿
-
+﻿@model Vinasa.Models.THAMGIAHOINGHIQUOCTE
 @{
     ViewBag.Title = "Edit";
     Layout = "~/Views/Shared/sbadmin.cshtml";
 }
 
-@*using (Html.BeginForm("Edit", "Member", FormMethod.Post))*@
-
-<div class="container col-11 centerPage">
-    
-        <h5 class="heading">Sửa Thông Tin Thành Viên Tham Gia</h5>
+@using (Html.BeginForm("Edit", "ICParticipants", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    <div class="container col-11 centerPage">
+        <h5 class="heading">Sửa Thông Tin Doanh Nghiệp Tham Gia</h5>
         <form class="form-field form-inputs" method="post" enctype="multipart/form-data">
             <div class="input-wrapper">
-                <input class="ip-form" type="text" id="tax" contenteditable="true" value="Công Ty Cổ Phần FPT" required />
+                @Html.EditorFor(model => model.TenDonVi, new { htmlAttributes = new { @class = "ip-form", @required = "required" } })
                 <label class="lb-form" for="tax">Tên Đơn Vị</label>
             </div>
-
+            <div class="message-error">
+                @Html.ValidationMessageFor(model => model.TenDonVi, "", new { @class = "text-danger" })
+            </div>
             <div class="input-wrapper">
-                <input class="ip-form" type="text" contenteditable="true" value="Doanh nghiệp CNTT" required />
+                @Html.EditorFor(model => model.DonViChungToiLa, new { htmlAttributes = new { @class = "ip-form", @required = "required" } })
                 <label class="lb-form" for="name">Đơn Vị Chúng Tôi Là</label>
             </div>
-
+            <div class="message-error">
+                @Html.ValidationMessageFor(model => model.DonViChungToiLa, "", new { @class = "text-danger" })
+            </div>
             <div class="input-wrapper">
-                <input class="ip-form" type="text" contenteditable="true" value="97 Nguyễn Công Trứ, Phường Nguyễn Thái Bình, Phường Cô Giang, Quận 1, TP. HCM " required />
+                @Html.EditorFor(model => model.DiaChi, new { htmlAttributes = new { @class = "ip-form", @required = "required" } })
                 <label class="lb-form" for="name">Địa Chỉ</label>
             </div>
+            <div class="message-error">
+                @Html.ValidationMessageFor(model => model.DiaChi, "", new { @class = "text-danger" })
+            </div>
             <div class="input-wrapper">
-                <input class="ip-form" type="text" contenteditable="true" value="0937688958" required />
+                @Html.EditorFor(model => model.DienThoai, new { htmlAttributes = new { @class = "ip-form", @required = "required" } })
                 <label class="lb-form" for="name">Điện Thoại</label>
             </div>
+            <div class="message-error">
+                @Html.ValidationMessageFor(model => model.DienThoai, "", new { @class = "text-danger" })
+            </div>
             <div class="input-wrapper">
-                <input class="ip-form" type="text" contenteditable="true" value="Trương Gia Bình " required />
+                @Html.EditorFor(model => model.DaiDienLienHe, new { htmlAttributes = new { @class = "ip-form", @required = "required" } })
                 <label class="lb-form" for="name">Đại Diện Liên Hệ</label>
             </div>
+            <div class="message-error">
+                @Html.ValidationMessageFor(model => model.DaiDienLienHe, "", new { @class = "text-danger" })
+            </div>
             <div class="input-wrapper">
-                <input class="ip-form" type="text" contenteditable="true" value="Chủ tịch HĐQT" required />
+                @Html.EditorFor(model => model.ChucVu, new { htmlAttributes = new { @class = "ip-form", @required = "required" } })
                 <label class="lb-form" for="name">Chức Vụ</label>
             </div>
+            <div class="message-error">
+                @Html.ValidationMessageFor(model => model.ChucVu, "", new { @class = "text-danger" })
+            </div>
             <div class="input-wrapper">
-                <input class="ip-form" type="text" contenteditable="true" value="0937688958" required />
+                @Html.EditorFor(model => model.DiDong, new { htmlAttributes = new { @class = "ip-form", @required = "required" } })
                 <label class="lb-form" for="name">Di Động</label>
             </div>
+            <div class="message-error">
+                @Html.ValidationMessageFor(model => model.DiDong, "", new { @class = "text-danger" })
+            </div>
             <div class="input-wrapper">
-                <input class="ip-form" type="text" contenteditable="true" value="manhnt@vinasa.org.vn" required />
+                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "ip-form", @required = "required" } })
                 <label class="lb-form" for="name">Email</label>
             </div>
-            <div class="input-wrapper">
-                <input type="checkbox">
-                <label class="form-check-label"> Đăng Kí Tham Dự</label>
+            <div class="message-error">
+                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
             </div>
             <div class="input-wrapper">
-                <input type="checkbox">
-                <label class="form-check-label"> Đăng Kí Bài Phát Biểu</label>
+                <label class="form-check-label">
+                    @Html.CheckBoxFor(m => m.DangKyThamDu, new { @class = "form-check-input" })
+                    <label class="form-check-label"> Đăng Kí Tham Dự</label>
+                </label>
             </div>
             <div class="input-wrapper">
-                <input type="checkbox">
-                <label class="form-check-label"> Đăng Kí Gian Hàng Triển Lãm</label>
+                <label class="form-check-label">
+                    @Html.CheckBoxFor(m => m.DangKyPhatBieu, new { @class = "form-check-input" })
+                    <label class="form-check-label"> Đăng Kí Bài Phát Biểu</label>
+                </label>
             </div>
             <div class="input-wrapper">
-                <input type="checkbox">
-                <label class="form-check-label"> Đăng Kí Business Matching Online</label>
+                <label class="form-check-label">
+                    @Html.CheckBoxFor(m => m.DangKyGianHangTrienLam, new { @class = "form-check-input" })
+                    <label class="form-check-label"> Đăng Kí Gian Hàng Triển Lãm</label>
+                </label>
             </div>
             <div class="input-wrapper">
-                <input type="checkbox">
-                <label class="form-check-label"> Đăng Kí Business Matching Offline</label>
+                <label class="form-check-label">
+                    @Html.CheckBoxFor(m => m.DangKyBusinessMatchingOnline, new { @class = "form-check-input" })
+                    <label class="form-check-label"> Đăng Kí Business Matching Online</label>
+                </label>
             </div>
             <div class="input-wrapper">
-                <input type="checkbox">
-                <label class="form-check-label"> Đăng Kí Tài Trợ</label>
+                <label class="form-check-label">
+                    @Html.CheckBoxFor(m => m.DangKyBusinessMatchingOffline, new { @class = "form-check-input" })
+                    <label class="form-check-label"> Đăng Kí Business Matching Offline</label>
+                </label>
             </div>
             <div class="input-wrapper">
-                <input type="checkbox">
-                <label class="form-check-label"> Đăng Kí Quãng Cáo</label>
+                <label class="form-check-label">
+                    @Html.CheckBoxFor(m => m.DangKyTaiTro, new { @class = "form-check-input" })
+                    <label class="form-check-label"> Đăng Kí Tài Trợ</label>
+                </label>
+            </div>
+            <div class="input-wrapper">
+                <label class="form-check-label">
+                    @Html.CheckBoxFor(m => m.DangKyQuangCao, new { @class = "form-check-input" })
+                    <label class="form-check-label"> Đăng Kí Quảng Cáo</label>
+                </label>
             </div>
         </form>
+        <div class="button-form f-r">
+            <input class="button-cancel" onclick="location.href='@Url.Action("Index", "ICParticipants")'" type="button" name="cancel" value="Hủy"/>
+            <button class="button-lc" type="submit" name="save">Xác Nhận</button>
+        </div>
+    </div>
 
-</div>
-
-<div class="button-form f-l">
-    <button class="button-cancel" id="cancel">Huỷ</button>
-    <button class="button-lc" type="submit" name="save">Xác Nhận</button>
-</div>
-
+}
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
 
-    $('#cancel').click(function () {
-        location.href = 'javascript:history.go(-1)';
-    })
+        $('#cancel').click(function () {
+            location.href = 'javascript:history.go(-1)';
+        })
 
 </script>
-@if (TempData["Message"] != null)
-{
-    <p class="alert alert-success" id="successMessage">@TempData["Message"]</p>
-}

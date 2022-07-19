@@ -14,19 +14,19 @@
             <form class="form-field" method="post" enctype="multipart/form-data">
                 <div class="input-wrapper">
                     @Html.EditorFor(m => m.TenKhoaDaoTao, new { htmlAttributes = new { @class = "ip-form", @required = "required" } })
-                    @Html.LabelFor(m => m.TenKhoaDaoTao, new { @class = "lb-form" })
+                    <label class="lb-form" for="tax">Tên Khóa Đào Tạo</label>
                 </div>
                 <div class="input-wrapper">
                     @Html.TextBoxFor(m => m.NgayBatDau, "{0:yyyy-MM-dd}", new { @class = "ip-form", @type = "date", @required = "required" })
-                    @Html.LabelFor(m => m.NgayBatDau, new { @class = "lb-form" })
+                    <label class="lb-form" for="tax">Ngày Bắt Đầu</label>
                 </div>
                 <div class="input-wrapper">
                     @Html.TextBoxFor(m => m.NgayKetThuc, "{0:yyyy-MM-dd}", new { @class = "ip-form", @type = "date", @required = "required" })
-                    @Html.LabelFor(m => m.NgayKetThuc, new { @class = "lb-form" })
+                    <label class="lb-form" for="tax">Ngày Kết Thúc</label>
                 </div>
                 <div class="input-wrapper">
                     @Html.EditorFor(m => m.HinhThuc, new { htmlAttributes = new { @class = "ip-form", @required = "required" } })
-                    @Html.LabelFor(m => m.HinhThuc, new { @class = "lb-form" })
+                    <label class="lb-form" for="tax">Hình Thức</label>
                 </div>
             </form>
             <div class="button-form">
@@ -37,5 +37,6 @@
 
     </div>
 }
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 

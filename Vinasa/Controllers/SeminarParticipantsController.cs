@@ -22,11 +22,7 @@ namespace Vinasa.Controllers
         // GET: SeminarParticipants
         public ActionResult Index()
         {
-            if (Session["AccountID"] != null)
-            {
-                return View(_db.SeminarParticipants.ToList());
-            }
-            return RedirectToAction("Login", "Account", new { area = " " });
+            return View(_db.SeminarParticipants.ToList());
         }
 
         // GET: SeminarParticipants/Details/5

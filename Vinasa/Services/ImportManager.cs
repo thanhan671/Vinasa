@@ -16,7 +16,8 @@ namespace Vinasa.Services
         #endregion
 
         #region Contructor
-        public ImportManager(SeminarContext db)
+        public ImportManager(
+                    SeminarContext db)
         {
             _db = db;
         }
@@ -97,7 +98,7 @@ namespace Vinasa.Services
                             break;
 
                         case "Tỉnh thành":
-                            int.TryParse(cellValue,out int value );
+                            int.TryParse(cellValue, out int value);
                             participant.ProvinceId = value;
                             break;
 
@@ -126,7 +127,7 @@ namespace Vinasa.Services
                             break;
                     }
                 }
-                if(isSave)
+                if (isSave)
                 {
                     _db.SeminarParticipants.Add(participant);
                     await _db.SaveChangesAsync();
@@ -134,6 +135,113 @@ namespace Vinasa.Services
             }
 
         }
+
+        public virtual async Task ImportNguoiNhanGiaiThuongsFromXlsx(int giaiThuongId, Stream stream)
+        {
+            var workbook = new XSSFWorkbook(stream);
+            var worksheet = workbook.GetSheetAt(0);
+            if (worksheet == null)
+                throw new System.Exception("No worksheet found");
+            var poz = 0;
+            Dictionary<string, int> manager = new Dictionary<string, int>();
+            while (true)
+            {
+                try
+                {
+                    var cell = worksheet.GetRow(0).Cells[poz];
+
+                    if (cell == null)
+                        break;
+
+                    var cellValue = cell?.ToString();
+                    if (string.IsNullOrEmpty(cellValue))
+                        break;
+
+                    manager[cellValue] = poz;
+
+                    poz += 1;
+                }
+                catch
+                {
+                    break;
+                }
+            }
+
+            for (var iRow = 1; iRow < worksheet.PhysicalNumberOfRows; iRow++)
+            {
+                var nguoiNhanGiaiThuong = new NGUOINHANGIAITHUONG()
+                {
+                    GiaiThuongId = giaiThuongId
+                };
+                var _row = worksheet.GetRow(iRow);
+                bool isSave = false;
+                foreach (var property in manager)
+                {
+                    var cell = _row.GetCell(property.Value);
+                    if (cell == null)
+                        continue;
+                    var cellValue = cell?.ToString().Trim();
+                    isSave |= !string.IsNullOrEmpty(cellValue);
+                    switch (property.Key.ToString().Trim())
+                    {
+                        case "Mã số thuế":
+                            nguoiNhanGiaiThuong.MaSoThue = cellValue;
+                            break;
+
+                        case "Tên đơn vị":
+                            nguoiNhanGiaiThuong.TenDonVi = cellValue;
+                            break;
+
+                        case "Tên người đại diện pháp luật":
+                            nguoiNhanGiaiThuong.TenNguoiDaiDienPhapLuat = cellValue;
+                            break;
+
+                        case "Chức danh":
+                            nguoiNhanGiaiThuong.ChucDanh = cellValue;
+                            break;
+
+                        case "Email":
+                            nguoiNhanGiaiThuong.Email = cellValue;
+                            break;
+
+                        case "Di động":
+                            nguoiNhanGiaiThuong.DiDong = cellValue;
+                            break;
+
+                        case "Tỉnh thành":
+                            int.TryParse(cellValue, out int value);
+                            nguoiNhanGiaiThuong.ProvinceId = value;
+                            break;
+
+                        case "Tên người liên hệ với BTC":
+                            nguoiNhanGiaiThuong.TenNguoiLienHeVoiBTC = cellValue;
+                            break;
+                        case "Chức danh người liên hệ":
+                            nguoiNhanGiaiThuong.ChucDanhNguoiLienHe = cellValue;
+                            break;
+                        case "Email người liên hệ":
+                            nguoiNhanGiaiThuong.EmailNguoiLienHe = cellValue;
+                            break;
+                        case "Di động người liên hệ":
+                            nguoiNhanGiaiThuong.DiDongNguoiLienHe = cellValue;
+                            break;
+                        case "Địa chỉ":
+                            nguoiNhanGiaiThuong.DiaChi = cellValue;
+                            break;
+                        case "Phiếu đăng ký (đính kèm file hoặc link URL)":
+                            nguoiNhanGiaiThuong.PhieuDangKy = cellValue;
+                            break;
+                    }
+                }
+                if (isSave)
+                {
+                    _db.NGUOINHANGIAITHUONG.Add(nguoiNhanGiaiThuong);
+                    await _db.SaveChangesAsync();
+                }
+            }
+
+        }
+
         #endregion
     }
 }

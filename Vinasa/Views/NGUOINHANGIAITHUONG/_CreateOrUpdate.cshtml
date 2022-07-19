@@ -1,0 +1,83 @@
+﻿@model Vinasa.Models.NGUOINHANGIAITHUONG
+
+@Html.HiddenFor(model => model.GiaiThuongId)
+@Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+<div class="input-wrapper">
+    @Html.EditorFor(model => model.MaSoThue, new { htmlAttributes = new { @class = "ip-form" } })
+    @Html.LabelFor(model => model.MaSoThue, new { @class = "lb-form" })
+    @Html.ValidationMessageFor(model => model.MaSoThue, "", new { @class = "text-danger" })
+</div>
+
+<div class="input-wrapper">
+    @Html.EditorFor(model => model.TenDonVi, new { htmlAttributes = new { @class = "ip-form", @required = "required" } })
+    @Html.LabelFor(model => model.TenDonVi, new { @class = "lb-form" })
+    @Html.ValidationMessageFor(model => model.TenDonVi, "", new { @class = "text-danger" })
+</div>
+
+<div class="input-wrapper">
+    @Html.EditorFor(model => model.TenNguoiDaiDienPhapLuat, new { htmlAttributes = new { @class = "ip-form", @required = "required" } })
+    @Html.LabelFor(model => model.TenNguoiDaiDienPhapLuat, new { @class = "lb-form" })
+    @Html.ValidationMessageFor(model => model.TenNguoiDaiDienPhapLuat, "", new { @class = "text-danger" })
+</div>
+
+<div class="input-wrapper">
+    @Html.EditorFor(model => model.ChucDanh, new { htmlAttributes = new { @class = "ip-form", @required = "required" } })
+    @Html.LabelFor(model => model.ChucDanh, new { @class = "lb-form" })
+    @Html.ValidationMessageFor(model => model.ChucDanh, "", new { @class = "text-danger" })
+</div>
+
+<div class="input-wrapper">
+    @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "ip-form", @required = "required" } })
+    @Html.LabelFor(model => model.Email, new { @class = "lb-form" })
+    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+</div>
+
+<div class="input-wrapper">
+    @Html.EditorFor(model => model.DiDong, new { htmlAttributes = new { @class = "ip-form", @required = "required" } })
+    @Html.LabelFor(model => model.DiDong, new { @class = "lb-form" })
+    @Html.ValidationMessageFor(model => model.DiDong, "", new { @class = "text-danger" })
+</div>
+
+<div class="input-wrapper">
+    @Html.EditorFor(model => model.TenNguoiLienHeVoiBTC, new { htmlAttributes = new { @class = "ip-form", @required = "required" } })
+    @Html.LabelFor(model => model.TenNguoiLienHeVoiBTC, new { @class = "lb-form" })
+    @Html.ValidationMessageFor(model => model.TenNguoiLienHeVoiBTC, "", new { @class = "text-danger" })
+</div>
+
+<div class="input-wrapper">
+    @Html.EditorFor(model => model.ChucDanhNguoiLienHe, new { htmlAttributes = new { @class = "ip-form", @required = "required" } })
+    @Html.LabelFor(model => model.ChucDanhNguoiLienHe, new { @class = "lb-form" })
+    @Html.ValidationMessageFor(model => model.ChucDanhNguoiLienHe, "", new { @class = "text-danger" })
+</div>
+<div class="input-wrapper">
+    @Html.EditorFor(model => model.EmailNguoiLienHe, new { htmlAttributes = new { @class = "ip-form", @required = "required" } })
+    @Html.LabelFor(model => model.EmailNguoiLienHe, new { @class = "lb-form" })
+    @Html.ValidationMessageFor(model => model.EmailNguoiLienHe, "", new { @class = "text-danger" })
+</div>
+<div class="input-wrapper">
+    @Html.EditorFor(model => model.DiDongNguoiLienHe, new { htmlAttributes = new { @class = "ip-form", @required = "required" } })
+    @Html.LabelFor(model => model.DiDongNguoiLienHe, new { @class = "lb-form" })
+    @Html.ValidationMessageFor(model => model.DiDongNguoiLienHe, "", new { @class = "text-danger" })
+</div>
+<div class="input-wrapper">
+    @Html.LabelFor(model => model.ProvinceId, new { @class = "lb-form" })
+    @Html.DropDownListFor(model => model.ProvinceId, Model.Provinces, new { @class = "form-control select-region" })
+    @Html.ValidationMessageFor(model => model.ProvinceId, "", new { @class = "text-danger" })
+</div>
+<div class="input-wrapper">
+    @Html.EditorFor(model => model.DiaChi, new { htmlAttributes = new { @class = "ip-form", @required = "required" } })
+    @Html.LabelFor(model => model.DiaChi, new { @class = "lb-form" })
+    @Html.ValidationMessageFor(model => model.DiaChi, "", new { @class = "text-danger" })
+</div>
+
+<div class="input-wrapper">
+    @Html.EditorFor(model => model.PhieuDangKy, new { htmlAttributes = new { @class = "ip-form", @required = "required" } })
+    @Html.LabelFor(model => model.PhieuDangKy, new { @class = "lb-form" })
+    @Html.ValidationMessageFor(model => model.PhieuDangKy, "", new { @class = "text-danger" })
+</div>
+<div class="button-form">
+    <input type="button" class="button-lc button-cancel" onclick="location.href = 'javascript:history.go(-1)'" value="Hủy" />
+    <input type="submit" class="button-lc" value="Xác Nhận"/>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>

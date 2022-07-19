@@ -15,6 +15,7 @@ namespace Vinasa.Controllers
 {
     public class CourseController : Controller
     {
+
         private readonly SEP25Team16Entities2 _db = new SEP25Team16Entities2();
 
         // GET: Course
@@ -22,7 +23,6 @@ namespace Vinasa.Controllers
         {
             return View(_db.KHOAHOCs.ToList());
         }
-        
 
         public ActionResult Create()
         {
@@ -95,5 +95,15 @@ namespace Vinasa.Controllers
             var model = _db.KHOAHOCs.Where(m => m.Id == id).FirstOrDefault();
             return PartialView("_DeleteSelected", model);
         }
+
+        public FileResult Download()
+        {
+            string path = Server.MapPath("~/Content/Files");
+            string filename = Path.GetFileName("MauKhoaDaoTao.xlsx");
+
+            string fullPath = Path.Combine(path, filename);
+            return File(fullPath, "download/xlsx", "MauKhoaDaoTao.xlsx");
+        }
+
     }
 }
