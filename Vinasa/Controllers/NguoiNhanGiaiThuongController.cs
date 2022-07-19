@@ -96,7 +96,7 @@ namespace Vinasa.Controllers
             {
                 _db.Entry(nguoiNhanGiaiThuong).State = System.Data.Entity.EntityState.Modified;
                 _db.SaveChanges();
-                return RedirectToAction("Details", "GiaiThuongs", new { id = nguoiNhanGiaiThuong.GiaiThuongId });
+                return RedirectToAction("Details", "GIAITHUONG", new { id = nguoiNhanGiaiThuong.GiaiThuongId });
             }
             return View(nguoiNhanGiaiThuong);
         }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
@@ -161,6 +162,14 @@ namespace Vinasa.Controllers
                 _db.Dispose();
             }
             base.Dispose(disposing);
+        }
+        public FileResult Download()
+        {
+            string path = Server.MapPath("~/Content/Files");
+            string filename = Path.GetFileName("MauGiaiThuong.xlsx");
+
+            string fullPath = Path.Combine(path, filename);
+            return File(fullPath, "download/xlsx", "MauGiaiThuong.xlsx");
         }
     }
 }

@@ -181,6 +181,7 @@
     <Compile Include="Controllers\CourseParticipantsController.cs" />
     <Compile Include="Controllers\GIAITHUONGController.cs" />
     <Compile Include="Controllers\ICController.cs" />
+    <Compile Include="Controllers\ICParticipantsController.cs" />
     <Compile Include="Controllers\NGUOINHANGIAITHUONGController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MemberController.cs" />
@@ -321,6 +322,9 @@
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Content\Files\MauHoiVien.xlsx" />
     <Content Include="Content\Files\MauHoiNghi.xlsx" />
+    <Content Include="Content\Files\MauHoiNghiQuocTe.xlsx" />
+    <Content Include="Content\Files\MauKhoaDaoTao.xlsx" />
+    <Content Include="Content\Files\MauGiaiThuong.xlsx" />
     <None Include="Properties\PublishProfiles\FTPProfile.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
@@ -2370,6 +2374,11 @@
     <Content Include="Views\IC\Create.cshtml" />
     <Content Include="Views\IC\Edit.cshtml" />
     <Content Include="Views\IC\_DeleteSelected.cshtml" />
+    <Content Include="Views\ICParticipants\Index.cshtml" />
+    <Content Include="Views\ICParticipants\Details.cshtml" />
+    <Content Include="Views\ICParticipants\Edit.cshtml" />
+    <Content Include="Views\ICParticipants\_DeleteSelected.cshtml" />
+    <Content Include="Views\ICParticipants\_List.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

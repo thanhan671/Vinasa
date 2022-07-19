@@ -93,5 +93,13 @@ namespace Vinasa.Controllers
             var model = _db.KHOAHOCs.Where(m => m.Id == id).FirstOrDefault();
             return PartialView("_DeleteSelected", model);
         }
+        public FileResult Download()
+        {
+            string path = Server.MapPath("~/Content/Files");
+            string filename = Path.GetFileName("MauKhoaDaoTao.xlsx");
+
+            string fullPath = Path.Combine(path, filename);
+            return File(fullPath, "download/xlsx", "MauKhoaDaoTao.xlsx");
+        }
     }
 }
