@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 using Vinasa.DAL;
+using Vinasa.Models;
 
 namespace Vinasa.Validation
 {
@@ -63,6 +64,32 @@ namespace Vinasa.Validation
 
             var giaiThuong = _db.GIAITHUONG.FirstOrDefault(it => it.Title == value.ToString());
             return !(giaiThuong != null && giaiThuong.Id > 0);
+        }
+    }
+    public class CourseRequired : ValidationAttribute
+    {
+        private readonly SEP25Team16Entities2 _db = new SEP25Team16Entities2();
+
+        public override bool IsValid(object value)
+        {
+            if (value == null)
+                return false;
+
+            var course = _db.KHOAHOCs.FirstOrDefault(it => it.TenKhoaDaoTao == value.ToString());
+            return !(course != null && course.Id > 0);
+        }
+    }
+    public class ICRequired : ValidationAttribute
+    {
+        private readonly SEP25Team16Entities2 _db = new SEP25Team16Entities2();
+
+        public override bool IsValid(object value)
+        {
+            if (value == null)
+                return false;
+
+            var ic = _db.HOINGHIQUOCTEs.FirstOrDefault(it => it.Ten == value.ToString());
+            return !(ic != null && ic.ID > 0);
         }
     }
 }
