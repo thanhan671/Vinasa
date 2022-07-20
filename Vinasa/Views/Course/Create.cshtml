@@ -3,10 +3,10 @@
     ViewBag.Title = "Create";
     Layout = "~/Views/Shared/sbadmin.cshtml";
 }
-@using (Html.BeginForm("Create", "Course", FormMethod.Post))
+@using (Html.BeginForm("Create", "Course", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-field" }))
 {
     @Html.AntiForgeryToken()
-
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
     <div class="container">
         <div class="col-6">
             <h5 class="heading">Thêm Khóa Đào Tạo</h5>
@@ -16,17 +16,29 @@
                     @Html.EditorFor(m => m.TenKhoaDaoTao, new { htmlAttributes = new { @class = "ip-form", @required = "required" } })
                     <label class="lb-form" for="tax">Tên Khóa Đào Tạo</label>
                 </div>
+                <div class="message-error">
+                    @Html.ValidationMessageFor(m => m.TenKhoaDaoTao, "", new { @class = "text-danger" })
+                </div>
                 <div class="input-wrapper">
                     @Html.TextBoxFor(m => m.NgayBatDau, "{0:yyyy-MM-dd}", new { @class = "ip-form", @type = "date", @required = "required" })
                     <label class="lb-form" for="tax">Ngày Bắt Đầu</label>
+                </div>
+                <div class="message-error">
+                    @Html.ValidationMessageFor(m => m.NgayBatDau, "", new { @class = "text-danger" })
                 </div>
                 <div class="input-wrapper">
                     @Html.TextBoxFor(m => m.NgayKetThuc, "{0:yyyy-MM-dd}", new { @class = "ip-form", @type = "date", @required = "required" })
                     <label class="lb-form" for="tax">Ngày Kết Thúc</label>
                 </div>
+                <div class="message-error">
+                    @Html.ValidationMessageFor(m => m.NgayKetThuc, "", new { @class = "text-danger" })
+                </div>
                 <div class="input-wrapper">
                     @Html.EditorFor(m => m.HinhThuc, new { htmlAttributes = new { @class = "ip-form", @required = "required" } })
                     <label class="lb-form" for="tax">Hình Thức</label>
+                </div>
+                <div class="message-error">
+                    @Html.ValidationMessageFor(m => m.HinhThuc, "", new { @class = "text-danger" })
                 </div>
             </form>
             <div class="button-form">
