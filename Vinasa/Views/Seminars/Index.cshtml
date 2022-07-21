@@ -29,6 +29,9 @@
                             @Html.DisplayNameFor(model => model.OpenDate)
                         </th>
                         <th>
+                            @Html.DisplayNameFor(model => model.CloseDate)
+                        </th>
+                        <th>
                             @Html.DisplayNameFor(model => model.Address)
                         </th>
                         <th></th>
@@ -37,31 +40,34 @@
                 <tbody>
                     @foreach (var item in Model)
                     {
-                        <tr>
-                            <td>
-                                <a href="@Url.Action("Details", "Seminars", new{ id = @item.Id})">
-                                    @Html.DisplayFor(modelItem => item.Title)
+                    <tr>
+                        <td>
+                            <a href="@Url.Action("Details", "Seminars", new{ id = @item.Id})">
+                                @Html.DisplayFor(modelItem => item.Title)
+                            </a>
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.OpenDate)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CloseDate)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Address)
+                        </td>
+                        <td class="action" style=" display:flex; justify-content:space-around; align-items:center">
+                            <li class="action-item">
+                                <a class="action-icon" href="@Url.Action("Edit", "Seminars", new{ id = @item.Id})">
+                                    <i class="fa-solid fa-pen-to-square icon"></i>
                                 </a>
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.OpenDate)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Address)
-                            </td>
-                            <td class="action" style=" display:flex; justify-content:space-around; align-items:center">
-                                <li class="action-item">
-                                    <a class="action-icon" href="@Url.Action("Edit", "Seminars", new{ id = @item.Id})">
-                                        <i class="fa-solid fa-pen-to-square icon"></i>
-                                    </a>
-                                </li>
-                                <li class="action-item">
-                                    <a class="action-icon delete-btn" data-id="@item.Id">
-                                        <i class="fa-solid fa-trash-can icon"></i>
-                                    </a>
-                                </li>
-                            </td>
-                        </tr>
+                            </li>
+                            <li class="action-item">
+                                <a class="action-icon delete-btn" data-id="@item.Id">
+                                    <i class="fa-solid fa-trash-can icon"></i>
+                                </a>
+                            </li>
+                        </td>
+                    </tr>
                     }
                 </tbody>
             </table>
