@@ -35,13 +35,13 @@ namespace Vinasa.Models
         public string DiaDiem { get; set; }
 
         [Required(ErrorMessage = "Vui lòng điền trường này!")]
-        [DateTimeRequired(ErrorMessage = "Thời gian diễn ra phải lớn hơn ngày hiện tại!")]
+        [DateTimeRequired(ErrorMessage = "Ngày diễn ra phải lớn hơn ngày hiện tại!")]
         [DataType(DataType.Date)]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy}")]
         public System.DateTime ThoiGianBatDau { get; set; }
 
         [Required(ErrorMessage = "Vui lòng điền trường này!")]
-        [DateTimeRequired(ErrorMessage = "Thời gian diễn ra phải lớn hơn ngày hiện tại!")]
+        [EndDateTimeRequired("ThoiGianBatDau")]
         [DataType(DataType.Date)]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy}")]
         public System.DateTime ThoiGianKetThuc { get; set; }

@@ -21,14 +21,14 @@
                 </div>
                 <div class="input-wrapper">
                     @Html.TextBoxFor(model => model.ThoiGianBatDau, "{0:yyyy-MM-ddTHH:mm:ss}", new { @class = "ip-form", @type = "datetime-local" })
-                    <label class="lb-form" for="tax">Thời gian bắt đầu</label>
+                    <label class="lb-form" for="tax">Ngày bắt đầu</label>
                 </div>
                 <div class="message-error">
                     @Html.ValidationMessageFor(model => model.ThoiGianBatDau, "", new { @class = "text-danger" })
                 </div>
                 <div class="input-wrapper">
                     @Html.TextBoxFor(model => model.ThoiGianKetThuc, "{0:yyyy-MM-ddTHH:mm:ss}", new { @class = "ip-form", @type = "datetime-local" })
-                    <label class="lb-form" for="tax">Thời gian kết thúc</label>
+                    <label class="lb-form" for="tax">Ngày kết thúc</label>
                 </div>
                 <div class="message-error">
                     @Html.ValidationMessageFor(model => model.ThoiGianKetThuc, "", new { @class = "text-danger" })

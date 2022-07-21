@@ -28,7 +28,32 @@ namespace Vinasa.Validation
             return dateTime >= DateTime.Now;
         }
     }
+    public class EndDateTimeRequired : ValidationAttribute
+    {
+        private string startDate;
+        private const string _errorMessage = "Ngày kết thúc phải lớn hơn hoặc bằng ngày bắt đầu";
 
+        public EndDateTimeRequired(string dateToCompare) : base(_errorMessage)
+        {
+            startDate = dateToCompare;
+        }
+
+        public override string FormatErrorMessage(string name)
+        {
+            return string.Format(_errorMessage, name, startDate);
+        }
+
+        protected override ValidationResult IsValid(object value, ValidationContext validationContext)
+        {
+            var dateToCompare = validationContext.ObjectType.GetProperty(startDate);
+            var dateToCompareValue = dateToCompare.GetValue(validationContext.ObjectInstance, null);
+            if (dateToCompareValue != null && value != null && (DateTime)value <= (DateTime)dateToCompareValue)
+            {
+                return new ValidationResult(FormatErrorMessage(validationContext.DisplayName));
+            }
+            return null;
+        }
+    }
     public class DropDownListRequired : ValidationAttribute
     {
         public override bool IsValid(object value)
