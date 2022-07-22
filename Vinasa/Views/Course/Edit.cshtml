@@ -40,6 +40,10 @@
                 <div class="message-error">
                     @Html.ValidationMessageFor(m => m.HinhThuc, "", new { @class = "text-danger" })
                 </div>
+                @*<div class="input-wrapper">
+                    @Html.CheckBoxFor(m => m.isEdit, new { @class = "form-check-input" })
+                    <label class="form-check-label">Hội viên Vinasa</label>
+                </div>*@
             </form>
             <div class="button-form">
                 <button class="button-cancel" onclick="location.href='@Url.Action("Index", "Course")'" type="button" name="cancel">Huỷ</button>

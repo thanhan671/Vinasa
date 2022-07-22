@@ -18,7 +18,7 @@ namespace Vinasa.Models
         public int Id { get; set; }
 
         [Required(ErrorMessage = "Vui lòng điền trường này!")]
-        [CourseRequired(ErrorMessage = "Đã tồn tại khóa học này!")]
+        //[CourseRequired(ErrorMessage = "Đã tồn tại khóa học này!")]
         public string TenKhoaDaoTao { get; set; }
 
         [Required(ErrorMessage = "Vui lòng điền trường này!")]
@@ -36,6 +36,8 @@ namespace Vinasa.Models
 
         [Required(ErrorMessage = "Vui lòng điền trường này!")]
         public string HinhThuc { get; set; }
+
+        //public bool isEdit { get; set; }
     
         public virtual ICollection<THAMGIAKHOAHOC> THAMGIAKHOAHOCs { get; set; }
     }

@@ -104,6 +104,12 @@ namespace Vinasa.Validation
                 return false;
 
             var course = _db.KHOAHOCs.FirstOrDefault(it => it.TenKhoaDaoTao == value.ToString());
+
+            //if (course.isEdit)
+            //{
+            //    return true;
+            //}
+
             return !(course != null && course.Id > 0);
         }
     }

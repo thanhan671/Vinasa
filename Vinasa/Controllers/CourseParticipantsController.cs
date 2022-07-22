@@ -76,13 +76,13 @@ namespace Vinasa.Controllers
         public ActionResult Delete(int id, int courseId = -1)
         {
             var courseParticipants = _db.THAMGIAKHOAHOCs.Find(id);
+            courseId = (int) courseParticipants.IdKhoaHoc;
             _db.THAMGIAKHOAHOCs.Remove(courseParticipants);
             _db.SaveChanges();
             if (courseId > 0)
                 return RedirectToAction("Details", "Course", new { id = courseId });
             else
                 return RedirectToAction(nameof(Index));
-
         }
 
         public ActionResult DeleteSelected(int id, int courseId = -1)

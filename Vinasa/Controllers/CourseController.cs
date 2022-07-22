@@ -70,6 +70,9 @@ namespace Vinasa.Controllers
             {
                 return HttpNotFound();
             }
+
+            //khoaHoc.isEdit = true;
+
             return View(khoaHoc);
         }
 
@@ -81,6 +84,7 @@ namespace Vinasa.Controllers
             {
                 _db.Entry(khoaHoc).State = System.Data.Entity.EntityState.Modified;
                 _db.SaveChanges();
+                //khoaHoc.isEdit = false;
                 return RedirectToAction("Index");
             }
 
