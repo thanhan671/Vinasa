@@ -197,6 +197,10 @@
     <Compile Include="Migrations\202207181503260_Initial.designer.cs">
       <DependentUpon>202207181503260_Initial.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202207211745551_Seminar.cs" />
+    <Compile Include="Migrations\202207211745551_Seminar.designer.cs">
+      <DependentUpon>202207211745551_Seminar.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AdminAccountModels.cs" />
     <Compile Include="Models\C__MigrationHistory.cs">
@@ -2402,6 +2406,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202207181503260_Initial.resx">
       <DependentUpon>202207181503260_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202207211745551_Seminar.resx">
+      <DependentUpon>202207211745551_Seminar.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

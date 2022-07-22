@@ -7,7 +7,7 @@ using Vinasa.Validation;
 
 namespace Vinasa.Models
 {
-    public class Seminar
+    public class Seminar : IValidatableObject
     {
         public Seminar()
         {
@@ -30,6 +30,13 @@ namespace Vinasa.Models
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy hh:mm:ss tt}")]
         public DateTime OpenDate { get; set; }
 
+        [Display(Name = "Thời Gian Kết Thúc")]
+        [Required(ErrorMessage = "Vui lòng điền trường này!")]
+        [EndDateTimeRequired("OpenDate")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy hh:mm:ss tt}")]
+        public DateTime CloseDate { get; set; }
+
         [Display(Name = "Địa Điểm Diễn Ra")]
         [Required(ErrorMessage = "Vui lòng điền trường này!")]
         [StringRequired(ErrorMessage = "Vui lòng điền trường này!")]
@@ -40,5 +47,13 @@ namespace Vinasa.Models
         public DateTime? CreatedUtc { get; set; }
 
         public List<SeminarParticipant> SeminarParticipants { get; set; }
+
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        {
+            if (CloseDate < OpenDate)
+            {
+                yield return new ValidationResult("Thời gian kết thúc phải lớn hơn hoặc bằng thời gian diễn ra");
+            }
+        }
     }
 }

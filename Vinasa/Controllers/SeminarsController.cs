@@ -59,7 +59,7 @@ namespace Vinasa.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Title,OpenDate,Address,CreatedUtc")] Seminar seminar)
+        public ActionResult Create([Bind(Include = "Id,Title,OpenDate,CloseDate,Address,CreatedUtc")] Seminar seminar)
         {
             if (ModelState.IsValid)
             {
@@ -91,7 +91,7 @@ namespace Vinasa.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Title,OpenDate,Address,CreatedUtc")] Seminar seminar)
+        public ActionResult Edit([Bind(Include = "Id,Title,OpenDate,CloseDate,Address,CreatedUtc")] Seminar seminar)
         {
             if (ModelState.IsValid)
             {

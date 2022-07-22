@@ -15,6 +15,13 @@
     @Html.ValidationMessageFor(model => model.OpenDate, "", new { @class = "text-danger" })
 </div>
 <div class="input-wrapper">
+    @Html.TextBoxFor(model => model.CloseDate, "{0:yyyy-MM-ddTHH:mm:ss}", new { @class = "ip-form", @type = "datetime-local", @required = "required" })
+    @Html.LabelFor(model => model.CloseDate, new { @class = "lb-form" })
+</div>
+<div class="message-error">
+    @Html.ValidationMessageFor(model => model.CloseDate, "", new { @class = "text-danger" })
+</div>
+<div class="input-wrapper">
     @Html.EditorFor(model => model.Address, new { htmlAttributes = new { @class = "ip-form", @required = "required" } })
     @Html.LabelFor(model => model.Address, new { @class = "lb-form" })
 </div>
