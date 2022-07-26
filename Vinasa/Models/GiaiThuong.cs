@@ -45,13 +45,13 @@ namespace Vinasa.Models
             List<ValidationResult> validationResult = new List<ValidationResult>();
 
             if (_db.GIAITHUONG.Any(it => it.Title == Title && it.Id != Id))
-                validationResult.Add(new ValidationResult("Đã tồn tại giải thưởng!"));
+                validationResult.Add(new ValidationResult("Đã tồn tại giải thưởng!", new[] { "Title" }));
 
             var giaiThuong = _db.GIAITHUONG.FirstOrDefault(it => it.Id == Id);
             if(giaiThuong == null)
             {
                 if (OpenDate <= DateTime.Now)
-                    validationResult.Add(new ValidationResult("Thời gian diễn ra phải lớn hơn ngày hiện tại!"));
+                    validationResult.Add(new ValidationResult("Thời gian diễn ra phải lớn hơn ngày hiện tại!", new[] { "OpenDate" }));
             }
             return validationResult;
         }

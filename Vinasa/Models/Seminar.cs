@@ -52,18 +52,18 @@ namespace Vinasa.Models
             List<ValidationResult> validationResult = new List<ValidationResult>();
 
             if (CloseDate < OpenDate)
-                validationResult.Add(new ValidationResult("Thời gian kết thúc phải lớn hơn hoặc bằng thời gian diễn ra"));
+                validationResult.Add(new ValidationResult("Thời gian kết thúc phải lớn hơn hoặc bằng thời gian diễn ra", new[] { "OpenDate" }));
 
             if (_db.Seminars.Any(it => it.Title == Title && it.Id != Id))
-                validationResult.Add(new ValidationResult("Đã tồn tại hội nghị!"));
+                validationResult.Add(new ValidationResult("Đã tồn tại hội nghị!", new[] { "Title" }));
 
             var seminar = _db.Seminars.FirstOrDefault(it => it.Id == Id);
             if(seminar == null)
             {
                 if(CloseDate <= DateTime.Now)
-                    validationResult.Add(new ValidationResult("Thời gian diễn ra phải lớn hơn ngày hiện tại!"));
+                    validationResult.Add(new ValidationResult("Thời gian kết thúc phải lớn hơn ngày hiện tại!", new[] { "CloseDate" }));
                 if (OpenDate <= DateTime.Now)
-                    validationResult.Add(new ValidationResult("Thời gian kết thúc phải lớn hơn ngày hiện tại!"));
+                    validationResult.Add(new ValidationResult("Thời gian diễn ra phải lớn hơn ngày hiện tại!", new[] { "OpenDate" }));
             }
             return validationResult;
         }
