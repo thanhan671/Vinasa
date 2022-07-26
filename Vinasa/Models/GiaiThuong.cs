@@ -51,7 +51,7 @@ namespace Vinasa.Models
             if(giaiThuong == null)
             {
                 if (OpenDate <= DateTime.Now)
-                    validationResult.Add(new ValidationResult("Thời gian kết thúc phải lớn hơn ngày hiện tại!"));
+                    validationResult.Add(new ValidationResult("Thời gian diễn ra phải lớn hơn ngày hiện tại!"));
             }
             return validationResult;
         }
