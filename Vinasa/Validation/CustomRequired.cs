@@ -65,32 +65,6 @@ namespace Vinasa.Validation
             return iValue > 0;
         }
     }
-    public class SeminarRequired : ValidationAttribute
-    {
-        private readonly SeminarContext _db = new SeminarContext();
-
-        public override bool IsValid(object value)
-        {
-            if (value == null)
-                return false;
-
-            var seminar = _db.Seminars.FirstOrDefault(it => it.Title == value.ToString());
-            return !(seminar != null && seminar.Id > 0);
-        }
-    }
-    public class GiaiThuongRequired : ValidationAttribute
-    {
-        private readonly SeminarContext _db = new SeminarContext();
-
-        public override bool IsValid(object value)
-        {
-            if (value == null)
-                return false;
-
-            var giaiThuong = _db.GIAITHUONG.FirstOrDefault(it => it.Title == value.ToString());
-            return !(giaiThuong != null && giaiThuong.Id > 0);
-        }
-    }
     public class CourseRequired : ValidationAttribute
     {
         private readonly SEP25Team16Entities2 _db = new SEP25Team16Entities2();

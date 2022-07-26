@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using Vinasa.DAL;
 using Vinasa.Validation;
 
 namespace Vinasa.Models
@@ -18,21 +19,18 @@ namespace Vinasa.Models
 
         [Display(Name = "Tên Hội Nghị")]
         [Required(ErrorMessage = "Vui lòng điền trường này!")]
-        [SeminarRequired(ErrorMessage = "Đã tồn tại hội nghị!")]
         [StringRequired(ErrorMessage = "Vui lòng điền trường này!")]
         public string Title { get; set; }
 
 
         [Display(Name = "Thời Gian Diễn Ra")]
         [Required(ErrorMessage = "Vui lòng điền trường này!")]
-        [DateTimeRequired(ErrorMessage = "Thời gian diễn ra phải lớn hơn ngày hiện tại!")]
         [DataType(DataType.Date)]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy hh:mm:ss tt}")]
         public DateTime OpenDate { get; set; }
 
         [Display(Name = "Thời Gian Kết Thúc")]
         [Required(ErrorMessage = "Vui lòng điền trường này!")]
-        [EndDateTimeRequired("OpenDate")]
         [DataType(DataType.Date)]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy hh:mm:ss tt}")]
         public DateTime CloseDate { get; set; }
@@ -50,10 +48,24 @@ namespace Vinasa.Models
 
         IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
+            SeminarContext _db = new SeminarContext();
+            List<ValidationResult> validationResult = new List<ValidationResult>();
+
             if (CloseDate < OpenDate)
+                validationResult.Add(new ValidationResult("Thời gian kết thúc phải lớn hơn hoặc bằng thời gian diễn ra"));
+
+            if (_db.Seminars.Any(it => it.Title == Title && it.Id != Id))
+                validationResult.Add(new ValidationResult("Đã tồn tại hội nghị!"));
+
+            var seminar = _db.Seminars.FirstOrDefault(it => it.Id == Id);
+            if (seminar == null)
             {
-                yield return new ValidationResult("Thời gian kết thúc phải lớn hơn hoặc bằng thời gian diễn ra");
+                if (CloseDate <= DateTime.Now)
+                    validationResult.Add(new ValidationResult("Thời gian diễn ra phải lớn hơn ngày hiện tại!"));
+                if (OpenDate <= DateTime.Now)
+                    validationResult.Add(new ValidationResult("Thời gian kết thúc phải lớn hơn ngày hiện tại!"));
             }
+            return validationResult;
         }
     }
 }
