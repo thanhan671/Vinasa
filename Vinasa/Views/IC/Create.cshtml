@@ -3,10 +3,10 @@
     ViewBag.Title = "Create";
     Layout = "~/Views/Shared/sbadmin.cshtml";
 }
-@using (Html.BeginForm("Create", "IC", FormMethod.Post))
+@using (Html.BeginForm("Create", "IC", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-field" }))
 {
     @Html.AntiForgeryToken()
-
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
     <div class="container">
         <div class="col-6">
             <h5 class="heading">Thêm Hội Nghị Quốc Tế</h5>

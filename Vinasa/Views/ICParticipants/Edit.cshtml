@@ -7,6 +7,8 @@
 @using (Html.BeginForm("Edit", "ICParticipants", FormMethod.Post))
 {
     @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(m => m.HoiNghiQT_ID)
     <div class="container col-11 centerPage">
         <h5 class="heading">Sửa Thông Tin Doanh Nghiệp Tham Gia</h5>
         <form class="form-field form-inputs" method="post" enctype="multipart/form-data">
@@ -110,17 +112,11 @@
             </div>
         </form>
         <div class="button-form f-r">
-            <input class="button-cancel" onclick="location.href='@Url.Action("Index", "ICParticipants")'" type="button" name="cancel" value="Hủy"/>
+            <button class="button-cancel" onclick="location.href='@Url.Action("Details", "IC", new { id = Model.HoiNghiQT_ID})'" type="button" name="cancel">Huỷ</button>
             <button class="button-lc" type="submit" name="save">Xác Nhận</button>
         </div>
     </div>
 
 }
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script>
 
-        $('#cancel').click(function () {
-            location.href = 'javascript:history.go(-1)';
-        })
-
-</script>

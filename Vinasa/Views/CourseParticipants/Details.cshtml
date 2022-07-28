@@ -3,7 +3,6 @@
     ViewBag.Title = "Details";
     Layout = "~/Views/Shared/sbadmin.cshtml";
 }
-
 @Html.HiddenFor(m => m.IdKhoaHoc)
 <div class="container col-11 centerPage">
     <h5 class="heading">Thông Tin Doanh Nghiệp Tham Gia</h5>
@@ -43,8 +42,10 @@
             </label>
         </div>
         <div class="input-wrapper">
-            @Html.CheckBoxFor(m => m.HoiVienVinasa, new { @class = "form-check-input" })
-            <label class="form-check-label">Hội viên Vinasa</label>
+            <label class="form-check-label">
+                @Html.CheckBoxFor(m => m.HoiVienVinasa, new { @class = "form-check-input" })
+                <label class="form-check-label">Hội viên Vinasa</label>
+            </label>
         </div>
     </form>
 </div>
