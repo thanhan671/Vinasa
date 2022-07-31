@@ -142,7 +142,7 @@ namespace Vinasa.Controllers
                         var workSheet = currentSheet.First();
                         var noOfCol = workSheet.Dimension.End.Column;
                         var noOfRow = workSheet.Dimension.End.Row;
-                        for (int rowIterator = 1; rowIterator <= noOfRow; rowIterator++)
+                        for (int rowIterator = 2; rowIterator <= noOfRow; rowIterator++)
                         {
                             string tenDonVi = workSheet.Cells[rowIterator, 1].Value.ToString();
                             var THAMGIAHOINGHI = _db.THAMGIAHOINGHIQUOCTEs

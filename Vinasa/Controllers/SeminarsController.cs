@@ -140,8 +140,6 @@ namespace Vinasa.Controllers
             {
                 if (importexcelfile != null && importexcelfile.ContentLength > 0)
                 {
-                    //_db.SeminarParticipants.RemoveRange(_db.SeminarParticipants.ToList());
-
                     await _importManager.ImportSeminarParticipantFromXlsx((int)id, importexcelfile.InputStream);
                 }
                 else
