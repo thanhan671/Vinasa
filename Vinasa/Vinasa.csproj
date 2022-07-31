@@ -185,6 +185,7 @@
     <Compile Include="Controllers\ProvincesController.cs" />
     <Compile Include="Controllers\SeminarParticipantsController.cs" />
     <Compile Include="Controllers\SeminarsController.cs" />
+    <Compile Include="Controllers\StatisticController.cs" />
     <Compile Include="DAL\SeminarContext.cs" />
     <Compile Include="DAL\SeminarInitializer.cs" />
     <Compile Include="Global.asax.cs">
@@ -2336,6 +2337,13 @@
     <Content Include="Views\AwardParticipants\Index.cshtml" />
     <Content Include="Views\AwardParticipants\Edit.cshtml" />
     <Content Include="Views\AwardParticipants\Detail.cshtml" />
+    <Content Include="Views\Statistic\ActivityJoined.cshtml" />
+    <Content Include="Views\Statistic\MembershipFee.cshtml" />
+    <Content Include="Views\Statistic\BussinessByArea.cshtml" />
+    <Content Include="Views\Statistic\SizeOfPersonnel.cshtml" />
+    <Content Include="Views\Statistic\FieldOfActivity.cshtml" />
+    <Content Include="Views\Statistic\TimeOfEstablishment.cshtml" />
+    <Content Include="Views\Statistic\BirthDayInMonth.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
