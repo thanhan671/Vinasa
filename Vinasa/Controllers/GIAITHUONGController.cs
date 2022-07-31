@@ -138,8 +138,6 @@ namespace Vinasa.Controllers
             {
                 if (importexcelfile != null && importexcelfile.ContentLength > 0)
                 {
-                    _db.NGUOINHANGIAITHUONG.RemoveRange(_db.NGUOINHANGIAITHUONG.ToList());
-
                     await _importManager.ImportNguoiNhanGiaiThuongsFromXlsx((int)id, importexcelfile.InputStream);
                 }
                 else
