@@ -5,16 +5,6 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="SEP25Team16Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityType Name="__MigrationHistory">
-          <Key>
-            <PropertyRef Name="MigrationId" />
-            <PropertyRef Name="ContextKey" />
-          </Key>
-          <Property Name="MigrationId" Type="nvarchar" MaxLength="150" Nullable="false" />
-          <Property Name="ContextKey" Type="nvarchar" MaxLength="300" Nullable="false" />
-          <Property Name="Model" Type="varbinary(max)" Nullable="false" />
-          <Property Name="ProductVersion" Type="nvarchar" MaxLength="32" Nullable="false" />
-        </EntityType>
         <EntityType Name="GIAITHUONG">
           <Key>
             <PropertyRef Name="Id" />
@@ -74,6 +64,7 @@
           <Property Name="Fanpage" Type="nvarchar(max)" Nullable="false" />
           <Property Name="ThoiGianGiaNhap" Type="nvarchar" MaxLength="10" Nullable="false" />
           <Property Name="KhuVuc" Type="int" Nullable="false" />
+          <Property Name="GhiChu" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="KHOAHOC">
           <Key>
@@ -81,8 +72,8 @@
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="TenKhoaDaoTao" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="NgayBatDau" Type="date" Nullable="false" />
-          <Property Name="NgayKetThuc" Type="date" Nullable="false" />
+          <Property Name="NgayBatDau" Type="datetime" Nullable="false" />
+          <Property Name="NgayKetThuc" Type="datetime" Nullable="false" />
           <Property Name="HinhThuc" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="KHUVUC">
@@ -154,6 +145,7 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Title" Type="nvarchar(max)" Nullable="false" />
           <Property Name="OpenDate" Type="datetime" Nullable="false" />
+          <Property Name="CloseDate" Type="datetime" Nullable="false" />
           <Property Name="Address" Type="nvarchar(max)" Nullable="false" />
           <Property Name="CreatedUtc" Type="datetime" />
         </EntityType>
@@ -179,6 +171,7 @@
           <Property Name="Sdt" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="PhongBan" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="MatKhau" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ChucDanh" Type="nvarchar" MaxLength="300" />
         </EntityType>
         <EntityType Name="THAMGIAHOINGHIQUOCTE">
           <Key>
@@ -339,7 +332,6 @@
         </Function>
         <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <EntityContainer Name="SEP25Team16ModelStoreContainer">
-          <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="GIAITHUONG" EntityType="Self.GIAITHUONG" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="HOINGHIQUOCTE" EntityType="Self.HOINGHIQUOCTE" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="HOIVIEN" EntityType="Self.HOIVIEN" Schema="dbo" store:Type="Tables" />
@@ -429,6 +421,7 @@
           <Property Name="ThoiGianGiaNhap" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="KhuVuc" Type="Int32" Nullable="false" />
           <NavigationProperty Name="KHUVUC1" Relationship="Self.FK_HOIVIEN_KHUVUC" FromRole="HOIVIEN" ToRole="KHUVUC" />
+          <Property Name="GhiChu" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="KHUVUC">
           <Key>
@@ -470,6 +463,7 @@
           <Property Name="MatKhau" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="QUYEN1" Relationship="Self.FK_TAIKHOANADMIN_QUYEN" FromRole="TAIKHOANADMIN" ToRole="QUYEN" />
           <NavigationProperty Name="TRANGTHAI1" Relationship="Self.FK_TAIKHOANADMIN_TRANGTHAI" FromRole="TAIKHOANADMIN" ToRole="TRANGTHAI" />
+          <Property Name="ChucDanh" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="TRANGTHAI">
           <Key>
@@ -583,7 +577,6 @@
             <Parameter Name="new_diagramname" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="sp_upgraddiagrams" />
-          <EntitySet Name="C__MigrationHistory" EntityType="SEP25Team16Model.C__MigrationHistory" />
           <EntitySet Name="GIAITHUONGs" EntityType="SEP25Team16Model.GIAITHUONG" />
           <EntitySet Name="NGUOINHANGIAITHUONGs" EntityType="SEP25Team16Model.NGUOINHANGIAITHUONG" />
           <AssociationSet Name="FK_dbo_NGUOINHANGIAITHUONG_dbo_GIAITHUONG_GiaiThuongId" Association="SEP25Team16Model.FK_dbo_NGUOINHANGIAITHUONG_dbo_GIAITHUONG_GiaiThuongId">
@@ -630,6 +623,7 @@
           <Property Name="Address" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="CreatedUtc" Type="DateTime" Precision="3" />
           <NavigationProperty Name="SeminarParticipants" Relationship="SEP25Team16Model.FK_dbo_SeminarParticipants_dbo_Seminars_SeminarId" FromRole="Seminar" ToRole="SeminarParticipant" />
+          <Property Name="CloseDate" Type="DateTime" Nullable="false" Precision="3" />
         </EntityType>
         <Association Name="FK_dbo_SeminarParticipants_dbo_Seminars_SeminarId">
           <End Type="SEP25Team16Model.Seminar" Role="Seminar" Multiplicity="0..1" />
@@ -649,8 +643,8 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="TenKhoaDaoTao" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="NgayBatDau" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="NgayKetThuc" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="NgayBatDau" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="NgayKetThuc" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="HinhThuc" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="THAMGIAKHOAHOCs" Relationship="SEP25Team16Model.FK_THAMGIAKHOAHOC_KHOAHOC" FromRole="KHOAHOC" ToRole="THAMGIAKHOAHOC" />
         </EntityType>
@@ -738,16 +732,6 @@
           <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
           <Property Type="Int32" Name="OwnerID" Nullable="false" />
         </ComplexType>
-        <EntityType Name="C__MigrationHistory">
-          <Key>
-            <PropertyRef Name="MigrationId" />
-            <PropertyRef Name="ContextKey" />
-          </Key>
-          <Property Name="MigrationId" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
-          <Property Name="ContextKey" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="true" />
-          <Property Name="Model" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
-          <Property Name="ProductVersion" Type="String" Nullable="false" MaxLength="32" FixedLength="false" Unicode="true" />
-        </EntityType>
         <EntityType Name="GIAITHUONG">
           <Key>
             <PropertyRef Name="Id" />
@@ -801,6 +785,7 @@
           <EntitySetMapping Name="HOIVIENs">
             <EntityTypeMapping TypeName="SEP25Team16Model.HOIVIEN">
               <MappingFragment StoreEntitySet="HOIVIEN">
+                <ScalarProperty Name="GhiChu" ColumnName="GhiChu" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="MaSoThue" ColumnName="MaSoThue" />
                 <ScalarProperty Name="TenTiengViet" ColumnName="TenTiengViet" />
@@ -869,6 +854,7 @@
           <EntitySetMapping Name="TAIKHOANADMINs">
             <EntityTypeMapping TypeName="SEP25Team16Model.TAIKHOANADMIN">
               <MappingFragment StoreEntitySet="TAIKHOANADMIN">
+                <ScalarProperty Name="ChucDanh" ColumnName="ChucDanh" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Ten" ColumnName="Ten" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
@@ -921,6 +907,7 @@
           <EntitySetMapping Name="Seminars">
             <EntityTypeMapping TypeName="SEP25Team16Model.Seminar">
               <MappingFragment StoreEntitySet="Seminars">
+                <ScalarProperty Name="CloseDate" ColumnName="CloseDate" />
                 <ScalarProperty Name="CreatedUtc" ColumnName="CreatedUtc" />
                 <ScalarProperty Name="Address" ColumnName="Address" />
                 <ScalarProperty Name="OpenDate" ColumnName="OpenDate" />
@@ -1013,16 +1000,6 @@
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="SEP25Team16Model.Store.sp_renamediagram" />
           <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="SEP25Team16Model.Store.sp_upgraddiagrams" />
-          <EntitySetMapping Name="C__MigrationHistory">
-            <EntityTypeMapping TypeName="SEP25Team16Model.C__MigrationHistory">
-              <MappingFragment StoreEntitySet="__MigrationHistory">
-                <ScalarProperty Name="ProductVersion" ColumnName="ProductVersion" />
-                <ScalarProperty Name="Model" ColumnName="Model" />
-                <ScalarProperty Name="ContextKey" ColumnName="ContextKey" />
-                <ScalarProperty Name="MigrationId" ColumnName="MigrationId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="GIAITHUONGs">
             <EntityTypeMapping TypeName="SEP25Team16Model.GIAITHUONG">
               <MappingFragment StoreEntitySet="GIAITHUONG">

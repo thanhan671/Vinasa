@@ -97,7 +97,8 @@ namespace Vinasa.Controllers
                 EmailKeToan = mAcc.EmailKeToan,
                 Fanpage = mAcc.Fanpage,
                 ThoiGianGiaNhap = mAcc.ThoiGianGiaNhap,
-                KhuVuc = mAcc.KhuVuc
+                KhuVuc = mAcc.KhuVuc,
+                GhiChu = mAcc.GhiChu
             }).SingleOrDefault();
 
             memberAccountModels.RegionList = new SelectList(db.KHUVUCs, "IDKhuVuc", "TenKhuVuc", memberAccountModels.KhuVuc);
@@ -161,6 +162,7 @@ namespace Vinasa.Controllers
                             accountdata.Fanpage = memberAccountModels.Fanpage.Trim();
                             accountdata.ThoiGianGiaNhap = memberAccountModels.ThoiGianGiaNhap.Trim();
                             accountdata.KhuVuc = memberAccountModels.KhuVuc;
+                            accountdata.GhiChu = memberAccountModels.GhiChu;
 
                             db.SaveChanges();
                             return RedirectToAction("ManageMember", "Member", new { area = " " });
@@ -218,7 +220,8 @@ namespace Vinasa.Controllers
                 EmailKeToan = mAcc.EmailKeToan,
                 Fanpage = mAcc.Fanpage,
                 ThoiGianGiaNhap = mAcc.ThoiGianGiaNhap,
-                sKhuVuc = mAcc.KHUVUC1.TenKhuVuc
+                sKhuVuc = mAcc.KHUVUC1.TenKhuVuc,
+                GhiChu = mAcc.GhiChu
             }).SingleOrDefault();
             return View(memberAccountModels);
         }
@@ -285,6 +288,7 @@ namespace Vinasa.Controllers
                             member.Fanpage = workSheet.Cells[rowIterator, 33].Value.ToString();
                             member.ThoiGianGiaNhap = workSheet.Cells[rowIterator, 34].Value.ToString();
                             member.KhuVuc = Convert.ToInt32(workSheet.Cells[rowIterator, 35].Value);
+                            member.GhiChu = workSheet.Cells[rowIterator, 36].Value.ToString();
                             memberlist.Add(member);
                         }
                     }

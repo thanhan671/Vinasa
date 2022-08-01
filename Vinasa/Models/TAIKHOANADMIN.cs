@@ -22,6 +22,7 @@ namespace Vinasa.Models
         public string Sdt { get; set; }
         public string PhongBan { get; set; }
         public string MatKhau { get; set; }
+        public string ChucDanh { get; set; }
     
         public virtual QUYEN QUYEN1 { get; set; }
         public virtual TRANGTHAI TRANGTHAI1 { get; set; }

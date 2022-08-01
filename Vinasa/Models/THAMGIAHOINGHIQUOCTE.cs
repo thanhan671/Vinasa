@@ -61,7 +61,7 @@ namespace Vinasa.Models
 
         public bool DangKyQuangCao { get; set; }
         public Nullable<int> HoiNghiQT_ID { get; set; }
-    
+
         public virtual HOINGHIQUOCTE HOINGHIQUOCTE { get; set; }
     }
 }

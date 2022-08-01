@@ -95,6 +95,10 @@
                 <label class="lb-form" class="address" for="name">Khu vực</label>
                 @Html.DropDownListFor(m => m.KhuVuc, Model.RegionList, new { @class = "form-control select-region" })
             </div>
+            <div class="input-wrapper">
+                <input class="ip-form" type="text" contenteditable="true" required @Html.TextBoxFor(m => m.GhiChu)
+                <label class="lb-form" for="name">Ghi Chú</label>
+            </div>
         </form>
     </div>
     <div class="col-5">

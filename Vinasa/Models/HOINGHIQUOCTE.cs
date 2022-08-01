@@ -14,7 +14,7 @@ namespace Vinasa.Models
         {
             this.THAMGIAHOINGHIQUOCTEs = new HashSet<THAMGIAHOINGHIQUOCTE>();
         }
-    
+
         public int ID { get; set; }
 
         [Required(ErrorMessage = "Vui lòng điền trường này!")]
@@ -33,7 +33,7 @@ namespace Vinasa.Models
         [DataType(DataType.Date)]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy}")]
         public System.DateTime ThoiGianKetThuc { get; set; }
-    
+
         public virtual ICollection<THAMGIAHOINGHIQUOCTE> THAMGIAHOINGHIQUOCTEs { get; set; }
 
         IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)

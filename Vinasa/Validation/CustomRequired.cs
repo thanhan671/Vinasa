@@ -68,15 +68,15 @@ namespace Vinasa.Validation
         }
     }
 
-        public override bool IsValid(object value)
-        {
-            if (value == null)
-                return false;
+    //public override bool IsValid(object value)
+    //{
+    //    if (value == null)
+    //        return false;
 
-            var seminar = _db.Seminars.FirstOrDefault(it => it.Title == value.ToString());
-            return !(seminar != null && seminar.Id > 0);
-        }
-    }
+    //    var seminar = _db.Seminars.FirstOrDefault(it => it.Title == value.ToString());
+    //    return !(seminar != null && seminar.Id > 0);
+    //}
+
     public class GiaiThuongRequired : ValidationAttribute
     {
         private readonly SeminarContext _db = new SeminarContext();

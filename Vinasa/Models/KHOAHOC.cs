@@ -21,13 +21,11 @@ namespace Vinasa.Models
         public string TenKhoaDaoTao { get; set; }
 
         [Required(ErrorMessage = "Vui lòng điền trường này!")]
-        //[DateTimeRequired(ErrorMessage = "Thời gian diễn ra phải lớn hơn ngày hiện tại!")]
         [DataType(DataType.Date)]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy}")]
         public System.DateTime NgayBatDau { get; set; }
 
         [Required(ErrorMessage = "Vui lòng điền trường này!")]
-        //[EndDateTimeRequired("NgayBatDau")]
         [DataType(DataType.Date)]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy}")]
         public System.DateTime NgayKetThuc { get; set; }
