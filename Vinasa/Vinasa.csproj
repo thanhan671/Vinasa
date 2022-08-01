@@ -181,9 +181,11 @@
     <Compile Include="Controllers\ICController.cs" />
     <Compile Include="Controllers\ICParticipantsController.cs" />
     <Compile Include="Controllers\MemberController.cs" />
+    <Compile Include="Controllers\OtherServiceController.cs" />
     <Compile Include="Controllers\ProvincesController.cs" />
     <Compile Include="Controllers\SeminarParticipantsController.cs" />
     <Compile Include="Controllers\SeminarsController.cs" />
+    <Compile Include="Controllers\VinasaConnectController.cs" />
     <Compile Include="DAL\SeminarContext.cs" />
     <Compile Include="DAL\SeminarInitializer.cs" />
     <Compile Include="Global.asax.cs">
@@ -2330,6 +2332,12 @@
     <Content Include="Views\ICParticipants\Index.cshtml" />
     <Content Include="Views\ICParticipants\Edit.cshtml" />
     <Content Include="Views\ICParticipants\Details.cshtml" />
+    <Content Include="Views\VinasaConnect\Index.cshtml" />
+    <Content Include="Views\VinasaConnect\Edit.cshtml" />
+    <Content Include="Views\VinasaConnect\Detail.cshtml" />
+    <Content Include="Views\OtherService\Index.cshtml" />
+    <Content Include="Views\OtherService\Edit.cshtml" />
+    <Content Include="Views\OtherService\Detail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
