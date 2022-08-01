@@ -12,18 +12,18 @@ namespace Vinasa.Models
     {
         public int ID { get; set; }
 
-        //[Required(ErrorMessage = "Vui lòng điền trường này!")]
+        [Required(ErrorMessage = "Vui lòng điền trường này!")]
         public string Ten { get; set; }
 
-        //[Required(ErrorMessage = "Vui lòng điền trường này!")]
+        [Required(ErrorMessage = "Vui lòng điền trường này!")]
         public string Email { get; set; }
         public int Quyen { get; set; }
         public int TrangThai { get; set; }
 
-        //[Required(ErrorMessage = "Vui lòng điền trường này!")]
+        [Required(ErrorMessage = "Vui lòng điền trường này!")]
         public string Sdt { get; set; }
 
-        //[Required(ErrorMessage = "Vui lòng điền trường này!")]
+        [Required(ErrorMessage = "Vui lòng điền trường này!")]
         public string PhongBan { get; set; }
 
         [Required(ErrorMessage = "Vui lòng điền trường này!")]
@@ -42,10 +42,12 @@ namespace Vinasa.Models
         public virtual TRANGTHAI TRANGTHAI1 { get; set; }
 
         public bool isEditMode { get; set; }
-        
+
         [NotMapped]
         public SelectList RoleList { get; set; }
         [NotMapped]
         public SelectList StatusList { get; set; }
+
+        public string ChucDanh { get; set; }
     }
 }

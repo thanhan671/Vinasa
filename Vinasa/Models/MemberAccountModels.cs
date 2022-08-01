@@ -46,6 +46,8 @@ namespace Vinasa.Models
         public string ThoiGianGiaNhap { get; set; }
         public int KhuVuc { get; set; }
 
+        public string GhiChu { get; set; }
+
         public string sKhuVuc { get; set; }
         public virtual KHUVUC KHUVUC1 { get; set; }
 

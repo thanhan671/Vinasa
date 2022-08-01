@@ -96,6 +96,7 @@ namespace Vinasa.Controllers
                                     newAccount.MatKhau = registerPassword;
                                     newAccount.Quyen = adminAccountModels.Quyen;
                                     newAccount.TrangThai = adminAccountModels.TrangThai;
+                                    newAccount.ChucDanh = adminAccountModels.ChucDanh;
 
                                     db.TAIKHOANADMINs.Add(newAccount);
                                     db.SaveChanges();
@@ -133,7 +134,8 @@ namespace Vinasa.Controllers
                 TrangThai = acc.TrangThai,
                 Sdt = acc.Sdt,
                 PhongBan = acc.PhongBan,
-                MatKhau = acc.MatKhau
+                MatKhau = acc.MatKhau,
+                ChucDanh = acc.ChucDanh
             }).SingleOrDefault();
 
             if (Session["AccountID"].Equals(id))
@@ -179,6 +181,7 @@ namespace Vinasa.Controllers
                             accountdata.PhongBan = adminAccountModels.PhongBan;
                             accountdata.Quyen = adminAccountModels.Quyen;
                             accountdata.TrangThai = adminAccountModels.TrangThai;
+                            accountdata.ChucDanh = adminAccountModels.ChucDanh;
 
                             if (adminAccountModels.newMatKhau != null)
                             {

@@ -55,6 +55,10 @@
                     }
                 </div>
                 <div class="input-wrapper">
+                    <input class="ip-form" type="text" contenteditable="true" @Html.TextBoxFor(m => m.ChucDanh)
+                    <label class="lb-form" for="name">Chức Danh</label>
+                </div>
+                <div class="input-wrapper">
                     <label class="lb-form" for="name">Quyền</label>
                     @if (Model.isEditMode == false)
                     {
@@ -81,6 +85,7 @@
         <div class="button-form">
             @*<button class="button-cancel" onclick="location.href='javascript:history.go(-1)'" type="button" name="cancel">Huỷ</button>
                 <button class="button-lc" type="submit" name="save">Xác Nhận</button>*@
+
             @if (Model.isEditMode == false)
             {
                 <button class="button-cancel" onclick="location.href='javascript:history.go(-1)'" type="button" name="cancel">Huỷ</button>
