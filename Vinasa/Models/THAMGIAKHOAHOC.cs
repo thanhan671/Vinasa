@@ -40,7 +40,7 @@ namespace Vinasa.Models
 
         public bool HoiVienVinasa { get; set; }
         public Nullable<int> IdKhoaHoc { get; set; }
-    
+
         public virtual KHOAHOC KHOAHOC { get; set; }
     }
 }

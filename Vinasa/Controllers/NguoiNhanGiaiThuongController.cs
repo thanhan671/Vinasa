@@ -110,7 +110,7 @@ namespace Vinasa.Controllers
             _db.NGUOINHANGIAITHUONG.Remove(nguoiNhanGiaiThuong);
             _db.SaveChanges();
             if (giaiThuongId > 0)
-                return RedirectToAction("Details", "GiaiThuongs", new { id = giaiThuongId });
+                return RedirectToAction("Details", "GIAITHUONG", new { id = giaiThuongId });
             else
                 return RedirectToAction(nameof(Index));
 

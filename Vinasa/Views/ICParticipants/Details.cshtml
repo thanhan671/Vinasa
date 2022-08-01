@@ -3,7 +3,7 @@
     ViewBag.Title = "Details";
     Layout = "~/Views/Shared/sbadmin.cshtml";
 }
-
+@Html.HiddenFor(m => m.HoiNghiQT_ID)
 <div class="container col-11 centerPage">
     <h5 class="heading">Thông Tin Doanh Nghiệp Tham Gia</h5>
     <form class="form-field form-inputs" method="post" enctype="multipart/form-data">
@@ -84,5 +84,5 @@
     </form>
 </div>
 <div class="button-form f-r">
-    <button class="button-lc" onclick="location.href = '@Url.Action("Index", "ICParticipants")'">Quay Lại</button>
+    <button class="button-lc" onclick="location.href = '@Url.Action("Details", "IC", new { id = Model.HoiNghiQT_ID})'">Quay Lại</button>
 </div>

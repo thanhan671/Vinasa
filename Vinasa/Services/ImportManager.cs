@@ -3,6 +3,7 @@ using NPOI.XSSF.UserModel;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 using Vinasa.DAL;
 using Vinasa.Models;
@@ -127,6 +128,8 @@ namespace Vinasa.Services
                             break;
                     }
                 }
+                if (_db.SeminarParticipants.Any(it => it.Name == participant.Name && it.SeminarId == seminarId))
+                    isSave = false;
                 if (isSave)
                 {
                     _db.SeminarParticipants.Add(participant);
@@ -233,6 +236,8 @@ namespace Vinasa.Services
                             break;
                     }
                 }
+                if (_db.NGUOINHANGIAITHUONG.Any(it => it.TenNguoiDaiDienPhapLuat == nguoiNhanGiaiThuong.TenNguoiDaiDienPhapLuat && it.GiaiThuongId == giaiThuongId))
+                    isSave = false;
                 if (isSave)
                 {
                     _db.NGUOINHANGIAITHUONG.Add(nguoiNhanGiaiThuong);

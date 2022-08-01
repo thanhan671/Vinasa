@@ -67,9 +67,6 @@ namespace Vinasa.Validation
             return iValue > 0;
         }
     }
-    public class SeminarRequired : ValidationAttribute
-    {
-        private readonly SeminarContext _db = new SeminarContext();
 
         public override bool IsValid(object value)
         {

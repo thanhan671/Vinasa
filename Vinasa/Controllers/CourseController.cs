@@ -145,16 +145,22 @@ namespace Vinasa.Controllers
                         var noOfRow = workSheet.Dimension.End.Row;
                         for (int rowIterator = 2; rowIterator <= noOfRow; rowIterator++)
                         {
-                            var participants = new THAMGIAKHOAHOC();
-                            participants.HoTen = workSheet.Cells[rowIterator, 2].Value.ToString();
-                            participants.CongTyToChucCoQuan = workSheet.Cells[rowIterator, 3].Value.ToString();
-                            participants.ChucDanh = workSheet.Cells[rowIterator, 4].Value.ToString();
-                            participants.Email = workSheet.Cells[rowIterator, 5].Value.ToString();
-                            participants.Sdt = workSheet.Cells[rowIterator, 6].Value.ToString();
-                            participants.SoLuongHocVien = Convert.ToInt32(workSheet.Cells[rowIterator, 7].Value);
-                            participants.HoiVienVinasa = Convert.ToBoolean(workSheet.Cells[rowIterator, 8].Value);
-                            participants.IdKhoaHoc = id;
-                            courseParticipantsList.Add(participants);
+                            string Hoten = workSheet.Cells[rowIterator, 2].Value.ToString();
+                            var THAMGIAKHOAHOC = _db.THAMGIAKHOAHOCs
+                                .FirstOrDefault(t =>t.HoTen == Hoten && t.IdKhoaHoc == id);
+                            if (THAMGIAKHOAHOC == null)
+                            {
+                                var participants = new THAMGIAKHOAHOC();
+                                participants.HoTen = workSheet.Cells[rowIterator, 2].Value.ToString();
+                                participants.CongTyToChucCoQuan = workSheet.Cells[rowIterator, 3].Value.ToString();
+                                participants.ChucDanh = workSheet.Cells[rowIterator, 4].Value.ToString();
+                                participants.Email = workSheet.Cells[rowIterator, 5].Value.ToString();
+                                participants.Sdt = workSheet.Cells[rowIterator, 6].Value.ToString();
+                                participants.SoLuongHocVien = Convert.ToInt32(workSheet.Cells[rowIterator, 7].Value);
+                                participants.HoiVienVinasa = Convert.ToBoolean(workSheet.Cells[rowIterator, 8].Value);
+                                participants.IdKhoaHoc = id;
+                                courseParticipantsList.Add(participants);
+                            }
                         }
                     }
                 }
@@ -168,8 +174,6 @@ namespace Vinasa.Controllers
                         _db.THAMGIAKHOAHOCs.Add(item);
                     }
                     _db.SaveChanges();
-                    //return Content(courseParticipantsList[1].HoTen.ToString());
-
                 }
                 catch (DbEntityValidationException e)
                 {

@@ -43,8 +43,10 @@
             </label>
         </div>
         <div class="input-wrapper">
-            @Html.CheckBoxFor(m => m.HoiVienVinasa, new { @class = "form-check-input" })
-            <label class="form-check-label">Hội viên Vinasa</label>
+            <label class="form-check-label">
+                @Html.CheckBoxFor(m => m.HoiVienVinasa, new { @class = "form-check-input" })
+                <label class="form-check-label">Hội viên Vinasa</label>
+            </label>
         </div>
     </form>
 </div>

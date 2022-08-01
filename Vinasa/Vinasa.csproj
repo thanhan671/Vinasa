@@ -197,6 +197,10 @@
     <Compile Include="Migrations\202207181503260_Initial.designer.cs">
       <DependentUpon>202207181503260_Initial.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202207211745551_Seminar.cs" />
+    <Compile Include="Migrations\202207211745551_Seminar.designer.cs">
+      <DependentUpon>202207211745551_Seminar.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AdminAccountModels.cs" />
     <Compile Include="Models\HOIVIEN.cs">
@@ -313,6 +317,7 @@
     <Content Include="Models\Model1.edmx.diagram">
       <DependentUpon>Model1.edmx</DependentUpon>
     </Content>
+    <Content Include="Models\Model1.edmx.sql" />
     <Content Include="Models\Model1.tt">
       <DependentUpon>Model1.edmx</DependentUpon>
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -2380,6 +2385,7 @@
     <Content Include="Views\ICParticipants\_DeleteSelected.cshtml" />
     <Content Include="Views\ICParticipants\_List.cshtml" />
     <Content Include="Views\Course\Details.cshtml" />
+    <Content Include="Views\IC\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -2403,6 +2409,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202207181503260_Initial.resx">
       <DependentUpon>202207181503260_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202207211745551_Seminar.resx">
+      <DependentUpon>202207211745551_Seminar.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

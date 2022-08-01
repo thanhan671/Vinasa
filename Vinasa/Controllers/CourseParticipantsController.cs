@@ -76,7 +76,9 @@ namespace Vinasa.Controllers
         public ActionResult Delete(int id, int courseId = -1)
         {
             var courseParticipants = _db.THAMGIAKHOAHOCs.Find(id);
-            courseId = (int) courseParticipants.IdKhoaHoc;
+
+            courseId = (int)courseParticipants.IdKhoaHoc;
+
             _db.THAMGIAKHOAHOCs.Remove(courseParticipants);
             _db.SaveChanges();
             if (courseId > 0)
