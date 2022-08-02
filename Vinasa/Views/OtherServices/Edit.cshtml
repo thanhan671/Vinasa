@@ -1,0 +1,90 @@
+﻿
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/sbadmin.cshtml";
+}
+
+<div class="heading">
+    @*<h1 class="h3 mb-2 text-gray-800">Hội Nghị</h1>*@
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item" onclick="location.href = 'javascript:history.go(-1)'" style="color:blue; cursor:pointer" ;>Danh sách quản lí thành viên tham gia dịch vụ khác</li>
+            <li class="breadcrumb-item active" aria-current="page">Sửa thông tin thành viên tham gia</li>
+        </ol>
+    </nav>
+</div>
+@*using (Html.BeginForm("Edit", "Member", FormMethod.Post))*@
+
+<div class="row">
+    <div class="col-6">
+        <h5 class="heading">Chữ Ký Điện Tử</h5>
+        <form class="form-field" method="post" enctype="multipart/form-data">
+            <div class="input-wrapper">
+                <input class="ip-form" type="text" id="tax" contenteditable="true" value="0305131390" required />
+                <label class="lb-form" for="tax">Mã Số Thuế</label>
+            </div>
+
+            <div class="input-wrapper">
+                <input class="ip-form" type="text" contenteditable="true" value="Công ty TNHH Phần mềm FPT - Fsoft" required />
+                <label class="lb-form" for="name">Tên công ty</label>
+            </div>
+
+            <div class="input-wrapper">
+                <input class="ip-form" type="text" contenteditable="true" value="10/10/2020 - 10/10/2025" required />
+                <label class="lb-form" for="name">Thời hạn Hợp đồng </label>
+            </div>
+            <div class="input-wrapper">
+                <input class="ip-form" type="text" contenteditable="true" value="Chữ ký điện tử " required />
+                <label class="lb-form" for="name">Tên sản phẩm/ Dịch vụ</label>
+            </div>
+            <div class="input-wrapper">
+                <input class="ip-form" type="text" contenteditable="true" value="15,000,000" required />
+                <label class="lb-form" for="name">Giá gốc</label>
+            </div>
+            <div class="input-wrapper">
+                <input class="ip-form" type="text" contenteditable="true" value="12,000,000" required />
+                <label class="lb-form" for="name">Giá ưu đãi</label>
+            </div>
+            <div class="input-wrapper">
+                <input class="ip-form" type="text" contenteditable="true" value="10%" required />
+                <label class="lb-form" for="name">Giá ưu đãi</label>
+            </div>
+            <div class="input-wrapper">
+                <input class="ip-form" type="text" contenteditable="true" value="Nguyễn Thị Mạnh " required />
+                <label class="lb-form" for="name">Tên người liên hệ </label>
+            </div>
+            <div class="input-wrapper">
+                <input class="ip-form" type="text" contenteditable="true" value="Marketing Manager" required />
+                <label class="lb-form" for="name">Chức Danh</label>
+            </div>
+            <div class="input-wrapper">
+                <input class="ip-form" type="text" contenteditable="true" value="0937688958" required />
+                <label class="lb-form" for="name">Di Động</label>
+            </div>
+            <div class="input-wrapper">
+                <input class="ip-form" type="text" contenteditable="true" value="manhnt@vinasa.org.vn" required />
+                <label class="lb-form" for="name">Email</label>
+            </div>
+
+        </form>
+    </div>
+</div>
+
+<div class="button-form f-l">
+    <button class="button-cancel" id="cancel">Huỷ</button>
+    <button class="button-lc" type="submit" name="save">Xác Nhận</button>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+
+    $('#cancel').click(function () {
+        location.href = 'javascript:history.go(-1)';
+    })
+
+</script>
+@if (TempData["Message"] != null)
+{
+    <p class="alert alert-success" id="successMessage">@TempData["Message"]</p>
+}

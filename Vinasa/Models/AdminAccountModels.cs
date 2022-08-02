@@ -42,7 +42,7 @@ namespace Vinasa.Models
         public virtual TRANGTHAI TRANGTHAI1 { get; set; }
 
         public bool isEditMode { get; set; }
-        
+
         [NotMapped]
         public SelectList RoleList { get; set; }
         [NotMapped]

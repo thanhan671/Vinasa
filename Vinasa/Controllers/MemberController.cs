@@ -294,7 +294,7 @@ namespace Vinasa.Controllers
                     }
                 }
             }
-            using(db)
+            using (db)
             {
                 try
                 {
@@ -318,7 +318,7 @@ namespace Vinasa.Controllers
             return RedirectToAction("ManageMember", "Member", new { area = " " });
         }
 
-        
+
 
         public ActionResult Delete(int id)
         {

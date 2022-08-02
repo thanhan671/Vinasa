@@ -21,7 +21,7 @@
     background-color: #fff;
     left: 50%;
     transform: translateX(-50%);
-    top: 35%;
+    top: 50%;
 }
 
 .heading-left,
@@ -70,6 +70,7 @@
     .input-wrapper .ip-form {
         display: block;
         width: 300px;
+        height: 22px;
         background: #e8f0fe;
         border: solid 1px #ccc;
         transition: all 0.3s ease;
@@ -91,7 +92,7 @@
         z-index: 2;
         top: 14px;
         left: 20px;
-        font-size: 11px;
+        font-size: 12px;
         font-weight: bold;
         background: #e8f0fe;
         padding: 0 2px;
@@ -103,7 +104,7 @@
 
     .input-wrapper .ip-form:focus + .lb-form,
     .input-wrapper .ip-form:valid + .lb-form {
-        font-size: 11px;
+        font-size: 12px;
         transform: translateY(-20px);
     }
 
