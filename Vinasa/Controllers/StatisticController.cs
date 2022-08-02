@@ -17,6 +17,10 @@ namespace Vinasa.Controllers
         {
             return View();
         }
+        public ActionResult DetailActivitysJoined()
+        {
+            return View();
+        }
         public ActionResult BusinessByArea()
         {
             return View();
