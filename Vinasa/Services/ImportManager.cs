@@ -101,7 +101,7 @@ namespace Vinasa.Services
 
                         case "Tỉnh thành":
                             //int.TryParse(cellValue,out int value );
-                            var province = provinces.FirstOrDefault(it => it.Title.ToLower() == cellValue.ToLower());
+                            var province = provinces.FirstOrDefault(it => it.Title.Trim().ToLower() == cellValue.Trim().ToLower());
                             if(province != null)
                                 participant.ProvinceId = province.Id;
                             break;
@@ -217,7 +217,7 @@ namespace Vinasa.Services
                             break;
 
                         case "Tỉnh thành":
-                            var province = provinces.FirstOrDefault(it => it.Title.ToLower() == cellValue.ToLower());
+                            var province = provinces.FirstOrDefault(it => it.Title.Trim().ToLower() == cellValue.Trim().ToLower());
                             if(province != null)
                                 nguoiNhanGiaiThuong.ProvinceId = province.Id;
                             break;
