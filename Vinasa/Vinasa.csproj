@@ -177,6 +177,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\ConnectionServicesController.cs" />
     <Compile Include="Controllers\CourseController.cs" />
     <Compile Include="Controllers\CourseParticipantsController.cs" />
     <Compile Include="Controllers\GIAITHUONGController.cs" />
@@ -185,6 +186,7 @@
     <Compile Include="Controllers\NGUOINHANGIAITHUONGController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MemberController.cs" />
+    <Compile Include="Controllers\OtherServicesController.cs" />
     <Compile Include="Controllers\ProvincesController.cs" />
     <Compile Include="Controllers\SeminarParticipantsController.cs" />
     <Compile Include="Controllers\SeminarsController.cs" />
@@ -2386,6 +2388,12 @@
     <Content Include="Views\ICParticipants\_List.cshtml" />
     <Content Include="Views\Course\Details.cshtml" />
     <Content Include="Views\IC\Details.cshtml" />
+    <Content Include="Views\OtherServices\Index.cshtml" />
+    <Content Include="Views\OtherServices\Details.cshtml" />
+    <Content Include="Views\OtherServices\Edit.cshtml" />
+    <Content Include="Views\ConnectionServices\Index.cshtml" />
+    <Content Include="Views\ConnectionServices\Details.cshtml" />
+    <Content Include="Views\ConnectionServices\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
