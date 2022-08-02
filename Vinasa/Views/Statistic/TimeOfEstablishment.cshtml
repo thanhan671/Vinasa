@@ -1,0 +1,67 @@
+﻿
+@{
+    ViewBag.Title = "TimeOfEstablishment";
+    Layout = "~/Views/Shared/sbadmin.cshtml";
+}
+
+<!-- Page Heading -->
+<h1 class="h3 mb-2 text-gray-800">Thống Kê</h1>
+
+<!-- DataTales Example -->
+<div class="card shadow mb-4">
+    <div class="card-header py-3" style=" display: flex; justify-content: space-between; align-items: center;">
+        <div class="left-content">
+            <h6 class="m-0 font-weight-bold text-primary" style="color: #19315D ">Thống Kê Danh Sách Thời Gian Thành Lập Doanh Nghiệp</h6>
+        </div>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <div id="filter-fade" class="d-none selectdiv">
+                <select class="select-sort form-select d-inline mr-2" id="dropdown-filter">
+                    <option selected>Lọc</option>
+                    <option value="1">5 Năm</option>
+                    <option value="2">10 Năm</option>
+                    <option value="3">15 Năm</option>
+                    <option value="4">20 Năm</option>
+                    <option value="5">25 Năm</option>
+                </select>
+            </div>
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>
+                            Tên Đơn Vị
+                        </th>
+                        <th>
+                            Thời Gian Thành Lập
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    <tr>
+                        <td class="column-2">
+                            Vinasa
+                        </td>
+                        <td>
+                            20 Năm
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script type="text/javascript">
+
+        $(function () {
+            $('#dataTable_filter').prepend($('#dropdown-filter')).clone();
+            $('#filter-fade').remove();
+        })
+
+    </script>
+}
+
+

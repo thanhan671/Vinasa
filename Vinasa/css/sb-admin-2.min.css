@@ -4744,7 +4744,7 @@ input[type=button].btn-block, input[type=reset].btn-block, input[type=submit].bt
     .page-link:focus {
         z-index: 3;
         outline: 0;
-        box-shadow: 0 0 0 .2rem rgba(78,115,223,.25)
+        box-shadow: 0 0 0.2rem #19315d
     }
 
 .page-item:first-child .page-link {
@@ -4761,7 +4761,7 @@ input[type=button].btn-block, input[type=reset].btn-block, input[type=submit].bt
 .page-item.active .page-link {
     z-index: 3;
     color: #fff;
-    background-color: #4e73df;
+    background-color: #F69928;
     border-color: #4e73df
 }
 
@@ -10529,12 +10529,11 @@ a:focus {
                     font-weight: 800;
                     font-size: .65rem;
                     color: #b7b9cc;
-
                 }
 
                 .sidebar .nav-item .collapse .collapse-inner .collapse-item, .sidebar .nav-item .collapsing .collapse-inner .collapse-item {
-                    padding: .5rem 1rem;
-                    margin: 0 .5rem;
+                    padding: .5rem .5rem;
+                    margin: 0 .2rem;
                     display: block;
                     color: #3c444c;
                     text-decoration: none;
@@ -11552,6 +11551,7 @@ body.sidebar-toggled footer.sticky-footer {
     border: 1px solid #ccc;
     border-radius: 10px;
 }
+
 .button-download {
     height: 40px;
     width: 160px;
@@ -11561,10 +11561,11 @@ body.sidebar-toggled footer.sticky-footer {
     border: 1px solid #ccc;
     border-radius: 10px;
 }
-.button-download:hover {
-    background-color: #051D65;
-    color: #F69928;
-}
+
+    .button-download:hover {
+        background-color: #051D65;
+        color: #F69928;
+    }
 
 .button-cancel {
     height: 40px;
@@ -11606,6 +11607,7 @@ body.sidebar-toggled footer.sticky-footer {
     line-height: 14px;
     margin: 15px 10px;
 }
+
 .message-error {
     display: flex;
     position: relative;
@@ -11805,8 +11807,43 @@ thead {
 .action-column {
     width: 90px !important;
 }
-
+.column-2 {
+    width: 50% !important;
+}
 .form-inputs-odd {
     display: flex !important;
     flex-wrap: wrap !important;
+}
+.selectdiv:after {
+    content: '<>';
+    color: #333;
+    -webkit-transform: rotate(90deg);
+    -moz-transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+    transform: rotate(90deg);
+    right: 11px;
+    top: 18px;
+    padding: 0 0 2px;
+    border-bottom: 1px solid #999;
+    position: absolute;
+    pointer-events: none;
+}
+
+.selectdiv select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    display: block;
+    max-width: 320px;
+    height: 30px;
+    margin: 5px 0px;
+    padding: 0px 24px;
+    font-size: 16px;
+    line-height: 1.75;
+    color: #333;
+    background-color: #ffffff;
+    background-image: none;
+    border: 1px solid #cccccc;
+    -ms-word-break: normal;
+    word-break: normal;
 }
