@@ -118,10 +118,10 @@ namespace Vinasa.Controllers
         public FileResult Download()
         {
             string path = Server.MapPath("~/Content/Files");
-            string filename = Path.GetFileName("MauKhoaDaoTao.xlsx");
+            string filename = Path.GetFileName("MauHoiNghiQuocTe.xlsx");
 
             string fullPath = Path.Combine(path, filename);
-            return File(fullPath, "download/xlsx", "MauKhoaDaoTao.xlsx");
+            return File(fullPath, "download/xlsx", "MauHoiNghiQuocTe.xlsx");
         }
 
         public ActionResult ImportExcel(int? id, FormCollection formCollection)
