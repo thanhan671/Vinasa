@@ -12,8 +12,6 @@ namespace Vinasa.Models
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
-    using System.Linq;
-    
     public partial class SEP25Team16Entities2 : DbContext
     {
         public SEP25Team16Entities2()

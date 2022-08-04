@@ -132,7 +132,7 @@ namespace Vinasa.Controllers
                             accountdata.TenTiengViet = memberAccountModels.TenTiengViet.Trim();
                             accountdata.TenTiengAnh = memberAccountModels.TenTiengAnh.Trim();
                             accountdata.TenVietTat = memberAccountModels.TenVietTat.Trim();
-                            accountdata.NgayThanhLap = memberAccountModels.NgayThanhLap.Trim();
+                            accountdata.NgayThanhLap = memberAccountModels.NgayThanhLap;
                             accountdata.Website = memberAccountModels.Website.Trim();
                             accountdata.SdtCongTy = memberAccountModels.SdtCongTy.Trim();
                             accountdata.EmailCongTy = memberAccountModels.EmailCongTy.Trim();
@@ -258,7 +258,7 @@ namespace Vinasa.Controllers
                             member.TenTiengViet = workSheet.Cells[rowIterator, 3].Value.ToString();
                             member.TenTiengAnh = workSheet.Cells[rowIterator, 4].Value.ToString();
                             member.TenVietTat = workSheet.Cells[rowIterator, 5].Value.ToString();
-                            member.NgayThanhLap = workSheet.Cells[rowIterator, 6].Value.ToString();
+                            member.NgayThanhLap = Convert.ToDateTime(workSheet.Cells[rowIterator, 6].Value);
                             member.Website = workSheet.Cells[rowIterator, 7].Value.ToString();
                             member.SdtCongTy = workSheet.Cells[rowIterator, 8].Value.ToString();
                             member.EmailCongTy = workSheet.Cells[rowIterator, 9].Value.ToString();
@@ -288,7 +288,7 @@ namespace Vinasa.Controllers
                             member.Fanpage = workSheet.Cells[rowIterator, 33].Value.ToString();
                             member.ThoiGianGiaNhap = workSheet.Cells[rowIterator, 34].Value.ToString();
                             member.KhuVuc = Convert.ToInt32(workSheet.Cells[rowIterator, 35].Value);
-                            member.GhiChu = workSheet.Cells[rowIterator, 36].Value.ToString();
+                            member.GhiChu = Convert.ToString(workSheet.Cells[rowIterator, 36].Value);
                             memberlist.Add(member);
                         }
                     }
