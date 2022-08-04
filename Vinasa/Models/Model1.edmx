@@ -44,7 +44,7 @@
           <Property Name="TenTiengViet" Type="nvarchar(max)" Nullable="false" />
           <Property Name="TenTiengAnh" Type="nvarchar(max)" Nullable="false" />
           <Property Name="TenVietTat" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="NgayThanhLap" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="NgayThanhLap" Type="datetime" Nullable="false" />
           <Property Name="Website" Type="nvarchar(max)" Nullable="false" />
           <Property Name="SdtCongTy" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="EmailCongTy" Type="nvarchar" MaxLength="50" Nullable="false" />
@@ -54,7 +54,7 @@
           <Property Name="SoLuongLapTrinhVien" Type="int" Nullable="false" />
           <Property Name="ThiTruongNoiDia" Type="nvarchar(max)" Nullable="false" />
           <Property Name="ThiTruongQuocTe" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="LinhVucHoatDong" Type="nvarchar(max)" />
+          <Property Name="LinhVucHoatDong" Type="nvarchar(max)" Nullable="false" />
           <Property Name="LanhDao" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="ChucDanhLanhDao" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="SdtLanhDao" Type="varchar" MaxLength="20" Nullable="false" />
@@ -159,6 +159,25 @@
           <Property Name="Address" Type="nvarchar(max)" Nullable="false" />
           <Property Name="CreatedUtc" Type="datetime" />
         </EntityType>
+        <EntityType Name="SUDUNGDICHVUKETNOI">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MaSoThue" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="TenCongTy" Type="nvarchar" MaxLength="300" Nullable="false" />
+          <Property Name="NgayBatDauHopDong" Type="datetime" Nullable="false" />
+          <Property Name="NgayKetThucHopDong" Type="datetime" Nullable="false" />
+          <Property Name="TenDichVu" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="GiaGoc" Type="int" Nullable="false" />
+          <Property Name="GiaUuDai" Type="int" Nullable="false" />
+          <Property Name="ChiecKhauVinasa" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="TenNguoiLienHe" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="ChucDanh" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="DienThoai" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="GhiChu" Type="nvarchar(max)" />
+        </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
             <PropertyRef Name="diagram_id" />
@@ -247,18 +266,6 @@
             </Principal>
             <Dependent Role="SeminarParticipants">
               <PropertyRef Name="SeminarId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_HOIVIEN_KHUVUC">
-          <End Role="KHUVUC" Type="Self.KHUVUC" Multiplicity="1" />
-          <End Role="HOIVIEN" Type="Self.HOIVIEN" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="KHUVUC">
-              <PropertyRef Name="IDKhuVuc" />
-            </Principal>
-            <Dependent Role="HOIVIEN">
-              <PropertyRef Name="KhuVuc" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -353,6 +360,7 @@
           <EntitySet Name="QUYEN" EntityType="Self.QUYEN" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SeminarParticipants" EntityType="Self.SeminarParticipants" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Seminars" EntityType="Self.Seminars" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SUDUNGDICHVUKETNOI" EntityType="Self.SUDUNGDICHVUKETNOI" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TAIKHOANADMIN" EntityType="Self.TAIKHOANADMIN" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="THAMGIAHOINGHIQUOCTE" EntityType="Self.THAMGIAHOINGHIQUOCTE" Schema="dbo" store:Type="Tables" />
@@ -365,10 +373,6 @@
           <AssociationSet Name="FK_dbo_SeminarParticipants_dbo_Seminars_SeminarId" Association="Self.FK_dbo_SeminarParticipants_dbo_Seminars_SeminarId">
             <End Role="Seminars" EntitySet="Seminars" />
             <End Role="SeminarParticipants" EntitySet="SeminarParticipants" />
-          </AssociationSet>
-          <AssociationSet Name="FK_HOIVIEN_KHUVUC" Association="Self.FK_HOIVIEN_KHUVUC">
-            <End Role="KHUVUC" EntitySet="KHUVUC" />
-            <End Role="HOIVIEN" EntitySet="HOIVIEN" />
           </AssociationSet>
           <AssociationSet Name="FK_TAIKHOANADMIN_QUYEN" Association="Self.FK_TAIKHOANADMIN_QUYEN">
             <End Role="QUYEN" EntitySet="QUYEN" />
@@ -500,6 +504,7 @@
             <End Role="HOIVIEN" EntitySet="HOIVIENs" />
           </AssociationSet>
           <EntitySet Name="C__MigrationHistory" EntityType="SEP25Team16Model.C__MigrationHistory" />
+          <EntitySet Name="SUDUNGDICHVUKETNOIs" EntityType="SEP25Team16Model.SUDUNGDICHVUKETNOI" />
         </EntityContainer>
         <EntityType Name="Province">
           <Key>
@@ -742,7 +747,7 @@
           <Property Name="TenTiengViet" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="TenTiengAnh" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="TenVietTat" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="NgayThanhLap" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="NgayThanhLap" Type="String" Nullable="false" />
           <Property Name="Website" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="SdtCongTy" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="EmailCongTy" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
@@ -752,7 +757,7 @@
           <Property Name="SoLuongLapTrinhVien" Type="Int32" Nullable="false" />
           <Property Name="ThiTruongNoiDia" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="ThiTruongQuocTe" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="LinhVucHoatDong" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="LinhVucHoatDong" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="LanhDao" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="ChucDanhLanhDao" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="SdtLanhDao" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
@@ -796,6 +801,25 @@
           <Property Name="ContextKey" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="true" />
           <Property Name="Model" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
           <Property Name="ProductVersion" Type="String" Nullable="false" MaxLength="32" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="SUDUNGDICHVUKETNOI">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MaSoThue" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TenCongTy" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="NgayBatDauHopDong" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="NgayKetThucHopDong" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="TenDichVu" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="GiaGoc" Type="Int32" Nullable="false" />
+          <Property Name="GiaUuDai" Type="Int32" Nullable="false" />
+          <Property Name="ChiecKhauVinasa" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="TenNguoiLienHe" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ChucDanh" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="DienThoai" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="GhiChu" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -1060,6 +1084,26 @@
                 <ScalarProperty Name="Model" ColumnName="Model" />
                 <ScalarProperty Name="ContextKey" ColumnName="ContextKey" />
                 <ScalarProperty Name="MigrationId" ColumnName="MigrationId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SUDUNGDICHVUKETNOIs">
+            <EntityTypeMapping TypeName="SEP25Team16Model.SUDUNGDICHVUKETNOI">
+              <MappingFragment StoreEntitySet="SUDUNGDICHVUKETNOI">
+                <ScalarProperty Name="GhiChu" ColumnName="GhiChu" />
+                <ScalarProperty Name="DienThoai" ColumnName="DienThoai" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="ChucDanh" ColumnName="ChucDanh" />
+                <ScalarProperty Name="TenNguoiLienHe" ColumnName="TenNguoiLienHe" />
+                <ScalarProperty Name="ChiecKhauVinasa" ColumnName="ChiecKhauVinasa" />
+                <ScalarProperty Name="GiaUuDai" ColumnName="GiaUuDai" />
+                <ScalarProperty Name="GiaGoc" ColumnName="GiaGoc" />
+                <ScalarProperty Name="TenDichVu" ColumnName="TenDichVu" />
+                <ScalarProperty Name="NgayKetThucHopDong" ColumnName="NgayKetThucHopDong" />
+                <ScalarProperty Name="NgayBatDauHopDong" ColumnName="NgayBatDauHopDong" />
+                <ScalarProperty Name="TenCongTy" ColumnName="TenCongTy" />
+                <ScalarProperty Name="MaSoThue" ColumnName="MaSoThue" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
