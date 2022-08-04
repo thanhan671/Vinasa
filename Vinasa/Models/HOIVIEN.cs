@@ -19,7 +19,7 @@ namespace Vinasa.Models
         public string TenTiengViet { get; set; }
         public string TenTiengAnh { get; set; }
         public string TenVietTat { get; set; }
-        public string NgayThanhLap { get; set; }
+        public Nullable<System.DateTime> NgayThanhLap { get; set; }
         public string Website { get; set; }
         public string SdtCongTy { get; set; }
         public string EmailCongTy { get; set; }
