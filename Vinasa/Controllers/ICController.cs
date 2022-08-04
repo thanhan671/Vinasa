@@ -118,14 +118,16 @@ namespace Vinasa.Controllers
         public FileResult Download()
         {
             string path = Server.MapPath("~/Content/Files");
-            string filename = Path.GetFileName("MauKhoaDaoTao.xlsx");
+            string filename = Path.GetFileName("MauHoiNghiQuocTe.xlsx");
 
             string fullPath = Path.Combine(path, filename);
-            return File(fullPath, "download/xlsx", "MauKhoaDaoTao.xlsx");
+            return File(fullPath, "download/xlsx", "MauHoiNghiQuocTe.xlsx");
         }
 
         public ActionResult ImportExcel(int? id, FormCollection formCollection)
         {
+            int addRow = 0;
+            int rowExist = 0;
             var icParticipantsList = new List<THAMGIAHOINGHIQUOCTE>();
             if (Request != null)
             {
@@ -167,8 +169,12 @@ namespace Vinasa.Controllers
                                 participants.DangKyQuangCao = Convert.ToBoolean(workSheet.Cells[rowIterator, 15].Value);
                                 participants.HoiNghiQT_ID = id;
                                 icParticipantsList.Add(participants);
+                                addRow++;
                             }
-
+                            else
+                            {
+                                rowExist++;
+                            }
                         }
                     }
                 }
@@ -195,6 +201,8 @@ namespace Vinasa.Controllers
                     throw new HttpException(e.ToString());
                 }
             }
+            Session["ViewBag.Success"] = addRow;
+            Session["ViewBag.Exist"] = rowExist;
             return RedirectToAction("Details", "IC", new { id });
         }
 

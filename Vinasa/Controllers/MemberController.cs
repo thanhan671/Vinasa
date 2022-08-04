@@ -345,12 +345,6 @@ namespace Vinasa.Controllers
             string fullPath = Path.Combine(path, filename);
             return File(fullPath, "download/xlsx", "MauHoiVien.xlsx");
         }
-        //public ActionResult ImportExcel()
-        //{
-        //    CheckRole();
-        //    return View();
-        //}
-
         #endregion
 
         #region support method

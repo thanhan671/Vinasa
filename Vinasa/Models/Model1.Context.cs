@@ -39,6 +39,8 @@ namespace Vinasa.Models
         public DbSet<NGUOINHANGIAITHUONG> NGUOINHANGIAITHUONGs { get; set; }
         public DbSet<TAIKHOANADMIN> TAIKHOANADMINs { get; set; }
         public DbSet<HOIVIEN> HOIVIENs { get; set; }
-        //public DbSet<C__MigrationHistory> C__MigrationHistory { get; set; }
+        public DbSet<C__MigrationHistory> C__MigrationHistory { get; set; }
+        public DbSet<SUDUNGDICHVUKETNOI> SUDUNGDICHVUKETNOIs { get; set; }
+    
     }
 }

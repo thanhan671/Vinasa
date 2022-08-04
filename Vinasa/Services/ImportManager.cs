@@ -56,6 +56,7 @@ namespace Vinasa.Services
                 }
             }
 
+            var provinces = _db.Provinces.ToList();
             for (var iRow = 1; iRow < worksheet.PhysicalNumberOfRows; iRow++)
             {
                 var participant = new SeminarParticipant()
@@ -99,8 +100,10 @@ namespace Vinasa.Services
                             break;
 
                         case "Tỉnh thành":
-                            int.TryParse(cellValue, out int value);
-                            participant.ProvinceId = value;
+                            //int.TryParse(cellValue,out int value );
+                            var province = provinces.FirstOrDefault(it => it.Title.Trim().ToLower() == cellValue.Trim().ToLower());
+                            if (province != null)
+                                participant.ProvinceId = province.Id;
                             break;
 
                         case "Đơn vị chúng tôi là":
@@ -170,6 +173,8 @@ namespace Vinasa.Services
                 }
             }
 
+            var provinces = _db.Provinces.ToList();
+
             for (var iRow = 1; iRow < worksheet.PhysicalNumberOfRows; iRow++)
             {
                 var nguoiNhanGiaiThuong = new NGUOINHANGIAITHUONG()
@@ -212,8 +217,9 @@ namespace Vinasa.Services
                             break;
 
                         case "Tỉnh thành":
-                            int.TryParse(cellValue, out int value);
-                            nguoiNhanGiaiThuong.ProvinceId = value;
+                            var province = provinces.FirstOrDefault(it => it.Title.Trim().ToLower() == cellValue.Trim().ToLower());
+                            if (province != null)
+                                nguoiNhanGiaiThuong.ProvinceId = province.Id;
                             break;
 
                         case "Tên người liên hệ với BTC":

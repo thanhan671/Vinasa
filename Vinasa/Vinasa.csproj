@@ -190,6 +190,7 @@
     <Compile Include="Controllers\ProvincesController.cs" />
     <Compile Include="Controllers\SeminarParticipantsController.cs" />
     <Compile Include="Controllers\SeminarsController.cs" />
+    <Compile Include="Controllers\StatisticController.cs" />
     <Compile Include="DAL\SeminarContext.cs" />
     <Compile Include="DAL\SeminarInitializer.cs" />
     <Compile Include="Global.asax.cs">
@@ -263,6 +264,9 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\StatusModels.cs" />
+    <Compile Include="Models\SUDUNGDICHVUKETNOI.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\sysdiagram.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -2394,6 +2398,15 @@
     <Content Include="Views\ConnectionServices\Index.cshtml" />
     <Content Include="Views\ConnectionServices\Details.cshtml" />
     <Content Include="Views\ConnectionServices\Edit.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Statistic\ActivityJoined.cshtml" />
+    <Content Include="Views\Statistic\BusinessByArea.cshtml" />
+    <Content Include="Views\Statistic\SizeOfPersonnel.cshtml" />
+    <Content Include="Views\Statistic\FieldOfActivity.cshtml" />
+    <Content Include="Views\Statistic\TimeOfEstablishment.cshtml" />
+    <Content Include="Views\Statistic\BirthDayInMonth.cshtml" />
+    <Content Include="Views\Statistic\MemberFee.cshtml" />
+    <Content Include="Views\Statistic\DetailActivitysJoined.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,0 +1,46 @@
+﻿
+@{
+    ViewBag.Title = "ActivityJoined";
+    Layout = "~/Views/Shared/sbadmin.cshtml";
+}
+
+<!-- Page Heading -->
+<h1 class="h3 mb-2 text-gray-800">Thống Kê</h1>
+
+<!-- DataTales Example -->
+<div class="card shadow mb-4">
+    <div class="card-header py-3" style=" display: flex; justify-content: space-between; align-items: center;">
+        <div class="right-content">
+            <h6 class="m-0 font-weight-bold text-primary" style="color: #19315D ">Nhấn Vào Tên Đơn Vị Để Xem Các Hoạt Động Đã Tham Gia</h6>
+        </div>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>
+                            Tên Đơn Vị
+                        </th>
+                        <th>
+                            Số Lượng Hoạt Động Đã Tham Gia
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    <tr>
+                        <td class="column-2">
+                            <a href="@Url.Action("DetailActivitysJoined", "Statistic")">
+                                Vinasa
+                            </a>
+                        </td>
+                        <td>
+                            <a>3</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

@@ -127,6 +127,8 @@ namespace Vinasa.Controllers
 
         public ActionResult ImportExcel(int? id, FormCollection formCollection)
         {
+            int addRow = 0;
+            int rowExist = 0;
             var courseParticipantsList = new List<THAMGIAKHOAHOC>();
             if (Request != null)
             {
@@ -160,6 +162,11 @@ namespace Vinasa.Controllers
                                 participants.HoiVienVinasa = Convert.ToBoolean(workSheet.Cells[rowIterator, 8].Value);
                                 participants.IdKhoaHoc = id;
                                 courseParticipantsList.Add(participants);
+                                addRow++;
+                            }
+                            else
+                            {
+                                rowExist++;
                             }
                         }
                     }
@@ -186,6 +193,8 @@ namespace Vinasa.Controllers
                     throw new HttpException(e.ToString());
                 }
             }
+            Session["ViewBag.Success"] = addRow;
+            Session["ViewBag.Exist"] = rowExist;
             return RedirectToAction("Details", "Course", new { id });
         }
 

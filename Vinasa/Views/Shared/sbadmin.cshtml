@@ -120,12 +120,40 @@
                 </a>
             </div>
             <hr class="sidebar-divider d-none d-md-block">
-            <div class="nav-item">
-                <a class="nav-link" href="tables.html">
-                    <i class="fas fa-fw fa-chart-line"></i>
-                    <span>Thống Kê</span>
-                </a>
-            </div>
+            @{
+                var txtStatistic = ViewContext.RouteData.Values["Action"].ToString();
+                var selectStatistic = "";
+
+                if (txtStatistic == "ActivityJoined" || txtStatistic == "BusinessByArea" || txtStatistic == "SizeOfPersonnel"
+                    || txtStatistic == "FieldOfActivity" || txtStatistic == "TimeOfEstablishment" || txtStatistic == "BirthDayInMonth"
+                    || txtStatistic == "MemberFee")
+                {
+                    selectStatistic = "active";
+                }
+                else
+                {
+                    selectStatistic = "";
+                }
+
+                <div class="nav-item @selectStatistic" id="nav-item" data-toggle="collapse" data-target="#collapsePages-statistic"
+                     aria-expanded="false" aria-controls="collapsePages-statistic">
+                    <a class="nav-link" href="#" onclick="return false;">
+                        <i class="fas fa-fw fa-user"></i>
+                        <span>Thống Kê Hội Viên</span>
+                    </a>
+                    <div id="collapsePages-statistic" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                        <div class="bg-submenu py-2 collapse-inner rounded">
+                            <a class="collapse-item" href="@Url.Action("ActivityJoined","Statistic")">Theo hoạt động tham gia</a>
+                            <a class="collapse-item" href="@Url.Action("BusinessByArea","Statistic")">Theo khu vực</a>
+                            <a class="collapse-item" href="@Url.Action("SizeOfPersonnel","Statistic")">Theo quy mô nhân sự</a>
+                            <a class="collapse-item" href="@Url.Action("FieldOfActivity","Statistic")">Theo lĩnh vực hoạt động</a>
+                            <a class="collapse-item" href="@Url.Action("TimeOfEstablishment","Statistic")">Theo thời gian thành lập</a>
+                            <a class="collapse-item" href="@Url.Action("BirthDayInMonth","Statistic")">Theo sinh nhật trong tháng</a>
+                            <a class="collapse-item" href="@Url.Action("MemberFee","Statistic")">Theo hội phí</a>
+                        </div>
+                    </div>
+                </div>
+            }
         </div>
         <!-- End of Sidebar -->
         <div id="content-wrapper" class="d-flex flex-column">
