@@ -1,5 +1,4 @@
-﻿
-
+﻿@model IEnumerable<Vinasa.Models.SUDUNGDICHVUKETNOI>
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/sbadmin.cshtml";
@@ -84,151 +83,116 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @*foreach (var item in Model) *@
-
-                    <tr>
-                        <td>
-                            Công ty TNHH Phần mềm FPT - Fsoft
-                        </td>
-                        <td>
-                            Nguyễn Thị Mạnh
-                        </td>
-                        <td>
-                            manhnt@vinasa.org.vn
-                        </td>
-                        <td>
-                            0937688958
-                        </td>
-                        <td class="td-action" style="display:flex; justify-content:space-around; align-items:center">
-                            <li class="action-item" style="list-style-type: none; font-size: 18px">
-                                <a href=@Url.Action("Detail","VinasaConnect") class="action-icon">
-                                    <i style="color: #F69928" class="fa-solid fa-circle-info icon"></i>
-                                </a>
-                            </li>
-                            <li class="action-item" style="list-style-type: none; font-size: 18px">
-                                @*<a class="action-icon" href="@Url.Action("Edit", "Seminars", new{ id = @item.Id})">*@
-                                <a class="action-icon" href=@Url.Action("Edit", "VinasaConnect")>
-                                    <i class="fa-solid fa-pen-to-square icon"></i>
-                                </a>
-                            </li>
-                            <li class="action-item" style="list-style-type:none; font-size: 18px">
-                                <a data-toggle="modal" data-target="#myModal">
-                                    <i class="fa-solid fa-trash-can icon"></i>
-                                </a>
-                            </li>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            Công ty TNHH VNG Logistics
-                        </td>
-                        <td>
-                            Nguyễn Thanh An
-                        </td>
-                        <td>
-                            An@vinasa.org.vn
-                        </td>
-                        <td>
-                            0562874232
-                        </td>
-                        <td class="td-action" style="display:flex; justify-content:space-around; align-items:center">
-                            <li class="action-item" style="list-style-type: none; font-size: 18px">
-                                <a href=@Url.Action("Details","VinasaConnect") class="action-icon">
-                                    <i style="color: #F69928" class="fa-solid fa-circle-info icon"></i>
-                                </a>
-                            </li>
-                            <li class="action-item" style="list-style-type: none; font-size: 18px">
-                                @*<a class="action-icon" href="@Url.Action("Edit", "Seminars", new{ id = @item.Id})">*@
-                                <a class="action-icon" href=@Url.Action("Edit", "VinasaConnect")>
-                                    <i class="fa-solid fa-pen-to-square icon"></i>
-                                </a>
-                            </li>
-                            <li class="action-item" style="list-style-type:none; font-size: 18px">
-                                <a data-toggle="modal" data-target="#myModal">
-                                    <i class="fa-solid fa-trash-can icon"></i>
-                                </a>
-                            </li>
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td>
-                            Công ty Cổ phần VNPT
-                        </td>
-                        <td>
-                            Tô Dũng Thái
-                        </td>
-                        <td>
-                            Chủ tịch HĐTV
-                        </td>
-                        <td>
-                            0943747321
-                        </td>
-                        <td class="td-action" style="display:flex; justify-content:space-around; align-items:center">
-                            <li class="action-item" style="list-style-type: none; font-size: 18px">
-                                <a href=@Url.Action("Detail","VinasaConnect") class="action-icon">
-                                    <i style="color: #F69928" class="fa-solid fa-circle-info icon"></i>
-                                </a>
-                            </li>
-                            <li class="action-item" style="list-style-type: none; font-size: 18px">
-                                @*<a class="action-icon" href="@Url.Action("Edit", "Seminars", new{ id = @item.Id})">*@
-                                <a class="action-icon" href=@Url.Action("Edit", "VinasaConnect")>
-                                    <i class="fa-solid fa-pen-to-square icon"></i>
-                                </a>
-                            </li>
-                            <li class="action-item" style="list-style-type:none; font-size: 18px">
-                                <a data-toggle="modal" data-target="#myModal">
-                                    <i class="fa-solid fa-trash-can icon"></i>
-                                </a>
-                            </li>
-                        </td>
-                    </tr>
-
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(m => item.TenCongTy)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(m => item.TenNguoiLienHe)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(m => item.Email)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(m => item.DienThoai)
+                            </td>
+                            <td class="td-action" style="display:flex; justify-content:space-around; align-items:center">
+                                <li class="action-item" style="list-style-type: none; font-size: 18px">
+                                    <a href=@Url.Action("Details","ConnectionServices", new{ id = @item.ID}) class="action-icon">
+                                        <i style="color: #F69928" class="fa-solid fa-circle-info icon"></i>
+                                    </a>
+                                </li>
+                                <li class="action-item" style="list-style-type: none; font-size: 18px">
+                                    <a class="action-icon" href=@Url.Action("Edit", "ConnectionServices", new{ id = @item.ID})>
+                                        <i class="fa-solid fa-pen-to-square icon"></i>
+                                    </a>
+                                </li>
+                                <li class="action-item" style="list-style-type:none; font-size: 18px">
+                                    <a id="deleteItem" class="deleteItem" data-target="#myModal"
+                                       data-toggle="modal"
+                                       data-path="@Url.Action("Delete", "ConnectionServices", new { id = item.ID })"
+                                       data-form-method="post">
+                                        <i class="fa-solid fa-trash-can icon"></i>
+                                    </a>
+                                </li>
+                            </td>
+                        </tr>
+                    }
                 </tbody>
             </table>
-            <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog">
-                <div class="modal-dialog" role="document">
-                </div>
+            @*<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog">
+                    <div class="modal-dialog" role="document">
+                    </div>
+                </div>*@
             </div>
         </div>
-    </div>
-    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title" id="myModalLabel">THÔNG BÁO !</h4>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        @*<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="myModalLabel">THÔNG BÁO !</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    </div>
+                    <div class="modal-body">
+                        Xác nhận xóa thành viên này ?
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Hủy</button>
+                        <button type="button" class="button-lc">Xác nhận</button>
+                    </div>
                 </div>
-                <div class="modal-body">
-                    Xác nhận xóa thành viên này ?
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Hủy</button>
-                    <button type="button" class="button-lc">Xác nhận</button>
-                </div>
-            </div>
         </div>
-    </div>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script>
+ </div>*@
 
-        $('#create').click(function () {
-            location.href = "@Url.Action("Create", "VinasaConnect")";
-        })
-
-    </script>
-    <script>
-                    $(".delete-btn").on("click", function () {
-                        var id = $(this).data("id");
-                        $.ajax({
-                            url: "@Url.Action("DeleteSelected", "Seminars")",
-                            data: { id: id },
-                            success: function (data) {
-                                console.log(data);
-                                $("#deleteModal .modal-dialog").html(data);
-                                $("#deleteModal").modal("show");
-                            }
-                        });
-                    });
-    </script>
 </div>
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel">
+                    THÔNG BÁO !
+                </h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </div>
+            <div class="modal-body">
+                Xác nhận xóa thành viên tham gia dịch vụ kết nối này?
+            </div>
+            <div class="modal-footer">
+
+                <button type="button" class="btn btn-default" data-dismiss="modal">Hủy</button>
+                <button id="btnContinueDelete" type="button" class="button-lc">Xác nhận</button>
+
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<script>
+$(".delete-btn").on("click", function () {
+    var id = $(this).data("id");
+    $.ajax({
+        url: "@Url.Action("Delete", "ConnectionServices")",
+        data: { id: id },
+        success: function (data) {
+            console.log(data);
+            $("#deleteModal .modal-dialog").html(data);
+            $("#deleteModal").modal("show");
+        }
+    });
+});
+</script>
+
+<script>
+    var path_to_delete;
+
+    $(".deleteItem").click(function (e) {
+        path_to_delete = $(this).data('path');
+    });
+
+    $('#btnContinueDelete').click(function () {
+        window.location = path_to_delete;
+    });
+</script>
