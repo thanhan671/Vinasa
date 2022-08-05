@@ -1,53 +1,95 @@
-﻿
-
+﻿@model Vinasa.Models.SUDUNGDICHVUKETNOI
 @{
     ViewBag.Title = "Edit";
     Layout = "~/Views/Shared/sbadmin.cshtml";
 }
 
-<div class="heading">
-    @*<h1 class="h3 mb-2 text-gray-800">Hội Nghị</h1>*@
-    <nav aria-label="breadcrumb">
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item" onclick="location.href = 'javascript:history.go(-1)'" style="color:blue; cursor:pointer" ;>Danh sách quản lí các thành viên tham gia dịch vụ kết nối</li>
-            <li class="breadcrumb-item active" aria-current="page">Sửa thông tin dịch vụ</li>
-        </ol>
-    </nav>
-</div>
-@*using (Html.BeginForm("Edit", "Member", FormMethod.Post))*@
-
-<div class="row">
-    <div class="col-6">
-        <h5 class="heading">Sửa thông tin dịch vụ</h5>
-        <form class="form-field" method="post" enctype="multipart/form-data">
+@using (Html.BeginForm("Edit", "ConnectionServices", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="container col-11 centerPage">
+        <h5 class="heading">Sửa Thông Tin Doanh Nghiệp Tham Gia</h5>
+        <form class="form-field form-inputs" method="post" enctype="multipart/form-data">
             <div class="input-wrapper">
-                <input class="ip-form" type="text" id="tax" contenteditable="true" value="Công ty TNHH Phần mềm FPT - Fsoft" required />
-                <label class="lb-form" for="tax">Tên công ty</label>
-            </div>
-
-            <div class="input-wrapper">
-                <input class="ip-form" type="text" contenteditable="true" value="Nguyễn Thị Mạnh" required />
-                <label class="lb-form" for="name">Tên người liên hệ</label>
-            </div>
-
-            <div class="input-wrapper">
-                <input class="ip-form" type="text" contenteditable="true" value="manhnt@vinasa.org.vn" required />
-                <label class="lb-form" for="name">Email</label>
+                @Html.EditorFor(m => m.MaSoThue, new { htmlAttributes = new { @class = "ip-form", @required = "required" } })
+                <label class="lb-form" for="tax">
+                    Mã số thuế
+                </label>
             </div>
             <div class="input-wrapper">
-                <input class="ip-form" type="text" contenteditable="true" value="0937688958" required />
-                <label class="lb-form" for="name">SĐT</label>
+                @Html.EditorFor(m => m.TenCongTy, new { htmlAttributes = new { @class = "ip-form", @required = "required" } })
+                <label class="lb-form" for="tax">
+                    Tên công ty
+                </label>
             </div>
-
+            <div class="input-wrapper">
+                @Html.TextBoxFor(m => m.NgayBatDauHopDong, "{0:yyyy-MM-dd}", new { @class = "ip-form", @type = "date", @required = "required" })
+                <label class="lb-form" for="tax">Ngày bắt đầu hợp đồng</label>
+            </div>
+            <div class="input-wrapper">
+                @Html.TextBoxFor(m => m.NgayKetThucHopDong, "{0:yyyy-MM-dd}", new { @class = "ip-form", @type = "date", @required = "required" })
+                <label class="lb-form" for="tax">Ngày kết thúc hợp đồng</label>
+            </div>
+            <div class="input-wrapper">
+                @Html.EditorFor(m => m.TenDichVu, new { htmlAttributes = new { @class = "ip-form", @required = "required" } })
+                <label class="lb-form" for="tax">
+                    Tên dịch vụ
+                </label>
+            </div>
+            <div class="input-wrapper">
+                @Html.EditorFor(m => m.GiaGoc, new { htmlAttributes = new { @class = "ip-form", @required = "required" } })
+                <label class="lb-form" for="tax">
+                    Giá gốc
+                </label>
+            </div>
+            <div class="input-wrapper">
+                @Html.EditorFor(m => m.GiaUuDai, new { htmlAttributes = new { @class = "ip-form", @required = "required" } })
+                <label class="lb-form" for="tax">
+                    Giá ưu đãi
+                </label>
+            </div>
+            <div class="input-wrapper">
+                @Html.EditorFor(m => m.ChiecKhauVinasa, new { htmlAttributes = new { @class = "ip-form", @required = "required" } })
+                <label class="lb-form" for="tax">
+                    Chiếc khấu Vinasa
+                </label>
+            </div>
+            <div class="input-wrapper">
+                @Html.EditorFor(m => m.TenNguoiLienHe, new { htmlAttributes = new { @class = "ip-form", @required = "required" } })
+                <label class="lb-form" for="tax">
+                    Tên người liên hệ
+                </label>
+            </div>
+            <div class="input-wrapper">
+                @Html.EditorFor(m => m.ChucDanh, new { htmlAttributes = new { @class = "ip-form", @required = "required" } })
+                <label class="lb-form" for="tax">
+                    Chức danh
+                </label>
+            </div>
+            <div class="input-wrapper">
+                @Html.EditorFor(m => m.DienThoai, new { htmlAttributes = new { @class = "ip-form", @required = "required" } })
+                <label class="lb-form" for="tax">
+                    Điện thoại
+                </label>
+            </div>
+            <div class="input-wrapper">
+                @Html.EditorFor(m => m.Email, new { htmlAttributes = new { @class = "ip-form", @required = "required" } })
+                <label class="lb-form" for="tax">
+                    Email
+                </label>
+            </div>
+            <div class="input-wrapper">
+                <input class="ip-form" type="text" contenteditable="true" @Html.TextBoxFor(m => m.GhiChu)
+                <label class="lb-form" for="name">Ghi Chú</label>
+            </div>
         </form>
+        <div class="button-form">
+            <button class="button-cancel" onclick="location.href='@Url.Action("Index", "ConnectionServices")'" type="button" name="cancel">Huỷ</button>
+            <button class="button-lc" type="submit" name="save">Xác Nhận</button>
+        </div>
     </div>
-
-</div>
-<div class="button-form f-l">
-    <button class="button-cancel" id="cancel">Huỷ</button>
-    <button class="button-lc" type="submit" name="save">Xác Nhận</button>
-</div>
-
+}
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
 

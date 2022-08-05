@@ -339,6 +339,8 @@
     <Content Include="Content\Files\MauHoiNghiQuocTe.xlsx" />
     <Content Include="Content\Files\MauKhoaDaoTao.xlsx" />
     <Content Include="Content\Files\MauGiaiThuong.xlsx" />
+    <Content Include="Content\Files\MauDichVuKhac.xlsx" />
+    <Content Include="Content\Files\MauDichVuKetNoi.xlsx" />
     <None Include="Properties\PublishProfiles\FTPProfile.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
@@ -2410,7 +2412,8 @@
     <Content Include="Views\Statistic\BirthDayInMonth.cshtml" />
     <Content Include="Views\Statistic\MemberFee.cshtml" />
     <Content Include="Views\Statistic\DetailActivitysJoined.cshtml" />
-    <Content Include="Views\OtherServices\Delete.cshtml" />
+    <Content Include="Views\OtherServices\_DeleteSelected.cshtml" />
+    <Content Include="Views\OtherServices\_List.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
