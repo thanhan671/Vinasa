@@ -66,13 +66,11 @@ namespace Vinasa.Controllers
             return View(usingConnectionServices);
         }
 
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
         public ActionResult Delete(int id)
         {
-            SUDUNGDICHVUKETNOI usingConnectionServices = _db.SUDUNGDICHVUKETNOIs.Find(id);
+            var usingConnetionServices = _db.SUDUNGDICHVUKETNOIs.Where(t => t.ID.Equals(id)).FirstOrDefault();
 
-            _db.SUDUNGDICHVUKETNOIs.Remove(usingConnectionServices);
+            _db.SUDUNGDICHVUKETNOIs.Remove(usingConnetionServices);
             _db.SaveChanges();
             return RedirectToAction("Index");
         }
