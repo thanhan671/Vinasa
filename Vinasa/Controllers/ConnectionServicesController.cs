@@ -66,8 +66,8 @@ namespace Vinasa.Controllers
             return View(usingConnectionServices);
         }
 
-        //[HttpPost, ActionName("Delete")]
-        //[ValidateAntiForgeryToken]
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
         public ActionResult Delete(int id)
         {
             SUDUNGDICHVUKETNOI usingConnectionServices = _db.SUDUNGDICHVUKETNOIs.Find(id);
