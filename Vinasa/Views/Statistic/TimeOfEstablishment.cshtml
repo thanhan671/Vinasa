@@ -18,7 +18,7 @@
         <div class="table-responsive">
             <div id="filter-fade" class="d-none selectdiv">
                 <select class="select-sort form-select d-inline mr-2" id="dropdown-filter">
-                    <option selected>Lọc</option>
+                    <option value="-1">Lọc</option>
                     <option value="1">5 Năm</option>
                     <option value="2">10 Năm</option>
                     <option value="3">15 Năm</option>
@@ -39,14 +39,17 @@
                 </thead>
                 <tbody>
 
-                    <tr>
-                        <td class="column-2">
-                            Vinasa
-                        </td>
-                        <td>
-                            20 Năm
-                        </td>
-                    </tr>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td class="column-2">
+                                @item.TenTiengViet
+                            </td>
+                            <td>
+                                @item.NgayThanhLap
+                            </td>
+                        </tr>
+                    }
                 </tbody>
             </table>
         </div>
@@ -59,6 +62,14 @@
         $(function () {
             $('#dataTable_filter').prepend($('#dropdown-filter')).clone();
             $('#filter-fade').remove();
+
+            $('#dropdown-filter').val(@ViewBag.filterId);
+
+            $('#dropdown-filter').on('change', function () {
+                const id = $(this).val();
+                var url = '@Url.Action("SizeOfPersonnel", "Statistic", new { id = "__id__" })';
+                window.location.href = url.replace('__id__', id);
+            })
         })
 
     </script>

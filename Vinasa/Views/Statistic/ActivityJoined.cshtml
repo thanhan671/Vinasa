@@ -28,17 +28,19 @@
                     </tr>
                 </thead>
                 <tbody>
-
-                    <tr>
-                        <td class="column-2">
-                            <a href="@Url.Action("DetailActivitysJoined", "Statistic")">
-                                Vinasa
-                            </a>
-                        </td>
-                        <td>
-                            <a>3</a>
-                        </td>
-                    </tr>
+                    @foreach (var item in ViewBag.DonVi)
+                    {
+                        <tr>
+                            <td class="column-2">
+                                <a href="@Url.Action("DetailActivitysJoined", "Statistic", new {q =  @item.TenDonVi})">
+                                    @item.TenDonVi
+                                </a>
+                            </td>
+                            <td>
+                                <a>@item.SoLuong</a>
+                            </td>
+                        </tr>
+                    }
                 </tbody>
             </table>
         </div>
