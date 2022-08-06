@@ -126,19 +126,19 @@ namespace Vinasa.Controllers
             switch (id)
             {
                 case 1:
-                    business = db.HOIVIENs.Where(it => (DateTime.Now - it.NgayThanhLap).Value.TotalDays / 365 <= 5).ToList();
+                    business = GetHoiVienByTime(5);
                     break;
                 case 2:
-                    business = db.HOIVIENs.Where(it => (DateTime.Now - it.NgayThanhLap).Value.TotalDays / 365 <= 10).ToList();
+                    business = GetHoiVienByTime(10); 
                     break;
                 case 3:
-                    business = db.HOIVIENs.Where(it => (DateTime.Now - it.NgayThanhLap).Value.TotalDays / 365 <= 15).ToList();
+                    business = GetHoiVienByTime(15); 
                     break;
                 case 4:
-                    business = db.HOIVIENs.Where(it => (DateTime.Now - it.NgayThanhLap).Value.TotalDays / 365 <= 20).ToList();
+                    business = GetHoiVienByTime(20);
                     break;
                 case 5:
-                    business = db.HOIVIENs.Where(it => (DateTime.Now - it.NgayThanhLap).Value.TotalDays / 365 <= 25).ToList();
+                    business = GetHoiVienByTime(25);
                     break;
             }
             ViewBag.filterId = id;
@@ -205,5 +205,20 @@ namespace Vinasa.Controllers
             string fullPath = Path.Combine(path, filename);
             return File(fullPath, "download/xlsx", "MauHoiPhi.xlsx");
         }
+
+        #region Helper
+        private List<HOIVIEN> GetHoiVienByTime(int time)
+        {
+            var tmp = db.HOIVIENs.ToList();
+            var result = new List<HOIVIEN>();
+
+            foreach (var item in tmp)
+            {
+                if ((DateTime.Now - item.NgayThanhLap).Value.TotalDays / 365 <= time)
+                    result.Add(item);
+            }
+            return result;
+        }
+        #endregion
     }
 }
