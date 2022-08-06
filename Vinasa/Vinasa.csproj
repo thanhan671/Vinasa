@@ -305,6 +305,7 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="img\background.jpg" />
+    <Content Include="img\backgroundmenu.jpg" />
     <Content Include="img\bg.png" />
     <Content Include="img\big-catalog-16062358931 %281%29.png" />
     <Content Include="img\iconuser.png" />
