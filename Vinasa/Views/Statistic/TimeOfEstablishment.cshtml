@@ -18,7 +18,7 @@
         <div class="table-responsive">
             <div id="filter-fade" class="d-none selectdiv">
                 <select class="select-sort form-select d-inline mr-2" id="dropdown-filter">
-                    <option value="-1">Lọc</option>
+                    <option value="-1">Tất Cả</option>
                     <option value="1">5 Năm</option>
                     <option value="2">10 Năm</option>
                     <option value="3">15 Năm</option>
@@ -67,7 +67,7 @@
 
             $('#dropdown-filter').on('change', function () {
                 const id = $(this).val();
-                var url = '@Url.Action("SizeOfPersonnel", "Statistic", new { id = "__id__" })';
+                var url = '@Url.Action("TimeOfEstablishment", "Statistic", new { id = "__id__" })';
                 window.location.href = url.replace('__id__', id);
             })
         })

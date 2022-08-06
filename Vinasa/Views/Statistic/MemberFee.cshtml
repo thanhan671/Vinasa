@@ -25,6 +25,7 @@
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                 <thead>
                     <tr>
+                        <th>Mã Số Thuế</th>
                         <th>Tên Hội viên</th>
                         <th>Đã Đóng </th>
                         <th>Còn Nợ</th>
@@ -35,6 +36,9 @@
                     @foreach (var item in Model)
                     {
                         <tr>
+                            <td>
+                                @item.MaSoThue
+                            </td>
                             <td>
                                 @item.TenCongTy
                             </td>
@@ -151,7 +155,7 @@
             $(".delete-btn").on("click", function () {
                 var id = $(this).data("id");
                 $.ajax({
-                    url: "@Url.Action("DeleteSelected", "Seminars")",
+                    url: "@Url.Action("DeleteSelected", "Statistic")",
                     data: { id: id },
                     success: function (data) {
                         console.log(data);

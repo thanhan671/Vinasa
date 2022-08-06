@@ -374,7 +374,7 @@ namespace Vinasa.Services
 
                     }
                 }
-                if (_db.HoiPhi.Any(it => it.TenCongTy == hoiPhi.TenCongTy))
+                if (_db.HoiPhi.Any(it => it.MaSoThue == hoiPhi.MaSoThue))
                 {
                     existedRows++;
                     isSave = false;

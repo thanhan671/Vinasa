@@ -173,7 +173,7 @@ namespace Vinasa.Controllers
 
         public ActionResult DeleteSelected(int id)
         {
-            var model = _db.Seminars.Where(m => m.Id == id).FirstOrDefault();
+            var model = _db.HoiPhi.Where(m => m.Id == id).FirstOrDefault();
             return PartialView("_DeleteSelected", model);
         }
 

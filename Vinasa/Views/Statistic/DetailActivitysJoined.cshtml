@@ -5,8 +5,15 @@
 }
 
 <!-- Page Heading -->
-<h1 class="h3 mb-2 text-gray-800">Thống Kê</h1>
-
+<div class="heading">
+    <h1 class="h3 mb-2 text-gray-800">Thống Kê </h1>
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item" onclick="location.href = '@Url.Action("ActivityJoined","Statistic")'" style="color:blue; cursor:pointer;">Danh Sách Các Hội Viên</li>
+            <li class="breadcrumb-item active" aria-current="page">Danh Sách Hoạt Động Hội Viên Đã Tham Gia</li>
+        </ol>
+    </nav>
+</div>
 <!-- DataTales Example -->
 <div class="card shadow mb-4">
     <div class="card-header py-3" style=" display: flex; justify-content: space-between; align-items: center;">
