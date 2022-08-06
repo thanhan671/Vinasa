@@ -205,6 +205,10 @@
     <Compile Include="Migrations\202208060406279_Statistic.designer.cs">
       <DependentUpon>202208060406279_Statistic.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202208061752423_GiaiThuong.cs" />
+    <Compile Include="Migrations\202208061752423_GiaiThuong.designer.cs">
+      <DependentUpon>202208061752423_GiaiThuong.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AdminAccountModels.cs" />
     <Compile Include="Models\C__MigrationHistory.cs">
@@ -2457,6 +2461,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202208060406279_Statistic.resx">
       <DependentUpon>202208060406279_Statistic.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202208061752423_GiaiThuong.resx">
+      <DependentUpon>202208061752423_GiaiThuong.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

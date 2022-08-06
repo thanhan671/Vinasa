@@ -34,7 +34,7 @@ namespace Vinasa.Controllers
                 return HttpNotFound();
             }
             nguoiNhanGiaiThuong.Provinces = new SelectList(_db.Provinces, "ID", "Title", nguoiNhanGiaiThuong.ProvinceId);
-            nguoiNhanGiaiThuong.GiaiThuong = _db.GIAITHUONG.Find(nguoiNhanGiaiThuong.GiaiThuongId);
+            nguoiNhanGiaiThuong.GiaiThuongs = _db.GIAITHUONG.Find(nguoiNhanGiaiThuong.GiaiThuongId);
             return View(nguoiNhanGiaiThuong);
         }
 
@@ -51,7 +51,7 @@ namespace Vinasa.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,GiaiThuongId,MaSoThue,TenDonVi,TenNguoiDaiDienPhapLuat,ChucDanh,Email,DiDong,TenNguoiLienHeVoiBTC,ChucDanhNguoiLienHe,EmailNguoiLienHe,DiDongNguoiLienHe,ProvinceId,DiaChi,PhieuDangKy")] NGUOINHANGIAITHUONG nguoiNhanGiaiThuong)
+        public ActionResult Create([Bind(Include = "Id,GiaiThuongId,MaSoThue,TenDonVi,TenNguoiDaiDienPhapLuat,ChucDanh,Email,DiDong,TenNguoiLienHeVoiBTC,ChucDanhNguoiLienHe,EmailNguoiLienHe,DiDongNguoiLienHe,ProvinceId,DiaChi,PhieuDangKy,KinhPhiTruyenThong,GiaiThuong")] NGUOINHANGIAITHUONG nguoiNhanGiaiThuong)
         {
             if (ModelState.IsValid)
             {
@@ -85,7 +85,7 @@ namespace Vinasa.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,GiaiThuongId,MaSoThue,TenDonVi,TenNguoiDaiDienPhapLuat,ChucDanh,Email,DiDong,TenNguoiLienHeVoiBTC,ChucDanhNguoiLienHe,EmailNguoiLienHe,DiDongNguoiLienHe,ProvinceId,DiaChi,PhieuDangKy")] NGUOINHANGIAITHUONG nguoiNhanGiaiThuong)
+        public ActionResult Edit([Bind(Include = "Id,GiaiThuongId,MaSoThue,TenDonVi,TenNguoiDaiDienPhapLuat,ChucDanh,Email,DiDong,TenNguoiLienHeVoiBTC,ChucDanhNguoiLienHe,EmailNguoiLienHe,DiDongNguoiLienHe,ProvinceId,DiaChi,PhieuDangKy,KinhPhiTruyenThong,GiaiThuong")] NGUOINHANGIAITHUONG nguoiNhanGiaiThuong)
         {
             if (!ModelState.IsValid)
             {

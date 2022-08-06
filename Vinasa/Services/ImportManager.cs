@@ -249,6 +249,15 @@ namespace Vinasa.Services
                         case "Phiếu đăng ký (đính kèm file hoặc link URL)":
                             nguoiNhanGiaiThuong.PhieuDangKy = cellValue;
                             break;
+
+                        case "Kinh phí truyền thông":
+                            int.TryParse(cellValue, out int iValue);
+                            nguoiNhanGiaiThuong.KinhPhiTruyenThong = iValue;
+                            break;
+
+                        case "Giải thưởng":
+                            nguoiNhanGiaiThuong.GiaiThuong = cellValue;
+                            break;
                     }
                 }
                 if (_db.NGUOINHANGIAITHUONG.Any(it => it.TenNguoiDaiDienPhapLuat == nguoiNhanGiaiThuong.TenNguoiDaiDienPhapLuat && it.GiaiThuongId == giaiThuongId))

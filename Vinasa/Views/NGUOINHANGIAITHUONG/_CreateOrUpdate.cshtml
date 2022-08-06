@@ -76,6 +76,16 @@
     @Html.LabelFor(model => model.PhieuDangKy, new { @class = "lb-form" })
     @Html.ValidationMessageFor(model => model.PhieuDangKy, "", new { @class = "text-danger" })
 </div>
+<div class="input-wrapper">
+    @Html.EditorFor(model => model.KinhPhiTruyenThong, new { htmlAttributes = new { @class = "ip-form", @required = "required" } })
+    @Html.LabelFor(model => model.KinhPhiTruyenThong, new { @class = "lb-form" })
+    @Html.ValidationMessageFor(model => model.KinhPhiTruyenThong, "", new { @class = "text-danger" })
+</div>
+<div class="input-wrapper">
+    @Html.EditorFor(model => model.GiaiThuong, new { htmlAttributes = new { @class = "ip-form", @required = "required" } })
+    @Html.LabelFor(model => model.GiaiThuong, new { @class = "lb-form" })
+    @Html.ValidationMessageFor(model => model.GiaiThuong, "", new { @class = "text-danger" })
+</div>
 <div class="button-form">
     <input type="button" class="button-lc button-cancel" onclick="location.href = 'javascript:history.go(-1)'" value="Hủy" />
     <input type="submit" class="button-lc" value="Xác Nhận"/>
