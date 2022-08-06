@@ -234,7 +234,8 @@ namespace Vinasa.Controllers
             {
                 return RedirectToAction("ManageMember", "Member", new { area = " " });
             }
-
+            int addRow = 0;
+            int rowExist = 0;
             var memberlist = new List<HOIVIEN>();
             if (Request != null)
             {
@@ -253,7 +254,13 @@ namespace Vinasa.Controllers
                         var noOfRow = workSheet.Dimension.End.Row;
                         for (int rowIterator = 2; rowIterator <= noOfRow; rowIterator++)
                         {
-                            var member = new HOIVIEN();
+                            string maSoThue = workSheet.Cells[rowIterator, 2].Value.ToString();
+                            string tenDonVi = workSheet.Cells[rowIterator, 3].Value.ToString();
+                            var hoiVien = db.HOIVIENs
+                                .FirstOrDefault(t => t.MaSoThue == maSoThue && t.TenTiengViet == tenDonVi);
+                            if (hoiVien == null)
+                            {
+                                var member = new HOIVIEN();
                             member.MaSoThue = workSheet.Cells[rowIterator, 2].Value.ToString();
                             member.TenTiengViet = workSheet.Cells[rowIterator, 3].Value.ToString();
                             member.TenTiengAnh = workSheet.Cells[rowIterator, 4].Value.ToString();
@@ -290,6 +297,12 @@ namespace Vinasa.Controllers
                             member.KhuVuc = Convert.ToInt32(workSheet.Cells[rowIterator, 35].Value);
                             member.GhiChu = Convert.ToString(workSheet.Cells[rowIterator, 36].Value);
                             memberlist.Add(member);
+                                addRow++;
+                            }
+                            else
+                            {
+                                rowExist++;
+                            }
                         }
                     }
                 }
@@ -315,6 +328,8 @@ namespace Vinasa.Controllers
                     throw new HttpException(e.ToString());
                 }
             }
+            Session["ViewBag.Success"] = addRow;
+            Session["ViewBag.Exist"] = rowExist;
             return RedirectToAction("ManageMember", "Member", new { area = " " });
         }
 
