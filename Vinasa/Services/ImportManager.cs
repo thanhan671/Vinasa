@@ -25,7 +25,7 @@ namespace Vinasa.Services
         #endregion
 
         #region Methods
-        public virtual async Task ImportSeminarParticipantFromXlsx(int seminarId, Stream stream)
+        public virtual async Task<Tuple<int, int>> ImportSeminarParticipantFromXlsx(int seminarId, Stream stream)
         {
             var workbook = new XSSFWorkbook(stream);
             var worksheet = workbook.GetSheetAt(0);
@@ -57,6 +57,9 @@ namespace Vinasa.Services
             }
 
             var provinces = _db.Provinces.ToList();
+            var addedRows = 0;
+            var existedRows = 0;
+
             for (var iRow = 1; iRow < worksheet.PhysicalNumberOfRows; iRow++)
             {
                 var participant = new SeminarParticipant()
@@ -132,17 +135,22 @@ namespace Vinasa.Services
                     }
                 }
                 if (_db.SeminarParticipants.Any(it => it.Name == participant.Name && it.SeminarId == seminarId))
+                {
                     isSave = false;
+                    existedRows++;
+                }
+
                 if (isSave)
                 {
+                    addedRows++;
                     _db.SeminarParticipants.Add(participant);
                     await _db.SaveChangesAsync();
                 }
             }
-
+            return new Tuple<int, int>(addedRows, existedRows);
         }
 
-        public virtual async Task ImportNguoiNhanGiaiThuongsFromXlsx(int giaiThuongId, Stream stream)
+        public virtual async Task<Tuple<int, int>> ImportNguoiNhanGiaiThuongsFromXlsx(int giaiThuongId, Stream stream)
         {
             var workbook = new XSSFWorkbook(stream);
             var worksheet = workbook.GetSheetAt(0);
@@ -174,7 +182,8 @@ namespace Vinasa.Services
             }
 
             var provinces = _db.Provinces.ToList();
-
+            var addedRows = 0;
+            var existedRows = 0;
             for (var iRow = 1; iRow < worksheet.PhysicalNumberOfRows; iRow++)
             {
                 var nguoiNhanGiaiThuong = new NGUOINHANGIAITHUONG()
@@ -243,17 +252,21 @@ namespace Vinasa.Services
                     }
                 }
                 if (_db.NGUOINHANGIAITHUONG.Any(it => it.TenNguoiDaiDienPhapLuat == nguoiNhanGiaiThuong.TenNguoiDaiDienPhapLuat && it.GiaiThuongId == giaiThuongId))
+                {
                     isSave = false;
+                    existedRows++;
+                }
                 if (isSave)
                 {
+                    addedRows++;
                     _db.NGUOINHANGIAITHUONG.Add(nguoiNhanGiaiThuong);
                     await _db.SaveChangesAsync();
                 }
             }
-
+            return new Tuple<int, int>(addedRows, existedRows);
         }
 
-        public virtual async Task ImportHoiPhiFromXlsx(Stream stream)
+        public virtual async Task<Tuple<int, int>> ImportHoiPhiFromXlsx(Stream stream)
         {
             var workbook = new XSSFWorkbook(stream);
             var worksheet = workbook.GetSheetAt(0);
@@ -283,7 +296,8 @@ namespace Vinasa.Services
                     break;
                 }
             }
-
+            var addedRows = 0;
+            var existedRows = 0;
             for (var iRow = 1; iRow < worksheet.PhysicalNumberOfRows; iRow++)
             {
                 var hoiPhi = new HoiPhi();
@@ -360,13 +374,19 @@ namespace Vinasa.Services
 
                     }
                 }
-
+                if (_db.HoiPhi.Any(it => it.TenCongTy == hoiPhi.TenCongTy))
+                {
+                    existedRows++;
+                    isSave = false;
+                }
                 if (isSave)
                 {
+                    addedRows++;
                     _db.HoiPhi.Add(hoiPhi);
                     await _db.SaveChangesAsync();
                 }
             }
+            return new Tuple<int, int>(addedRows, existedRows);
 
         }
         #endregion

@@ -140,11 +140,9 @@ namespace Vinasa.Controllers
             {
                 if (importexcelfile != null && importexcelfile.ContentLength > 0)
                 {
-                    await _importManager.ImportSeminarParticipantFromXlsx((int)id, importexcelfile.InputStream);
-                }
-                else
-                {
-                    return RedirectToAction(nameof(Details), new { id = id, erorr = "error" });
+                    var tuple = await _importManager.ImportSeminarParticipantFromXlsx((int)id, importexcelfile.InputStream);
+                    Session["ViewBag.Success"] = tuple.Item1;
+                    Session["ViewBag.Exist"] = tuple.Item2;
                 }
                 return RedirectToAction(nameof(Details), new { id = id });
             }

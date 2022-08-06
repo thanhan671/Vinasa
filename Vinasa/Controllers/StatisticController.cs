@@ -184,7 +184,11 @@ namespace Vinasa.Controllers
             try
             {
                 if (importexcelfile != null && importexcelfile.ContentLength > 0)
-                    await _importManager.ImportHoiPhiFromXlsx(importexcelfile.InputStream);
+                {
+                    var tuple = await _importManager.ImportHoiPhiFromXlsx(importexcelfile.InputStream);
+                    Session["ViewBag.Success"] = tuple.Item1;
+                    Session["ViewBag.Exist"] = tuple.Item2;
+                }
 
                 return RedirectToAction(nameof(MemberFee));
             }
