@@ -181,6 +181,7 @@
     <Compile Include="Controllers\CourseController.cs" />
     <Compile Include="Controllers\CourseParticipantsController.cs" />
     <Compile Include="Controllers\GIAITHUONGController.cs" />
+    <Compile Include="Controllers\HoiPhiController.cs" />
     <Compile Include="Controllers\ICController.cs" />
     <Compile Include="Controllers\ICParticipantsController.cs" />
     <Compile Include="Controllers\NGUOINHANGIAITHUONGController.cs" />
@@ -196,13 +197,13 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202207181503260_Initial.cs" />
-    <Compile Include="Migrations\202207181503260_Initial.designer.cs">
-      <DependentUpon>202207181503260_Initial.cs</DependentUpon>
+    <Compile Include="Migrations\202208060358342_Init.cs" />
+    <Compile Include="Migrations\202208060358342_Init.designer.cs">
+      <DependentUpon>202208060358342_Init.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202207211745551_Seminar.cs" />
-    <Compile Include="Migrations\202207211745551_Seminar.designer.cs">
-      <DependentUpon>202207211745551_Seminar.cs</DependentUpon>
+    <Compile Include="Migrations\202208060406279_Statistic.cs" />
+    <Compile Include="Migrations\202208060406279_Statistic.designer.cs">
+      <DependentUpon>202208060406279_Statistic.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AdminAccountModels.cs" />
@@ -264,6 +265,7 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Statistic\DonVi.cs" />
+    <Compile Include="Models\Statistic\HoiPhi.cs" />
     <Compile Include="Models\StatusModels.cs" />
     <Compile Include="Models\SUDUNGDICHVUKETNOI.cs">
       <DependentUpon>Model1.tt</DependentUpon>
@@ -2046,13 +2048,6 @@
     <Content Include="Views\Account\Profile.cshtml" />
     <Content Include="Views\Member\ImportExcel.cshtml" />
     <None Include="Views\Account\Registerr.cshtml" />
-    <Content Include="Web.config" />
-    <Content Include="Web.Debug.config">
-      <DependentUpon>Web.config</DependentUpon>
-    </Content>
-    <Content Include="Web.Release.config">
-      <DependentUpon>Web.config</DependentUpon>
-    </Content>
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
@@ -2415,6 +2410,19 @@
     <Content Include="Views\Statistic\DetailActivitysJoined.cshtml" />
     <Content Include="Views\OtherServices\_DeleteSelected.cshtml" />
     <Content Include="Views\OtherServices\_List.cshtml" />
+    <Content Include="Views\Statistic\_DeleteSelected.cshtml" />
+    <Content Include="Web.config" />
+    <Content Include="Views\HoiPhi\Create.cshtml" />
+    <Content Include="Views\HoiPhi\Delete.cshtml" />
+    <Content Include="Views\HoiPhi\Details.cshtml" />
+    <Content Include="Views\HoiPhi\Edit.cshtml" />
+    <Content Include="Views\HoiPhi\Index.cshtml" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -2436,18 +2444,18 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202207181503260_Initial.resx">
-      <DependentUpon>202207181503260_Initial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202207211745551_Seminar.resx">
-      <DependentUpon>202207211745551_Seminar.cs</DependentUpon>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
     <EntityDeploy Include="Models\Model1.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>Model1.Designer.cs</LastGenOutput>
     </EntityDeploy>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202208060358342_Init.resx">
+      <DependentUpon>202208060358342_Init.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202208060406279_Statistic.resx">
+      <DependentUpon>202208060406279_Statistic.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

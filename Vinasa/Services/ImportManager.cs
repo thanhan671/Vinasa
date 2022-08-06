@@ -253,6 +253,122 @@ namespace Vinasa.Services
 
         }
 
+        public virtual async Task ImportHoiPhiFromXlsx(Stream stream)
+        {
+            var workbook = new XSSFWorkbook(stream);
+            var worksheet = workbook.GetSheetAt(0);
+            if (worksheet == null)
+                throw new System.Exception("No worksheet found");
+            var poz = 0;
+            Dictionary<string, int> manager = new Dictionary<string, int>();
+            while (true)
+            {
+                try
+                {
+                    var cell = worksheet.GetRow(0).Cells[poz];
+
+                    if (cell == null)
+                        break;
+
+                    var cellValue = cell?.ToString();
+                    if (string.IsNullOrEmpty(cellValue))
+                        break;
+
+                    manager[cellValue] = poz;
+
+                    poz += 1;
+                }
+                catch
+                {
+                    break;
+                }
+            }
+
+            for (var iRow = 1; iRow < worksheet.PhysicalNumberOfRows; iRow++)
+            {
+                var hoiPhi = new HoiPhi();
+                
+                var _row = worksheet.GetRow(iRow);
+                bool isSave = true;
+                foreach (var property in manager)
+                {
+                    var cell = _row.GetCell(property.Value);
+                    if (cell == null)
+                        continue;
+                    var cellValue = cell?.ToString().Trim();
+                    int.TryParse(cellValue, out int iValue);
+                    switch (property.Key.ToString().Trim())
+                    {
+                                            
+                        case "Mã số thuế":
+                            hoiPhi.MaSoThue = cellValue;
+                            break;
+
+                        case "Tên Công ty":
+                            hoiPhi.TenCongTy = cellValue;
+                            break;
+
+                        case "Địa chỉ ghi trên Phiếu thu":
+                            hoiPhi.DiaChiGhiPhieuThu = cellValue;
+                            break;
+
+                        case "Địa chỉ gửi phiếu thu":
+                            hoiPhi.DiaChiGuiPhieuThu = cellValue;
+                            break;
+
+                        case "Người nhận phiếu thu":
+                            hoiPhi.NguoiNhanPhieu = cellValue;
+                            break;
+
+                        case "Điện thoại":
+                            hoiPhi.DienThoai = iValue;
+                            break;
+
+                        case "Hội phí 2020":
+                            hoiPhi.HoiPhiNamTruoc = iValue;
+                            break;
+
+                        case "Hội phí 2021":
+                            hoiPhi.HoiPhiNamSau = iValue;
+                            break;
+
+                        case "Tổng thu Hội phí 2021":
+                            hoiPhi.TongThu = iValue;
+                            break;
+
+                        case "Đã đóng":
+                            hoiPhi.DaDong = iValue;
+                            break;
+
+                        case "Còn lại":
+                            hoiPhi.ConLai = iValue;
+                            break;
+
+                        case "Ngày chuyển tiền":
+                            if (!string.IsNullOrEmpty(cellValue))
+                                hoiPhi.NgayChuyenTien = Convert.ToDateTime(cellValue);
+                            break;
+
+                        case "Ngày gửi phiếu thu":
+                            if (!string.IsNullOrEmpty(cellValue))
+                                hoiPhi.NgayGuiPhieuThu = Convert.ToDateTime(cellValue); 
+                            break;
+
+                        case "Ghi chú":
+                            hoiPhi.GhiChu = cellValue;
+                            break;
+
+                    }
+                }
+
+                if (isSave)
+                {
+                    _db.HoiPhi.Add(hoiPhi);
+                    await _db.SaveChangesAsync();
+                }
+            }
+
+        }
         #endregion
     }
 }

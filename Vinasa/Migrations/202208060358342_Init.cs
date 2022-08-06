@@ -3,7 +3,7 @@
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class Initial : DbMigration
+    public partial class Init : DbMigration
     {
         public override void Up()
         {
@@ -42,6 +42,28 @@
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.GIAITHUONG", t => t.GiaiThuongId)
                 .Index(t => t.GiaiThuongId);
+            
+            CreateTable(
+                "dbo.HoiPhi",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        MaSoThue = c.String(),
+                        TenCongTy = c.String(),
+                        DiaChiGhiPhieuThu = c.String(),
+                        DiaChiGuiPhieuThu = c.String(),
+                        NguoiNhanPhieu = c.String(),
+                        DienThoai = c.Int(nullable: false),
+                        HoiPhiNamTruoc = c.Int(nullable: false),
+                        HoiPhiNamSau = c.Int(nullable: false),
+                        TongThu = c.Int(nullable: false),
+                        DaDong = c.Int(nullable: false),
+                        ConLai = c.Int(nullable: false),
+                        NgayChuyenTien = c.DateTime(nullable: false),
+                        NgayGuiPhieuThu = c.DateTime(nullable: false),
+                        GhiChu = c.String(),
+                    })
+                .PrimaryKey(t => t.Id);
             
             CreateTable(
                 "dbo.Provinces",
@@ -84,6 +106,7 @@
                         Id = c.Int(nullable: false, identity: true),
                         Title = c.String(nullable: false),
                         OpenDate = c.DateTime(nullable: false),
+                        CloseDate = c.DateTime(nullable: false),
                         Address = c.String(nullable: false),
                         CreatedUtc = c.DateTime(),
                     })
@@ -100,6 +123,7 @@
             DropTable("dbo.Seminars");
             DropTable("dbo.SeminarParticipants");
             DropTable("dbo.Provinces");
+            DropTable("dbo.HoiPhi");
             DropTable("dbo.NGUOINHANGIAITHUONG");
             DropTable("dbo.GIAITHUONG");
         }

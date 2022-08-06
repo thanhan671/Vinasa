@@ -20,6 +20,7 @@ namespace Vinasa.DAL
         public DbSet<Province> Provinces { get; set; }
         public DbSet<GIAITHUONG> GIAITHUONG { get; set; }
         public DbSet<NGUOINHANGIAITHUONG> NGUOINHANGIAITHUONG { get; set; }
+        public DbSet<HoiPhi> HoiPhi { get; set; }
 
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
@@ -30,6 +31,7 @@ namespace Vinasa.DAL
             modelBuilder.Entity<Province>().ToTable("Provinces");
             modelBuilder.Entity<GIAITHUONG>().ToTable("GIAITHUONG");
             modelBuilder.Entity<NGUOINHANGIAITHUONG>().ToTable("NGUOINHANGIAITHUONG");
+            modelBuilder.Entity<HoiPhi>().ToTable("HoiPhi");
         }
 
     }

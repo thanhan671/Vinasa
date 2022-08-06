@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using Vinasa.DAL;
 using Vinasa.Models;
+using Vinasa.Services;
 
 namespace Vinasa.Controllers
 {
@@ -12,6 +15,12 @@ namespace Vinasa.Controllers
     {
         private readonly SeminarContext _db = new SeminarContext();
         SEP25Team16Entities2 db = new SEP25Team16Entities2();
+        private readonly ImportManager _importManager;
+
+        public StatisticController()
+        {
+            _importManager = new ImportManager(_db);
+        }
 
         // GET: Statistic
         public ActionResult Index()
@@ -135,34 +144,62 @@ namespace Vinasa.Controllers
             ViewBag.filterId = id;
             return View(business);
         }
-        public ActionResult BirthDayInMonth()
+        public ActionResult BirthDayInMonth(int? id = -1)
         {
-            //var business = db.HOIVIENs.ToList();
-            //switch (id)
-            //{
-            //    case 1:
-            //        business = db.HOIVIENs.Where(it => it. == "5").ToList();
-            //        break;
-            //    case 2:
-            //        business = db.HOIVIENs.Where(it => it.ThoiGianGiaNhap == "10").ToList();
-            //        break;
-            //    case 3:
-            //        business = db.HOIVIENs.Where(it => it.ThoiGianGiaNhap == "15").ToList();
-            //        break;
-            //    case 4:
-            //        business = db.HOIVIENs.Where(it => it.ThoiGianGiaNhap == "20").ToList();
-            //        break;
-            //    case 5:
-            //        business = db.HOIVIENs.Where(it => it.ThoiGianGiaNhap == "25").ToList();
-            //        break;
-            //}
-            //ViewBag.filterId = id;
-            //return View(business);
-            return View();
+            var business = db.HOIVIENs.ToList();
+            if(id > 0)
+                business = db.HOIVIENs.Where(it => it.NgayThanhLap.Value.Month == id).ToList();
+            ViewBag.filterId = id;
+            return View(business);
         }
+
         public ActionResult MemberFee()
         {
-            return View();
+            var hoiPhi = _db.HoiPhi.ToList();
+            return View(hoiPhi);
+        }
+
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult Delete(int id)
+        {
+            HoiPhi hoiPhi = _db.HoiPhi.Find(id);
+
+            _db.HoiPhi.Remove(hoiPhi);
+            _db.SaveChanges();
+
+            return RedirectToAction("MemberFee");
+        }
+
+        public ActionResult DeleteSelected(int id)
+        {
+            var model = _db.Seminars.Where(m => m.Id == id).FirstOrDefault();
+            return PartialView("_DeleteSelected", model);
+        }
+
+        [HttpPost, ActionName("ImportExcel")]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> ImportExcel(HttpPostedFileBase importexcelfile)
+        {
+            try
+            {
+                if (importexcelfile != null && importexcelfile.ContentLength > 0)
+                    await _importManager.ImportHoiPhiFromXlsx(importexcelfile.InputStream);
+
+                return RedirectToAction(nameof(MemberFee));
+            }
+            catch (Exception ex)
+            {
+                return RedirectToAction(nameof(MemberFee), new {err = ex.Message});
+            }
+        }
+        public FileResult Download()
+        {
+            string path = Server.MapPath("~/Content/Files");
+            string filename = Path.GetFileName("MauHoiPhi.xlsx");
+
+            string fullPath = Path.Combine(path, filename);
+            return File(fullPath, "download/xlsx", "MauHoiPhi.xlsx");
         }
     }
 }
