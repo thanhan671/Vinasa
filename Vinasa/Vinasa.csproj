@@ -310,6 +310,7 @@
     <Content Include="Content\Site.css" />
     <Content Include="img\background.jpg" />
     <Content Include="img\backgroundmenu.jpg" />
+    <Content Include="img\backgroundvideo.mp4" />
     <Content Include="img\bg.png" />
     <Content Include="img\big-catalog-16062358931 %281%29.png" />
     <Content Include="img\iconuser.png" />
@@ -2057,8 +2058,6 @@
     <None Include="Views\Account\Registerr.cshtml" />
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Member\ManageMember.cshtml" />
     <Content Include="vendor\bootstrap\js\bootstrap.bundle.js.map" />

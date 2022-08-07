@@ -7842,7 +7842,8 @@ a.bg-dark:focus, a.bg-dark:hover, button.bg-dark:focus, button.bg-dark:hover {
 }
 
 .mb-2, .my-2 {
-    margin-bottom: .5rem !important
+    margin-bottom: .5rem !important;
+    margin-top: 1.5rem !important
 }
 
 .ml-2, .mx-2 {
@@ -7879,10 +7880,6 @@ a.bg-dark:focus, a.bg-dark:hover, button.bg-dark:focus, button.bg-dark:hover {
 
 .mr-4, .mx-4 {
     margin-right: 1.5rem !important
-}
-
-.mb-4, .my-4 {
-    margin-bottom: 1.5rem !important
 }
 
 .ml-4, .mx-4 {
@@ -11756,9 +11753,6 @@ thead {
     background: #f5f5f5;
 }
 
-.content {
-    margin-bottom: 70px;
-}
 
 .row-ip {
     display: flex;
@@ -11850,6 +11844,37 @@ thead {
     -ms-word-break: normal;
     word-break: normal;
 }
-.fas fa-caret-down:hover{
-    transform: rotate(-180deg);
+.container-fluid-home {
+    width: 100%;
+    height: 165%;
+    position: relative;
+    padding: 0 5%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index:1000;
+}
+.content-home {
+    text-align: center;
+    color: #fff;
+}
+.content-home h1{
+    font-size:130px;
+    font-weight: 900;
+}
+    .content-home h2 {
+        font-size: 50px;
+        font-weight: 400;
+    }
+    .content-home dive {
+        font-size: 30px;
+        font-weight: 100;
+    }
+.back-video {
+    position: absolute;
+    opacity: 0.85;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    z-index: -1;
 }
