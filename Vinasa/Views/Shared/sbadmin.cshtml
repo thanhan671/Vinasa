@@ -42,13 +42,6 @@
             <!-- Divider -->
             <hr class="sidebar-divider my-0">
 
-            <!-- Nav Item - Dashboard -->
-            <div class="nav-item">
-                <a class="nav-link" href="@Url.Action("Index", "Home")">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Trang chủ</span>
-                </a>
-            </div>
             @{
                 var txt = ViewContext.RouteData.Values["Action"].ToString();
                 var select = "";
@@ -141,7 +134,7 @@
                 <div class="nav-item @selectStatistic" id="nav-item" data-toggle="collapse" data-target="#collapsePages-statistic"
                      aria-expanded="false" aria-controls="collapsePages-statistic">
                     <a class="nav-link" href="#" onclick="return false;">
-                        <i class="fas fa-fw fa-user"></i>
+                        <i class="fas fa-fw fa-bar-chart"></i>
                         <span>
                             Thống Kê Hội Viên
                             <span class="fas fa-caret-down"></span>
