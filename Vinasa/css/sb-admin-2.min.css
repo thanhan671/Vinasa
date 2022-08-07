@@ -10882,7 +10882,8 @@ a:focus {
 }
 
     .sidebar-dark .nav-item.active .nav-link i {
-        color: #f58d0d
+        color: #f58d0d;
+        transform: rotate(-180deg);
     }
 
 .sidebar-dark #sidebarToggle {
@@ -11848,4 +11849,7 @@ thead {
     border: 1px solid #cccccc;
     -ms-word-break: normal;
     word-break: normal;
+}
+.fas fa-caret-down:hover{
+    transform: rotate(-180deg);
 }
