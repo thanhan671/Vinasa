@@ -85,7 +85,7 @@ namespace Vinasa.Controllers
             {
                 db.Entry(hoiPhi).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("MemberFee", "Statistic");
             }
             return View(hoiPhi);
         }

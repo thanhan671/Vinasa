@@ -6,8 +6,8 @@
 }
 
 <div class="container col-11 centerPage">
-    <h5 class="heading">Thông tin người nhận giải thưởng</h5>
-    <form class="form-field form-inputs" method="post" enctype="multipart/form-data">
+    <h5 class="heading">Thông tin doanh nghiệp giải thưởng</h5>
+    <form class="form-field form-inputs-odd" method="post" enctype="multipart/form-data">
         <div class="input-wrapper">
             @Html.EditorFor(model => model.GiaiThuongs.Title, new { htmlAttributes = new { @class = "ip-form", @readonly = "readonly" } })
             @Html.LabelFor(model => model.GiaiThuongs.Title, new { @class = "lb-form" })

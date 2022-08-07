@@ -350,6 +350,7 @@
     <Content Include="Content\Files\MauGiaiThuong.xlsx" />
     <Content Include="Content\Files\MauDichVuKhac.xlsx" />
     <Content Include="Content\Files\MauDichVuKetNoi.xlsx" />
+    <Content Include="Content\Files\MauHoiPhi.xlsx" />
     <None Include="Properties\PublishProfiles\FTPProfile.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />

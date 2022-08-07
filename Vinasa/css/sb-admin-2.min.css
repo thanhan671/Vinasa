@@ -2436,7 +2436,8 @@ a.btn.disabled, fieldset:disabled a.btn {
 
     .btn-primary:hover {
         color: #fff;
-        background-color: #2e59d9;
+        background-color: #051D65;
+        color: #F69928;
         border-color: #2653d4
     }
 
@@ -11732,6 +11733,7 @@ body.sidebar-toggled footer.sticky-footer {
 
     #modal-b .button-lc:hover {
         background-color: #051D65;
+        color: #F69928;
     }
 
 

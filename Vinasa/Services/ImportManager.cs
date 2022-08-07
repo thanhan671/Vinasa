@@ -134,7 +134,7 @@ namespace Vinasa.Services
                             break;
                     }
                 }
-                if (_db.SeminarParticipants.Any(it => it.Name == participant.Name && it.SeminarId == seminarId))
+                if (_db.SeminarParticipants.Any(it => it.TaxNumber == participant.TaxNumber && it.SeminarId == seminarId))
                 {
                     isSave = false;
                     existedRows++;
@@ -260,7 +260,7 @@ namespace Vinasa.Services
                             break;
                     }
                 }
-                if (_db.NGUOINHANGIAITHUONG.Any(it => it.TenNguoiDaiDienPhapLuat == nguoiNhanGiaiThuong.TenNguoiDaiDienPhapLuat && it.GiaiThuongId == giaiThuongId))
+                if (_db.NGUOINHANGIAITHUONG.Any(it => it.MaSoThue == nguoiNhanGiaiThuong.MaSoThue && it.GiaiThuongId == giaiThuongId))
                 {
                     isSave = false;
                     existedRows++;

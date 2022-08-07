@@ -13,6 +13,9 @@
                         @Html.DisplayNameFor(model => model.TenDonVi)
                     </th>
                     <th>
+                        @Html.DisplayNameFor(model => model.TenNguoiLienHeVoiBTC)
+                    </th>
+                    <th>
                         @Html.DisplayNameFor(model => model.ChucDanh)
                     </th>
                     <th>
@@ -26,40 +29,43 @@
             </thead>
             <tbody>
                 @foreach (var item in Model) {
-                    <tr>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.MaSoThue)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.TenDonVi)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.ChucDanh)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Email)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.DiDong)
-                        </td>
-                        <td class="action" style="display:flex; justify-content:space-around; align-items:center">
-                            <li class="action-item">
-                                <a href="@Url.Action("Details", "NGUOINHANGIAITHUONG", new{ id = @item.Id})" class="action-icon">
-                                    <i class="fa-solid fa-circle-info icon"></i>
-                                </a>
-                            </li>
-                            <li class="action-item">
-                                <a href="@Url.Action("Edit", "NGUOINHANGIAITHUONG", new{ id = @item.Id})" class="action-icon">
-                                    <i class="fa-solid fa-pen-to-square icon"></i>
-                                </a>
-                            </li>
-                            <li class="action-item">
-                                <a class="action-icon delete-btn" data-id="@item.Id" data-giaithuongid="@item.GiaiThuongId">
-                                    <i class="fa-solid fa-trash-can icon"></i>
-                                </a>
-                            </li>
-                        </td>
-                    </tr>
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MaSoThue)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TenDonVi)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TenNguoiLienHeVoiBTC)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ChucDanh)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Email)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DiDong)
+                    </td>
+                    <td class="action" style="display:flex; justify-content:space-around; align-items:center">
+                        <li class="action-item">
+                            <a href="@Url.Action("Details", "NGUOINHANGIAITHUONG", new{ id = @item.Id})" class="action-icon">
+                                <i class="fa-solid fa-circle-info icon"></i>
+                            </a>
+                        </li>
+                        <li class="action-item">
+                            <a href="@Url.Action("Edit", "NGUOINHANGIAITHUONG", new{ id = @item.Id})" class="action-icon">
+                                <i class="fa-solid fa-pen-to-square icon"></i>
+                            </a>
+                        </li>
+                        <li class="action-item">
+                            <a class="action-icon delete-btn" data-id="@item.Id" data-giaithuongid="@item.GiaiThuongId">
+                                <i class="fa-solid fa-trash-can icon"></i>
+                            </a>
+                        </li>
+                    </td>
+                </tr>
                 } 
             </tbody>
         </table>
