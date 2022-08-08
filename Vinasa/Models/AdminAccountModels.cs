@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Web.Mvc;
+using Vinasa.Validation;
 
 namespace Vinasa.Models
 {
@@ -16,6 +13,8 @@ namespace Vinasa.Models
         public string Ten { get; set; }
 
         [Required(ErrorMessage = "Vui lòng điền trường này!")]
+        [StringRequired(ErrorMessage = "Vui lòng điền trường này!")]
+        [RegularExpression("^[a-zA-Z0-9_\\.-]+@([a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$", ErrorMessage = "Không hợp lệ")]
         public string Email { get; set; }
         public int Quyen { get; set; }
         public int TrangThai { get; set; }
@@ -37,6 +36,7 @@ namespace Vinasa.Models
         public string reMatKhau { get; set; }
         public string sQuyen { get; set; }
         public string sTrangThai { get; set; }
+
         [Required(ErrorMessage = "Vui lòng điền trường này!")]
         public virtual QUYEN QUYEN1 { get; set; }
         public virtual TRANGTHAI TRANGTHAI1 { get; set; }
