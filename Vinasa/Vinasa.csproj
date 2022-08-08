@@ -353,6 +353,7 @@
     <Content Include="Content\Files\MauDichVuKhac.xlsx" />
     <Content Include="Content\Files\MauDichVuKetNoi.xlsx" />
     <Content Include="Content\Files\MauHoiPhi.xlsx" />
+    <None Include="Properties\PublishProfiles\FTPProfile.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -2432,7 +2433,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Properties\PublishProfiles\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

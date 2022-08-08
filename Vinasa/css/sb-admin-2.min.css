@@ -3067,75 +3067,64 @@ input[type=button].btn-block, input[type=reset].btn-block, input[type=submit].bt
     background-color: #fff;
     background-clip: padding-box;
     border: 1px solid #e3e6f0;
-    border-radius: .35rem;
-    z-index: 1000;
+    border-radius: .35rem
 }
 
 .dropdown-menu-left {
     right: auto;
-    left: 0;
-    z-index: 1000;
+    left: 0
 }
 
 .dropdown-menu-right {
     right: 0;
-    left: auto;
-    z-index: 1000;
+    left: auto
 }
 
 @media (min-width:576px) {
     .dropdown-menu-sm-left {
         right: auto;
-        left: 0;
-        z-index: 1000;
+        left: 0
     }
 
     .dropdown-menu-sm-right {
         right: 0;
-        left: auto;
-        z-index: 1000;
+        left: auto
     }
 }
 
 @media (min-width:768px) {
     .dropdown-menu-md-left {
         right: auto;
-        left: 0;
-        z-index: 1000;
+        left: 0
     }
 
     .dropdown-menu-md-right {
         right: 0;
-        left: auto;
-        z-index: 1000;
+        left: auto
     }
 }
 
 @media (min-width:992px) {
     .dropdown-menu-lg-left {
         right: auto;
-        left: 0;
-        z-index: 1000;
+        left: 0
     }
 
     .dropdown-menu-lg-right {
         right: 0;
-        left: auto;
-        z-index: 1000;
+        left: auto
     }
 }
 
 @media (min-width:1200px) {
     .dropdown-menu-xl-left {
         right: auto;
-        left: 0;
-        z-index: 1000;
+        left: 0
     }
 
     .dropdown-menu-xl-right {
         right: 0;
-        left: auto;
-        z-index: 1000;
+        left: auto
     }
 }
 
@@ -3143,8 +3132,7 @@ input[type=button].btn-block, input[type=reset].btn-block, input[type=submit].bt
     top: auto;
     bottom: 100%;
     margin-top: 0;
-    margin-bottom: .125rem;
-    z-index: 1000;
+    margin-bottom: .125rem
 }
 
 .dropup .dropdown-toggle::after {
@@ -3155,13 +3143,11 @@ input[type=button].btn-block, input[type=reset].btn-block, input[type=submit].bt
     border-top: 0;
     border-right: .3em solid transparent;
     border-bottom: .3em solid;
-    border-left: .3em solid transparent;
-    z-index: 1000;
+    border-left: .3em solid transparent
 }
 
 .dropup .dropdown-toggle:empty::after {
-    margin-left: 0;
-    z-index: 1000;
+    margin-left: 0
 }
 
 .dropright .dropdown-menu {
@@ -3169,8 +3155,7 @@ input[type=button].btn-block, input[type=reset].btn-block, input[type=submit].bt
     right: auto;
     left: 100%;
     margin-top: 0;
-    margin-left: .125rem;
-    z-index: 1000;
+    margin-left: .125rem
 }
 
 .dropright .dropdown-toggle::after {
@@ -3181,8 +3166,7 @@ input[type=button].btn-block, input[type=reset].btn-block, input[type=submit].bt
     border-top: .3em solid transparent;
     border-right: 0;
     border-bottom: .3em solid transparent;
-    border-left: .3em solid;
-    z-index: 1000;
+    border-left: .3em solid
 }
 
 .dropright .dropdown-toggle:empty::after {
@@ -3198,8 +3182,7 @@ input[type=button].btn-block, input[type=reset].btn-block, input[type=submit].bt
     right: 100%;
     left: auto;
     margin-top: 0;
-    margin-right: .125rem;
-    z-index: 1000;
+    margin-right: .125rem
 }
 
 .dropleft .dropdown-toggle::after {
@@ -3233,8 +3216,7 @@ input[type=button].btn-block, input[type=reset].btn-block, input[type=submit].bt
 
 .dropdown-menu[x-placement^=bottom], .dropdown-menu[x-placement^=left], .dropdown-menu[x-placement^=right], .dropdown-menu[x-placement^=top] {
     right: auto;
-    bottom: auto;
-    z-index: 1000;
+    bottom: auto
 }
 
 .dropdown-divider {
@@ -3276,8 +3258,7 @@ input[type=button].btn-block, input[type=reset].btn-block, input[type=submit].bt
     }
 
 .dropdown-menu.show {
-    display: block;
-    z-index: 1000;
+    display: block
 }
 
 .dropdown-header {
@@ -4044,8 +4025,7 @@ input[type=button].btn-block, input[type=reset].btn-block, input[type=submit].bt
     .nav-tabs .dropdown-menu {
         margin-top: -1px;
         border-top-left-radius: 0;
-        border-top-right-radius: 0;
-        z-index: 1000;
+        border-top-right-radius: 0
     }
 
 .nav-pills .nav-link {
@@ -4121,8 +4101,7 @@ input[type=button].btn-block, input[type=reset].btn-block, input[type=submit].bt
 
     .navbar-nav .dropdown-menu {
         position: static;
-        float: none;
-        z-index: 1000;
+        float: none
     }
 
 .navbar-text {
@@ -4182,8 +4161,7 @@ input[type=button].btn-block, input[type=reset].btn-block, input[type=submit].bt
         }
 
             .navbar-expand-sm .navbar-nav .dropdown-menu {
-                position: absolute;
-                z-index: 1000;
+                position: absolute
             }
 
             .navbar-expand-sm .navbar-nav .nav-link {
@@ -4227,8 +4205,7 @@ input[type=button].btn-block, input[type=reset].btn-block, input[type=submit].bt
         }
 
             .navbar-expand-md .navbar-nav .dropdown-menu {
-                position: absolute;
-                z-index: 1000;
+                position: absolute
             }
 
             .navbar-expand-md .navbar-nav .nav-link {
@@ -4272,8 +4249,7 @@ input[type=button].btn-block, input[type=reset].btn-block, input[type=submit].bt
         }
 
             .navbar-expand-lg .navbar-nav .dropdown-menu {
-                position: absolute;
-                z-index: 1000;
+                position: absolute
             }
 
             .navbar-expand-lg .navbar-nav .nav-link {
@@ -4317,8 +4293,7 @@ input[type=button].btn-block, input[type=reset].btn-block, input[type=submit].bt
         }
 
             .navbar-expand-xl .navbar-nav .dropdown-menu {
-                position: absolute;
-                z-index: 1000;
+                position: absolute
             }
 
             .navbar-expand-xl .navbar-nav .nav-link {
@@ -4359,8 +4334,7 @@ input[type=button].btn-block, input[type=reset].btn-block, input[type=submit].bt
     }
 
         .navbar-expand .navbar-nav .dropdown-menu {
-            position: absolute;
-            z-index: 1000;
+            position: absolute
         }
 
         .navbar-expand .navbar-nav .nav-link {
@@ -7907,9 +7881,11 @@ a.bg-dark:focus, a.bg-dark:hover, button.bg-dark:focus, button.bg-dark:hover {
 .mr-4, .mx-4 {
     margin-right: 1.5rem !important
 }
+
 .mb-4, .my-4 {
     margin-bottom: 1.5rem !important
 }
+
 .ml-4, .mx-4 {
     margin-left: 1.5rem !important
 }
@@ -9729,8 +9705,7 @@ a.bg-dark:focus, a.bg-dark:hover, button.bg-dark:focus, button.bg-dark:hover {
 }
 
 .dropdown .dropdown-menu .dropdown-header, .sidebar .sidebar-heading, .text-uppercase {
-    text-transform: uppercase !important;
-    z-index: 1000;
+    text-transform: uppercase !important
 }
 
 .text-capitalize {
@@ -9980,6 +9955,11 @@ a:focus {
     #wrapper #content-wrapper {
         background-color: #f8f9fc;
         width: 100%;
+        overflow-x: hidden
+    }
+    #wrapper #content-wrapper-home {
+        background-color: #f8f9fc;
+        width: 100%;
         overflow-x: hidden;
         z-index:1000;
     }
@@ -10003,23 +9983,19 @@ a:focus {
     text-align: center;
     color: #19315d;
     background: #dceaf5;
-    line-height: 46px;
-    z-index:1000;
+    line-height: 46px
 }
 
     .scroll-to-top:focus, .scroll-to-top:hover {
-        color: #fff;
-        z-index: 1000;
+        color: #fff
     }
 
     .scroll-to-top:hover {
-        background: #5a5c69;
-        z-index: 1000;
+        background: #5a5c69
     }
 
     .scroll-to-top i {
-        font-weight: 800;
-        z-index: 1000;
+        font-weight: 800
     }
 
 @-webkit-keyframes growIn {
@@ -10085,7 +10061,7 @@ a:focus {
 }
 
 .bg-gradient-primary {
-    background: linear-gradient(rgba(0,156,255,.4), rgba(0,156,255,.4)), url('../img/backgroundmenu.jpg');
+    background: linear-gradient(rgba(0,156,255,0.2), rgba(30,42,58,0.65)), url('../img/backgroundmenu.jpg');
     background-size: cover;
 }
 
@@ -10301,15 +10277,13 @@ a:focus {
 }
 
 .dropdown .dropdown-menu {
-    font-size: .85rem;
-    z-index: 1000;
+    font-size: .85rem
 }
 
     .dropdown .dropdown-menu .dropdown-header {
         font-weight: 800;
         font-size: .65rem;
-        color: #b7b9cc;
-        z-index: 1000;
+        color: #b7b9cc
     }
 
 .dropdown.no-arrow .dropdown-toggle::after {
@@ -10349,7 +10323,7 @@ a:focus {
     }
 
 .topbar {
-    height: 4.375rem;
+    height: 4.375rem
 }
 
     .topbar #sidebarToggleTop {
@@ -10402,8 +10376,7 @@ a:focus {
 
         .topbar .dropdown .dropdown-menu {
             width: calc(100% - 1.5rem);
-            right: .75rem;
-            z-index: 1000;
+            right: .75rem
         }
 
     .topbar .dropdown-list {
@@ -10468,8 +10441,7 @@ a:focus {
 
         .topbar .dropdown .dropdown-menu {
             width: auto;
-            right: 0;
-            z-index: 1000;
+            right: 0
         }
 
     .topbar .dropdown-list {
@@ -10999,8 +10971,7 @@ a:focus {
 }
 
     .card .card-header .dropdown .dropdown-menu {
-        line-height: 1.5;
-        z-index: 1000;
+        line-height: 1.5
     }
 
 .card .card-header[data-toggle=collapse] {
@@ -11846,13 +11817,16 @@ thead {
 .action-column {
     width: 90px !important;
 }
+
 .column-2 {
     width: 50% !important;
 }
+
 .form-inputs-odd {
     display: flex !important;
     flex-wrap: wrap !important;
 }
+
 .selectdiv:after {
     content: '<>';
     color: #333;
@@ -11886,6 +11860,7 @@ thead {
     -ms-word-break: normal;
     word-break: normal;
 }
+
 .container-fluid-home {
     width: 100%;
     height: 165%;
@@ -11894,28 +11869,33 @@ thead {
     display: flex;
     align-items: center;
     justify-content: center;
-    z-index:1000;
+    z-index: 1000;
 }
+
 .content-home {
     text-align: center;
     color: #fff;
 }
-.content-home h1{
-    font-size:130px;
-    font-weight: 900;
-}
+
+    .content-home h1 {
+        font-size: 130px;
+        font-weight: 900;
+    }
+
     .content-home h2 {
         font-size: 50px;
-        font-weight: 400;
+        font-weight: 550;
     }
+
     .content-home dive {
         font-size: 30px;
         font-weight: 100;
     }
+
 .back-video {
     position: fixed;
     opacity: 0.85;
-    height: 100%;
+    height: auto;
     width: auto;
     object-fit: cover;
     z-index: -1;
