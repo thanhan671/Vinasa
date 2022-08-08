@@ -140,12 +140,11 @@ namespace Vinasa.Controllers
                 if (importexcelfile != null && importexcelfile.ContentLength > 0)
                 {
 
-                    await _importManager.ImportNguoiNhanGiaiThuongsFromXlsx((int)id, importexcelfile.InputStream);
+                    var tuple = await _importManager.ImportNguoiNhanGiaiThuongsFromXlsx((int)id, importexcelfile.InputStream);
+                    Session["ViewBag.Success"] = tuple.Item1;
+                    Session["ViewBag.Exist"] = tuple.Item2;
                 }
-                else
-                {
-                    return RedirectToAction(nameof(Details), new { id = id, erorr = "error" });
-                }
+                
                 return RedirectToAction(nameof(Details), new { id = id });
             }
             catch (Exception exc)

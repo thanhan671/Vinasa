@@ -83,9 +83,18 @@ namespace Vinasa.Models
         [StringRequired(ErrorMessage = "Vui lòng điền trường này!")]
         public string PhieuDangKy { get; set; }
 
+        [Display(Name = "Kinh phí truyền thông")]
+        [Required(ErrorMessage = "Vui lòng điền trường này!")]
+        public int KinhPhiTruyenThong { get; set; }
+
+        [Display(Name = "Giải thưởng")]
+        [Required(ErrorMessage = "Vui lòng điền trường này!")]
+        [StringRequired(ErrorMessage = "Vui lòng điền trường này!")]
+        public string GiaiThuong { get; set; }
+
         [NotMapped]
         public SelectList Provinces { get; set; }
         [NotMapped]
-        public GIAITHUONG GiaiThuong { get; set; }
+        public GIAITHUONG GiaiThuongs { get; set; }
     }
 }

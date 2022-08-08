@@ -1,4 +1,4 @@
-﻿
+﻿@model IEnumerable < Vinasa.Models.HOIVIEN>
 @{
     ViewBag.Title = "BusinessByArea";
     Layout = "~/Views/Shared/sbadmin.cshtml";
@@ -19,7 +19,7 @@
         <div class="table-responsive">
             <div id="filter-fade" class="d-none selectdiv">
                 <select class="select-sort form-select d-inline mr-2" id="dropdown-filter">
-                    <option selected>Lọc</option>
+                    <option value="-1">Tất Cả</option>
                     <option value="1">Bắc</option>
                     <option value="2">Trung</option>
                     <option value="3">Nam</option>
@@ -37,15 +37,17 @@
                     </tr>
                 </thead>
                 <tbody>
-
-                    <tr>
-                        <td class="column-2">
-                            Vinasa
-                        </td>
-                        <td>
-                            Nam
-                        </td>
-                    </tr>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td class="column-2">
+                                @item.TenTiengViet
+                            </td>
+                            <td>
+                                @item.KHUVUC1.TenKhuVuc
+                            </td>
+                        </tr>
+                    }
                 </tbody>
             </table>
         </div>
@@ -58,6 +60,14 @@
         $(function () {
             $('#dataTable_filter').prepend($('#dropdown-filter')).clone();
             $('#filter-fade').remove();
+
+            $('#dropdown-filter').val(@ViewBag.filterId);
+
+            $('#dropdown-filter').on('change', function () {
+                const id = $(this).val();
+                var url = '@Url.Action("BusinessByArea", "Statistic", new { id = "__id__" })';
+                window.location.href = url.replace('__id__', id);
+            })
         })
 
     </script>

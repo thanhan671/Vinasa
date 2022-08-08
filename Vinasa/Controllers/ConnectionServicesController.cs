@@ -156,5 +156,13 @@ namespace Vinasa.Controllers
             Session["ViewBag.Exist"] = rowExist;
             return RedirectToAction("Index", "ConnectionServices");
         }
+        public FileResult Download()
+        {
+            string path = Server.MapPath("~/Content/Files");
+            string filename = Path.GetFileName("MauDichVuKetNoi.xlsx");
+
+            string fullPath = Path.Combine(path, filename);
+            return File(fullPath, "download/xlsx", "MauDichVuKetNoi.xlsx");
+        }
     }
 }

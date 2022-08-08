@@ -6,11 +6,11 @@
 }
 
 <div class="container col-11 centerPage">
-    <h5 class="heading">Thông tin người nhận giải thưởng</h5>
-    <form class="form-field form-inputs" method="post" enctype="multipart/form-data">
+    <h5 class="heading">Thông tin doanh nghiệp giải thưởng</h5>
+    <form class="form-field form-inputs-odd" method="post" enctype="multipart/form-data">
         <div class="input-wrapper">
-            @Html.EditorFor(model => model.GiaiThuong.Title, new { htmlAttributes = new { @class = "ip-form", @readonly = "readonly" } })
-            @Html.LabelFor(model => model.GiaiThuong.Title, new { @class = "lb-form" })
+            @Html.EditorFor(model => model.GiaiThuongs.Title, new { htmlAttributes = new { @class = "ip-form", @readonly = "readonly" } })
+            @Html.LabelFor(model => model.GiaiThuongs.Title, new { @class = "lb-form" })
         </div>
         <div class="input-wrapper">
             @Html.EditorFor(model => model.TenDonVi, new { htmlAttributes = new { @class = "ip-form", @readonly = "readonly" } })
@@ -59,6 +59,14 @@
         <div class="input-wrapper">
             @Html.EditorFor(model => model.PhieuDangKy, new { htmlAttributes = new { @class = "ip-form", @readonly = "readonly" } })
             @Html.LabelFor(model => model.PhieuDangKy, new { @class = "lb-form" })
+        </div>
+        <div class="input-wrapper">
+            @Html.EditorFor(model => model.KinhPhiTruyenThong, new { htmlAttributes = new { @class = "ip-form", @readonly = "readonly" } })
+            @Html.LabelFor(model => model.KinhPhiTruyenThong, new { @class = "lb-form" })
+        </div>
+        <div class="input-wrapper">
+            @Html.EditorFor(model => model.GiaiThuong, new { htmlAttributes = new { @class = "ip-form", @readonly = "readonly" } })
+            @Html.LabelFor(model => model.GiaiThuong, new { @class = "lb-form" })
         </div>
     </form>
     <div class="button-form">

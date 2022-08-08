@@ -121,6 +121,50 @@
     </div>
 </div>
 <!-- Modal -->
+@if (Session["ViewBag.Success"] != null)
+{
+    int success = int.Parse(Session["ViewBag.Success"].ToString());
+    int exist = int.Parse(Session["ViewBag.Exist"].ToString());
+    int count = success + exist;
+
+    <button type="button" hidden class="btn btn-lg btn-block btn-outline-success mb-2" id="import-success"
+            data-toggle="modal" data-target="#Success">
+        Success
+    </button>
+    <script>
+        window.onload = function () {
+            document.getElementById('import-success').click();
+        }
+    </script>
+    <!-- Modal -->
+    <div class="modal fade text-left" id="Success" tabindex="-1" role="dialog" aria-labelledby="myModalLabel34" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title" id="myModalLabel34">KẾT QUẢ IMPORT !</h3>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="col-12">
+                        <a> Đã thêm thành công <b>"@success"</b> trong <b>"@count"</b> doanh nghiệp từ file</a>
+                    </div>
+                    <br />
+                    <div class="col-12">
+                        <div class="alert alert-success">
+                            <strong>Thành công!</strong> Thêm mới thành công <b>@success</b> doanh nghiệp !
+                        </div>
+                        <div class="alert alert-warning">
+                            <strong>Đã tồn tại!</strong>  Đã tồn tại <b>@exist</b> doanh nghiệp trên hệ thống !
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    Session["ViewBag.Success"] = null;
+}
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
