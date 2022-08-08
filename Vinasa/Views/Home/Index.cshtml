@@ -176,8 +176,13 @@
                 </div>
             }
         </div>
+
         <!-- End of Sidebar -->
         <div id="content-wrapper" class="d-flex flex-column">
+            <a class="scroll-to-top rounded" href="#page-top">
+                <i class="fas fa-angle-up"></i>
+            </a>
+            <video src="~/img/backgroundvideo.mp4" muted loop autoplay class="back-video"></video>
             <div class="content">
                 <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
                     <!-- Topbar Navbar -->
@@ -209,7 +214,7 @@
 
                 </nav>
                 <div class="container-fluid-home">
-                    <video src="~/img/backgroundvideo.mp4" muted loop autoplay class="back-video"></video>
+                    @*<video src="~/img/backgroundvideo.mp4" muted loop autoplay class="back-video"></video>*@
                     <div class="content-home">
                         <h2>VINASA ADMIN</h2>
                         <h1>XIN CHÀO</h1>
@@ -220,14 +225,13 @@
                 </div>
             </div>
         </div>
+
     </div>
 
 
     <!-- End of Page Wrapper -->
     <!-- Scroll to Top Button-->
-    <a class="scroll-to-top rounded" href="#page-top">
-        <i class="fas fa-angle-up"></i>
-    </a>
+
 
     <!-- Logout Modal-->
     <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
