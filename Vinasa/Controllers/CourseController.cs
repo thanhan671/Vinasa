@@ -47,7 +47,7 @@ namespace Vinasa.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,TenKhoaDaotao,NgayBatDau,NgayKetThuc,HinhThuc")] KHOAHOC khoaHoc)
+        public ActionResult Create([Bind(Include = "Id,TenKhoaDaotao,NgayBatDau,NgayKetThuc,HinhThuc,TenGiangVien,DiaDiem,HocPhi")] KHOAHOC khoaHoc)
         {
             if (ModelState.IsValid)
             {
@@ -78,7 +78,7 @@ namespace Vinasa.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,TenKhoaDaotao,NgayBatDau,NgayKetThuc,HinhThuc")] KHOAHOC khoaHoc)
+        public ActionResult Edit([Bind(Include = "Id,TenKhoaDaotao,NgayBatDau,NgayKetThuc,HinhThuc,TenGiangVien,DiaDiem,HocPhi")] KHOAHOC khoaHoc)
         {
             if (ModelState.IsValid)
             {

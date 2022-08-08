@@ -40,6 +40,27 @@
                 <div class="message-error">
                     @Html.ValidationMessageFor(m => m.HinhThuc, "", new { @class = "text-danger" })
                 </div>
+                <div class="input-wrapper">
+                    @Html.EditorFor(m => m.TenGiangVien, new { htmlAttributes = new { @class = "ip-form", @required = "required" } })
+                    <label class="lb-form" for="tax">Tên Giảng Viên</label>
+                </div>
+                <div class="message-error">
+                    @Html.ValidationMessageFor(m => m.TenGiangVien, "", new { @class = "text-danger" })
+                </div>
+                <div class="input-wrapper">
+                    @Html.EditorFor(m => m.DiaDiem, new { htmlAttributes = new { @class = "ip-form", @required = "required" } })
+                    <label class="lb-form" for="tax">Địa Điểm</label>
+                </div>
+                <div class="message-error">
+                    @Html.ValidationMessageFor(m => m.DiaDiem, "", new { @class = "text-danger" })
+                </div>
+                <div class="input-wrapper">
+                    @Html.EditorFor(m => m.HocPhi, new { htmlAttributes = new { @class = "ip-form", @required = "required" } })
+                    <label class="lb-form" for="tax">Học Phí</label>
+                </div>
+                <div class="message-error">
+                    @Html.ValidationMessageFor(m => m.HocPhi, "", new { @class = "text-danger" })
+                </div>
             </form>
             <div class="button-form">
                 <button class="button-cancel" onclick="location.href='@Url.Action("Index", "Course")'" type="button" name="cancel">Huỷ</button>

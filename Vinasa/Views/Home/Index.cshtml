@@ -22,12 +22,10 @@
           rel="stylesheet">
     <link rel="icon" href="~/img/iconVinasa (2).png" type="image/png">
     <!-- Custom styles for this template-->
-    <link href="@Url.Content("~/css/sb-admin-2.css")" />
     <link href="@Url.Content("~/css/sb-admin-2.min.css")" rel="stylesheet">
     <link href="@Url.Content("~/vendor/datatables/dataTables.bootstrap4.min.css")" rel="stylesheet">
 
 </head>
-
 
 <body id="page-top">
     <div id="wrapper">
@@ -219,22 +217,6 @@
                         <br />
                         <h5 class="date-time" id="current-time"></h5>
                     </div>
-                    <script>
-                        var curDate = new Date();
-
-                        // Ngày hiện tại
-                        var curDay = curDate.getDate();
-
-                        // Tháng hiện tại
-                        var curMonth = curDate.getMonth() + 1;
-
-                        // Năm hiện tại
-                        var curYear = curDate.getFullYear();
-
-                        var curTime = curDate.getHours() + ":" + curDate.getMinutes() + ":" + curDate.getSeconds();
-                        // Gán vào thẻ HTML
-                        document.getElementById('current-time').innerHTML = curTime + " ,Ngày " + curDay + " Tháng " + curMonth + " Năm " + curYear;
-                    </script>
                 </div>
             </div>
         </div>
@@ -289,10 +271,23 @@
 
     <!-- Page level custom scripts -->
     <script src="@Url.Content("~/js/demo/datatables-demo.js")"></script>
+    <script>
+        var curDate = new Date();
 
+        // Ngày hiện tại
+        var curDay = curDate.getDate();
+
+        // Tháng hiện tại
+        var curMonth = curDate.getMonth() + 1;
+
+        // Năm hiện tại
+        var curYear = curDate.getFullYear();
+
+        var curTime = curDate.getHours() + ":" + curDate.getMinutes() + ":" + curDate.getSeconds();
+        // Gán vào thẻ HTML
+        document.getElementById('current-time').innerHTML = curTime + " ,Ngày " + curDay + " Tháng " + curMonth + " Năm " + curYear;
+    </script>
 </body>
 
 </html>
-
-
 

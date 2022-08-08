@@ -27,9 +27,10 @@
         <AssociationConnector Association="SEP25Team16Model.FK_TAIKHOANADMIN_TRANGTHAI" />
         <EntityTypeShape EntityType="SEP25Team16Model.HOIVIEN" Width="1.5" PointX="5" PointY="5.125" />
         <AssociationConnector Association="SEP25Team16Model.FK_HOIVIEN_KHUVUC" />
-        <EntityTypeShape EntityType="SEP25Team16Model.C__MigrationHistory" Width="1.5" PointX="8.375" PointY="0.75" />
         <EntityTypeShape EntityType="SEP25Team16Model.SUDUNGDICHVUKETNOI" Width="1.5" PointX="0.75" PointY="10.75" />
         <EntityTypeShape EntityType="SEP25Team16Model.SUDUNGDICHVUKHAC" Width="1.5" PointX="2.75" PointY="10.875" />
+        <EntityTypeShape EntityType="SEP25Team16Model.C__MigrationHistory" Width="1.5" PointX="8.375" PointY="0.75" />
+        <EntityTypeShape EntityType="SEP25Team16Model.HoiPhi" Width="1.5" PointX="12.375" PointY="13.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
