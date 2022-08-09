@@ -54,6 +54,9 @@
                     <input class="ip-form" type="text" contenteditable="true" @Html.TextBoxFor(m => m.ChucDanh)
                     <label class="lb-form" for="name">Chức Danh</label>
                 </div>
+                <div class="message-error">
+                    @Html.ValidationMessageFor(m => m.ChucDanh, "", new { @class = "text-danger" })
+                </div>
                 <div class="input-wrapper">
                     <label class="lb-form" for="name">Quyền</label>
                     @Html.DropDownListFor(m => m.Quyen, Model.RoleList, new { @class = "form-control select-region" })

@@ -47,7 +47,7 @@ namespace Vinasa.Models
         public SelectList RoleList { get; set; }
         [NotMapped]
         public SelectList StatusList { get; set; }
-
+        [Required(ErrorMessage = "Vui lòng điền trường này!")]
         public string ChucDanh { get; set; }
     }
 }

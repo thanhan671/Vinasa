@@ -11866,13 +11866,14 @@ thead {
 
 .container-fluid-home {
     width: 100%;
-    height: 165%;
+    height: 100%;
     position: relative;
     padding: 0 5%;
     display: flex;
     align-items: center;
     justify-content: center;
     z-index: 1000;
+    top: 25%;
 }
 
 .content-home {
@@ -11898,8 +11899,8 @@ thead {
 .back-video {
     position: fixed;
     opacity: 0.85;
-    height: auto;
-    width: auto;
+    height: 100%;
+    width: 100%;
     object-fit: cover;
     z-index: -1;
 }
