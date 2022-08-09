@@ -26,14 +26,14 @@
                 @Html.ValidationMessageFor(model => model.TenCongTy, "", new { @class = "text-danger" })
             </div>
             <div class="input-wrapper">
-                @Html.EditorFor(model => model.NgayBatDauHopDong, new { htmlAttributes = new { @class = "ip-form", @required = "required" } })
+                @Html.TextBoxFor(model => model.NgayBatDauHopDong, "{0:yyyy-MM-dd}", new { @class = "ip-form", @type = "date", @required = "required" })
                 <label class="lb-form" for="name">Ngày Bắt Đầu Hợp Đồng</label>
             </div>
             <div class="message-error">
                 @Html.ValidationMessageFor(model => model.NgayBatDauHopDong, "", new { @class = "text-danger" })
             </div>
             <div class="input-wrapper">
-                @Html.EditorFor(model => model.NgayKetThucHopDong, new { htmlAttributes = new { @class = "ip-form", @required = "required" } })
+                @Html.TextBoxFor(model => model.NgayKetThucHopDong, "{0:yyyy-MM-dd}", new { @class = "ip-form", @type = "date", @required = "required" })
                 <label class="lb-form" for="name">Ngày Kế Thúc Hợp Đồng</label>
             </div>
             <div class="message-error">
@@ -100,7 +100,7 @@
                 <label class="lb-form" for="name">Ghi Chú</label>
             </div>
         </form>
-        <div class="button-form f-r">
+        <div class="button-form">
             <button class="button-cancel" onclick="location.href='@Url.Action("Index", "OtherServices")'" type="button" name="cancel">Huỷ</button>
             <button class="button-lc" type="submit" name="save">Xác Nhận</button>
         </div>

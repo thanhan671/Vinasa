@@ -13,15 +13,11 @@
         <form class="form-field form-inputs" method="post" enctype="multipart/form-data">
             <div class="input-wrapper">
                 @Html.EditorFor(m => m.MaSoThue, new { htmlAttributes = new { @class = "ip-form", @required = "required" } })
-                <label class="lb-form" for="tax">
-                    Mã số thuế
-                </label>
+                <label class="lb-form" for="tax">Mã số thuế</label>
             </div>
             <div class="input-wrapper">
                 @Html.EditorFor(m => m.TenCongTy, new { htmlAttributes = new { @class = "ip-form", @required = "required" } })
-                <label class="lb-form" for="tax">
-                    Tên công ty
-                </label>
+                <label class="lb-form" for="tax">Tên công ty</label>
             </div>
             <div class="input-wrapper">
                 @Html.TextBoxFor(m => m.NgayBatDauHopDong, "{0:yyyy-MM-dd}", new { @class = "ip-form", @type = "date", @required = "required" })

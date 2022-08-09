@@ -11,16 +11,16 @@
             <label class="lb-form" for="tax">Mã Số Thuế</label>
         </div>
         <div class="input-wrapper">
-            @Html.EditorFor(model => model.TenCongTy, "{0:yyyy-MM-dd}", new { htmlAttributes = new { @class = "ip-form", @readonly = "readonly" } })
+            @Html.EditorFor(model => model.TenCongTy, new { htmlAttributes = new { @class = "ip-form", @readonly = "readonly" } })
             <label class="lb-form" for="name">Tên Công Ty</label>
         </div>
         <div class="input-wrapper">
-            @Html.EditorFor(model => model.NgayBatDauHopDong, "{0:yyyy-MM-dd}", new { htmlAttributes = new { @class = "ip-form", @readonly = "readonly" } })
-            <label class="lb-form" for="name">Ngày Bắt Đầu Hợp Đồng</label>
+            @Html.TextBoxFor(m => m.NgayBatDauHopDong, "{0:yyyy-MM-dd}", new { @class = "ip-form", @type = "date", @readonly = "readonly" })
+            <label class="lb-form" for="tax">Ngày bắt đầu hợp đồng</label>
         </div>
         <div class="input-wrapper">
-            @Html.EditorFor(model => model.NgayKetThucHopDong, new { htmlAttributes = new { @class = "ip-form", @readonly = "readonly" } })
-            <label class="lb-form" for="name">Ngày Kế Thúc Hợp Đồng</label>
+            @Html.TextBoxFor(m => m.NgayKetThucHopDong, "{0:yyyy-MM-dd}", new { @class = "ip-form", @type = "date", @readonly = "readonly" })
+            <label class="lb-form" for="tax">Ngày kết thúc hợp đồng</label>
         </div>
         <div class="input-wrapper">
             @Html.EditorFor(model => model.TenDichVuKhac, new { htmlAttributes = new { @class = "ip-form", @readonly = "readonly" } })

@@ -85,6 +85,7 @@ namespace Vinasa.Models
 
         [Display(Name = "Kinh phí truyền thông")]
         [Required(ErrorMessage = "Vui lòng điền trường này!")]
+        [Range(0, int.MaxValue, ErrorMessage = "Giá trị phải lớn hơn hoặc bằng 0")]
         public int KinhPhiTruyenThong { get; set; }
 
         [Display(Name = "Giải thưởng")]

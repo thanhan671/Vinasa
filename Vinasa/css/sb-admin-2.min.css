@@ -546,7 +546,7 @@ pre {
 
 .row {
     display: flex;
-    justify-content: space-evenly;
+    justify-content: flex-end;
     flex-wrap: wrap;
     margin-right: -.75rem;
     margin-left: -.75rem
