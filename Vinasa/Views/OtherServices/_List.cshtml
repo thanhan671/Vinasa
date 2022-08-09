@@ -30,43 +30,43 @@
             <tbody>
                 @foreach (var item in Model)
                 {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.MaSoThue)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.TenCongTy)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.TenNguoiLienHe)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.ChucDanh)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Email)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.DienThoai)
-                    </td>
-                    <td class="td-action" style="display:flex; justify-content:space-around; align-items:center">
-                        <li class="action-item" style="list-style-type: none; font-size: 18px">
-                            <a href="@Url.Action("Details", "OtherServices", new{ id = @item.ID})" class="action-icon">
-                                <i class="fa-solid fa-circle-info icon"></i>
-                            </a>
-                        </li>
-                        <li class="action-item" style="list-style-type: none; font-size: 18px">
-                            <a href="@Url.Action("Edit", "OtherServices", new{ id = @item.ID})" class="action-icon">
-                                <i class="fa-solid fa-pen-to-square icon"></i>
-                            </a>
-                        </li>
-                        <li class="action-item" style="list-style-type: none; font-size: 18px">
-                            <a class="action-icon delete-btn" data-id="@item.ID">
-                                <i class="fa-solid fa-trash-can icon"></i>
-                            </a>
-                        </li>
-                    </td>
-                </tr>
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.MaSoThue)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TenCongTy)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TenNguoiLienHe)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ChucDanh)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Email)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DienThoai)
+                        </td>
+                        <td class="td-action" style="display:flex; justify-content:space-around; align-items:center">
+                            <li class="action-item" style="list-style-type: none; font-size: 18px">
+                                <a href="@Url.Action("Details", "OtherServices", new{ id = @item.ID})" class="action-icon">
+                                    <i class="fa-solid fa-circle-info icon"></i>
+                                </a>
+                            </li>
+                            <li class="action-item" style="list-style-type: none; font-size: 18px">
+                                <a href="@Url.Action("Edit", "OtherServices", new{ id = @item.ID})" class="action-icon">
+                                    <i class="fa-solid fa-pen-to-square icon"></i>
+                                </a>
+                            </li>
+                            <li class="action-item" style="list-style-type: none; font-size: 18px">
+                                <a class="action-icon delete-btn" data-id="@item.ID">
+                                    <i class="fa-solid fa-trash-can icon"></i>
+                                </a>
+                            </li>
+                        </td>
+                    </tr>
                 }
             </tbody>
         </table>
