@@ -22,6 +22,7 @@
           rel="stylesheet">
     <link rel="icon" href="~/img/iconVinasa (2).png" type="image/png">
     <!-- Custom styles for this template-->
+    <link href="@Url.Content("~/css/sb-admin-2.css")" />
     <link href="@Url.Content("~/css/sb-admin-2.min.css")" rel="stylesheet">
     <link href="@Url.Content("~/vendor/datatables/dataTables.bootstrap4.min.css")" rel="stylesheet">
 
@@ -179,42 +180,25 @@
 
         <!-- End of Sidebar -->
         <div id="content-wrapper-home" class="d-flex flex-column">
-            <a class="scroll-to-top rounded" href="#page-top">
-                <i class="fas fa-angle-up"></i>
-            </a>
             <video src="~/img/backgroundvideo.mp4" muted loop autoplay class="back-video"></video>
             <div class="content">
-                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+                <nav class="navbar navbar-expand navbar-light topbar mb-4 static-top shadow">
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
                         <!-- Nav Item - User Information -->
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-700 medium">@Session["UserName"]</span> <!-- change here-->
-                                <img src="~/img/user.png" />
+                                <a class="mr-2 d-none d-lg-inline text-white medium" href="@Url.Action("Profile", "Account")">Xin chào, @Session["UserName"]</a> <!-- change here-->
+                                <a class="mr-2 d-none d-lg-inline text-white medium" href="#" data-toggle="modal" data-target="#logoutModal">
+                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-white medium"></i>
+                                </a>
                             </a>
-                            <!-- Dropdown - User Information -->
-                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                                 aria-labelledby="userDropdown">
-
-                                <a class="dropdown-item" href="@Url.Action("Profile", "Account")">
-
-                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Hồ sơ
-                                </a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
-                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Đăng xuất
-                                </a>
-                            </div>
                         </li>
                     </ul>
 
                 </nav>
                 <div class="container-fluid-home">
-                    @*<video src="~/img/backgroundvideo.mp4" muted loop autoplay class="back-video"></video>*@
                     <div class="content-home">
                         <h2>VINASA ADMIN</h2>
                         <h1>XIN CHÀO</h1>
@@ -231,8 +215,6 @@
 
     <!-- End of Page Wrapper -->
     <!-- Scroll to Top Button-->
-
-
     <!-- Logout Modal-->
     <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
          aria-hidden="true">
@@ -291,7 +273,15 @@
         // Gán vào thẻ HTML
         document.getElementById('current-time').innerHTML = curTime + " ,Ngày " + curDay + " Tháng " + curMonth + " Năm " + curYear;
     </script>
+    <script>
+        const getNavItem = document.querySelectorAll('.nav-item');
+        getNavItem.forEach(item => {
+            const link = item.querySelector('.nav-link');
+            if (link.href === window.location.href) {
+                item.classList.add('active')
+            }
+        })
+    </script>
 </body>
 
 </html>
-

@@ -270,7 +270,15 @@
 
     <!-- Page level custom scripts -->
     <script src="@Url.Content("~/js/demo/datatables-demo.js")"></script>
-
+    <script>
+        const getNavItem = document.querySelectorAll('.nav-item');
+        getNavItem.forEach(item => {
+            const link = item.querySelector('.nav-link');
+            if (link.href === window.location.href) {
+                item.classList.add('active')
+            }
+        })
+    </script>
     @RenderSection("scripts", required: false)
 
 </body>
