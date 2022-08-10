@@ -48,6 +48,7 @@ namespace Vinasa.Models
         public string DiaDiem { get; set; }
 
         [Required(ErrorMessage = "Vui lòng điền trường này!")]
+        [Range(0, Int32.MaxValue, ErrorMessage = "Vui lòng không nhập số âm")]
         public int HocPhi { get; set; }
         public virtual ICollection<THAMGIAKHOAHOC> THAMGIAKHOAHOCs { get; set; }
 

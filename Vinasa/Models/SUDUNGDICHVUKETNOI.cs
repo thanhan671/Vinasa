@@ -35,10 +35,12 @@ namespace Vinasa.Models
 
         [Required(ErrorMessage = "Vui lòng điền trường này!")]
         [StringRequired(ErrorMessage = "Vui lòng điền trường này!")]
+        [Range(0, Int32.MaxValue, ErrorMessage = "Vui lòng không nhập số âm")]
         public int GiaGoc { get; set; }
 
         [Required(ErrorMessage = "Vui lòng điền trường này!")]
         [StringRequired(ErrorMessage = "Vui lòng điền trường này!")]
+        [Range(0, Int32.MaxValue, ErrorMessage = "Vui lòng không nhập số âm")]
         public int GiaUuDai { get; set; }
 
         [Required(ErrorMessage = "Vui lòng điền trường này!")]
