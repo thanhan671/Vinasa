@@ -13,13 +13,15 @@
         <div class="right-content">
             <h6 class="m-0 font-weight-bold text-primary" style="color: #19315D ">Danh Sách Doanh Nghiệp Tham Gia Dịch Vụ Khác</h6>
         </div>
-
-        <div class="left-content">
-            <button class="button-download" onclick="location.href='@Url.Action("Download", "OtherServices")'">Tải mẫu Excel</button>
-            <button type="button" id="importexcel" name="importexcel" class="button-lc" style=" width: 200px;" data-toggle="modal" data-target="#importexcel-window">
-                Thêm File Excel
-            </button>
-        </div>
+        @if ((int)Session["AccountType"] == 1)
+        {
+            <div class="left-content">
+                <button class="button-download" onclick="location.href='@Url.Action("Download", "OtherServices")'">Tải mẫu Excel</button>
+                <button type="button" id="importexcel" name="importexcel" class="button-lc" style=" width: 200px;" data-toggle="modal" data-target="#importexcel-window">
+                    Thêm File Excel
+                </button>
+            </div>
+        }
     </div>
     @Html.Partial("_List", Model);
 </div>

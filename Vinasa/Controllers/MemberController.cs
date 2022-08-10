@@ -30,10 +30,10 @@ namespace Vinasa.Controllers
                 return RedirectToAction("Login", "Account", new { area = " " });
             }
             currentRole = (int)Session["AccountType"];
-            if (currentRole == 2)
-            {
-                TempData["Message"] = "Lưu ý không thể xóa với tài khoản quản lí";
-            }
+            //if (currentRole == 2)
+            //{
+            //    TempData["Message"] = "Lưu ý không thể xóa với tài khoản quản lí";
+            //}
 
             var data = db.HOIVIENs.ToList();
             ViewBag.hoivienDetail = data;
