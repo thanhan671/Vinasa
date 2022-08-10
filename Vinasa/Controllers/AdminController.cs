@@ -5,6 +5,8 @@ using System.Web;
 using System.Web.Mvc;
 using Vinasa.Models;
 using System.Threading.Tasks;
+using System.Data.Entity.Validation;
+using System.Net;
 using Vinasa.Session_Attribute;
 
 namespace Vinasa.Controllers
@@ -13,7 +15,7 @@ namespace Vinasa.Controllers
     public class AdminController : Controller
     {
         #region global variable
-        SEP25Team16Entities2 db = new SEP25Team16Entities2();
+        private readonly SEP25Team16Entities2 _db = new SEP25Team16Entities2();
         int currentRole;
         #endregion
 
@@ -28,7 +30,7 @@ namespace Vinasa.Controllers
             //    TempData["Message"] = "Lưu ý không thể xóa với tài khoản quản lí";
             //}
 
-            var data = db.TAIKHOANADMINs.ToList();
+            var data = _db.TAIKHOANADMINs.ToList();
             ViewBag.adminDetails = data;
             return View();
         }
@@ -45,8 +47,8 @@ namespace Vinasa.Controllers
             CheckRole();
 
             AdminAccountModels accountModels = new AdminAccountModels();
-            accountModels.RoleList = new SelectList(db.QUYENs, "IDQuyen", "TenQuyen", accountModels.Quyen);
-            accountModels.StatusList = new SelectList(db.TRANGTHAIs, "IDTrangThai", "TenTrangThai", accountModels.TrangThai);
+            accountModels.RoleList = new SelectList(_db.QUYENs, "IDQuyen", "TenQuyen", accountModels.Quyen);
+            accountModels.StatusList = new SelectList(_db.TRANGTHAIs, "IDTrangThai", "TenTrangThai", accountModels.TrangThai);
             return View(accountModels);
         }
 
@@ -57,19 +59,13 @@ namespace Vinasa.Controllers
             var registerPassword = adminAccountModels.MatKhau.Trim();
             var registerRePassword = adminAccountModels.reMatKhau.Trim();
 
-            currentRole = (int)Session["AccountType"];
-            if (currentRole == 2)
-            {
-                return RedirectToAction("ManageAccount", "Admin", new { area = " " });
-            }
-
             if (!ModelState.IsValid)
             {
                 if (registerPassword.Equals(registerRePassword))
                 {
-                    using (db)
+                    using (_db)
                     {
-                        var checkAccount = db.TAIKHOANADMINs.Where(acc => acc.Email.Equals(registerEmail.Trim())).FirstOrDefault();
+                        var checkAccount = _db.TAIKHOANADMINs.Where(acc => acc.Email.Equals(registerEmail.Trim())).FirstOrDefault();
                         {
                             if (checkAccount != null)
                             {
@@ -91,8 +87,8 @@ namespace Vinasa.Controllers
                                     newAccount.TrangThai = adminAccountModels.TrangThai;
                                     newAccount.ChucDanh = adminAccountModels.ChucDanh;
 
-                                    db.TAIKHOANADMINs.Add(newAccount);
-                                    db.SaveChanges();
+                                    _db.TAIKHOANADMINs.Add(newAccount);
+                                    _db.SaveChanges();
                                     ViewBag.Message = newAccount.Ten + " tài khoản được tạo thành công";
                                     return RedirectToAction("ManageAccount");
                                 }
@@ -110,79 +106,54 @@ namespace Vinasa.Controllers
 
 
         [HttpGet]
-        public ActionResult Edit(int id, AdminAccountModels adminAccountModels)
+        public ActionResult Edit(int? id)
         {
             CheckRole();
 
-            adminAccountModels = db.TAIKHOANADMINs.Where(acc => acc.ID.Equals(id)).Select(acc => new AdminAccountModels()
+            if (id == null)
             {
-                ID = acc.ID,
-                Ten = acc.Ten,
-                Email = acc.Email,
-                Quyen = acc.Quyen,
-                TrangThai = acc.TrangThai,
-                Sdt = acc.Sdt,
-                PhongBan = acc.PhongBan,
-                MatKhau = acc.MatKhau,
-                ChucDanh = acc.ChucDanh
-            }).SingleOrDefault();
-
-            if (Session["AccountID"].Equals(id))
-            {
-                adminAccountModels.isEditMode = false;
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            else
+            TAIKHOANADMIN adminAccount = _db.TAIKHOANADMINs.Find(id);
+            if (adminAccount == null)
             {
-                adminAccountModels.isEditMode = true;
+                return HttpNotFound();
             }
-            adminAccountModels.RoleList = new SelectList(db.QUYENs, "IDQuyen", "TenQuyen", adminAccountModels.Quyen);
-            adminAccountModels.StatusList = new SelectList(db.TRANGTHAIs, "IDTrangThai", "TenTrangThai", adminAccountModels.TrangThai);
 
-            return View(adminAccountModels);
+            adminAccount.RoleList = new SelectList(_db.QUYENs, "IDQuyen", "TenQuyen", adminAccount.Quyen);
+            adminAccount.StatusList = new SelectList(_db.TRANGTHAIs, "IDTrangThai", "TenTrangThai", adminAccount.TrangThai);
+
+            return View(adminAccount);
         }
 
         [HttpPost]
-        public ActionResult Edit(AdminAccountModels adminAccountModels)
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit([Bind(Include = "ID, Ten, Email, Quyen, TrangThai, Sdt, PhongBan, MatKhau, ChucDanh, matKhauMoi, xacNhanMatKhau")] TAIKHOANADMIN adminAccount)
         {
-            currentRole = (int)Session["AccountType"];
-            if (currentRole == 2)
+            if (!ModelState.IsValid)
             {
-                return RedirectToAction("ManageAccount", "Admin", new { area = " " });
+                adminAccount.RoleList = new SelectList(_db.QUYENs, "IDQuyen", "TenQuyen", adminAccount.Quyen);
+                adminAccount.StatusList = new SelectList(_db.TRANGTHAIs, "IDTrangThai", "TenTrangThai", adminAccount.TrangThai);
+                return View(adminAccount);
             }
 
-            var id = adminAccountModels.ID;
-            using (db)
+            if (ModelState.IsValid)
             {
-                var accountdata = db.TAIKHOANADMINs.Where(acc => acc.ID.Equals(id)).FirstOrDefault();
+                if (adminAccount.matKhauMoi != null)
                 {
-                    if (accountdata != null)
+                    if (adminAccount.matKhauMoi.Equals(adminAccount.xacNhanMatKhau))
                     {
-                        try
-                        {
-                            accountdata.Ten = adminAccountModels.Ten;
-                            accountdata.Email = adminAccountModels.Email;
-                            accountdata.Sdt = adminAccountModels.Sdt;
-                            accountdata.PhongBan = adminAccountModels.PhongBan;
-                            accountdata.Quyen = adminAccountModels.Quyen;
-                            accountdata.TrangThai = adminAccountModels.TrangThai;
-                            accountdata.ChucDanh = adminAccountModels.ChucDanh;
-
-                            if(adminAccountModels.newMatKhau != null)
-                            {
-                                if(adminAccountModels.newMatKhau.Equals(adminAccountModels.reMatKhau))
-                                {
-                                    accountdata.MatKhau = adminAccountModels.newMatKhau;
-                                }    
-                            }
-
-                            db.SaveChanges();
-                            return RedirectToAction("ManageAccount", "Admin", new { area = " " });
-                        }
-                        catch (Exception ex)
-                        {
-                            throw ex;
-                        }
+                        adminAccount.MatKhau = adminAccount.matKhauMoi;
+                        _db.Entry(adminAccount).State = System.Data.Entity.EntityState.Modified;
+                        _db.SaveChanges();
+                        return RedirectToAction("ManageAccount");
                     }
+                }
+                else
+                {
+                    _db.Entry(adminAccount).State = System.Data.Entity.EntityState.Modified;
+                    _db.SaveChanges();
+                    return RedirectToAction("ManageAccount");
                 }
             }
 
@@ -191,7 +162,7 @@ namespace Vinasa.Controllers
 
         public ActionResult Delete(int id)
         {
-            var memberAccount = db.TAIKHOANADMINs.Where(t => t.ID.Equals(id)).FirstOrDefault();
+            var memberAccount = _db.TAIKHOANADMINs.Where(t => t.ID.Equals(id)).FirstOrDefault();
             CheckRole();
 
             if (Session["AccountID"].Equals(id))
@@ -201,8 +172,8 @@ namespace Vinasa.Controllers
 
             if (memberAccount != null && currentRole != 2)
             {
-                db.TAIKHOANADMINs.Remove(memberAccount);
-                db.SaveChanges();
+                _db.TAIKHOANADMINs.Remove(memberAccount);
+                _db.SaveChanges();
             }
             //else if (currentRole == 2)
             //{
