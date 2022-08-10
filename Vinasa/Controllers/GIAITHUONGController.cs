@@ -146,7 +146,7 @@ namespace Vinasa.Controllers
                     Session["ViewBag.Success"] = tuple.Item1;
                     Session["ViewBag.Exist"] = tuple.Item2;
                 }
-                
+
                 return RedirectToAction(nameof(Details), new { id = id });
             }
             catch (Exception exc)

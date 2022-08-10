@@ -20,7 +20,7 @@
                 <button class="button-lc" style=" width: 200px" id="create">Thêm tài khoản</button>
             </div>
         }
-        </div>
+    </div>
     <div class="card-body">
         <div class="table-responsive">
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
@@ -67,7 +67,6 @@
                             </td>
                             <td>
                                 @item.QUYEN1.TenQuyen
-
                             </td>
                             @if ((int)Session["AccountType"] == 1)
                             {
@@ -87,9 +86,10 @@
                                     </li>
 
                                 </td>
+
                             }
                         </tr>
-                    }
+                     }
                 </tbody>
             </table>
 

@@ -151,7 +151,7 @@ namespace Vinasa.Controllers
                         {
                             string Hoten = workSheet.Cells[rowIterator, 2].Value.ToString();
                             var THAMGIAKHOAHOC = _db.THAMGIAKHOAHOCs
-                                .FirstOrDefault(t =>t.HoTen == Hoten && t.IdKhoaHoc == id);
+                                .FirstOrDefault(t => t.HoTen == Hoten && t.IdKhoaHoc == id);
                             if (THAMGIAKHOAHOC == null)
                             {
                                 var participants = new THAMGIAKHOAHOC();

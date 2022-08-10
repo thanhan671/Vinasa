@@ -19,7 +19,7 @@
                     <label class="lb-form">Email</label>
                 </div>
                 <div class="message-error">
-                    @Html.ValidationMessageFor(m => m.Ten, "", new { @class = "text-danger" })
+                    @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
                 </div>
                 <div class="input-wrapper">
                     <input class="ip-form" type="password" contenteditable="true" @Html.PasswordFor(m => m.MatKhau)
@@ -52,6 +52,9 @@
                 <div class="input-wrapper">
                     <input class="ip-form" type="text" contenteditable="true" @Html.TextBoxFor(m => m.ChucDanh)
                     <label class="lb-form" for="name">Chức Danh</label>
+                </div>
+                <div class="message-error">
+                    @Html.ValidationMessageFor(m => m.ChucDanh, "", new { @class = "text-danger" })
                 </div>
                 <div class="input-wrapper">
                     <label class="lb-form" for="name">Quyền</label>

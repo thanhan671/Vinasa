@@ -20,16 +20,12 @@
             </label>
         </div>
         <div class="input-wrapper">
-            @Html.EditorFor(m => m.NgayBatDauHopDong, "{0:yyyy-MM-dd}", new { htmlAttributes = new { @class = "ip-form", @readonly = "readonly" } })
-            <label class="lb-form" for="tax">
-                Ngày bắt đầu hợp đồng
-            </label>
+            @Html.TextBoxFor(m => m.NgayBatDauHopDong, "{0:yyyy-MM-dd}", new { @class = "ip-form", @type = "date", @readonly = "readonly" })
+            <label class="lb-form" for="tax">Ngày bắt đầu hợp đồng</label>
         </div>
         <div class="input-wrapper">
-            @Html.EditorFor(m => m.NgayKetThucHopDong, "{0:yyyy-MM-dd}", new { htmlAttributes = new { @class = "ip-form", @readonly = "readonly" } })
-            <label class="lb-form" for="tax">
-                Ngày kết thúc hợp đồng
-            </label>
+            @Html.TextBoxFor(m => m.NgayKetThucHopDong, "{0:yyyy-MM-dd}", new { @class = "ip-form", @type = "date", @readonly = "readonly" })
+            <label class="lb-form" for="tax">Ngày kết thúc hợp đồng</label>
         </div>
         <div class="input-wrapper">
             @Html.EditorFor(m => m.TenDichVu, new { htmlAttributes = new { @class = "ip-form", @readonly = "readonly" } })
@@ -87,7 +83,7 @@
         </div>
     </form>
 </div>
-<div class="button-form f-l">
+<div class="button-form f-r">
     <button class="button-lc" onclick="location.href = '@Url.Action("Index", "ConnectionServices")'">Quay Lại</button>
 </div>
 

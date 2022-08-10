@@ -185,8 +185,9 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-700 medium">@Session["UserName"]</span> <!-- change here-->
-                                <img src="~/img/user.png" />
+                                <span class="mr-2 d-none d-lg-inline text-gray-700 medium">Xin chào, @Session["UserName"]</span> <!-- change here-->
+                                <span class="fas fa-caret-down"></span>
+                                @*<img src="~/img/user.png" />*@
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -270,7 +271,15 @@
 
     <!-- Page level custom scripts -->
     <script src="@Url.Content("~/js/demo/datatables-demo.js")"></script>
-
+    <script>
+        const getNavItem = document.querySelectorAll('.nav-item');
+        getNavItem.forEach(item => {
+            const link = item.querySelector('.nav-link');
+            if (link.href === window.location.href) {
+                item.classList.add('active')
+            }
+        })
+    </script>
     @RenderSection("scripts", required: false)
 
 </body>

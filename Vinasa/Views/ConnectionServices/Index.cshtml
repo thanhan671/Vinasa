@@ -23,6 +23,7 @@
                 </button>
             </div>
         }
+
     </div>
     <div class="modal fade" id="importexcel-window" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -71,18 +72,24 @@
                 <thead>
                     <tr>
                         <th>
-                            Tên Công Ty
+                            Mã số thuế
                         </th>
                         <th>
-                            Tên Người Liên Hệ
+                            Tên Công ty
+                        </th>
+                        <th>
+                            Tên người liên hệ
+                        </th>
+                        <th>
+                            Chức danh
                         </th>
                         <th>
                             Email
                         </th>
                         <th>
-                            Số Điện Thoại
+                            Di động
                         </th>
-                        <th>Chức năng</th>
+                        <th class="action-column">Chức năng</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -90,16 +97,22 @@
                     {
                         <tr>
                             <td>
-                                @Html.DisplayFor(m => item.TenCongTy)
+                                @Html.DisplayFor(modelItem => item.MaSoThue)
                             </td>
                             <td>
-                                @Html.DisplayFor(m => item.TenNguoiLienHe)
+                                @Html.DisplayFor(modelItem => item.TenCongTy)
                             </td>
                             <td>
-                                @Html.DisplayFor(m => item.Email)
+                                @Html.DisplayFor(modelItem => item.TenNguoiLienHe)
                             </td>
                             <td>
-                                @Html.DisplayFor(m => item.DienThoai)
+                                @Html.DisplayFor(modelItem => item.ChucDanh)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Email)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.DienThoai)
                             </td>
                             <td class="td-action" style="display:flex; justify-content:space-around; align-items:center">
                                 <li class="action-item" style="list-style-type: none; font-size: 18px">
@@ -125,7 +138,7 @@
                                 }
                             </td>
                         </tr>
-                    }
+}
                 </tbody>
             </table>
         </div>

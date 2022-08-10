@@ -11,7 +11,7 @@
     @Html.HiddenFor(m => m.HoiNghiQT_ID)
     <div class="container col-11 centerPage">
         <h5 class="heading">Sửa Thông Tin Doanh Nghiệp Tham Gia</h5>
-        <form class="form-field form-inputs" method="post" enctype="multipart/form-data">
+        <form class="form-field form-inputs-odd" method="post" enctype="multipart/form-data">
             <div class="input-wrapper">
                 @Html.EditorFor(model => model.TenDonVi, new { htmlAttributes = new { @class = "ip-form", @required = "required" } })
                 <label class="lb-form" for="tax">Tên Đơn Vị</label>
@@ -111,7 +111,7 @@
                 </label>
             </div>
         </form>
-        <div class="button-form f-r">
+        <div class="button-form">
             <button class="button-cancel" onclick="location.href='@Url.Action("Details", "IC", new { id = Model.HoiNghiQT_ID})'" type="button" name="cancel">Huỷ</button>
             <button class="button-lc" type="submit" name="save">Xác Nhận</button>
         </div>

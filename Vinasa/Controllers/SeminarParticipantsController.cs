@@ -108,6 +108,7 @@ namespace Vinasa.Controllers
         }
        
 
+
         // POST: SeminarParticipants/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]

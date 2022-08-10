@@ -55,46 +55,46 @@
                 <tbody>
                     @foreach (var item in Model)
                     {
-                    <tr>
-                        <td>
-                            <a href="@Url.Action("Details", "Course", new { id = @item.Id })">
-                                @Html.DisplayFor(m => item.TenKhoaDaoTao)
-                            </a>
-                        </td>
-                        <td>
-                            @Html.DisplayFor(m => item.NgayBatDau)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(m => item.NgayKetThuc)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(m => item.HinhThuc)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(m => item.DiaDiem)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(m => item.TenGiangVien)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(m => item.HocPhi)
-                        </td>
-                        @if ((int)Session["AccountType"] == 1)
-                        {
-                            <td class="td-action" style="display:flex; justify-content:space-around; align-items:center">
-                                <li class="action-item" style="list-style-type: none; font-size: 18px">
-                                    <a class="action-icon" href="@Url.Action("Edit", "Course", new { id = @item.Id })">
-                                        <i class="fa-solid fa-pen-to-square icon"></i>
-                                    </a>
-                                </li>
-                                <li class="action-item">
-                                    <a class="action-icon delete-btn" data-id="@item.Id">
-                                        <i class="fa-solid fa-trash-can icon"></i>
-                                    </a>
-                                </li>
+                        <tr>
+                            <td>
+                                <a href="@Url.Action("Details", "Course", new { id = @item.Id })">
+                                    @Html.DisplayFor(m => item.TenKhoaDaoTao)
+                                </a>
                             </td>
-                        }
-                    </tr>
+                            <td>
+                                @Html.DisplayFor(m => item.NgayBatDau)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(m => item.NgayKetThuc)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(m => item.HinhThuc)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(m => item.DiaDiem)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(m => item.TenGiangVien)
+                            </td>
+                            <td>
+                                @item.HocPhi.ToString("N0")
+                            </td>
+                            @if ((int)Session["AccountType"] == 1)
+                            {
+                                <td class="td-action" style="display:flex; justify-content:space-around; align-items:center">
+                                    <li class="action-item" style="list-style-type: none; font-size: 18px">
+                                        <a class="action-icon" href="@Url.Action("Edit", "Course", new { id = @item.Id })">
+                                            <i class="fa-solid fa-pen-to-square icon"></i>
+                                        </a>
+                                    </li>
+                                    <li class="action-item">
+                                        <a class="action-icon delete-btn" data-id="@item.Id">
+                                            <i class="fa-solid fa-trash-can icon"></i>
+                                        </a>
+                                    </li>
+                                </td>
+                            }
+                        </tr>
                     }
                 </tbody>
             </table>

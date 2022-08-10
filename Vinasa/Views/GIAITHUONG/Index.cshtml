@@ -43,34 +43,34 @@
                 <tbody>
                     @foreach (var item in Model)
                     {
-                    <tr>
-                        <td>
-                            <a href="@Url.Action("Details", "GIAITHUONG", new{ id = @item.Id})">
-                                @Html.DisplayFor(modelItem => item.Title)
-                            </a>
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.OpenDate)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Address)
-                        </td>
-                        @if ((int)Session["AccountType"] == 1)
-                        {
-                            <td class="action" style=" display:flex; justify-content:space-around; align-items:center">
-                                <li class="action-item">
-                                    <a class="action-icon" href="@Url.Action("Edit", "GIAITHUONG", new { id = @item.Id })">
-                                        <i class="fa-solid fa-pen-to-square icon"></i>
-                                    </a>
-                                </li>
-                                <li class="action-item">
-                                    <a class="action-icon delete-btn" data-id="@item.Id">
-                                        <i class="fa-solid fa-trash-can icon"></i>
-                                    </a>
-                                </li>
+                        <tr>
+                            <td>
+                                <a href="@Url.Action("Details", "GIAITHUONG", new{ id = @item.Id})">
+                                    @Html.DisplayFor(modelItem => item.Title)
+                                </a>
                             </td>
-                        }
-                    </tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.OpenDate)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Address)
+                            </td>
+                            @if ((int)Session["AccountType"] == 1)
+                            {
+                                <td class="action" style=" display:flex; justify-content:space-around; align-items:center">
+                                    <li class="action-item">
+                                        <a class="action-icon" href="@Url.Action("Edit", "GIAITHUONG", new { id = @item.Id })">
+                                            <i class="fa-solid fa-pen-to-square icon"></i>
+                                        </a>
+                                    </li>
+                                    <li class="action-item">
+                                        <a class="action-icon delete-btn" data-id="@item.Id">
+                                            <i class="fa-solid fa-trash-can icon"></i>
+                                        </a>
+                                    </li>
+                                </td>
+                            }
+                        </tr>
                     }
                 </tbody>
             </table>
