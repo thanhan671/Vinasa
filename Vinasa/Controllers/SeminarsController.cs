@@ -11,9 +11,11 @@ using System.Web.Mvc;
 using Vinasa.Services;
 using Vinasa.Models;
 using Vinasa.DAL;
+using Vinasa.Session_Attribute;
 
 namespace Vinasa.Controllers
 {
+    [SessionAttributes]
     public class SeminarsController : Controller
     {
         private readonly SeminarContext _db = new SeminarContext();

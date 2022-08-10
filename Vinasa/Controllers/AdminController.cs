@@ -5,9 +5,11 @@ using System.Web;
 using System.Web.Mvc;
 using Vinasa.Models;
 using System.Threading.Tasks;
+using Vinasa.Session_Attribute;
 
 namespace Vinasa.Controllers
 {
+    [SessionAttributes]
     public class AdminController : Controller
     {
         #region global variable
@@ -20,10 +22,6 @@ namespace Vinasa.Controllers
         [HttpGet]
         public ActionResult ManageAccount()
         {
-            if (Session["AccountID"] == null)
-            {
-                return RedirectToAction("Login", "Account", new { area = " " });
-            }
             currentRole = (int)Session["AccountType"];
             //if (currentRole == 2)
             //{
@@ -38,11 +36,6 @@ namespace Vinasa.Controllers
         [HttpPost]
         public ActionResult ManageAccount(int accountID)
         {
-            if (Session["AccountID"] == null)
-            {
-                return RedirectToAction("Login", "Account", new { area = " " });
-            }
-
             return View();
         }
 
@@ -119,10 +112,6 @@ namespace Vinasa.Controllers
         [HttpGet]
         public ActionResult Edit(int id, AdminAccountModels adminAccountModels)
         {
-            if (Session["AccountID"] == null)
-            {
-                return RedirectToAction("Login", "Account", new { area = " " });
-            }
             CheckRole();
 
             adminAccountModels = db.TAIKHOANADMINs.Where(acc => acc.ID.Equals(id)).Select(acc => new AdminAccountModels()
@@ -155,11 +144,6 @@ namespace Vinasa.Controllers
         [HttpPost]
         public ActionResult Edit(AdminAccountModels adminAccountModels)
         {
-            if (Session["AccountID"] == null)
-            {
-                return RedirectToAction("Login", "Account", new { area = " " });
-            }
-
             currentRole = (int)Session["AccountType"];
             if (currentRole == 2)
             {

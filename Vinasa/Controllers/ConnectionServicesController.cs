@@ -11,9 +11,11 @@ using Vinasa.Services;
 using Vinasa.Models;
 using OfficeOpenXml;
 using System.Data.Entity.Validation;
+using Vinasa.Session_Attribute;
 
 namespace Vinasa.Controllers
 {
+    [SessionAttributes]
     public class ConnectionServicesController : Controller
     {
         private readonly SEP25Team16Entities2 _db = new SEP25Team16Entities2();

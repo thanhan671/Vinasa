@@ -9,9 +9,11 @@ using System.Web.Mvc;
 using Vinasa.Models;
 using OfficeOpenXml;
 using System.Data.Entity.Validation;
+using Vinasa.Session_Attribute;
 
 namespace Vinasa.Controllers
 {
+    [SessionAttributes]
     public class CourseController : Controller
     {
 

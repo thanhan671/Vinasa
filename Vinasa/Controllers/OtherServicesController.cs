@@ -8,9 +8,11 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Vinasa.Models;
+using Vinasa.Session_Attribute;
 
 namespace Vinasa.Controllers
 {
+    [SessionAttributes]
     public class OtherServicesController : Controller
     {
         private readonly SEP25Team16Entities2 _db = new SEP25Team16Entities2();

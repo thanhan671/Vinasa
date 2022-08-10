@@ -10,9 +10,11 @@ using System.IO;
 using System.Data;
 using OfficeOpenXml.Table;
 using System.Data.Entity.Validation;
+using Vinasa.Session_Attribute;
 
 namespace Vinasa.Controllers
 {
+    [SessionAttributes]
     public class MemberController : Controller
     {
         #region global variable
@@ -25,10 +27,6 @@ namespace Vinasa.Controllers
         [HttpGet]
         public ActionResult ManageMember()
         {
-            if (Session["AccountID"] == null)
-            {
-                return RedirectToAction("Login", "Account", new { area = " " });
-            }
             currentRole = (int)Session["AccountType"];
             //if (currentRole == 2)
             //{
@@ -43,22 +41,12 @@ namespace Vinasa.Controllers
         [HttpPost]
         public ActionResult ManageMember(int memberID)
         {
-            if (Session["AccountID"] == null)
-            {
-                return RedirectToAction("Login", "Account", new { area = " " });
-            }
-
             return View();
         }
 
         [HttpGet]
         public ActionResult Edit(int id)
         {
-            if (Session["AccountID"] == null)
-            {
-                return RedirectToAction("Login", "Account", new { area = " " });
-            }
-
             CheckRole();
 
             MemberAccountModels memberAccountModels = db.HOIVIENs.Where(mAcc => mAcc.ID.Equals(id)).Select(mAcc => new MemberAccountModels()
@@ -108,11 +96,6 @@ namespace Vinasa.Controllers
         [HttpPost]
         public ActionResult Edit(MemberAccountModels memberAccountModels)
         {
-            if (Session["AccountID"] == null)
-            {
-                return RedirectToAction("Login", "Account", new { area = " " });
-            }
-
             currentRole = (int)Session["AccountType"];
             if (currentRole == 2)
             {
