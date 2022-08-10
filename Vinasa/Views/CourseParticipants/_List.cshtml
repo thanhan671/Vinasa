@@ -55,16 +55,20 @@
                                     <i class="fa-solid fa-circle-info icon"></i>
                                 </a>
                             </li>
-                            <li class="action-item" style="list-style-type: none; font-size: 18px">
-                                <a href="@Url.Action("Edit", "CourseParticipants", new{ id = @item.Id})" class="action-icon">
-                                    <i class="fa-solid fa-pen-to-square icon"></i>
-                                </a>
-                            </li>
-                            <li class="action-item" style="list-style-type: none; font-size: 18px">
-                                <a class="action-icon delete-btn" data-id="@item.Id" data-IdKhoaHocId="@item.IdKhoaHoc">
-                                    <i class="fa-solid fa-trash-can icon"></i>
-                                </a>
-                            </li>
+                            @if ((int)Session["AccountType"] == 1)
+                            {
+                                <li class="action-item" style="list-style-type: none; font-size: 18px">
+                                    <a href="@Url.Action("Edit", "CourseParticipants", new { id = @item.Id })" class="action-icon">
+                                        <i class="fa-solid fa-pen-to-square icon"></i>
+                                    </a>
+                                </li>
+                                <li class="action-item" style="list-style-type: none; font-size: 18px">
+                                    <a class="action-icon delete-btn" data-id="@item.Id" data-IdKhoaHoc="@item.IdKhoaHoc">
+
+                                        <i class="fa-solid fa-trash-can icon"></i>
+                                    </a>
+                                </li>
+                            }
                         </td>
                     </tr>
                 }
