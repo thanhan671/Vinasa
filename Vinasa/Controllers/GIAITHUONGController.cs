@@ -11,9 +11,11 @@ using System.Web.Mvc;
 using Vinasa.DAL;
 using Vinasa.Models;
 using Vinasa.Services;
+using Vinasa.Session_Attribute;
 
 namespace Vinasa.Controllers
 {
+    [SessionAttributes]
     public class GIAITHUONGController : Controller
     {
         private SeminarContext _db = new SeminarContext();
@@ -144,7 +146,7 @@ namespace Vinasa.Controllers
                     Session["ViewBag.Success"] = tuple.Item1;
                     Session["ViewBag.Exist"] = tuple.Item2;
                 }
-                
+
                 return RedirectToAction(nameof(Details), new { id = id });
             }
             catch (Exception exc)

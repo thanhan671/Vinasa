@@ -8,9 +8,11 @@ using System.Web.Mvc;
 using Vinasa.DAL;
 using Vinasa.Models;
 using Vinasa.Services;
+using Vinasa.Session_Attribute;
 
 namespace Vinasa.Controllers
 {
+    [SessionAttributes]
     public class StatisticController : Controller
     {
         private readonly SeminarContext _db = new SeminarContext();
@@ -76,7 +78,7 @@ namespace Vinasa.Controllers
             ViewBag.filterId = id;
             return View(business);
         }
-       
+
         public ActionResult SizeOfPersonnel(int? id = -1)
         {
             var business = db.HOIVIENs.ToList();
@@ -129,10 +131,10 @@ namespace Vinasa.Controllers
                     business = GetHoiVienByTime(5);
                     break;
                 case 2:
-                    business = GetHoiVienByTime(10); 
+                    business = GetHoiVienByTime(10);
                     break;
                 case 3:
-                    business = GetHoiVienByTime(15); 
+                    business = GetHoiVienByTime(15);
                     break;
                 case 4:
                     business = GetHoiVienByTime(20);
@@ -147,7 +149,7 @@ namespace Vinasa.Controllers
         public ActionResult BirthDayInMonth(int? id = -1)
         {
             var business = db.HOIVIENs.ToList();
-            if(id > 0)
+            if (id > 0)
                 business = db.HOIVIENs.Where(it => it.NgayThanhLap.Value.Month == id).ToList();
             ViewBag.filterId = id;
             return View(business);
@@ -194,7 +196,7 @@ namespace Vinasa.Controllers
             }
             catch (Exception ex)
             {
-                return RedirectToAction(nameof(MemberFee), new {err = ex.Message});
+                return RedirectToAction(nameof(MemberFee), new { err = ex.Message });
             }
         }
         public FileResult Download()

@@ -295,6 +295,7 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\ImportManager.cs" />
+    <Compile Include="Session Attribute\SessionAttributes.cs" />
     <Compile Include="Validation\CustomRequired.cs" />
   </ItemGroup>
   <ItemGroup>

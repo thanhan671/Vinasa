@@ -9,9 +9,11 @@ using System.Web.Mvc;
 using Vinasa.Models;
 using OfficeOpenXml;
 using System.Data.Entity.Validation;
+using Vinasa.Session_Attribute;
 
 namespace Vinasa.Controllers
 {
+    [SessionAttributes]
     public class CourseController : Controller
     {
 
@@ -84,6 +86,7 @@ namespace Vinasa.Controllers
             {
                 _db.Entry(khoaHoc).State = System.Data.Entity.EntityState.Modified;
                 _db.SaveChanges();
+                //khoaHoc.isEdit = false;
                 return RedirectToAction("Index");
             }
 
@@ -148,7 +151,7 @@ namespace Vinasa.Controllers
                         {
                             string Hoten = workSheet.Cells[rowIterator, 2].Value.ToString();
                             var THAMGIAKHOAHOC = _db.THAMGIAKHOAHOCs
-                                .FirstOrDefault(t =>t.HoTen == Hoten && t.IdKhoaHoc == id);
+                                .FirstOrDefault(t => t.HoTen == Hoten && t.IdKhoaHoc == id);
                             if (THAMGIAKHOAHOC == null)
                             {
                                 var participants = new THAMGIAKHOAHOC();
@@ -180,7 +183,6 @@ namespace Vinasa.Controllers
                         _db.THAMGIAKHOAHOCs.Add(item);
                     }
                     _db.SaveChanges();
-
                 }
                 catch (DbEntityValidationException e)
                 {

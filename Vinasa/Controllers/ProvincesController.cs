@@ -8,9 +8,11 @@ using System.Web;
 using System.Web.Mvc;
 using Vinasa.DAL;
 using Vinasa.Models;
+using Vinasa.Session_Attribute;
 
 namespace Vinasa.Controllers
 {
+    [SessionAttributes]
     public class ProvincesController : Controller
     {
         private SeminarContext db = new SeminarContext();

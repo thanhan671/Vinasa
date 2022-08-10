@@ -15,17 +15,29 @@
                 @Html.EditorFor(m => m.MaSoThue, new { htmlAttributes = new { @class = "ip-form", @required = "required" } })
                 <label class="lb-form" for="tax">Mã số thuế</label>
             </div>
+            <div class="message-error">
+                @Html.ValidationMessageFor(m => m.MaSoThue, "", new { @class = "text-danger" })
+            </div>
             <div class="input-wrapper">
                 @Html.EditorFor(m => m.TenCongTy, new { htmlAttributes = new { @class = "ip-form", @required = "required" } })
                 <label class="lb-form" for="tax">Tên công ty</label>
+            </div>
+            <div class="message-error">
+                @Html.ValidationMessageFor(m => m.TenCongTy, "", new { @class = "text-danger" })
             </div>
             <div class="input-wrapper">
                 @Html.TextBoxFor(m => m.NgayBatDauHopDong, "{0:yyyy-MM-dd}", new { @class = "ip-form", @type = "date", @required = "required" })
                 <label class="lb-form" for="tax">Ngày bắt đầu hợp đồng</label>
             </div>
+            <div class="message-error">
+                @Html.ValidationMessageFor(m => m.NgayBatDauHopDong, "", new { @class = "text-danger" })
+            </div>
             <div class="input-wrapper">
                 @Html.TextBoxFor(m => m.NgayKetThucHopDong, "{0:yyyy-MM-dd}", new { @class = "ip-form", @type = "date", @required = "required" })
                 <label class="lb-form" for="tax">Ngày kết thúc hợp đồng</label>
+            </div>
+            <div class="message-error">
+                @Html.ValidationMessageFor(m => m.NgayKetThucHopDong, "", new { @class = "text-danger" })
             </div>
             <div class="input-wrapper">
                 @Html.EditorFor(m => m.TenDichVu, new { htmlAttributes = new { @class = "ip-form", @required = "required" } })
@@ -33,11 +45,17 @@
                     Tên dịch vụ
                 </label>
             </div>
+            <div class="message-error">
+                @Html.ValidationMessageFor(m => m.TenDichVu, "", new { @class = "text-danger" })
+            </div>
             <div class="input-wrapper">
                 @Html.EditorFor(m => m.GiaGoc, new { htmlAttributes = new { @class = "ip-form", @required = "required" } })
                 <label class="lb-form" for="tax">
                     Giá gốc
                 </label>
+            </div>
+            <div class="message-error">
+                @Html.ValidationMessageFor(m => m.GiaGoc, "", new { @class = "text-danger" })
             </div>
             <div class="input-wrapper">
                 @Html.EditorFor(m => m.GiaUuDai, new { htmlAttributes = new { @class = "ip-form", @required = "required" } })
@@ -45,11 +63,17 @@
                     Giá ưu đãi
                 </label>
             </div>
+            <div class="message-error">
+                @Html.ValidationMessageFor(m => m.GiaUuDai, "", new { @class = "text-danger" })
+            </div>
             <div class="input-wrapper">
                 @Html.EditorFor(m => m.ChiecKhauVinasa, new { htmlAttributes = new { @class = "ip-form", @required = "required" } })
                 <label class="lb-form" for="tax">
                     Chiếc khấu Vinasa
                 </label>
+            </div>
+            <div class="message-error">
+                @Html.ValidationMessageFor(m => m.ChiecKhauVinasa, "", new { @class = "text-danger" })
             </div>
             <div class="input-wrapper">
                 @Html.EditorFor(m => m.TenNguoiLienHe, new { htmlAttributes = new { @class = "ip-form", @required = "required" } })
@@ -57,11 +81,17 @@
                     Tên người liên hệ
                 </label>
             </div>
+            <div class="message-error">
+                @Html.ValidationMessageFor(m => m.TenNguoiLienHe, "", new { @class = "text-danger" })
+            </div>
             <div class="input-wrapper">
                 @Html.EditorFor(m => m.ChucDanh, new { htmlAttributes = new { @class = "ip-form", @required = "required" } })
                 <label class="lb-form" for="tax">
                     Chức danh
                 </label>
+            </div>
+            <div class="message-error">
+                @Html.ValidationMessageFor(m => m.ChucDanh, "", new { @class = "text-danger" })
             </div>
             <div class="input-wrapper">
                 @Html.EditorFor(m => m.DienThoai, new { htmlAttributes = new { @class = "ip-form", @required = "required" } })
@@ -69,11 +99,17 @@
                     Điện thoại
                 </label>
             </div>
+            <div class="message-error">
+                @Html.ValidationMessageFor(m => m.DienThoai, "", new { @class = "text-danger" })
+            </div>
             <div class="input-wrapper">
                 @Html.EditorFor(m => m.Email, new { htmlAttributes = new { @class = "ip-form", @required = "required" } })
                 <label class="lb-form" for="tax">
                     Email
                 </label>
+            </div>
+            <div class="message-error">
+                @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
             </div>
             <div class="input-wrapper">
                 <input class="ip-form" type="text" contenteditable="true" @Html.TextBoxFor(m => m.GhiChu)

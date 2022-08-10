@@ -32,7 +32,7 @@ namespace Vinasa.Models
 
         [Required(ErrorMessage = "Vui lòng điền trường này!")]
         [DataType(DataType.Date)]
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy hh:mm:ss tt}")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy}")]
         public Nullable<System.DateTime> NgayThanhLap { get; set; }
 
         [Required(ErrorMessage = "Vui lòng điền trường này!")]

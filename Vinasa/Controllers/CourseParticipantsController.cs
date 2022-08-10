@@ -11,9 +11,11 @@ using Vinasa.Services;
 using Vinasa.Models;
 using OfficeOpenXml;
 using System.Data.Entity.Validation;
+using Vinasa.Session_Attribute;
 
 namespace Vinasa.Controllers
 {
+    [SessionAttributes]
     public class CourseParticipantsController : Controller
     {
         private readonly SEP25Team16Entities2 _db = new SEP25Team16Entities2();
@@ -30,7 +32,9 @@ namespace Vinasa.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+
             THAMGIAKHOAHOC courseParticipant = _db.THAMGIAKHOAHOCs.Find(id);
+
             if (courseParticipant == null)
             {
                 return HttpNotFound();
@@ -76,7 +80,9 @@ namespace Vinasa.Controllers
         public ActionResult Delete(int id, int courseId = -1)
         {
             var courseParticipants = _db.THAMGIAKHOAHOCs.Find(id);
+
             courseId = (int)courseParticipants.IdKhoaHoc;
+
             _db.THAMGIAKHOAHOCs.Remove(courseParticipants);
             _db.SaveChanges();
             if (courseId > 0)
