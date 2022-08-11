@@ -12,8 +12,10 @@ namespace Vinasa.Models
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
     using System.Linq;
     using System.Web;
+    using System.Web.Mvc;
     using Vinasa.Validation;
 
     public partial class HOIVIEN
@@ -164,10 +166,13 @@ namespace Vinasa.Models
         [Required(ErrorMessage = "Vui lòng điền trường này!")]
         [DataType(DataType.Date)]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy}")]
-        public string ThoiGianGiaNhap { get; set; }
+        public Nullable<System.DateTime> ThoiGianGiaNhap { get; set; }
         public int KhuVuc { get; set; }
         public string GhiChu { get; set; }
 
         public virtual KHUVUC KHUVUC1 { get; set; }
+
+        [NotMapped]
+        public SelectList RegionList { get; set; }
     }
 }
