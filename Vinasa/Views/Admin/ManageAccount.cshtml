@@ -19,7 +19,7 @@
             <div class="left-content">
                 <button class="button-lc" style=" width: 200px" id="create">Thêm tài khoản</button>
             </div>
-         }
+        }
     </div>
     <div class="card-body">
         <div class="table-responsive">
@@ -70,25 +70,29 @@
                             </td>
                             @if ((int)Session["AccountType"] == 1)
                             {
-                                <td class="td-action" style="display:flex; justify-content:space-around; align-items:center">
-                                    <li class="action-item" style="list-style-type: none; font-size: 18px">
-                                        <a href="@Url.Action("Edit", "Admin", new { id = item.ID })" class="action-icon">
-                                            <i style="color: #F69928" class="fa-solid fa-pen-to-square icon"></i>
-                                        </a>
-                                    </li>
-                                    <li class="action-item" style="list-style-type:none; font-size: 18px">
-                                        <a id="deleteItem" class="deleteItem" data-target="#myModal"
-                                           data-toggle="modal"
-                                           data-path="@Url.Action("Delete", "Admin", new { id = item.ID })"
-                                           data-form-method="post">
-                                            <i class="fa-solid fa-trash-can icon"></i>
-                                        </a>
-                                    </li>
 
+                                <td class="td-action" style="display:flex; justify-content:space-around; align-items:center">
+                                    @if ((int)Session["AccountID"] != item.ID)
+                                    {
+                                        <li class="action-item" style="list-style-type: none; font-size: 18px">
+                                            <a href="@Url.Action("Edit", "Admin", new { id = item.ID })" class="action-icon">
+                                                <i style="color: #F69928" class="fa-solid fa-pen-to-square icon"></i>
+                                            </a>
+                                        </li>
+                                        <li class="action-item" style="list-style-type:none; font-size: 18px">
+                                            <a id="deleteItem" class="deleteItem" data-target="#myModal"
+                                               data-toggle="modal"
+                                               data-path="@Url.Action("Delete", "Admin", new { id = item.ID })"
+                                               data-form-method="post">
+                                                <i class="fa-solid fa-trash-can icon"></i>
+                                            </a>
+                                        </li>
+                                    }
                                 </td>
-                             }
+
+                            }
                         </tr>
-                     }
+                    }
                 </tbody>
             </table>
 
@@ -108,10 +112,8 @@
                     Xác nhận xóa người dùng này ?
                 </div>
                 <div class="modal-footer">
-
                     <button type="button" class="btn btn-default" data-dismiss="modal">Hủy</button>
                     <button id="btnContinueDelete" type="button" class="button-lc">Xác nhận</button>
-
                 </div>
             </div>
         </div>

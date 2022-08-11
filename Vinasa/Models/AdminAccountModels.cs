@@ -12,6 +12,7 @@ namespace Vinasa.Models
 
         [Required(ErrorMessage = "Vui lòng điền trường này!")]
         public string Ten { get; set; }
+
         public string Email { get; set; }
         public int Quyen { get; set; }
         public int TrangThai { get; set; }
@@ -26,8 +27,7 @@ namespace Vinasa.Models
 
         [MinLength(6, ErrorMessage = "Mật khẩu phải trên 6 ký tự")]
         public string reMatKhau { get; set; }
-        public string sQuyen { get; set; }
-        public string sTrangThai { get; set; }
+
         public virtual QUYEN QUYEN1 { get; set; }
         public virtual TRANGTHAI TRANGTHAI1 { get; set; }
 
