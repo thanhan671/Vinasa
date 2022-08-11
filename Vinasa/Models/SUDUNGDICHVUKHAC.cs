@@ -16,7 +16,7 @@ namespace Vinasa.Models
     using System.Web;
     using Vinasa.Validation;
 
-    public partial class SUDUNGDICHVUKHAC/* : IValidatableObject*/
+    public partial class SUDUNGDICHVUKHAC
     {
         public int ID { get; set; }
 
@@ -76,24 +76,5 @@ namespace Vinasa.Models
         public string DienThoai { get; set; }
         public string GhiChu { get; set; }
 
-        //IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        //{
-        //    SEP25Team16Entities2 _db = new SEP25Team16Entities2();
-        //    List<ValidationResult> validationResult = new List<ValidationResult>();
-
-        //    if (NgayKetThucHopDong < NgayBatDauHopDong)
-        //        validationResult.Add(new ValidationResult("Thời gian kết thúc phải lớn hơn hoặc bằng thời gian bắt đầu", new[] { "NgayKetThucHopDong" }));
-
-        //    var dichVuKhac = _db.SUDUNGDICHVUKHACs.FirstOrDefault(it => it.ID == ID);
-        //    if (dichVuKhac == null)
-        //    {
-        //        if (NgayBatDauHopDong <= DateTime.Now)
-        //            validationResult.Add(new ValidationResult("Thời gian diễn ra phải lớn hơn ngày hiện tại!", new[] { "NgayBatDauHopDong" }));
-        //        if (NgayKetThucHopDong <= DateTime.Now)
-        //            validationResult.Add(new ValidationResult("Thời gian kết thúc phải lớn hơn ngày hiện tại!", new[] { "NgayKetThucHopDong" }));
-
-        //    }
-        //    return validationResult;
-        //}
     }
 }
