@@ -1,4 +1,4 @@
-﻿@model Vinasa.Models.AdminAccountModels
+﻿@model IEnumerable<Vinasa.Models.TAIKHOANADMIN>
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/sbadmin.cshtml";
@@ -41,7 +41,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach (var item in ViewBag.adminDetails)
+                    @foreach (var item in Model)
                     {
                         <tr>
                             <td hidden>

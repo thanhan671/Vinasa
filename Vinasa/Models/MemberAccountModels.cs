@@ -153,11 +153,10 @@ namespace Vinasa.Models
         public string Fanpage { get; set; }
 
         [Required(ErrorMessage = "Vui lòng điền trường này!")]
-        [StringRequired(ErrorMessage = "Vui lòng điền trường này!")]
-        public string ThoiGianGiaNhap { get; set; }
+        [DataType(DataType.Date)]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy}")]
+        public Nullable<System.DateTime> ThoiGianGiaNhap { get; set; }
 
-        [Required(ErrorMessage = "Vui lòng điền trường này!")]
-        [StringRequired(ErrorMessage = "Vui lòng điền trường này!")]
         public int KhuVuc { get; set; }
 
         public string GhiChu { get; set; }

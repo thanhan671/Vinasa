@@ -1,4 +1,4 @@
-﻿@model Vinasa.Models.MemberAccountModels
+﻿@model Vinasa.Models.HOIVIEN
 
 @{
     ViewBag.Title = "DetailMember";
@@ -9,7 +9,7 @@
 <div class="row">
     <div class="col-6">
         <h5 class="heading">Thông Tin Hội Viên</h5>
-        <form class="form-field" method="post" enctype="multipart/form-data" action="@Url.Action("Member")">
+        <form class="form-field" method="post" enctype="multipart/form-data">
             <div class="input-wrapper">
                 <input class="ip-form" type="text" id="tax" contenteditable="true" readonly @Html.TextBoxFor(m => m.MaSoThue)
                 <label class="lb-form" for="tax">Mã số thuế</label>
@@ -91,7 +91,7 @@
                 <label class="lb-form" for="name">Thời Gian Gia Nhập</label>
             </div>
             <div class="input-wrapper">
-                <input class="ip-form" type="text" contenteditable="true" readonly @Html.TextBoxFor(m => m.sKhuVuc)
+                <input class="ip-form" type="text" contenteditable="true" readonly @Html.TextBoxFor(m => m.KHUVUC1.TenKhuVuc)
                 <label class="lb-form" for="name">Khu vực</label>
             </div>
             <div class="input-wrapper">

@@ -21,87 +21,39 @@ namespace Vinasa.Controllers
 
         #region main method
         // GET: Admin
-        [HttpGet]
         public ActionResult ManageAccount()
         {
-            currentRole = (int)Session["AccountType"];
-            //if (currentRole == 2)
-            //{
-            //    TempData["Message"] = "Lưu ý không thể xóa với tài khoản quản lí";
-            //}
-
-            var data = _db.TAIKHOANADMINs.ToList();
-            ViewBag.adminDetails = data;
-            return View();
-        }
-
-        [HttpPost]
-        public ActionResult ManageAccount(int accountID)
-        {
-            return View();
+            return View(_db.TAIKHOANADMINs.ToList());
         }
 
         [HttpGet]
         public ActionResult CreateAccount()
         {
-            CheckRole();
-
-            AdminAccountModels accountModels = new AdminAccountModels();
+            var accountModels = new TAIKHOANADMIN();
             accountModels.RoleList = new SelectList(_db.QUYENs, "IDQuyen", "TenQuyen", accountModels.Quyen);
             accountModels.StatusList = new SelectList(_db.TRANGTHAIs, "IDTrangThai", "TenTrangThai", accountModels.TrangThai);
             return View(accountModels);
         }
 
         [HttpPost]
-        public ActionResult CreateAccount(AdminAccountModels adminAccountModels)
+        [ValidateAntiForgeryToken]
+        public ActionResult CreateAccount([Bind(Include = "ID, Ten, Email, Quyen, TrangThai, Sdt, PhongBan, MatKhau, ChucDanh, matKhauMoi, xacNhanMatKhau")] TAIKHOANADMIN adminAccount)
         {
-            var registerEmail = adminAccountModels.Email.Trim();
-            var registerPassword = adminAccountModels.MatKhau.Trim();
-            var registerRePassword = adminAccountModels.reMatKhau.Trim();
-
-            if (!ModelState.IsValid)
+            if (adminAccount.xacNhanMatKhau.Equals(adminAccount.MatKhau))
             {
-                if (registerPassword.Equals(registerRePassword))
-                {
-                    using (_db)
-                    {
-                        var checkAccount = _db.TAIKHOANADMINs.Where(acc => acc.Email.Equals(registerEmail.Trim())).FirstOrDefault();
-                        {
-                            if (checkAccount != null)
-                            {
-                                ViewBag.Message = registerEmail + " tài khoản đã tồn tại";
-
-                                return RedirectToAction("CreateAccount");
-                            }
-                            else
-                            {
-                                try
-                                {
-                                    TAIKHOANADMIN newAccount = new TAIKHOANADMIN();
-                                    newAccount.Ten = adminAccountModels.Ten.Trim();
-                                    newAccount.Email = registerEmail;
-                                    newAccount.Sdt = adminAccountModels.Sdt.Trim();
-                                    newAccount.PhongBan = adminAccountModels.PhongBan.Trim();
-                                    newAccount.MatKhau = registerPassword;
-                                    newAccount.Quyen = adminAccountModels.Quyen;
-                                    newAccount.TrangThai = adminAccountModels.TrangThai;
-                                    newAccount.ChucDanh = adminAccountModels.ChucDanh;
-
-                                    _db.TAIKHOANADMINs.Add(newAccount);
-                                    _db.SaveChanges();
-                                    ViewBag.Message = newAccount.Ten + " tài khoản được tạo thành công";
-                                    return RedirectToAction("ManageAccount");
-                                }
-                                catch (Exception ex)
-                                {
-                                    throw ex;
-                                }
-                            }
-                        }
-                    }
-                }
+                _db.TAIKHOANADMINs.Add(adminAccount);
+                _db.SaveChanges();
+                return RedirectToAction("ManageAccount");
             }
-            return RedirectToAction("CreateAccount");
+            else
+            {
+                var accountModels = new TAIKHOANADMIN();
+                accountModels.RoleList = new SelectList(_db.QUYENs, "IDQuyen", "TenQuyen", accountModels.Quyen);
+                accountModels.StatusList = new SelectList(_db.TRANGTHAIs, "IDTrangThai", "TenTrangThai", accountModels.TrangThai);
+                return View(accountModels);
+            }
+
+            return RedirectToAction("ManageAccount", "Admin", new { area = " " });
         }
 
 
@@ -170,15 +122,11 @@ namespace Vinasa.Controllers
                 return RedirectToAction("Login", "Account", new { area = " " });
             }
 
-            if (memberAccount != null && currentRole != 2)
+            if (memberAccount != null)
             {
                 _db.TAIKHOANADMINs.Remove(memberAccount);
                 _db.SaveChanges();
             }
-            //else if (currentRole == 2)
-            //{
-            //    ViewBag.Message = "Không thể xóa với tài khoản quản lí";
-            //}
             return RedirectToAction("ManageAccount", "Admin", new { area = " " });
         }
         #endregion

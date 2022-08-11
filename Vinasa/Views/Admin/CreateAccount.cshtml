@@ -1,85 +1,96 @@
-﻿@model Vinasa.Models.AdminAccountModels
+﻿@model Vinasa.Models.TAIKHOANADMIN
 @{ ViewBag.Title = "CreateAccount";
     Layout = "~/Views/Shared/sbadmin.cshtml"; }
 @using (Html.BeginForm("CreateAccount", "Admin", FormMethod.Post))
 {
-<div class="container">
-    <div class="col-6">
-        <h5 class="heading">Thêm Người Dùng</h5>
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="container">
+        <div class="col-6">
+            <h5 class="heading">Thêm Người Dùng</h5>
+            <form class="form-field" method="post" enctype="multipart/form-data">
+                <div class="input-wrapper">
+                    <input class="ip-form" type="text" id="tax" contenteditable="true" @Html.TextBoxFor(m => m.Ten)
+                    <label class="lb-form" for="tax">Tên Người Dùng</label>
+                </div>
+                <div class="message-error">
+                    @Html.ValidationMessageFor(m => m.Ten, "", new { @class = "text-danger" })
+                </div>
 
-        <form class="form-field" method="post" enctype="multipart/form-data">
-            <div class="input-wrapper">
-                <input class="ip-form" type="text" id="tax" contenteditable="true" @Html.TextBoxFor(m => m.Ten)
-                <label class="lb-form" for="tax">Tên Người Dùng</label>
+                <div class="input-wrapper">
+                    <input class="ip-form" type="email" contenteditable="true" @Html.TextBoxFor(m => m.Email)
+                    <label class="lb-form">Email</label>
+                </div>
+                <div class="message-error">
+                    @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="input-wrapper">
+                    <input class="ip-form" type="password" contenteditable="true" @Html.PasswordFor(m => m.MatKhau)
+                    <label class="lb-form" for="name">Mật Khẩu</label>
+                </div>
+                <div class="message-error">
+                    @Html.ValidationMessageFor(m => m.MatKhau, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="input-wrapper">
+                    <input class="ip-form" type="password" contenteditable="true" @Html.PasswordFor(m => m.xacNhanMatKhau)
+                    <label class="lb-form" for="name">Xác Nhận Mật Khẩu</label>
+                </div>
+                <div class="message-error">
+                    @Html.ValidationMessageFor(m => m.xacNhanMatKhau, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="input-wrapper">
+                    <input class="ip-form" type="tel" contenteditable="true" @Html.TextBoxFor(m => m.Sdt)
+                    <label class="lb-form" for="name">Số Điện Thoại</label>
+                </div>
+                <div class="message-error">
+                    @Html.ValidationMessageFor(m => m.Sdt, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="input-wrapper">
+                    <input class="ip-form" type="text" contenteditable="true" @Html.TextBoxFor(m => m.PhongBan)
+                    <label class="lb-form" for="name">Phòng Ban</label>
+                </div>
+                <div class="message-error">
+                    @Html.ValidationMessageFor(m => m.PhongBan, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="input-wrapper">
+                    <input class="ip-form" type="text" contenteditable="true" @Html.TextBoxFor(m => m.ChucDanh)
+                    <label class="lb-form" for="name">Chức Danh</label>
+                </div>
+                <div class="message-error">
+                    @Html.ValidationMessageFor(m => m.ChucDanh, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="input-wrapper">
+                    <label class="lb-form" for="name">Quyền</label>
+                    @Html.DropDownListFor(m => m.Quyen, Model.RoleList, new { @class = "form-control select-region" })
+                </div>
+
+                <div class="input-wrapper">
+                    <label class="lb-form" for="name">Trạng Thái</label>
+                    @Html.DropDownListFor(m => m.TrangThai, Model.StatusList, new { @class = "form-control select-region" })
+                </div>
+            </form>
+            <div class="button-form">
+                <button class="button-cancel" onclick="location.href='@Url.Action("ManageAccount", "Admin")'" type="button" name="cancel">Huỷ</button>
+                <button class="button-lc" type="submit" name="save">Xác Nhận</button>
             </div>
-            <div class="message-error">
-                @Html.ValidationMessageFor(m => m.Ten, "", new { @class = "text-danger" })
-            </div>
-            <div class="input-wrapper">
-                <input class="ip-form" type="email" contenteditable="true" @Html.TextBoxFor(m => m.Email)
-                <label class="lb-form">Email</label>
-            </div>
-            <div class="message-error">
-                @Html.ValidationMessageFor(m => m.Ten, "", new { @class = "text-danger" })
-            </div>
-            <div class="input-wrapper">
-                <input class="ip-form" type="password" contenteditable="true" @Html.PasswordFor(m => m.MatKhau)
-                <label class="lb-form" for="name">Mật Khẩu</label>
-            </div>
-            <div class="message-error">
-                @Html.ValidationMessageFor(m => m.MatKhau, "", new { @class = "text-danger" })
-            </div>
-            <div class="input-wrapper">
-                <input class="ip-form" type="password" contenteditable="true" @Html.PasswordFor(m => m.reMatKhau)
-                <label class="lb-form" for="name">Xác Nhận Mật Khẩu</label>
-            </div>
-            <div class="message-error">
-                @Html.ValidationMessageFor(m => m.reMatKhau, "", new { @class = "text-danger" })
-            </div>
-            <div class="input-wrapper">
-                <input class="ip-form" type="tel" contenteditable="true" @Html.TextBoxFor(m => m.Sdt)
-                <label class="lb-form" for="name">Số Điện Thoại</label>
-            </div>
-            <div class="message-error">
-                @Html.ValidationMessageFor(m => m.Sdt, "", new { @class = "text-danger" })
-            </div>
-            <div class="input-wrapper">
-                <input class="ip-form" type="text" contenteditable="true" @Html.TextBoxFor(m => m.PhongBan)
-                <label class="lb-form" for="name">Phòng Ban</label>
-            </div>
-            <div class="message-error">
-                @Html.ValidationMessageFor(m => m.PhongBan, "", new { @class = "text-danger" })
-            </div>
-            <div class="input-wrapper">
-                <input class="ip-form" type="text" contenteditable="true" @Html.TextBoxFor(m => m.ChucDanh)
-                <label class="lb-form" for="name">Chức Danh</label>
-            </div>
-            <div class="input-wrapper">
-                <label class="lb-form" for="name">Quyền</label>
-                @Html.DropDownListFor(m => m.Quyen, Model.RoleList, new { @class = "form-control select-region" })
-            </div>
-            <div class="input-wrapper">
-                <label class="lb-form" for="name">Trạng Thái</label>
-                @Html.DropDownListFor(m => m.TrangThai, Model.StatusList, new { @class = "form-control select-region" })
-            </div>
-        </form>
-    </div>
-    <div class="button-form">
-        <button class="button-cancel" onclick="location.href='@Url.Action("ManageAccount", "Admin")'" type="button" name="cancel">Huỷ</button>
-        <button class="button-lc" type="submit" name="save">Xác Nhận</button>
-    </div>
-</div>}
+        </div>
+    </div>}
 @if (ViewBag.Message != null)
 {
-<script type="text/javascript">
+    <script type="text/javascript">
         window.onload = function () {
             alert("@ViewBag.Message");
         };
-</script>
+    </script>
 }
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-@*<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
-    <script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>*@
+
 <script>
              $('#enter').click(function () {
                 location.href = "@Url.Action();
@@ -87,4 +98,4 @@
 </script>
 @if (TempData["Message"] != null)
 {
-<p class="alert alert-success" id="successMessage">@TempData["Message"]</p>}
+    <p class="alert alert-success" id="successMessage">@TempData["Message"]</p>}

@@ -87,3 +87,13 @@
 }
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+
+     $('#enter').click(function () {
+        location.href = "@Url.Action()";
+    })
+</script>
+@if (TempData["Message"] != null)
+{
+    <p class="alert alert-success" id="successMessage">@TempData["Message"]</p>
+}

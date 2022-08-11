@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Vinasa.Models;
+using System.Net;
 using Vinasa.Services;
 using OfficeOpenXml;
 using System.IO;
@@ -18,195 +19,67 @@ namespace Vinasa.Controllers
     public class MemberController : Controller
     {
         #region global variable
-        SEP25Team16Entities2 db = new SEP25Team16Entities2();
+        private readonly SEP25Team16Entities2 _db = new SEP25Team16Entities2();
         int currentRole;
         #endregion
 
         #region main method
         // GET: Member
-        [HttpGet]
         public ActionResult ManageMember()
         {
-            currentRole = (int)Session["AccountType"];
-            //if (currentRole == 2)
-            //{
-            //    TempData["Message"] = "Lưu ý không thể xóa với tài khoản quản lí";
-            //}
+            return View(_db.HOIVIENs.ToList());
+        }
 
-            var data = db.HOIVIENs.ToList();
-            ViewBag.hoivienDetail = data;
-            return View();
+        public ActionResult DetailMember(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            HOIVIEN member = _db.HOIVIENs.Find(id);
+            if (member == null)
+            {
+                return HttpNotFound();
+            }
+            return View(member);
+        }
+
+        public ActionResult Edit(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            HOIVIEN member = _db.HOIVIENs.Find(id);
+
+            if (member == null)
+            {
+                return HttpNotFound();
+            }
+
+            member.RegionList = new SelectList(_db.KHUVUCs, "IDKhuVuc", "TenKhuVuc", member.KhuVuc);
+
+            return View(member);
         }
 
         [HttpPost]
-        public ActionResult ManageMember(int memberID)
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit([Bind(Include = "ID, MaSoThue, TenTiengViet, TenTiengAnh, TenVietTat, NgayThanhLap, Website, SdtCongTy, EmailCongTy, DiaChiGiaoDich, DiaChiTrenChungTu, SoLuongNhanVien," +
+            "SoLuongLapTrinhVien, ThiTruongNoiDia, ThiTruongQuocTe, LinhVucHoatDong, LanhDao, ChucDanhLanhDao, SdtLanhDao, EmailLanhDao, DaiDienMarketing, ChucNangMarketing, SdtMarketing, EmailMarketing," +
+            "DaiDienNhanSu, ChucDanhNhanSu, SdtNhanSu, EmailNhanSu, DaiDienKeToan, ChucDanhKeToan, SdtKeToan, EmailKeToan, Fanpage, ThoiGianGiaNhap, KhuVuc, GhiChu")] HOIVIEN member)
         {
-            return View();
-        }
-
-        [HttpGet]
-        public ActionResult Edit(int id)
-        {
-            CheckRole();
-
-            MemberAccountModels memberAccountModels = db.HOIVIENs.Where(mAcc => mAcc.ID.Equals(id)).Select(mAcc => new MemberAccountModels()
+            if (!ModelState.IsValid)
             {
-                ID = mAcc.ID,
-                MaSoThue = mAcc.MaSoThue,
-                TenTiengViet = mAcc.TenTiengViet,
-                TenTiengAnh = mAcc.TenTiengAnh,
-                TenVietTat = mAcc.TenVietTat,
-                NgayThanhLap = mAcc.NgayThanhLap,
-                Website = mAcc.Website,
-                SdtCongTy = mAcc.SdtCongTy,
-                EmailCongTy = mAcc.EmailCongTy,
-                DiaChiGiaoDich = mAcc.DiaChiGiaoDich,
-                DiaChiTrenChungTu = mAcc.DiaChiTrenChungTu,
-                SoLuongNhanVien = mAcc.SoLuongNhanVien,
-                SoLuongLapTrinhVien = mAcc.SoLuongLapTrinhVien,
-                ThiTruongNoiDia = mAcc.ThiTruongNoiDia,
-                ThiTruongQuocTe = mAcc.ThiTruongQuocTe,
-                LinhVucHoatDong = mAcc.LinhVucHoatDong,
-                LanhDao = mAcc.LanhDao,
-                ChucDanhLanhDao = mAcc.ChucDanhLanhDao,
-                SdtLanhDao = mAcc.SdtLanhDao,
-                EmailLanhDao = mAcc.EmailLanhDao,
-                DaiDienMarketing = mAcc.DaiDienMarketing,
-                ChucNangMarketing = mAcc.ChucNangMarketing,
-                SdtMarketing = mAcc.SdtMarketing,
-                EmailMarketing = mAcc.EmailMarketing,
-                DaiDienNhanSu = mAcc.DaiDienNhanSu,
-                ChucDanhNhanSu = mAcc.ChucDanhNhanSu,
-                SdtNhanSu = mAcc.SdtNhanSu,
-                EmailNhanSu = mAcc.EmailNhanSu,
-                DaiDienKeToan = mAcc.DaiDienKeToan,
-                ChucDanhKeToan = mAcc.ChucDanhKeToan,
-                SdtKeToan = mAcc.SdtKeToan,
-                EmailKeToan = mAcc.EmailKeToan,
-                Fanpage = mAcc.Fanpage,
-                ThoiGianGiaNhap = mAcc.ThoiGianGiaNhap,
-                KhuVuc = mAcc.KhuVuc,
-                GhiChu = mAcc.GhiChu
-            }).SingleOrDefault();
-
-            memberAccountModels.RegionList = new SelectList(db.KHUVUCs, "IDKhuVuc", "TenKhuVuc", memberAccountModels.KhuVuc);
-            return View(memberAccountModels);
-        }
-
-        [HttpPost]
-        public ActionResult Edit(MemberAccountModels memberAccountModels)
-        {
-            currentRole = (int)Session["AccountType"];
-            if (currentRole == 2)
-            {
-                return RedirectToAction("ManageMember", "Member", new { area = " " });
+                member.RegionList = new SelectList(_db.KHUVUCs, "IDKhuVuc", "TenKhuVuc", member.KhuVuc);
+                return View(member);
             }
-
-            var id = memberAccountModels.ID;
-            using (db)
+            if (ModelState.IsValid)
             {
-                var accountdata = db.HOIVIENs.Where(acc => acc.ID.Equals(id)).FirstOrDefault();
-                {
-                    if (accountdata != null)
-                    {
-                        try
-                        {
-                            accountdata.MaSoThue = memberAccountModels.MaSoThue.Trim();
-                            accountdata.TenTiengViet = memberAccountModels.TenTiengViet.Trim();
-                            accountdata.TenTiengAnh = memberAccountModels.TenTiengAnh.Trim();
-                            accountdata.TenVietTat = memberAccountModels.TenVietTat.Trim();
-                            accountdata.NgayThanhLap = memberAccountModels.NgayThanhLap;
-                            accountdata.Website = memberAccountModels.Website.Trim();
-                            accountdata.SdtCongTy = memberAccountModels.SdtCongTy.Trim();
-                            accountdata.EmailCongTy = memberAccountModels.EmailCongTy.Trim();
-                            accountdata.DiaChiGiaoDich = memberAccountModels.DiaChiGiaoDich.Trim();
-                            accountdata.DiaChiTrenChungTu = memberAccountModels.DiaChiTrenChungTu.Trim();
-                            accountdata.SoLuongNhanVien = memberAccountModels.SoLuongNhanVien;
-                            accountdata.SoLuongLapTrinhVien = memberAccountModels.SoLuongLapTrinhVien;
-                            accountdata.ThiTruongNoiDia = memberAccountModels.ThiTruongNoiDia.Trim();
-                            accountdata.ThiTruongQuocTe = memberAccountModels.ThiTruongQuocTe.Trim();
-                            accountdata.LinhVucHoatDong = memberAccountModels.LinhVucHoatDong.Trim();
-                            accountdata.LanhDao = memberAccountModels.LanhDao.Trim();
-                            accountdata.ChucDanhLanhDao = memberAccountModels.ChucDanhLanhDao.Trim();
-                            accountdata.SdtLanhDao = memberAccountModels.SdtLanhDao.Trim();
-                            accountdata.EmailLanhDao = memberAccountModels.EmailLanhDao.Trim();
-                            accountdata.DaiDienMarketing = memberAccountModels.DaiDienMarketing.Trim();
-                            accountdata.ChucNangMarketing = memberAccountModels.ChucNangMarketing.Trim();
-                            accountdata.SdtMarketing = memberAccountModels.SdtMarketing.Trim();
-                            accountdata.EmailMarketing = memberAccountModels.EmailMarketing.Trim();
-                            accountdata.DaiDienNhanSu = memberAccountModels.DaiDienNhanSu.Trim();
-                            accountdata.ChucDanhNhanSu = memberAccountModels.ChucDanhNhanSu.Trim();
-                            accountdata.SdtNhanSu = memberAccountModels.SdtNhanSu.Trim();
-                            accountdata.EmailNhanSu = memberAccountModels.EmailNhanSu.Trim();
-                            accountdata.DaiDienKeToan = memberAccountModels.DaiDienKeToan.Trim();
-                            accountdata.ChucDanhKeToan = memberAccountModels.ChucDanhKeToan.Trim();
-                            accountdata.SdtKeToan = memberAccountModels.SdtKeToan.Trim();
-                            accountdata.EmailKeToan = memberAccountModels.EmailKeToan.Trim();
-                            accountdata.Fanpage = memberAccountModels.Fanpage.Trim();
-                            accountdata.ThoiGianGiaNhap = memberAccountModels.ThoiGianGiaNhap.Trim();
-                            accountdata.KhuVuc = memberAccountModels.KhuVuc;
-                            accountdata.GhiChu = memberAccountModels.GhiChu;
-
-                            db.SaveChanges();
-                            return RedirectToAction("ManageMember", "Member", new { area = " " });
-                        }
-                        catch (Exception ex)
-                        {
-                            throw ex;
-                        }
-                    }
-                }
+                _db.Entry(member).State = System.Data.Entity.EntityState.Modified;
+                _db.SaveChanges();
+                return RedirectToAction("ManageMember");
             }
-            return View();
-        }
-
-        //public ActionResult DetailMember();
-
-        #region support method
-        #endregion
-        [HttpGet]
-        public ActionResult DetailMember(int id)
-        {
-            MemberAccountModels memberAccountModels = db.HOIVIENs.Where(mAcc => mAcc.ID.Equals(id)).Select(mAcc => new MemberAccountModels()
-            {
-                ID = mAcc.ID,
-                MaSoThue = mAcc.MaSoThue,
-                TenTiengViet = mAcc.TenTiengViet,
-                TenTiengAnh = mAcc.TenTiengAnh,
-                TenVietTat = mAcc.TenVietTat,
-                NgayThanhLap = mAcc.NgayThanhLap,
-                Website = mAcc.Website,
-                SdtCongTy = mAcc.SdtCongTy,
-                EmailCongTy = mAcc.EmailCongTy,
-                DiaChiGiaoDich = mAcc.DiaChiGiaoDich,
-                DiaChiTrenChungTu = mAcc.DiaChiTrenChungTu,
-                SoLuongNhanVien = mAcc.SoLuongNhanVien,
-                SoLuongLapTrinhVien = mAcc.SoLuongLapTrinhVien,
-                ThiTruongNoiDia = mAcc.ThiTruongNoiDia,
-                ThiTruongQuocTe = mAcc.ThiTruongQuocTe,
-                LinhVucHoatDong = mAcc.LinhVucHoatDong,
-                LanhDao = mAcc.LanhDao,
-                ChucDanhLanhDao = mAcc.ChucDanhLanhDao,
-                SdtLanhDao = mAcc.SdtLanhDao,
-                EmailLanhDao = mAcc.EmailLanhDao,
-                DaiDienMarketing = mAcc.DaiDienMarketing,
-                ChucNangMarketing = mAcc.ChucNangMarketing,
-                SdtMarketing = mAcc.SdtMarketing,
-                EmailMarketing = mAcc.EmailMarketing,
-                DaiDienNhanSu = mAcc.DaiDienNhanSu,
-                ChucDanhNhanSu = mAcc.ChucDanhNhanSu,
-                SdtNhanSu = mAcc.SdtNhanSu,
-                EmailNhanSu = mAcc.EmailNhanSu,
-                DaiDienKeToan = mAcc.DaiDienKeToan,
-                ChucDanhKeToan = mAcc.ChucDanhKeToan,
-                SdtKeToan = mAcc.SdtKeToan,
-                EmailKeToan = mAcc.EmailKeToan,
-                Fanpage = mAcc.Fanpage,
-                ThoiGianGiaNhap = mAcc.ThoiGianGiaNhap,
-                sKhuVuc = mAcc.KHUVUC1.TenKhuVuc,
-                GhiChu = mAcc.GhiChu
-            }).SingleOrDefault();
-            return View(memberAccountModels);
+            return View(member);
         }
 
         [HttpPost]
@@ -239,7 +112,7 @@ namespace Vinasa.Controllers
                         {
                             string maSoThue = workSheet.Cells[rowIterator, 2].Value.ToString();
                             string tenDonVi = workSheet.Cells[rowIterator, 3].Value.ToString();
-                            var hoiVien = db.HOIVIENs
+                            var hoiVien = _db.HOIVIENs
                                 .FirstOrDefault(t => t.MaSoThue == maSoThue && t.TenTiengViet == tenDonVi);
                             if (hoiVien == null)
                             {
@@ -276,7 +149,7 @@ namespace Vinasa.Controllers
                                 member.SdtKeToan = workSheet.Cells[rowIterator, 31].Value.ToString();
                                 member.EmailKeToan = workSheet.Cells[rowIterator, 32].Value.ToString();
                                 member.Fanpage = workSheet.Cells[rowIterator, 33].Value.ToString();
-                                member.ThoiGianGiaNhap = workSheet.Cells[rowIterator, 34].Value.ToString();
+                                member.ThoiGianGiaNhap = Convert.ToDateTime(workSheet.Cells[rowIterator, 34].Value);
                                 member.KhuVuc = Convert.ToInt32(workSheet.Cells[rowIterator, 35].Value);
                                 member.GhiChu = Convert.ToString(workSheet.Cells[rowIterator, 36].Value);
                                 memberlist.Add(member);
@@ -290,15 +163,15 @@ namespace Vinasa.Controllers
                     }
                 }
             }
-            using (db)
+            using (_db)
             {
                 try
                 {
                     foreach (var item in memberlist)
                     {
-                        db.HOIVIENs.Add(item);
+                        _db.HOIVIENs.Add(item);
                     }
-                    db.SaveChanges();
+                    _db.SaveChanges();
                 }
                 catch (DbEntityValidationException e)
                 {
@@ -320,17 +193,12 @@ namespace Vinasa.Controllers
 
         public ActionResult Delete(int id)
         {
-            CheckRole();
-            var memberAccount = db.HOIVIENs.Where(t => t.ID.Equals(id)).FirstOrDefault();
+            var memberAccount = _db.HOIVIENs.Where(t => t.ID.Equals(id)).FirstOrDefault();
 
-            if (memberAccount != null && currentRole != 2)
+            if (memberAccount != null)
             {
-                db.HOIVIENs.Remove(memberAccount);
-                db.SaveChanges();
-            }
-            else if (currentRole == 2)
-            {
-                ViewBag.Message = "Không thể xóa với tài khoản quản lí";
+                _db.HOIVIENs.Remove(memberAccount);
+                _db.SaveChanges();
             }
             return RedirectToAction("ManageMember", "Member", new { area = " " });
         }

@@ -92,7 +92,7 @@
           <Property Name="SdtKeToan" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="EmailKeToan" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Fanpage" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="ThoiGianGiaNhap" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="ThoiGianGiaNhap" Type="datetime" />
           <Property Name="KhuVuc" Type="int" Nullable="false" />
           <Property Name="GhiChu" Type="nvarchar(max)" />
         </EntityType>
@@ -828,7 +828,7 @@
           <Property Name="SdtKeToan" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="EmailKeToan" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Fanpage" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="ThoiGianGiaNhap" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="ThoiGianGiaNhap" Type="DateTime" />
           <Property Name="KhuVuc" Type="Int32" Nullable="false" />
           <Property Name="GhiChu" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="KHUVUC1" Relationship="SEP25Team16Model.FK_HOIVIEN_KHUVUC" FromRole="HOIVIEN" ToRole="KHUVUC" />

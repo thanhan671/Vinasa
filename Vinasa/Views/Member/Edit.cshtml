@@ -1,4 +1,4 @@
-﻿@model Vinasa.Models.MemberAccountModels
+﻿@model Vinasa.Models.HOIVIEN
 
 @{
     ViewBag.Title = "Edit";
@@ -133,11 +133,11 @@
                     @Html.ValidationMessageFor(m => m.ThoiGianGiaNhap, "", new { @class = "text-danger" })
                 </div>
                 <div class="input-wrapper">
-                    <label class="lb-form" class="address" for="name">Khu vực</label>
+                    <label class="lb-form" for="name">Khu Vực</label>
                     @Html.DropDownListFor(m => m.KhuVuc, Model.RegionList, new { @class = "form-control select-region" })
                 </div>
                 <div class="input-wrapper">
-                    <input class="ip-form" type="text" contenteditable="true" required @Html.TextBoxFor(m => m.GhiChu)
+                    <input class="ip-form" type="text" contenteditable="true" @Html.TextBoxFor(m => m.GhiChu)
                     <label class="lb-form" for="name">Ghi Chú</label>
                 </div>
             </form>
@@ -269,7 +269,7 @@
             </div>
         </div>
         <div class="button-form f-r">
-            <button class="button-cancel" id="cancel">Huỷ</button>
+            <button class="button-cancel" onclick="location.href='@Url.Action("ManageMember", "Member")'" type="button" name="cancel">Huỷ</button>
             <button class="button-lc" type="submit" name="save">Xác Nhận</button>
         </div>
     </div>
