@@ -26,14 +26,14 @@
                 @Html.ValidationMessageFor(model => model.TenCongTy, "", new { @class = "text-danger" })
             </div>
             <div class="input-wrapper">
-                @Html.TextBoxFor(model => model.NgayBatDauHopDong, "{0:yyyy-MM-dd}", new { @class = "ip-form", @type = "date", @required = "required" })
+                @Html.TextBoxFor(model => model.NgayBatDauHopDong, "{0:yyyy-MM-dd}", new { @class = "ip-form", @type = "date", @readonly = "readonly" })
                 <label class="lb-form" for="name">Ngày Bắt Đầu Hợp Đồng</label>
             </div>
             <div class="message-error">
                 @Html.ValidationMessageFor(model => model.NgayBatDauHopDong, "", new { @class = "text-danger" })
             </div>
             <div class="input-wrapper">
-                @Html.TextBoxFor(model => model.NgayKetThucHopDong, "{0:yyyy-MM-dd}", new { @class = "ip-form", @type = "date", @required = "required" })
+                @Html.TextBoxFor(model => model.NgayKetThucHopDong, "{0:yyyy-MM-dd}", new { @class = "ip-form", @type = "date", @readonly = "readonly" })
                 <label class="lb-form" for="name">Ngày Kế Thúc Hợp Đồng</label>
             </div>
             <div class="message-error">

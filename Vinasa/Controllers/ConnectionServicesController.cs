@@ -23,7 +23,7 @@ namespace Vinasa.Controllers
         // GET: ConnectionServices
         public ActionResult Index()
         {
-            return View(_db.SUDUNGDICHVUKETNOIs.OrderByDescending(s => s.ID).ToList());
+            return View(_db.SUDUNGDICHVUKETNOIs.ToList());
         }
         public ActionResult Details(int? id)
         {
@@ -102,10 +102,9 @@ namespace Vinasa.Controllers
                         {
                             string taxNumber = workSheet.Cells[rowIterator, 2].Value.ToString();
                             string companyName = workSheet.Cells[rowIterator, 3].Value.ToString();
-                            DateTime endServiceDay = Convert.ToDateTime(workSheet.Cells[rowIterator, 5].Value);
 
                             var usingConnectionServices = _db.SUDUNGDICHVUKETNOIs
-                                .FirstOrDefault(t => t.MaSoThue == taxNumber && t.TenCongTy == companyName && t.NgayKetThucHopDong == endServiceDay);
+                                .FirstOrDefault(t => t.MaSoThue == taxNumber && t.TenCongTy == companyName);
                             if (usingConnectionServices == null)
                             {
                                 var participants = new SUDUNGDICHVUKETNOI();
