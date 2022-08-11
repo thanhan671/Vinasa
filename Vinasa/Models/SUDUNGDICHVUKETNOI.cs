@@ -50,7 +50,6 @@ namespace Vinasa.Models
         public int GiaGoc { get; set; }
 
         [Required(ErrorMessage = "Vui lòng điền trường này!")]
-        [StringRequired(ErrorMessage = "Vui lòng điền trường này!")]
         [Range(0, int.MaxValue, ErrorMessage = "Giá trị phải lớn hơn hoặc bằng 0")]
         public int GiaUuDai { get; set; }
 

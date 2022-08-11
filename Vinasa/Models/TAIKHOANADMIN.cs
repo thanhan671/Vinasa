@@ -3,10 +3,12 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Web.Mvc;
 using Vinasa.Validation;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Vinasa.Models
 {
-    public partial class TAIKHOANADMIN
+    public partial class TAIKHOANADMIN : IValidatableObject
     {
         public int ID { get; set; }
 
@@ -52,5 +54,24 @@ namespace Vinasa.Models
 
         public virtual QUYEN QUYEN1 { get; set; }
         public virtual TRANGTHAI TRANGTHAI1 { get; set; }
+
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        {
+            SEP25Team16Entities2 _db = new SEP25Team16Entities2();
+            List<ValidationResult> validationResult = new List<ValidationResult>();
+
+            var taiKhoanAdmin = _db.TAIKHOANADMINs.FirstOrDefault(a => a.ID == ID);
+            if (taiKhoanAdmin == null)
+            {
+                if (!MatKhau.Equals(xacNhanMatKhau))
+                    validationResult.Add(new ValidationResult("Xác nhận mật khẩu không giống", new[] { "xacNhanMatKhau" }));
+            }
+            if(taiKhoanAdmin != null && matKhauMoi != null)
+            {
+                if (!matKhauMoi.Equals(xacNhanMatKhau))
+                    validationResult.Add(new ValidationResult("Xác nhận mật khẩu không giống", new[] { "xacNhanMatKhau" }));
+            }    
+            return validationResult;
+        }
     }
 }

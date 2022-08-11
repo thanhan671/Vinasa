@@ -1,4 +1,4 @@
-﻿@model Vinasa.Models.AdminAccountModels
+﻿@model IEnumerable<Vinasa.Models.TAIKHOANADMIN>
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/sbadmin.cshtml";
@@ -41,7 +41,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach (var item in ViewBag.adminDetails)
+                    @foreach (var item in Model)
                     {
                         <tr>
                             <td hidden>
@@ -70,9 +70,9 @@
                             </td>
                             @if ((int)Session["AccountType"] == 1)
                             {
-                               
+
                                 <td class="td-action" style="display:flex; justify-content:space-around; align-items:center">
-                                    @if((int)Session["AccountID"] != item.ID)
+                                    @if ((int)Session["AccountID"] != item.ID)
                                     {
                                         <li class="action-item" style="list-style-type: none; font-size: 18px">
                                             <a href="@Url.Action("Edit", "Admin", new { id = item.ID })" class="action-icon">
@@ -89,10 +89,10 @@
                                         </li>
                                     }
                                 </td>
-                                 
-                             }
+
+                            }
                         </tr>
-                     }
+                    }
                 </tbody>
             </table>
 
