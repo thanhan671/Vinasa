@@ -31,7 +31,7 @@
                     @foreach (var item in ViewBag.DonVi)
                     {
                         <tr>
-                            <td class="column-2">
+                            <td>
                                 <a href="@Url.Action("DetailActivitysJoined", "Statistic", new {q =  @item.TenDonVi})">
                                     @item.TenDonVi
                                 </a>
