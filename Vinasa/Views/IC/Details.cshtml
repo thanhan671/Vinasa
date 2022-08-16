@@ -137,7 +137,15 @@
                 }
             });
         });
-
-
+    </script>
+    <script type="text/javascript">
+        (function ($) {
+            $("#btnExport").click(function () {
+                $("#dataTableArea").table2excel({
+                    filename: "ThongKe.xls"
+                });
+                toastr.success('Export excel successfully', 'Success');
+            });
+        })(jQuery);
     </script>
 }
