@@ -86,11 +86,11 @@ namespace Vinasa.Controllers
                         var noOfRow = workSheet.Dimension.End.Row;
                         for (int rowIterator = 2; rowIterator <= noOfRow; rowIterator++)
                         {
-                            string taxNumber = workSheet.Cells[rowIterator, 2].Value.ToString();
-                            string companyName = workSheet.Cells[rowIterator, 3].Value.ToString();
+                            string maSoThue = workSheet.Cells[rowIterator, 2].Value.ToString();
+                            string tenCongTy = workSheet.Cells[rowIterator, 3].Value.ToString();
 
                             var kyPhi = _db.KyPhis
-                                .FirstOrDefault(t => t.MaSoThue == taxNumber && t.TenCongTy == companyName);
+                                .FirstOrDefault(t => t.MaSoThue == maSoThue && t.TenCongTy == tenCongTy);
                             if (kyPhi == null)
                             {
                                 var participants = new KyPhi();
