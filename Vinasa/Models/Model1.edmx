@@ -15,6 +15,20 @@
           <Property Name="Model" Type="varbinary(max)" Nullable="false" />
           <Property Name="ProductVersion" Type="nvarchar" MaxLength="32" Nullable="false" />
         </EntityType>
+        <EntityType Name="DongPhi">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MaSoThue" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="TenCongTy" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="NguoiNhanPhieuThu" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Sdt" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="NgayChuyenTien" Type="datetime" Nullable="false" />
+          <Property Name="NgayGuiPhieuThu" Type="datetime" Nullable="false" />
+          <Property Name="SoTienDong" Type="money" Nullable="false" />
+          <Property Name="GhiChu" Type="nvarchar(max)" />
+        </EntityType>
         <EntityType Name="GIAITHUONG">
           <Key>
             <PropertyRef Name="Id" />
@@ -92,7 +106,7 @@
           <Property Name="SdtKeToan" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="EmailKeToan" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Fanpage" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="ThoiGianGiaNhap" Type="datetime" />
+          <Property Name="ThoiGianGiaNhap" Type="datetime" Nullable="false" />
           <Property Name="KhuVuc" Type="int" Nullable="false" />
           <Property Name="GhiChu" Type="nvarchar(max)" />
         </EntityType>
@@ -115,6 +129,16 @@
           </Key>
           <Property Name="IDKhuVuc" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="TenKhuVuc" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="KyPhi">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MaSoThue" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="TenCongTy" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Nam" Type="int" Nullable="false" />
+          <Property Name="SoTienDong" Type="money" Nullable="false" />
         </EntityType>
         <EntityType Name="NGUOINHANGIAITHUONG">
           <Key>
@@ -394,12 +418,14 @@
         <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <EntityContainer Name="SEP25Team16ModelStoreContainer">
           <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DongPhi" EntityType="Self.DongPhi" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="GIAITHUONG" EntityType="Self.GIAITHUONG" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="HOINGHIQUOCTE" EntityType="Self.HOINGHIQUOCTE" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="HoiPhi" EntityType="Self.HoiPhi" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="HOIVIEN" EntityType="Self.HOIVIEN" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="KHOAHOC" EntityType="Self.KHOAHOC" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="KHUVUC" EntityType="Self.KHUVUC" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="KyPhi" EntityType="Self.KyPhi" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="NGUOINHANGIAITHUONG" EntityType="Self.NGUOINHANGIAITHUONG" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Provinces" EntityType="Self.Provinces" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="QUYEN" EntityType="Self.QUYEN" Schema="dbo" store:Type="Tables" />
@@ -553,6 +579,8 @@
           <EntitySet Name="SUDUNGDICHVUKHACs" EntityType="SEP25Team16Model.SUDUNGDICHVUKHAC" />
           <EntitySet Name="C__MigrationHistory" EntityType="SEP25Team16Model.C__MigrationHistory" />
           <EntitySet Name="HoiPhis" EntityType="SEP25Team16Model.HoiPhi" />
+          <EntitySet Name="DongPhis" EntityType="SEP25Team16Model.DongPhi" />
+          <EntitySet Name="KyPhis" EntityType="SEP25Team16Model.KyPhi" />
         </EntityContainer>
         <EntityType Name="Province">
           <Key>
@@ -828,7 +856,7 @@
           <Property Name="SdtKeToan" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="EmailKeToan" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Fanpage" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="ThoiGianGiaNhap" Type="DateTime" />
+          <Property Name="ThoiGianGiaNhap" Type="DateTime" Precision="3" Nullable="false" />
           <Property Name="KhuVuc" Type="Int32" Nullable="false" />
           <Property Name="GhiChu" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="KHUVUC1" Relationship="SEP25Team16Model.FK_HOIVIEN_KHUVUC" FromRole="HOIVIEN" ToRole="KHUVUC" />
@@ -912,6 +940,30 @@
           <Property Name="NgayChuyenTien" Type="DateTime" Precision="3" />
           <Property Name="NgayGuiPhieuThu" Type="DateTime" Precision="3" />
           <Property Name="GhiChu" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="DongPhi">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MaSoThue" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="TenCongTy" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="NguoiNhanPhieuThu" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Sdt" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="NgayChuyenTien" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="NgayGuiPhieuThu" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="SoTienDong" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="GhiChu" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="KyPhi">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MaSoThue" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="TenCongTy" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Nam" Type="Int32" Nullable="false" />
+          <Property Name="SoTienDong" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -1242,6 +1294,32 @@
                 <ScalarProperty Name="TenCongTy" ColumnName="TenCongTy" />
                 <ScalarProperty Name="MaSoThue" ColumnName="MaSoThue" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DongPhis">
+            <EntityTypeMapping TypeName="SEP25Team16Model.DongPhi">
+              <MappingFragment StoreEntitySet="DongPhi">
+                <ScalarProperty Name="GhiChu" ColumnName="GhiChu" />
+                <ScalarProperty Name="SoTienDong" ColumnName="SoTienDong" />
+                <ScalarProperty Name="NgayGuiPhieuThu" ColumnName="NgayGuiPhieuThu" />
+                <ScalarProperty Name="NgayChuyenTien" ColumnName="NgayChuyenTien" />
+                <ScalarProperty Name="Sdt" ColumnName="Sdt" />
+                <ScalarProperty Name="NguoiNhanPhieuThu" ColumnName="NguoiNhanPhieuThu" />
+                <ScalarProperty Name="TenCongTy" ColumnName="TenCongTy" />
+                <ScalarProperty Name="MaSoThue" ColumnName="MaSoThue" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="KyPhis">
+            <EntityTypeMapping TypeName="SEP25Team16Model.KyPhi">
+              <MappingFragment StoreEntitySet="KyPhi">
+                <ScalarProperty Name="SoTienDong" ColumnName="SoTienDong" />
+                <ScalarProperty Name="Nam" ColumnName="Nam" />
+                <ScalarProperty Name="TenCongTy" ColumnName="TenCongTy" />
+                <ScalarProperty Name="MaSoThue" ColumnName="MaSoThue" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

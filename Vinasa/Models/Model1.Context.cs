@@ -45,6 +45,8 @@ namespace Vinasa.Models
         public DbSet<SUDUNGDICHVUKHAC> SUDUNGDICHVUKHACs { get; set; }
         public DbSet<C__MigrationHistory> C__MigrationHistory { get; set; }
         public DbSet<HoiPhi> HoiPhis { get; set; }
+        public DbSet<DongPhi> DongPhis { get; set; }
+        public DbSet<KyPhi> KyPhis { get; set; }
     
     }
 }

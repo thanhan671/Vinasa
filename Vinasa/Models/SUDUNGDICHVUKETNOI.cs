@@ -16,7 +16,7 @@ namespace Vinasa.Models
     using System.Web;
     using Vinasa.Validation;
 
-    public partial class SUDUNGDICHVUKETNOI 
+    public partial class SUDUNGDICHVUKETNOI
     {
         public int ID { get; set; }
 
