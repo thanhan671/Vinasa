@@ -1,4 +1,4 @@
-﻿@model IEnumerable < Vinasa.Models.HOIVIEN>
+﻿@model IEnumerable < Vinasa.Models.BusinessByAreaViewModel>
 @{
     ViewBag.Title = "BusinessByArea";
     Layout = "~/Views/Shared/sbadmin.cshtml";
@@ -17,22 +17,14 @@
     </div>
     <div class="card-body">
         <div class="table-responsive">
-            <div id="filter-fade" class="d-none selectdiv">
-                <select class="select-sort form-select d-inline mr-2" id="dropdown-filter">
-                    <option value="-1">Tất Cả</option>
-                    <option value="1">Bắc</option>
-                    <option value="2">Trung</option>
-                    <option value="3">Nam</option>
-                </select>
-            </div>
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                 <thead>
                     <tr>
                         <th>
-                            Tên Đơn Vị
+                            Khu Vực
                         </th>
                         <th>
-                            Khu Vực
+                            Số lượng doanh nghiệp
                         </th>
                     </tr>
                 </thead>
@@ -41,10 +33,10 @@
                     {
                         <tr>
                             <td class="column-2">
-                                @item.TenTiengViet
+                                @item.Ten
                             </td>
                             <td>
-                                @item.KHUVUC1.TenKhuVuc
+                                @item.SoLuong
                             </td>
                         </tr>
                     }
@@ -53,22 +45,3 @@
         </div>
     </div>
 </div>
-
-@section Scripts {
-    <script type="text/javascript">
-
-        $(function () {
-            $('#dataTable_filter').prepend($('#dropdown-filter')).clone();
-            $('#filter-fade').remove();
-
-            $('#dropdown-filter').val(@ViewBag.filterId);
-
-            $('#dropdown-filter').on('change', function () {
-                const id = $(this).val();
-                var url = '@Url.Action("BusinessByArea", "Statistic", new { id = "__id__" })';
-                window.location.href = url.replace('__id__', id);
-            })
-        })
-
-    </script>
-}

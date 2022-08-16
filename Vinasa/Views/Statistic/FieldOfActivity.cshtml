@@ -1,4 +1,5 @@
-﻿
+﻿@model IEnumerable<Vinasa.Models.FieldOfActivityViewModel>
+
 @{
     ViewBag.Title = "FieldOfActivity";
     Layout = "~/Views/Shared/sbadmin.cshtml";
@@ -16,24 +17,14 @@
     </div>
     <div class="card-body">
         <div class="table-responsive">
-            <div id="filter-fade" class="d-none selectdiv">
-                <select class="select-sort form-select d-inline mr-2" id="dropdown-filter">
-                    <option value="-1">Tất Cả</option>
-                    <option value="1">Công Nghệ Thông Tin</option>
-                    <option value="2">Đơn Vị Ứng Dụng CNTT</option>
-                    <option value="3">Cơ Quan Quản Lý Nhà Nước</option>
-                    <option value="4">Đại Sứ Quán/Thương Vụ</option>
-                    <option value="5">Nhà Tài Trợ</option>
-                </select>
-            </div>
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                 <thead>
                     <tr>
                         <th>
-                            Tên Đơn Vị
+                            Lĩnh Vực Hoạt Động
                         </th>
                         <th>
-                            Lĩnh Vực Hoạt Động
+                            Số lượng doanh nghiệp
                         </th>
                     </tr>
                 </thead>
@@ -43,10 +34,10 @@
                     {
                         <tr>
                             <td class="column-2">
-                                @item.TenTiengViet
+                                @item.Ten
                             </td>
                             <td>
-                                @item.LinhVucHoatDong
+                                @item.SoLuong
                             </td>
                         </tr>
                     }
@@ -55,23 +46,3 @@
         </div>
     </div>
 </div>
-
-@section Scripts {
-    <script type="text/javascript">
-
-        $(function () {
-            $('#dataTable_filter').prepend($('#dropdown-filter')).clone();
-            $('#filter-fade').remove();
-
-            $('#dropdown-filter').val(@ViewBag.filterId);
-
-            $('#dropdown-filter').on('change', function () {
-                const id = $(this).val();
-                var url = '@Url.Action("FieldOfActivity", "Statistic", new { id = "__id__" })';
-                window.location.href = url.replace('__id__', id);
-            })
-        })
-
-    </script>
-}
-
