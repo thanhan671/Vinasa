@@ -115,6 +115,43 @@
                     <span>Dịch Vụ Khác</span>
                 </a>
             </div>
+            @{
+                var txtFee = ViewContext.RouteData.Values["Action"].ToString();
+                var selectFee = "";
+
+                if (txtFee == "ManagePayFees" || txtFee == "ManageFeePeriod")
+                {
+                    selectFee = "active";
+                }
+                else
+                {
+                    selectFee = "";
+                }
+
+                <div class="nav-item @selectFee" id="nav-item" data-toggle="collapse" data-target="#collapsePages-fee"
+                     aria-expanded="false" aria-controls="collapsePages-fee">
+                    <a class="nav-link" href="#" onclick="return false;">
+                        <i class="fas fa-fw fa-money-bill"></i>
+                        <span>
+                            Hội Phí
+                        </span>
+                        <i class="fas fa-caret-down"></i>
+                    </a>
+                    <div id="collapsePages-fee" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                        <div class="bg-submenu py-2 collapse-inner rounded">
+                            <a class="collapse-item" href="#">
+                                <span class="fas fa-caret-right"></span>
+                                Kỳ Phí
+                            </a>
+                            <a class="collapse-item" href="#">
+                                <span class="fas fa-caret-right"></span>
+                                Đóng Phí
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            }
+
             <hr class="sidebar-divider d-none d-md-block">
             @{
                 var txtStatistic = ViewContext.RouteData.Values["Action"].ToString();
@@ -280,6 +317,7 @@
             }
         })
     </script>
+
     @RenderSection("scripts", required: false)
 
 </body>
