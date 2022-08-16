@@ -185,6 +185,8 @@
     <Compile Include="Controllers\HoiPhiController.cs" />
     <Compile Include="Controllers\ICController.cs" />
     <Compile Include="Controllers\ICParticipantsController.cs" />
+    <Compile Include="Controllers\MemberPayFeesController.cs" />
+    <Compile Include="Controllers\MemberFeePeriodController.cs" />
     <Compile Include="Controllers\NGUOINHANGIAITHUONGController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MemberController.cs" />
@@ -362,7 +364,8 @@
     <Content Include="Content\Files\MauGiaiThuong.xlsx" />
     <Content Include="Content\Files\MauDichVuKhac.xlsx" />
     <Content Include="Content\Files\MauDichVuKetNoi.xlsx" />
-    <Content Include="Content\Files\MauHoiPhi.xlsx" />
+    <Content Include="Content\Files\MauDongPhi.xlsx" />
+    <Content Include="Content\Files\MauKyPhi.xlsx" />
     <None Include="Properties\PublishProfiles\FTPProfile.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
@@ -2434,6 +2437,10 @@
     <Content Include="Views\HoiPhi\Details.cshtml" />
     <Content Include="Views\HoiPhi\Edit.cshtml" />
     <Content Include="Views\HoiPhi\Index.cshtml" />
+    <Content Include="Views\MemberPayFees\ManagePayFees.cshtml" />
+    <Content Include="Views\MemberFeePeriod\ManageFeesPeriod.cshtml" />
+    <Content Include="Views\MemberFeePeriod\Edit.cshtml" />
+    <Content Include="Views\MemberPayFees\Edit.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -2443,6 +2450,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\MemberFees\" />
+    <Folder Include="Views\MemberPayPeriod\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
