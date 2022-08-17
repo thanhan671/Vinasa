@@ -108,57 +108,68 @@ namespace Vinasa.Controllers
                         var workSheet = currentSheet.First();
                         var noOfCol = workSheet.Dimension.End.Column;
                         var noOfRow = workSheet.Dimension.End.Row;
-                        for (int rowIterator = 2; rowIterator <= noOfRow; rowIterator++)
+                        if (noOfCol != 36)
                         {
-                            string maSoThue = workSheet.Cells[rowIterator, 2].Value.ToString();
-                            string tenDonVi = workSheet.Cells[rowIterator, 3].Value.ToString();
-                            var hoiVien = _db.HOIVIENs
-                                .FirstOrDefault(t => t.MaSoThue == maSoThue && t.TenTiengViet == tenDonVi);
-                            if (hoiVien == null)
+                            Session["ViewBag.Success"] = null;
+                            Session["ViewBag.Column"] = "Số cột dữ liệu của file không đúng mẫu, vui lòng tải mẫu Excel và thử lại !";
+                        }
+                        else
+                        {
+                            for (int rowIterator = 2; rowIterator <= noOfRow; rowIterator++)
                             {
-                                var member = new HOIVIEN();
-                                member.MaSoThue = workSheet.Cells[rowIterator, 2].Value.ToString();
-                                member.TenTiengViet = workSheet.Cells[rowIterator, 3].Value.ToString();
-                                member.TenTiengAnh = workSheet.Cells[rowIterator, 4].Value.ToString();
-                                member.TenVietTat = workSheet.Cells[rowIterator, 5].Value.ToString();
-                                member.NgayThanhLap = Convert.ToDateTime(workSheet.Cells[rowIterator, 6].Value);
-                                member.Website = workSheet.Cells[rowIterator, 7].Value.ToString();
-                                member.SdtCongTy = workSheet.Cells[rowIterator, 8].Value.ToString();
-                                member.EmailCongTy = workSheet.Cells[rowIterator, 9].Value.ToString();
-                                member.DiaChiGiaoDich = workSheet.Cells[rowIterator, 10].Value.ToString();
-                                member.DiaChiTrenChungTu = workSheet.Cells[rowIterator, 11].Value.ToString();
-                                member.SoLuongNhanVien = Convert.ToInt32(workSheet.Cells[rowIterator, 12].Value);
-                                member.SoLuongLapTrinhVien = Convert.ToInt32(workSheet.Cells[rowIterator, 13].Value);
-                                member.ThiTruongNoiDia = workSheet.Cells[rowIterator, 14].Value.ToString();
-                                member.ThiTruongQuocTe = workSheet.Cells[rowIterator, 15].Value.ToString();
-                                member.LinhVucHoatDong = workSheet.Cells[rowIterator, 16].Value.ToString();
-                                member.LanhDao = workSheet.Cells[rowIterator, 17].Value.ToString();
-                                member.ChucDanhLanhDao = workSheet.Cells[rowIterator, 18].Value.ToString();
-                                member.SdtLanhDao = workSheet.Cells[rowIterator, 19].Value.ToString();
-                                member.EmailLanhDao = workSheet.Cells[rowIterator, 20].Value.ToString();
-                                member.DaiDienMarketing = workSheet.Cells[rowIterator, 21].Value.ToString();
-                                member.ChucNangMarketing = workSheet.Cells[rowIterator, 22].Value.ToString();
-                                member.SdtMarketing = workSheet.Cells[rowIterator, 23].Value.ToString();
-                                member.EmailMarketing = workSheet.Cells[rowIterator, 24].Value.ToString();
-                                member.DaiDienNhanSu = workSheet.Cells[rowIterator, 25].Value.ToString();
-                                member.ChucDanhNhanSu = workSheet.Cells[rowIterator, 26].Value.ToString();
-                                member.SdtNhanSu = workSheet.Cells[rowIterator, 27].Value.ToString();
-                                member.EmailNhanSu = workSheet.Cells[rowIterator, 28].Value.ToString();
-                                member.DaiDienKeToan = workSheet.Cells[rowIterator, 29].Value.ToString();
-                                member.ChucDanhKeToan = workSheet.Cells[rowIterator, 30].Value.ToString();
-                                member.SdtKeToan = workSheet.Cells[rowIterator, 31].Value.ToString();
-                                member.EmailKeToan = workSheet.Cells[rowIterator, 32].Value.ToString();
-                                member.Fanpage = workSheet.Cells[rowIterator, 33].Value.ToString();
-                                member.ThoiGianGiaNhap = Convert.ToDateTime(workSheet.Cells[rowIterator, 34].Value);
-                                member.KhuVuc = Convert.ToInt32(workSheet.Cells[rowIterator, 35].Value);
-                                member.GhiChu = Convert.ToString(workSheet.Cells[rowIterator, 36].Value);
-                                memberlist.Add(member);
-                                addRow++;
+                                string maSoThue = workSheet.Cells[rowIterator, 2].Value.ToString();
+                                string tenDonVi = workSheet.Cells[rowIterator, 3].Value.ToString();
+                                var hoiVien = _db.HOIVIENs
+                                    .FirstOrDefault(t => t.MaSoThue == maSoThue && t.TenTiengViet == tenDonVi);
+                                if (hoiVien == null)
+                                {
+                                    var member = new HOIVIEN();
+                                    member.MaSoThue = workSheet.Cells[rowIterator, 2].Value.ToString();
+                                    member.TenTiengViet = workSheet.Cells[rowIterator, 3].Value.ToString();
+                                    member.TenTiengAnh = workSheet.Cells[rowIterator, 4].Value.ToString();
+                                    member.TenVietTat = workSheet.Cells[rowIterator, 5].Value.ToString();
+                                    member.NgayThanhLap = Convert.ToDateTime(workSheet.Cells[rowIterator, 6].Value);
+                                    member.Website = workSheet.Cells[rowIterator, 7].Value.ToString();
+                                    member.SdtCongTy = workSheet.Cells[rowIterator, 8].Value.ToString();
+                                    member.EmailCongTy = workSheet.Cells[rowIterator, 9].Value.ToString();
+                                    member.DiaChiGiaoDich = workSheet.Cells[rowIterator, 10].Value.ToString();
+                                    member.DiaChiTrenChungTu = workSheet.Cells[rowIterator, 11].Value.ToString();
+                                    member.SoLuongNhanVien = Convert.ToInt32(workSheet.Cells[rowIterator, 12].Value);
+                                    member.SoLuongLapTrinhVien = Convert.ToInt32(workSheet.Cells[rowIterator, 13].Value);
+                                    member.ThiTruongNoiDia = workSheet.Cells[rowIterator, 14].Value.ToString();
+                                    member.ThiTruongQuocTe = workSheet.Cells[rowIterator, 15].Value.ToString();
+                                    member.LinhVucHoatDong = workSheet.Cells[rowIterator, 16].Value.ToString();
+                                    member.LanhDao = workSheet.Cells[rowIterator, 17].Value.ToString();
+                                    member.ChucDanhLanhDao = workSheet.Cells[rowIterator, 18].Value.ToString();
+                                    member.SdtLanhDao = workSheet.Cells[rowIterator, 19].Value.ToString();
+                                    member.EmailLanhDao = workSheet.Cells[rowIterator, 20].Value.ToString();
+                                    member.DaiDienMarketing = workSheet.Cells[rowIterator, 21].Value.ToString();
+                                    member.ChucNangMarketing = workSheet.Cells[rowIterator, 22].Value.ToString();
+                                    member.SdtMarketing = workSheet.Cells[rowIterator, 23].Value.ToString();
+                                    member.EmailMarketing = workSheet.Cells[rowIterator, 24].Value.ToString();
+                                    member.DaiDienNhanSu = workSheet.Cells[rowIterator, 25].Value.ToString();
+                                    member.ChucDanhNhanSu = workSheet.Cells[rowIterator, 26].Value.ToString();
+                                    member.SdtNhanSu = workSheet.Cells[rowIterator, 27].Value.ToString();
+                                    member.EmailNhanSu = workSheet.Cells[rowIterator, 28].Value.ToString();
+                                    member.DaiDienKeToan = workSheet.Cells[rowIterator, 29].Value.ToString();
+                                    member.ChucDanhKeToan = workSheet.Cells[rowIterator, 30].Value.ToString();
+                                    member.SdtKeToan = workSheet.Cells[rowIterator, 31].Value.ToString();
+                                    member.EmailKeToan = workSheet.Cells[rowIterator, 32].Value.ToString();
+                                    member.Fanpage = workSheet.Cells[rowIterator, 33].Value.ToString();
+                                    member.ThoiGianGiaNhap = Convert.ToDateTime(workSheet.Cells[rowIterator, 34].Value);
+                                    member.KhuVuc = Convert.ToInt32(workSheet.Cells[rowIterator, 35].Value);
+                                    member.GhiChu = Convert.ToString(workSheet.Cells[rowIterator, 36].Value);
+                                    memberlist.Add(member);
+                                    addRow++;
+                                }
+                                else
+                                {
+                                    rowExist++;
+                                }
                             }
-                            else
-                            {
-                                rowExist++;
-                            }
+                            Session["ViewBag.Column"] = null;
+                            Session["ViewBag.Success"] = addRow;
+                            Session["ViewBag.Exist"] = rowExist;
                         }
                     }
                 }
@@ -184,8 +195,6 @@ namespace Vinasa.Controllers
                     throw new HttpException(e.ToString());
                 }
             }
-            Session["ViewBag.Success"] = addRow;
-            Session["ViewBag.Exist"] = rowExist;
             return RedirectToAction("ManageMember", "Member", new { area = " " });
         }
 

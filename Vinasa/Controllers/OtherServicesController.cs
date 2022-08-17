@@ -109,36 +109,47 @@ namespace Vinasa.Controllers
                         var workSheet = currentSheet.First();
                         var noOfCol = workSheet.Dimension.End.Column;
                         var noOfRow = workSheet.Dimension.End.Row;
-                        for (int rowIterator = 2; rowIterator <= noOfRow; rowIterator++)
+                        if (noOfCol != 14)
                         {
-                            string taxNumber = workSheet.Cells[rowIterator, 2].Value.ToString();
-                            string companyName = workSheet.Cells[rowIterator, 3].Value.ToString();
+                            Session["ViewBag.Success"] = null;
+                            Session["ViewBag.Column"] = "Số cột dữ liệu của file không đúng mẫu, vui lòng tải mẫu Excel và thử lại !";
+                        }
+                        else
+                        {
+                            for (int rowIterator = 2; rowIterator <= noOfRow; rowIterator++)
+                            {
+                                string taxNumber = workSheet.Cells[rowIterator, 2].Value.ToString();
+                                string companyName = workSheet.Cells[rowIterator, 3].Value.ToString();
 
-                            var dichVuKhac = _db.SUDUNGDICHVUKHACs
-                                .FirstOrDefault(t => t.MaSoThue == taxNumber && t.TenCongTy == companyName);
-                            if (dichVuKhac == null)
-                            {
-                                var participants = new SUDUNGDICHVUKHAC();
-                                participants.MaSoThue = workSheet.Cells[rowIterator, 2].Value.ToString();
-                                participants.TenCongTy = workSheet.Cells[rowIterator, 3].Value.ToString();
-                                participants.NgayBatDauHopDong = Convert.ToDateTime(workSheet.Cells[rowIterator, 4].Value);
-                                participants.NgayKetThucHopDong = Convert.ToDateTime(workSheet.Cells[rowIterator, 5].Value);
-                                participants.TenDichVuKhac = workSheet.Cells[rowIterator, 6].Value.ToString();
-                                participants.GiaGoc = Convert.ToInt32(workSheet.Cells[rowIterator, 7].Value);
-                                participants.GiaUuDai = Convert.ToInt32(workSheet.Cells[rowIterator, 8].Value);
-                                participants.ChiecKhauVinasa = workSheet.Cells[rowIterator, 9].Value.ToString();
-                                participants.TenNguoiLienHe = workSheet.Cells[rowIterator, 10].Value.ToString();
-                                participants.ChucDanh = workSheet.Cells[rowIterator, 11].Value.ToString();
-                                participants.Email = workSheet.Cells[rowIterator, 12].Value.ToString();
-                                participants.DienThoai = workSheet.Cells[rowIterator, 13].Value.ToString();
-                                participants.GhiChu = Convert.ToString(workSheet.Cells[rowIterator, 14].Value);
-                                usingOtherServicesList.Add(participants);
-                                addRow++;
+                                var dichVuKhac = _db.SUDUNGDICHVUKHACs
+                                    .FirstOrDefault(t => t.MaSoThue == taxNumber && t.TenCongTy == companyName);
+                                if (dichVuKhac == null)
+                                {
+                                    var participants = new SUDUNGDICHVUKHAC();
+                                    participants.MaSoThue = workSheet.Cells[rowIterator, 2].Value.ToString();
+                                    participants.TenCongTy = workSheet.Cells[rowIterator, 3].Value.ToString();
+                                    participants.NgayBatDauHopDong = Convert.ToDateTime(workSheet.Cells[rowIterator, 4].Value);
+                                    participants.NgayKetThucHopDong = Convert.ToDateTime(workSheet.Cells[rowIterator, 5].Value);
+                                    participants.TenDichVuKhac = workSheet.Cells[rowIterator, 6].Value.ToString();
+                                    participants.GiaGoc = Convert.ToInt32(workSheet.Cells[rowIterator, 7].Value);
+                                    participants.GiaUuDai = Convert.ToInt32(workSheet.Cells[rowIterator, 8].Value);
+                                    participants.ChiecKhauVinasa = workSheet.Cells[rowIterator, 9].Value.ToString();
+                                    participants.TenNguoiLienHe = workSheet.Cells[rowIterator, 10].Value.ToString();
+                                    participants.ChucDanh = workSheet.Cells[rowIterator, 11].Value.ToString();
+                                    participants.Email = workSheet.Cells[rowIterator, 12].Value.ToString();
+                                    participants.DienThoai = workSheet.Cells[rowIterator, 13].Value.ToString();
+                                    participants.GhiChu = Convert.ToString(workSheet.Cells[rowIterator, 14].Value);
+                                    usingOtherServicesList.Add(participants);
+                                    addRow++;
+                                }
+                                else
+                                {
+                                    rowExist++;
+                                }
                             }
-                            else
-                            {
-                                rowExist++;
-                            }
+                            Session["ViewBag.Column"] = null;
+                            Session["ViewBag.Success"] = addRow;
+                            Session["ViewBag.Exist"] = rowExist;
                         }
                     }
                 }
@@ -164,8 +175,6 @@ namespace Vinasa.Controllers
                     throw new HttpException(e.ToString());
                 }
             }
-            Session["ViewBag.Success"] = addRow;
-            Session["ViewBag.Exist"] = rowExist;
             return RedirectToAction("Index", "OtherServices");
         }
     }

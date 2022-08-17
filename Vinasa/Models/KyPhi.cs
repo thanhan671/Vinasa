@@ -20,17 +20,10 @@ namespace Vinasa.Models
     {
         public int ID { get; set; }
 
-        [Required(ErrorMessage = "Vui lòng điền trường này!")]
-        [StringRequired(ErrorMessage = "Vui lòng điền trường này!")]
-        [RegularExpression(@"^[0-9]*$", ErrorMessage = "Không hợp lệ")]
         public string MaSoThue { get; set; }
 
-        [Required(ErrorMessage = "Vui lòng điền trường này!")]
-        [StringRequired(ErrorMessage = "Vui lòng điền trường này!")]
         public string TenCongTy { get; set; }
 
-        [Required(ErrorMessage = "Vui lòng điền trường này!")]
-        [StringRequired(ErrorMessage = "Vui lòng điền trường này!")]
         public int Nam { get; set; }
         public decimal SoTienDong { get; set; }
     }

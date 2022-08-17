@@ -147,29 +147,40 @@ namespace Vinasa.Controllers
                         var workSheet = currentSheet.First();
                         var noOfCol = workSheet.Dimension.End.Column;
                         var noOfRow = workSheet.Dimension.End.Row;
-                        for (int rowIterator = 2; rowIterator <= noOfRow; rowIterator++)
+                        if (noOfCol != 8)
                         {
-                            string Hoten = workSheet.Cells[rowIterator, 2].Value.ToString();
-                            var THAMGIAKHOAHOC = _db.THAMGIAKHOAHOCs
-                                .FirstOrDefault(t => t.HoTen == Hoten && t.IdKhoaHoc == id);
-                            if (THAMGIAKHOAHOC == null)
+                            Session["ViewBag.Success"] = null;
+                            Session["ViewBag.Column"] = "Số cột dữ liệu của file không đúng mẫu, vui lòng tải mẫu Excel và thử lại !";
+                        }
+                        else
+                        {
+                            for (int rowIterator = 2; rowIterator <= noOfRow; rowIterator++)
                             {
-                                var participants = new THAMGIAKHOAHOC();
-                                participants.HoTen = workSheet.Cells[rowIterator, 2].Value.ToString();
-                                participants.CongTyToChucCoQuan = workSheet.Cells[rowIterator, 3].Value.ToString();
-                                participants.ChucDanh = workSheet.Cells[rowIterator, 4].Value.ToString();
-                                participants.Email = workSheet.Cells[rowIterator, 5].Value.ToString();
-                                participants.Sdt = workSheet.Cells[rowIterator, 6].Value.ToString();
-                                participants.SoLuongHocVien = Convert.ToInt32(workSheet.Cells[rowIterator, 7].Value);
-                                participants.HoiVienVinasa = Convert.ToBoolean(workSheet.Cells[rowIterator, 8].Value);
-                                participants.IdKhoaHoc = id;
-                                courseParticipantsList.Add(participants);
-                                addRow++;
+                                string Hoten = workSheet.Cells[rowIterator, 2].Value.ToString();
+                                var THAMGIAKHOAHOC = _db.THAMGIAKHOAHOCs
+                                    .FirstOrDefault(t => t.HoTen == Hoten && t.IdKhoaHoc == id);
+                                if (THAMGIAKHOAHOC == null)
+                                {
+                                    var participants = new THAMGIAKHOAHOC();
+                                    participants.HoTen = workSheet.Cells[rowIterator, 2].Value.ToString();
+                                    participants.CongTyToChucCoQuan = workSheet.Cells[rowIterator, 3].Value.ToString();
+                                    participants.ChucDanh = workSheet.Cells[rowIterator, 4].Value.ToString();
+                                    participants.Email = workSheet.Cells[rowIterator, 5].Value.ToString();
+                                    participants.Sdt = workSheet.Cells[rowIterator, 6].Value.ToString();
+                                    participants.SoLuongHocVien = Convert.ToInt32(workSheet.Cells[rowIterator, 7].Value);
+                                    participants.HoiVienVinasa = Convert.ToBoolean(workSheet.Cells[rowIterator, 8].Value);
+                                    participants.IdKhoaHoc = id;
+                                    courseParticipantsList.Add(participants);
+                                    addRow++;
+                                }
+                                else
+                                {
+                                    rowExist++;
+                                }
                             }
-                            else
-                            {
-                                rowExist++;
-                            }
+                            Session["ViewBag.Column"] = null;
+                            Session["ViewBag.Success"] = addRow;
+                            Session["ViewBag.Exist"] = rowExist;
                         }
                     }
                 }
@@ -195,8 +206,6 @@ namespace Vinasa.Controllers
                     throw new HttpException(e.ToString());
                 }
             }
-            Session["ViewBag.Success"] = addRow;
-            Session["ViewBag.Exist"] = rowExist;
             return RedirectToAction("Details", "Course", new { id });
         }
 

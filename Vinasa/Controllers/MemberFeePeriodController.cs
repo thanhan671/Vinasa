@@ -42,7 +42,7 @@ namespace Vinasa.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID, MaSoThue, Nam, SoTienDong")] KyPhi kyPhi)
+        public ActionResult Edit([Bind(Include = "ID, MaSoThue, TenCongTy, Nam, SoTienDong")] KyPhi kyPhi)
         {
             if (ModelState.IsValid)
             {
