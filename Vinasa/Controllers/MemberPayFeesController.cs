@@ -83,7 +83,7 @@ namespace Vinasa.Controllers
                         var workSheet = currentSheet.First();
                         var noOfCol = workSheet.Dimension.End.Column;
                         var noOfRow = workSheet.Dimension.End.Row;
-                        if (noOfCol != 5)
+                        if (noOfCol != 9)
                         {
                             Session["ViewBag.Success"] = null;
                             Session["ViewBag.Column"] = "Số cột dữ liệu của file không đúng mẫu, vui lòng tải mẫu Excel và thử lại !";
