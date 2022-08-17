@@ -72,11 +72,30 @@ namespace Vinasa.Controllers
             ViewBag.TenDonVi = q;
             return View();
         }
-        public ActionResult BusinessByArea(int? id = -1)
+        public ActionResult BusinessByArea()
         {
-            var business = db.HOIVIENs.Where(it => it.KhuVuc == id || id == -1).ToList();
-            ViewBag.filterId = id;
-            return View(business);
+            var business = db.HOIVIENs.ToList();
+            var viewModels = new List<BusinessByAreaViewModel>();
+
+            viewModels.Add(new BusinessByAreaViewModel()
+            {
+                Ten = "Bắc",
+                SoLuong = business.Count(it => it.KhuVuc == 1)
+            });
+
+            viewModels.Add(new BusinessByAreaViewModel()
+            {
+                Ten = "Trung",
+                SoLuong = business.Count(it => it.KhuVuc == 2)
+            });
+
+            viewModels.Add(new BusinessByAreaViewModel()
+            {
+                Ten = "Nam",
+                SoLuong = business.Count(it => it.KhuVuc == 3)
+            });
+
+            return View(viewModels);
         }
 
         public ActionResult SizeOfPersonnel(int? id = -1)
@@ -98,29 +117,42 @@ namespace Vinasa.Controllers
             ViewBag.filterId = id;
             return View(business);
         }
-        public ActionResult FieldOfActivity(int? id = -1)
+        public ActionResult FieldOfActivity()
         {
             var business = db.HOIVIENs.ToList();
-            switch (id)
+            var viewModels = new List<FieldOfActivityViewModel>();
+
+            viewModels.Add(new FieldOfActivityViewModel()
             {
-                case 1:
-                    business = db.HOIVIENs.Where(it => it.LinhVucHoatDong.Contains("Công Nghệ Thông Tin")).ToList();
-                    break;
-                case 2:
-                    business = db.HOIVIENs.Where(it => it.LinhVucHoatDong.Contains("Đơn Vị Ứng Dụng CNTT")).ToList();
-                    break;
-                case 3:
-                    business = db.HOIVIENs.Where(it => it.LinhVucHoatDong.Contains("Cơ Quan Quản Lý Nhà Nước")).ToList();
-                    break;
-                case 4:
-                    business = db.HOIVIENs.Where(it => it.LinhVucHoatDong.Contains("Đại Sứ Quán/Thương Vụ")).ToList();
-                    break;
-                case 5:
-                    business = db.HOIVIENs.Where(it => it.LinhVucHoatDong.Contains("Nhà Tài Trợ")).ToList();
-                    break;
-            }
-            ViewBag.filterId = id;
-            return View(business);
+                Ten = "Công Nghệ Thông Tin",
+                SoLuong = business.Count(it => it.LinhVucHoatDong.Contains("Công Nghệ Thông Tin"))
+            });
+
+            viewModels.Add(new FieldOfActivityViewModel()
+            {
+                Ten = "Đơn Vị Ứng Dụng CNTT",
+                SoLuong = business.Count(it => it.LinhVucHoatDong.Contains("Đơn Vị Ứng Dụng CNTT"))
+            });
+
+            viewModels.Add(new FieldOfActivityViewModel()
+            {
+                Ten = "Cơ Quan Quản Lý Nhà Nước",
+                SoLuong = business.Count(it => it.LinhVucHoatDong.Contains("Cơ Quan Quản Lý Nhà Nước"))
+            });
+
+            viewModels.Add(new FieldOfActivityViewModel()
+            {
+                Ten = "Đại Sứ Quán/Thương Vụ",
+                SoLuong = business.Count(it => it.LinhVucHoatDong.Contains("Đại Sứ Quán/Thương Vụ"))
+            });
+
+            viewModels.Add(new FieldOfActivityViewModel()
+            {
+                Ten = "Nhà Tài Trợ",
+                SoLuong = business.Count(it => it.LinhVucHoatDong.Contains("Nhà Tài Trợ"))
+            });
+
+            return View(viewModels);
         }
         public ActionResult TimeOfEstablishment(int? id = -1)
         {

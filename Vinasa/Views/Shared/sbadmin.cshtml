@@ -115,7 +115,42 @@
                     <span>Dịch Vụ Khác</span>
                 </a>
             </div>
-            <hr class="sidebar-divider d-none d-md-block">
+            @{
+                var txtFee = ViewContext.RouteData.Values["Action"].ToString();
+                var selectFee = "";
+
+                if (txtFee == "ManagePayFees" || txtFee == "ManageFeePeriod")
+                {
+                    selectFee = "active";
+                }
+                else
+                {
+                    selectFee = "";
+                }
+
+                <div class="nav-item @selectFee" id="nav-item" data-toggle="collapse" data-target="#collapsePages-fees"
+                     aria-expanded="false" aria-controls="collapsePages-fees">
+                    <a class="nav-link" href="#" onclick="return false;">
+                        <i class="fas fa-fw fa-user"></i>
+                        <span>
+                            Hội Phí
+                        </span>
+                        <i class="fas fa-caret-down"></i>
+                    </a>
+                    <div id="collapsePages-fees" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                        <div class="bg-submenu py-2 collapse-inner rounded">
+                            <a class="collapse-item" href="@Url.Action("ManageFeesPeriod","MemberFeePeriod")">
+                                <span class="fas fa-caret-right"></span>
+                                Kỳ Phí
+                            </a>
+                            <a class="collapse-item" href="@Url.Action("ManagePayFees","MemberPayFees")">
+                                <span class="fas fa-caret-right"></span>
+                                Đóng Phí
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            }            <hr class="sidebar-divider d-none d-md-block">
             @{
                 var txtStatistic = ViewContext.RouteData.Values["Action"].ToString();
                 var selectStatistic = "";
@@ -280,6 +315,7 @@
             }
         })
     </script>
+
     @RenderSection("scripts", required: false)
 
 </body>

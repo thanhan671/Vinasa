@@ -16,27 +16,13 @@ using Vinasa.Session_Attribute;
 namespace Vinasa.Controllers
 {
     [SessionAttributes]
-    public class ConnectionServicesController : Controller
+    public class MemberPayFeesController : Controller
     {
         private readonly SEP25Team16Entities2 _db = new SEP25Team16Entities2();
-
-        // GET: ConnectionServices
-        public ActionResult Index()
+        // GET: MemberFees
+        public ActionResult ManagePayFees()
         {
-            return View(_db.SUDUNGDICHVUKETNOIs.ToList());
-        }
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            SUDUNGDICHVUKETNOI usingConnectionServices = _db.SUDUNGDICHVUKETNOIs.Find(id);
-            if (usingConnectionServices == null)
-            {
-                return HttpNotFound();
-            }
-            return View(usingConnectionServices);
+            return View(_db.DongPhis.ToList());
         }
         public ActionResult Edit(int? id)
         {
@@ -44,44 +30,44 @@ namespace Vinasa.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            SUDUNGDICHVUKETNOI usingConnectionServices = _db.SUDUNGDICHVUKETNOIs.Find(id);
+            DongPhi dongPhi = _db.DongPhis.Find(id);
 
-            if (usingConnectionServices == null)
+            if (dongPhi == null)
             {
                 return HttpNotFound();
             }
 
-            return View(usingConnectionServices);
+            return View(dongPhi);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID, MaSoThue, TenCongTy, NgayBatDauHopDong, NgayKetThucHopDong, TenDichVu, GiaGoc, GiaUuDai, ChiecKhauVinasa, TenNguoiLienHe, ChucDanh, Email, DienThoai, GhiChu")] SUDUNGDICHVUKETNOI usingConnectionServices)
+        public ActionResult Edit([Bind(Include = "ID, MaSoThue, TenCongTy, NguoiNhanPhieuThu, Sdt, NgayChuyenTien, NgayGuiPhieuThu, SoTienDong, GhiChu")] DongPhi dongPhi)
         {
             if (ModelState.IsValid)
             {
-                _db.Entry(usingConnectionServices).State = System.Data.Entity.EntityState.Modified;
+                _db.Entry(dongPhi).State = System.Data.Entity.EntityState.Modified;
                 _db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("ManagePayFees");
             }
 
-            return View(usingConnectionServices);
+            return View(dongPhi);
         }
 
         public ActionResult Delete(int id)
         {
-            var usingConnetionServices = _db.SUDUNGDICHVUKETNOIs.Where(t => t.ID.Equals(id)).FirstOrDefault();
+            var dongPhi = _db.DongPhis.Where(t => t.ID.Equals(id)).FirstOrDefault();
 
-            _db.SUDUNGDICHVUKETNOIs.Remove(usingConnetionServices);
+            _db.DongPhis.Remove(dongPhi);
             _db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("ManagePayFees");
         }
 
         public ActionResult ImportExcel(FormCollection formCollection)
         {
             int addRow = 0;
             int rowExist = 0;
-            var usingConnectionServicesList = new List<SUDUNGDICHVUKETNOI>();
+            var dongPhiList = new List<DongPhi>();
             if (Request != null)
             {
                 HttpPostedFileBase file = Request.Files["UploadedFile"];
@@ -103,25 +89,20 @@ namespace Vinasa.Controllers
                             string taxNumber = workSheet.Cells[rowIterator, 2].Value.ToString();
                             string companyName = workSheet.Cells[rowIterator, 3].Value.ToString();
 
-                            var usingConnectionServices = _db.SUDUNGDICHVUKETNOIs
+                            var dongPhi = _db.DongPhis
                                 .FirstOrDefault(t => t.MaSoThue == taxNumber && t.TenCongTy == companyName);
-                            if (usingConnectionServices == null)
+                            if (dongPhi == null)
                             {
-                                var participants = new SUDUNGDICHVUKETNOI();
+                                var participants = new DongPhi();
                                 participants.MaSoThue = workSheet.Cells[rowIterator, 2].Value.ToString();
                                 participants.TenCongTy = workSheet.Cells[rowIterator, 3].Value.ToString();
-                                participants.NgayBatDauHopDong = Convert.ToDateTime(workSheet.Cells[rowIterator, 4].Value);
-                                participants.NgayKetThucHopDong = Convert.ToDateTime(workSheet.Cells[rowIterator, 5].Value);
-                                participants.TenDichVu = workSheet.Cells[rowIterator, 6].Value.ToString();
-                                participants.GiaGoc = Convert.ToInt32(workSheet.Cells[rowIterator, 7].Value);
-                                participants.GiaUuDai = Convert.ToInt32(workSheet.Cells[rowIterator, 8].Value);
-                                participants.ChiecKhauVinasa = workSheet.Cells[rowIterator, 9].Value.ToString();
-                                participants.TenNguoiLienHe = workSheet.Cells[rowIterator, 10].Value.ToString();
-                                participants.ChucDanh = workSheet.Cells[rowIterator, 11].Value.ToString();
-                                participants.Email = workSheet.Cells[rowIterator, 12].Value.ToString();
-                                participants.DienThoai = workSheet.Cells[rowIterator, 13].Value.ToString();
-                                participants.GhiChu = Convert.ToString(workSheet.Cells[rowIterator, 14].Value);
-                                usingConnectionServicesList.Add(participants);
+                                participants.NguoiNhanPhieuThu = workSheet.Cells[rowIterator, 4].Value.ToString();
+                                participants.Sdt = workSheet.Cells[rowIterator, 5].Value.ToString();
+                                participants.NgayChuyenTien = Convert.ToDateTime(workSheet.Cells[rowIterator, 6].Value);
+                                participants.NgayGuiPhieuThu = Convert.ToDateTime(workSheet.Cells[rowIterator, 7].Value);
+                                participants.SoTienDong = Convert.ToInt32(workSheet.Cells[rowIterator, 8].Value);
+                                participants.GhiChu = Convert.ToString(workSheet.Cells[rowIterator, 9].Value);
+                                dongPhiList.Add(participants);
                                 addRow++;
                             }
                             else
@@ -136,9 +117,9 @@ namespace Vinasa.Controllers
             {
                 try
                 {
-                    foreach (var item in usingConnectionServicesList)
+                    foreach (var item in dongPhiList)
                     {
-                        _db.SUDUNGDICHVUKETNOIs.Add(item);
+                        _db.DongPhis.Add(item);
                     }
                     _db.SaveChanges();
                 }
@@ -155,15 +136,15 @@ namespace Vinasa.Controllers
             }
             Session["ViewBag.Success"] = addRow;
             Session["ViewBag.Exist"] = rowExist;
-            return RedirectToAction("Index", "ConnectionServices");
+            return RedirectToAction("ManagePayFees", "MemberFees");
         }
         public FileResult Download()
         {
             string path = Server.MapPath("~/Content/Files");
-            string filename = Path.GetFileName("MauDichVuKetNoi.xlsx");
+            string filename = Path.GetFileName("MauDongPhi.xlsx");
 
             string fullPath = Path.Combine(path, filename);
-            return File(fullPath, "download/xlsx", "MauDichVuKetNoi.xlsx");
+            return File(fullPath, "download/xlsx", "MauDongPhi.xlsx");
         }
     }
 }

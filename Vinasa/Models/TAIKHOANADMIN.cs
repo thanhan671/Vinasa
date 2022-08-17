@@ -66,11 +66,12 @@ namespace Vinasa.Models
                 if (!MatKhau.Equals(xacNhanMatKhau))
                     validationResult.Add(new ValidationResult("Xác nhận mật khẩu không giống", new[] { "xacNhanMatKhau" }));
             }
-            if(taiKhoanAdmin != null && matKhauMoi != null)
+
+            if (taiKhoanAdmin != null && matKhauMoi != null)
             {
                 if (!matKhauMoi.Equals(xacNhanMatKhau))
                     validationResult.Add(new ValidationResult("Xác nhận mật khẩu không giống", new[] { "xacNhanMatKhau" }));
-            }    
+            }
             return validationResult;
         }
     }

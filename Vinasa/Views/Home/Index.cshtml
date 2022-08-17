@@ -117,6 +117,42 @@
                     <span>Dịch Vụ Khác</span>
                 </a>
             </div>
+            @{
+                var txtFee = ViewContext.RouteData.Values["Action"].ToString();
+                var selectFee = "";
+
+                if (txtFee == "ManagePayFees" || txtFee == "ManageFeePeriod")
+                {
+                    selectFee = "active";
+                }
+                else
+                {
+                    selectFee = "";
+                }
+
+                <div class="nav-item @selectFee" id="nav-item" data-toggle="collapse" data-target="#collapsePages-fees"
+                     aria-expanded="false" aria-controls="collapsePages-fees">
+                    <a class="nav-link" href="#" onclick="return false;">
+                        <i class="fas fa-fw fa-user"></i>
+                        <span>
+                            Hội Phí
+                        </span>
+                        <i class="fas fa-caret-down"></i>
+                    </a>
+                    <div id="collapsePages-fees" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                        <div class="bg-submenu py-2 collapse-inner rounded">
+                            <a class="collapse-item" href="@Url.Action("ManageFeesPeriod","MemberFeePeriod")">
+                                <span class="fas fa-caret-right"></span>
+                                Kỳ Phí
+                            </a>
+                            <a class="collapse-item" href="@Url.Action("ManagePayFees","MemberPayFees")">
+                                <span class="fas fa-caret-right"></span>
+                                Đóng Phí
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            }
             <hr class="sidebar-divider d-none d-md-block">
             @{
                 var txtStatistic = ViewContext.RouteData.Values["Action"].ToString();
@@ -178,110 +214,109 @@
             }
         </div>
 
-        <!-- End of Sidebar -->
-        <div id="content-wrapper-home" class="d-flex flex-column">
-            <video src="~/img/backgroundvideo.mp4" muted loop autoplay class="back-video"></video>
-            <div class="content">
-                <nav class="navbar navbar-expand navbar-light topbar mb-4 static-top shadow">
-                    <!-- Topbar Navbar -->
-                    <ul class="navbar-nav ml-auto">
-                        <!-- Nav Item - User Information -->
-                        <li class="nav-item dropdown no-arrow">
-                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
-                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <a class="mr-2 d-none d-lg-inline text-white medium" href="@Url.Action("Profile", "Account")">Xin chào, @Session["UserName"]</a> <!-- change here-->
-                                <a class="mr-2 d-none d-lg-inline text-white medium" href="#" data-toggle="modal" data-target="#logoutModal">
-                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-white medium"></i>
-                                </a>
+    <!-- End of Sidebar -->
+    <div id="content-wrapper-home" class="d-flex flex-column">
+        <video src="~/img/backgroundvideo.mp4" muted loop autoplay class="back-video"></video>
+        <div class="content">
+            <nav class="navbar navbar-expand navbar-light topbar mb-4 static-top shadow">
+                <!-- Topbar Navbar -->
+                <ul class="navbar-nav ml-auto">
+                    <!-- Nav Item - User Information -->
+                    <li class="nav-item dropdown no-arrow">
+                        <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <a class="mr-2 d-none d-lg-inline text-white medium" href="@Url.Action("Profile", "Account")">Xin chào, @Session["UserName"]</a> <!-- change here-->
+                            <a class="mr-2 d-none d-lg-inline text-white medium" href="#" data-toggle="modal" data-target="#logoutModal">
+                                <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-white medium"></i>
                             </a>
-                        </li>
-                    </ul>
+                        </a>
+                    </li>
+                </ul>
 
-                </nav>
-                <div class="container-fluid-home">
-                    <div class="content-home">
-                        <h2>VINASA ADMIN</h2>
-                        <h1>XIN CHÀO</h1>
-                        <h3>CHÚC BẠN MỘT NGÀY LÀM VIỆC TỐT LÀNH VÀ VUI VẺ !</h3>
-                        <br />
-                        <h5 class="date-time" id="current-time"></h5>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-    </div>
-
-
-    <!-- End of Page Wrapper -->
-    <!-- Scroll to Top Button-->
-    <!-- Logout Modal-->
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-         aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Bạn muốn đăng xuất?</h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <p>Chọn "Đồng ý" để kết thúc phiên đăng nhập của bạn</p>
-                </div>
-                <div class="modal-footer">
-                    <button class="btn btn-default" type="button" data-dismiss="modal">Hủy</button>
-                    <button class="button-lc" type="button" onclick="location.href='@Url.Action("Logout", "Account")'">Đồng ý</button>
+            </nav>
+            <div class="container-fluid-home">
+                <div class="content-home">
+                    <h2>VINASA ADMIN</h2>
+                    <h1>XIN CHÀO</h1>
+                    <h3>CHÚC BẠN MỘT NGÀY LÀM VIỆC TỐT LÀNH VÀ VUI VẺ !</h3>
+                    <br />
+                    <h5 class="date-time" id="current-time"></h5>
                 </div>
             </div>
         </div>
     </div>
-    <!-- Bootstrap core JavaScript-->
-    <script src="@Url.Content("~/vendor/jquery/jquery.min.js")"></script>
-    <script src="@Url.Content("~/vendor/bootstrap/js/bootstrap.bundle.min.js")"></script>
+</div>
 
-    <!-- Core plugin JavaScript-->
-    <script src="@Url.Content("~/vendor/jquery-easing/jquery.easing.min.js")"></script>
 
-    <!-- Custom scripts for all pages-->
-    <script src="@Url.Content("~/js/sb-admin-2.min.js")"></script>
+<!-- End of Page Wrapper -->
+<!-- Scroll to Top Button-->
+<!-- Logout Modal-->
+<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Bạn muốn đăng xuất?</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Chọn "Đồng ý" để kết thúc phiên đăng nhập của bạn</p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-default" type="button" data-dismiss="modal">Hủy</button>
+                <button class="button-lc" type="button" onclick="location.href='@Url.Action("Logout", "Account")'">Đồng ý</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Bootstrap core JavaScript-->
+<script src="@Url.Content("~/vendor/jquery/jquery.min.js")"></script>
+<script src="@Url.Content("~/vendor/bootstrap/js/bootstrap.bundle.min.js")"></script>
 
-    <!-- Page level plugins -->
-    <script src="@Url.Content("~/vendor/chart.js/Chart.min.js")"></script>
+<!-- Core plugin JavaScript-->
+<script src="@Url.Content("~/vendor/jquery-easing/jquery.easing.min.js")"></script>
 
-    <!-- Page level custom scripts -->
-    <script src="@Url.Content("~/js/demo/chart-area-demo.js")"></script>
-    <script src="@Url.Content("~/js/demo/chart-pie-demo.js")"></script>
-    <!-- Page level plugins -->
-    <script src="@Url.Content("~/vendor/datatables/jquery.dataTables.min.js")"></script>
-    <script src="@Url.Content("~/vendor/datatables/dataTables.bootstrap4.min.js")"></script>
+<!-- Custom scripts for all pages-->
+<script src="@Url.Content("~/js/sb-admin-2.min.js")"></script>
 
-    <!-- Page level custom scripts -->
-    <script src="@Url.Content("~/js/demo/datatables-demo.js")"></script>
-    <script>
-        var curDate = new Date();
+<!-- Page level plugins -->
+<script src="@Url.Content("~/vendor/chart.js/Chart.min.js")"></script>
 
-        // Ngày hiện tại
-        var curDay = curDate.getDate();
+<!-- Page level custom scripts -->
+<script src="@Url.Content("~/js/demo/chart-area-demo.js")"></script>
+<script src="@Url.Content("~/js/demo/chart-pie-demo.js")"></script>
+<!-- Page level plugins -->
+<script src="@Url.Content("~/vendor/datatables/jquery.dataTables.min.js")"></script>
+<script src="@Url.Content("~/vendor/datatables/dataTables.bootstrap4.min.js")"></script>
 
-        // Tháng hiện tại
-        var curMonth = curDate.getMonth() + 1;
+<!-- Page level custom scripts -->
+<script src="@Url.Content("~/js/demo/datatables-demo.js")"></script>
+<script>
+    var curDate = new Date();
 
-        // Năm hiện tại
-        var curYear = curDate.getFullYear();
+    // Ngày hiện tại
+    var curDay = curDate.getDate();
 
-        var curTime = curDate.getHours() + ":" + curDate.getMinutes() + ":" + curDate.getSeconds();
-        // Gán vào thẻ HTML
-        document.getElementById('current-time').innerHTML = curTime + " ,Ngày " + curDay + " Tháng " + curMonth + " Năm " + curYear;
-    </script>
-    <script>
-        const getNavItem = document.querySelectorAll('.nav-item');
-        getNavItem.forEach(item => {
-            const link = item.querySelector('.nav-link');
-            if (link.href === window.location.href) {
-                item.classList.add('active')
-            }
-        })
-    </script>
+    // Tháng hiện tại
+    var curMonth = curDate.getMonth() + 1;
+
+    // Năm hiện tại
+    var curYear = curDate.getFullYear();
+
+    var curTime = curDate.getHours() + ":" + curDate.getMinutes() + ":" + curDate.getSeconds();
+    // Gán vào thẻ HTML
+    document.getElementById('current-time').innerHTML = curTime + " ,Ngày " + curDay + " Tháng " + curMonth + " Năm " + curYear;
+</script>
+<script>
+    const getNavItem = document.querySelectorAll('.nav-item');
+    getNavItem.forEach(item => {
+        const link = item.querySelector('.nav-link');
+        if (link.href === window.location.href) {
+            item.classList.add('active')
+        }
+    })
+</script>
 </body>
 
 </html>

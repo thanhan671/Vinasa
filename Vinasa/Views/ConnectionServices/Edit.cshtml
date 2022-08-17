@@ -28,14 +28,14 @@
             </div>
 
             <div class="input-wrapper">
-                @Html.TextBoxFor(m => m.NgayBatDauHopDong, "{0:yyyy-MM-dd}", new { @class = "ip-form", @type = "date", @required = "required" })
+                @Html.TextBoxFor(m => m.NgayBatDauHopDong, "{0:yyyy-MM-dd}", new { @class = "ip-form", @type = "date", @readonly = "readonly" })
                 <label class="lb-form" for="tax">Ngày bắt đầu hợp đồng</label>
             </div>
             <div class="message-error">
                 @Html.ValidationMessageFor(m => m.NgayBatDauHopDong, "", new { @class = "text-danger" })
             </div>
             <div class="input-wrapper">
-                @Html.TextBoxFor(m => m.NgayKetThucHopDong, "{0:yyyy-MM-dd}", new { @class = "ip-form", @type = "date", @required = "required" })
+                @Html.TextBoxFor(m => m.NgayKetThucHopDong, "{0:yyyy-MM-dd}", new { @class = "ip-form", @type = "date", @readonly = "readonly" })
                 <label class="lb-form" for="tax">Ngày kết thúc hợp đồng</label>
             </div>
             <div class="message-error">
