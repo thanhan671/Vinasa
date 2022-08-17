@@ -95,7 +95,7 @@
                                 @Html.DisplayFor(modelItem => item.Nam)
                             </td>
                             <td>
-                                @Html.DisplayFor(modelItem => item.SoTienDong.ToString("N0"))
+                                @Html.DisplayFor(modelItem => item.SoTienDong)
                             </td>
                             <td class="td-action" style="display:flex; justify-content:space-around; align-items:center">
                                 @if ((int)Session["AccountType"] == 1)

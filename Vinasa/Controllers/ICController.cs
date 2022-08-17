@@ -146,37 +146,48 @@ namespace Vinasa.Controllers
                         var workSheet = currentSheet.First();
                         var noOfCol = workSheet.Dimension.End.Column;
                         var noOfRow = workSheet.Dimension.End.Row;
-                        for (int rowIterator = 2; rowIterator <= noOfRow; rowIterator++)
+                        if(noOfCol!= 15)
                         {
-                            string tenDonVi = workSheet.Cells[rowIterator, 1].Value.ToString();
-                            var THAMGIAHOINGHI = _db.THAMGIAHOINGHIQUOCTEs
-                                .FirstOrDefault(t => t.TenDonVi == tenDonVi && t.HoiNghiQT_ID == id);
-                            if (THAMGIAHOINGHI == null)
+                            Session["ViewBag.Success"] = null;
+                            Session["ViewBag.Column"] = "Số cột dữ liệu của file không đúng mẫu, vui lòng tải mẫu Excel và thử lại !";
+                        }
+                        else
+                        {
+                            for (int rowIterator = 2; rowIterator <= noOfRow; rowIterator++)
                             {
-                                var participants = new THAMGIAHOINGHIQUOCTE();
-                                participants.TenDonVi = workSheet.Cells[rowIterator, 1].Value.ToString();
-                                participants.DonViChungToiLa = workSheet.Cells[rowIterator, 2].Value.ToString();
-                                participants.DiaChi = workSheet.Cells[rowIterator, 3].Value.ToString();
-                                participants.DienThoai = workSheet.Cells[rowIterator, 4].Value.ToString();
-                                participants.DaiDienLienHe = workSheet.Cells[rowIterator, 5].Value.ToString();
-                                participants.ChucVu = workSheet.Cells[rowIterator, 6].Value.ToString();
-                                participants.DiDong = workSheet.Cells[rowIterator, 7].Value.ToString();
-                                participants.Email = workSheet.Cells[rowIterator, 8].Value.ToString();
-                                participants.DangKyThamDu = Convert.ToBoolean(workSheet.Cells[rowIterator, 9].Value);
-                                participants.DangKyPhatBieu = Convert.ToBoolean(workSheet.Cells[rowIterator, 10].Value);
-                                participants.DangKyGianHangTrienLam = Convert.ToBoolean(workSheet.Cells[rowIterator, 11].Value);
-                                participants.DangKyBusinessMatchingOnline = Convert.ToBoolean(workSheet.Cells[rowIterator, 12].Value);
-                                participants.DangKyBusinessMatchingOffline = Convert.ToBoolean(workSheet.Cells[rowIterator, 13].Value);
-                                participants.DangKyTaiTro = Convert.ToBoolean(workSheet.Cells[rowIterator, 14].Value);
-                                participants.DangKyQuangCao = Convert.ToBoolean(workSheet.Cells[rowIterator, 15].Value);
-                                participants.HoiNghiQT_ID = id;
-                                icParticipantsList.Add(participants);
-                                addRow++;
+                                string tenDonVi = workSheet.Cells[rowIterator, 1].Value.ToString();
+                                var THAMGIAHOINGHI = _db.THAMGIAHOINGHIQUOCTEs
+                                    .FirstOrDefault(t => t.TenDonVi == tenDonVi && t.HoiNghiQT_ID == id);
+                                if (THAMGIAHOINGHI == null)
+                                {
+                                    var participants = new THAMGIAHOINGHIQUOCTE();
+                                    participants.TenDonVi = workSheet.Cells[rowIterator, 1].Value.ToString();
+                                    participants.DonViChungToiLa = workSheet.Cells[rowIterator, 2].Value.ToString();
+                                    participants.DiaChi = workSheet.Cells[rowIterator, 3].Value.ToString();
+                                    participants.DienThoai = workSheet.Cells[rowIterator, 4].Value.ToString();
+                                    participants.DaiDienLienHe = workSheet.Cells[rowIterator, 5].Value.ToString();
+                                    participants.ChucVu = workSheet.Cells[rowIterator, 6].Value.ToString();
+                                    participants.DiDong = workSheet.Cells[rowIterator, 7].Value.ToString();
+                                    participants.Email = workSheet.Cells[rowIterator, 8].Value.ToString();
+                                    participants.DangKyThamDu = Convert.ToBoolean(workSheet.Cells[rowIterator, 9].Value);
+                                    participants.DangKyPhatBieu = Convert.ToBoolean(workSheet.Cells[rowIterator, 10].Value);
+                                    participants.DangKyGianHangTrienLam = Convert.ToBoolean(workSheet.Cells[rowIterator, 11].Value);
+                                    participants.DangKyBusinessMatchingOnline = Convert.ToBoolean(workSheet.Cells[rowIterator, 12].Value);
+                                    participants.DangKyBusinessMatchingOffline = Convert.ToBoolean(workSheet.Cells[rowIterator, 13].Value);
+                                    participants.DangKyTaiTro = Convert.ToBoolean(workSheet.Cells[rowIterator, 14].Value);
+                                    participants.DangKyQuangCao = Convert.ToBoolean(workSheet.Cells[rowIterator, 15].Value);
+                                    participants.HoiNghiQT_ID = id;
+                                    icParticipantsList.Add(participants);
+                                    addRow++;
+                                }
+                                else
+                                {
+                                    rowExist++;
+                                }
                             }
-                            else
-                            {
-                                rowExist++;
-                            }
+                            Session["ViewBag.Column"] = null;
+                            Session["ViewBag.Success"] = addRow;
+                            Session["ViewBag.Exist"] = rowExist;
                         }
                     }
                 }
@@ -203,8 +214,6 @@ namespace Vinasa.Controllers
                     throw new HttpException(e.ToString());
                 }
             }
-            Session["ViewBag.Success"] = addRow;
-            Session["ViewBag.Exist"] = rowExist;
             return RedirectToAction("Details", "IC", new { id });
         }
 
