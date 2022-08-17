@@ -136,7 +136,7 @@ namespace Vinasa.Controllers
             }
             Session["ViewBag.Success"] = addRow;
             Session["ViewBag.Exist"] = rowExist;
-            return RedirectToAction("ManagePayFees", "MemberFees");
+            return RedirectToAction("ManagePayFees", "MemberPayFees");
         }
         public FileResult Download()
         {
