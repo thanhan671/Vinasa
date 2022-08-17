@@ -66,7 +66,6 @@ namespace Vinasa.Controllers
         public ActionResult ImportExcel(FormCollection formCollection)
         {
             int addRow = 0;
-            int rowExist = 0;
             var kyPhiList = new List<KyPhi>();
             if (Request != null)
             {
@@ -84,15 +83,16 @@ namespace Vinasa.Controllers
                         var workSheet = currentSheet.First();
                         var noOfCol = workSheet.Dimension.End.Column;
                         var noOfRow = workSheet.Dimension.End.Row;
-                        for (int rowIterator = 2; rowIterator <= noOfRow; rowIterator++)
+                        if (noOfCol != 5)
                         {
-                            string maSoThue = workSheet.Cells[rowIterator, 2].Value.ToString();
-                            string tenCongTy = workSheet.Cells[rowIterator, 3].Value.ToString();
-
-                            var kyPhi = _db.KyPhis
-                                .FirstOrDefault(t => t.MaSoThue == maSoThue && t.TenCongTy == tenCongTy);
-                            if (kyPhi == null)
+                            Session["ViewBag.Success"] = null;
+                            Session["ViewBag.Column"] = "Số cột dữ liệu của file không đúng mẫu, vui lòng tải mẫu Excel và thử lại !";
+                        }
+                        else
+                        {
+                            for (int rowIterator = 2; rowIterator <= noOfRow; rowIterator++)
                             {
+
                                 var participants = new KyPhi();
                                 participants.MaSoThue = workSheet.Cells[rowIterator, 2].Value.ToString();
                                 participants.TenCongTy = workSheet.Cells[rowIterator, 3].Value.ToString();
@@ -101,10 +101,8 @@ namespace Vinasa.Controllers
                                 kyPhiList.Add(participants);
                                 addRow++;
                             }
-                            else
-                            {
-                                rowExist++;
-                            }
+                            Session["ViewBag.Column"] = null;
+                            Session["ViewBag.Success"] = addRow;
                         }
                     }
                 }
@@ -130,8 +128,6 @@ namespace Vinasa.Controllers
                     throw new HttpException(e.ToString());
                 }
             }
-            Session["ViewBag.Success"] = addRow;
-            Session["ViewBag.Exist"] = rowExist;
             return RedirectToAction("ManageFeesPeriod", "MemberFeePeriod");
         }
         public FileResult Download()
