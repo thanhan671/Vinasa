@@ -1,4 +1,5 @@
-﻿
+﻿@model IEnumerable<Vinasa.Models.HoiPhiViewModel>
+
 @{
     ViewBag.Title = "MemberFee";
     Layout = "~/Views/Shared/sbadmin.cshtml";
@@ -42,12 +43,16 @@
                                 @item.TenCongTy
                             </td>
                             <td>
-                                
+                                @item.TongThu
                             </td>
                             <td>
-                                
+                                @item.DaDong
+
                             </td>
-                            <td></td>
+                            <td>
+                                @item.ConLai
+
+                            </td>
                         </tr>
                     }
 

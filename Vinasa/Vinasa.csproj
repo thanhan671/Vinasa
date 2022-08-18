@@ -280,6 +280,7 @@
     <Compile Include="Models\Statistic\BusinessByAreaViewModel.cs" />
     <Compile Include="Models\Statistic\DonVi.cs" />
     <Compile Include="Models\Statistic\FieldOfActivityViewModel.cs" />
+    <Compile Include="Models\Statistic\HoiPhiViewModel.cs" />
     <Compile Include="Models\Statistic\HoiPhi.cs" />
     <Compile Include="Models\StatusModels.cs" />
     <Compile Include="Models\SUDUNGDICHVUKETNOI.cs">

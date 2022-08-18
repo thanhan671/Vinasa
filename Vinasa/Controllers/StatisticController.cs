@@ -189,7 +189,24 @@ namespace Vinasa.Controllers
 
         public ActionResult MemberFee()
         {
-            var hoiPhi = _db.HoiPhi.ToList();
+            var hoiPhi = new List<HoiPhiViewModel>();
+
+            var members = db.KyPhis.Select(it => it.MaSoThue).Distinct();
+            foreach (var member in members)
+            {
+                var tenHoiVien = db.KyPhis.FirstOrDefault(it => it.MaSoThue == member);
+                var tongHoiPhi = db.KyPhis.Where(it => it.MaSoThue == member).Sum(it => it.SoTienDong);
+                var daDong = db.DongPhis.Where(it => it.MaSoThue == member).Sum(it => it.SoTienDong);
+                var conNo = tongHoiPhi - daDong;
+                hoiPhi.Add(new HoiPhiViewModel()
+                {
+                    MaSoThue = member,
+                    TenCongTy = (tenHoiVien != null ? tenHoiVien.TenCongTy : string.Empty),
+                    TongThu = tongHoiPhi,
+                    DaDong = daDong,
+                    ConLai = conNo
+                });
+            }
             return View(hoiPhi);
         }
 
