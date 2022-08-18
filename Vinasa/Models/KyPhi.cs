@@ -20,11 +20,20 @@ namespace Vinasa.Models
     {
         public int ID { get; set; }
 
+        [Required(ErrorMessage = "Vui lòng điền trường này!")]
+        [StringRequired(ErrorMessage = "Vui lòng điền trường này!")]
         public string MaSoThue { get; set; }
 
+        [Required(ErrorMessage = "Vui lòng điền trường này!")]
+        [StringRequired(ErrorMessage = "Vui lòng điền trường này!")]
         public string TenCongTy { get; set; }
 
+        [Required(ErrorMessage = "Vui lòng điền trường này!")]
+        [StringRequired(ErrorMessage = "Vui lòng điền trường này!")]
         public int Nam { get; set; }
+
+        [Required(ErrorMessage = "Vui lòng điền trường này!")]
+        [StringRequired(ErrorMessage = "Vui lòng điền trường này!")]
         public decimal SoTienDong { get; set; }
     }
 }

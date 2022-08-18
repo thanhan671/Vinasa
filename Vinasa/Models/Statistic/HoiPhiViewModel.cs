@@ -11,7 +11,8 @@ namespace Vinasa.Models
         public string MaSoThue { get; set; }  
         
         public string TenCongTy { get; set; }
-        
+
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:n}")]
         public decimal TongThu { get; set; }
 
         public decimal DaDong { get; set; }
