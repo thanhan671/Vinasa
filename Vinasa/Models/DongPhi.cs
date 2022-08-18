@@ -36,8 +36,6 @@ namespace Vinasa.Models
         public System.DateTime NgayChuyenTien { get; set; }
 
         [Required(ErrorMessage = "Vui lòng điền trường này!")]
-        [DataType(DataType.Date)]
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy}")]
         public System.DateTime NgayGuiPhieuThu { get; set; }
 
         [Required(ErrorMessage = "Vui lòng điền trường này!")]

@@ -56,7 +56,7 @@ namespace Vinasa.Services
                 }
             }
 
-            if (manager.Count != 13)
+            if (manager.Count != 14)
                 throw new System.Exception("Số cột dữ liệu của file không đúng mẫu, vui lòng tải mẫu Excel và thử lại !");
 
             var provinces = _db.Provinces.ToList();
@@ -184,7 +184,7 @@ namespace Vinasa.Services
                 }
             }
 
-            if (manager.Count != 15)
+            if (manager.Count != 16)
                 throw new System.Exception("Số cột dữ liệu của file không đúng mẫu, vui lòng tải mẫu Excel và thử lại !");
 
             var provinces = _db.Provinces.ToList();
