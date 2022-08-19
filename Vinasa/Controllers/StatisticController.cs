@@ -198,7 +198,7 @@ namespace Vinasa.Controllers
                 var kyPhis = db.KyPhis.Where(it => it.MaSoThue == member).ToList();
                 var tongHoiPhi = decimal.Zero;
                 if(kyPhis != null && kyPhis.Count > 0)
-                    tongHoiPhi = kyPhis.Sum(it => (it.SoTienDong == null ? decimal.Zero : it.SoTienDong));
+                    tongHoiPhi = kyPhis.Sum(it =>  it.SoTienDong);
 
                 var dongPhis = db.DongPhis.Where(it => it.MaSoThue == member).ToList();
                 var daDong = decimal.Zero;
