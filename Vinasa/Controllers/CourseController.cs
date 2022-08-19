@@ -49,7 +49,7 @@ namespace Vinasa.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,TenKhoaDaotao,NgayBatDau,NgayKetThuc,HinhThuc,TenGiangVien,DiaDiem,HocPhi")] KHOAHOC khoaHoc)
+        public ActionResult Create([Bind(Include = "Id,TenKhoaDaoTao,NgayBatDau,NgayKetThuc,HinhThuc,TenGiangVien,DiaDiem,HocPhi")] KHOAHOC khoaHoc)
         {
             if (ModelState.IsValid)
             {

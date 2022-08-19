@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.32602.291
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vinasa", "Vinasa\Vinasa.csproj", "{FE457F62-CE82-486D-BC0B-DB3E9A910398}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vinasa.Tests", "Vinasa.Tests\Vinasa.Tests.csproj", "{2F09984B-36B3-4081-BC47-5527655AA001}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VinasaTests", "VinasaTests\VinasaTests.csproj", "{500B62F0-E62A-4668-B227-DA9229C84856}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +17,10 @@ Global
 		{FE457F62-CE82-486D-BC0B-DB3E9A910398}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FE457F62-CE82-486D-BC0B-DB3E9A910398}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FE457F62-CE82-486D-BC0B-DB3E9A910398}.Release|Any CPU.Build.0 = Release|Any CPU
-		{2F09984B-36B3-4081-BC47-5527655AA001}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2F09984B-36B3-4081-BC47-5527655AA001}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2F09984B-36B3-4081-BC47-5527655AA001}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2F09984B-36B3-4081-BC47-5527655AA001}.Release|Any CPU.Build.0 = Release|Any CPU
+		{500B62F0-E62A-4668-B227-DA9229C84856}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{500B62F0-E62A-4668-B227-DA9229C84856}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{500B62F0-E62A-4668-B227-DA9229C84856}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{500B62F0-E62A-4668-B227-DA9229C84856}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
