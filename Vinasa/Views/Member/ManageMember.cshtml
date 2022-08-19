@@ -71,6 +71,8 @@
                         <th>Tên Viết Tắt</th>
                         <th>Email</th>
                         <th>Số Điện Thoại</th>
+                        <th>Khu Vực</th>
+                        <th>Lĩnh Vực Hoạt Động</th>
                         <th>Ghi Chú</th>
                         <th class="action-column">Chức Năng</th>
                     </tr>
@@ -96,6 +98,12 @@
                             </td>
                             <td>
                                 @item.SdtCongTy
+                            </td>
+                            <td>
+                                @item.KHUVUC1.TenKhuVuc
+                            </td>
+                            <td>
+                                @item.LinhVucHoatDong
                             </td>
                             <td>
                                 @item.GhiChu
