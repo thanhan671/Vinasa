@@ -195,15 +195,15 @@ namespace Vinasa.Controllers
             foreach (var member in members)
             {
                 var tenHoiVien = db.KyPhis.FirstOrDefault(it => it.MaSoThue == member);
-                var kyPhis = db.KyPhis.Where(it => it.MaSoThue == member);
+                var kyPhis = db.KyPhis.Where(it => it.MaSoThue == member).ToList();
                 var tongHoiPhi = decimal.Zero;
-                if(kyPhis != null)
-                    tongHoiPhi = kyPhis.Sum(it => (it.SoTienDong == null ? decimal.Zero : it.SoTienDong));
+                if(kyPhis != null && kyPhis.Count > 0)
+                    tongHoiPhi = kyPhis.Sum(it =>  it.SoTienDong);
 
-                var dongPhis = db.DongPhis.Where(it => it.MaSoThue == member);
+                var dongPhis = db.DongPhis.Where(it => it.MaSoThue == member).ToList();
                 var daDong = decimal.Zero;
-                if (dongPhis != null)
-                    daDong = dongPhis.Sum(it => (it.SoTienDong == null ? decimal.Zero : it.SoTienDong));
+                if (dongPhis != null && dongPhis.Count > 0)
+                    daDong = dongPhis.Sum(it => it.SoTienDong);
 
                 var conNo = tongHoiPhi - daDong;
                 hoiPhi.Add(new HoiPhiViewModel()
