@@ -102,6 +102,7 @@
     <Compile Include="Controllers\CourseControllerTest.cs" />
     <Compile Include="Controllers\OtherServicesControllerTest.cs" />
     <Compile Include="Controllers\ConnectionServicesControllerTest.cs" />
+    <Compile Include="Controllers\ICControllerTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
