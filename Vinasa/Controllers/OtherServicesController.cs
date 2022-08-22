@@ -93,86 +93,106 @@ namespace Vinasa.Controllers
             int addRow = 0;
             int rowExist = 0;
             var usingOtherServicesList = new List<SUDUNGDICHVUKHAC>();
-            if (Request != null)
+            HttpPostedFileBase file = Request.Files["UploadedFile"];
+            string fileName = file.FileName;
+            string extension = Path.GetExtension(fileName).ToLower();
+            if (extension != ".xls" && extension != ".xlsx" && extension != ".csv")
             {
-                HttpPostedFileBase file = Request.Files["UploadedFile"];
-                if ((file != null) && (file.ContentLength > 0) && !string.IsNullOrEmpty(file.FileName))
+                Session["ViewBag.Success"] = null;
+                Session["ViewBag.Column"] = null;
+                Session["ViewBag.Size"] = null;
+                Session["ViewBag.File"] = "Chỉ hỗ trợ các tệp có đuôi .xls; .xlsx; .csv!";
+            }
+            else
+            {
+                if (file.ContentLength > 1024 * 1024 * 100)
                 {
-                    string fileName = file.FileName;
-                    string fileContentType = file.ContentType;
-                    byte[] fileBytes = new byte[file.ContentLength];
-                    var data = file.InputStream.Read(fileBytes, 0, Convert.ToInt32(file.ContentLength));
-
-                    using (var package = new ExcelPackage(file.InputStream))
+                    Session["ViewBag.Success"] = null;
+                    Session["ViewBag.Column"] = null;
+                    Session["ViewBag.Size"] = "Dung lượng file tải lên không vượt quá 100MB";
+                }
+                else
+                {
+                    if (Request != null)
                     {
-                        var currentSheet = package.Workbook.Worksheets;
-                        var workSheet = currentSheet.First();
-                        var noOfCol = workSheet.Dimension.End.Column;
-                        var noOfRow = workSheet.Dimension.End.Row;
-                        if (noOfCol != 14)
+                        if ((file != null) && (file.ContentLength > 0) && !string.IsNullOrEmpty(file.FileName))
                         {
-                            Session["ViewBag.Success"] = null;
-                            Session["ViewBag.Column"] = "Số cột dữ liệu của file không đúng mẫu, vui lòng tải mẫu Excel và thử lại !";
-                        }
-                        else
-                        {
-                            for (int rowIterator = 2; rowIterator <= noOfRow; rowIterator++)
-                            {
-                                string taxNumber = workSheet.Cells[rowIterator, 2].Value.ToString();
-                                string companyName = workSheet.Cells[rowIterator, 3].Value.ToString();
+                            string fileContentType = file.ContentType;
+                            byte[] fileBytes = new byte[file.ContentLength];
+                            var data = file.InputStream.Read(fileBytes, 0, Convert.ToInt32(file.ContentLength));
 
-                                var dichVuKhac = _db.SUDUNGDICHVUKHACs
-                                    .FirstOrDefault(t => t.MaSoThue == taxNumber && t.TenCongTy == companyName);
-                                if (dichVuKhac == null)
+                            using (var package = new ExcelPackage(file.InputStream))
+                            {
+                                var currentSheet = package.Workbook.Worksheets;
+                                var workSheet = currentSheet.First();
+                                var noOfCol = workSheet.Dimension.End.Column;
+                                var noOfRow = workSheet.Dimension.End.Row;
+                                if (noOfCol != 14)
                                 {
-                                    var participants = new SUDUNGDICHVUKHAC();
-                                    participants.MaSoThue = workSheet.Cells[rowIterator, 2].Value.ToString();
-                                    participants.TenCongTy = workSheet.Cells[rowIterator, 3].Value.ToString();
-                                    participants.NgayBatDauHopDong = Convert.ToDateTime(workSheet.Cells[rowIterator, 4].Value);
-                                    participants.NgayKetThucHopDong = Convert.ToDateTime(workSheet.Cells[rowIterator, 5].Value);
-                                    participants.TenDichVuKhac = workSheet.Cells[rowIterator, 6].Value.ToString();
-                                    participants.GiaGoc = Convert.ToInt32(workSheet.Cells[rowIterator, 7].Value);
-                                    participants.GiaUuDai = Convert.ToInt32(workSheet.Cells[rowIterator, 8].Value);
-                                    participants.ChiecKhauVinasa = workSheet.Cells[rowIterator, 9].Value.ToString();
-                                    participants.TenNguoiLienHe = workSheet.Cells[rowIterator, 10].Value.ToString();
-                                    participants.ChucDanh = workSheet.Cells[rowIterator, 11].Value.ToString();
-                                    participants.Email = workSheet.Cells[rowIterator, 12].Value.ToString();
-                                    participants.DienThoai = workSheet.Cells[rowIterator, 13].Value.ToString();
-                                    participants.GhiChu = Convert.ToString(workSheet.Cells[rowIterator, 14].Value);
-                                    usingOtherServicesList.Add(participants);
-                                    addRow++;
+                                    Session["ViewBag.Success"] = null;
+                                    Session["ViewBag.Column"] = "Số cột dữ liệu của file không đúng mẫu, vui lòng tải mẫu Excel và thử lại !";
                                 }
                                 else
                                 {
-                                    rowExist++;
+                                    for (int rowIterator = 2; rowIterator <= noOfRow; rowIterator++)
+                                    {
+                                        string taxNumber = workSheet.Cells[rowIterator, 2].Value.ToString();
+                                        string companyName = workSheet.Cells[rowIterator, 3].Value.ToString();
+
+                                        var dichVuKhac = _db.SUDUNGDICHVUKHACs
+                                            .FirstOrDefault(t => t.MaSoThue == taxNumber && t.TenCongTy == companyName);
+                                        if (dichVuKhac == null)
+                                        {
+                                            var participants = new SUDUNGDICHVUKHAC();
+                                            participants.MaSoThue = workSheet.Cells[rowIterator, 2].Value.ToString();
+                                            participants.TenCongTy = workSheet.Cells[rowIterator, 3].Value.ToString();
+                                            participants.NgayBatDauHopDong = Convert.ToDateTime(workSheet.Cells[rowIterator, 4].Value);
+                                            participants.NgayKetThucHopDong = Convert.ToDateTime(workSheet.Cells[rowIterator, 5].Value);
+                                            participants.TenDichVuKhac = workSheet.Cells[rowIterator, 6].Value.ToString();
+                                            participants.GiaGoc = Convert.ToInt32(workSheet.Cells[rowIterator, 7].Value);
+                                            participants.GiaUuDai = Convert.ToInt32(workSheet.Cells[rowIterator, 8].Value);
+                                            participants.ChiecKhauVinasa = workSheet.Cells[rowIterator, 9].Value.ToString();
+                                            participants.TenNguoiLienHe = workSheet.Cells[rowIterator, 10].Value.ToString();
+                                            participants.ChucDanh = workSheet.Cells[rowIterator, 11].Value.ToString();
+                                            participants.Email = workSheet.Cells[rowIterator, 12].Value.ToString();
+                                            participants.DienThoai = workSheet.Cells[rowIterator, 13].Value.ToString();
+                                            participants.GhiChu = Convert.ToString(workSheet.Cells[rowIterator, 14].Value);
+                                            usingOtherServicesList.Add(participants);
+                                            addRow++;
+                                        }
+                                        else
+                                        {
+                                            rowExist++;
+                                        }
+                                    }
+                                    Session["ViewBag.Column"] = null;
+                                    Session["ViewBag.Success"] = addRow;
+                                    Session["ViewBag.Exist"] = rowExist;
                                 }
                             }
-                            Session["ViewBag.Column"] = null;
-                            Session["ViewBag.Success"] = addRow;
-                            Session["ViewBag.Exist"] = rowExist;
                         }
                     }
-                }
-            }
-            using (_db)
-            {
-                try
-                {
-                    foreach (var item in usingOtherServicesList)
+                    using (_db)
                     {
-                        _db.SUDUNGDICHVUKHACs.Add(item);
+                        try
+                        {
+                            foreach (var item in usingOtherServicesList)
+                            {
+                                _db.SUDUNGDICHVUKHACs.Add(item);
+                            }
+                            _db.SaveChanges();
+                        }
+                        catch (DbEntityValidationException e)
+                        {
+                            foreach (var eve in e.EntityValidationErrors)
+                            {
+                                Console.WriteLine("Entity of type \"{0}\" in state \"{1}\" has the following validation errors:",
+                                    eve.Entry.Entity.GetType().Name, eve.Entry.State);
+                                throw new HttpException(eve.Entry.Entity.GetType().Name);
+                            }
+                            throw new HttpException(e.ToString());
+                        }
                     }
-                    _db.SaveChanges();
-                }
-                catch (DbEntityValidationException e)
-                {
-                    foreach (var eve in e.EntityValidationErrors)
-                    {
-                        Console.WriteLine("Entity of type \"{0}\" in state \"{1}\" has the following validation errors:",
-                            eve.Entry.Entity.GetType().Name, eve.Entry.State);
-                        throw new HttpException(eve.Entry.Entity.GetType().Name);
-                    }
-                    throw new HttpException(e.ToString());
                 }
             }
             return RedirectToAction("Index", "OtherServices");

@@ -373,12 +373,12 @@
     <Content Include="Content\Files\MauHoiVien.xlsx" />
     <Content Include="Content\Files\MauHoiNghi.xlsx" />
     <Content Include="Content\Files\MauHoiNghiQuocTe.xlsx" />
-    <Content Include="Content\Files\MauKhoaDaoTao.xlsx" />
     <Content Include="Content\Files\MauGiaiThuong.xlsx" />
     <Content Include="Content\Files\MauDichVuKhac.xlsx" />
     <Content Include="Content\Files\MauDichVuKetNoi.xlsx" />
     <Content Include="Content\Files\MauDongPhi.xlsx" />
     <Content Include="Content\Files\MauKyPhi.xlsx" />
+    <Content Include="Content\Files\MauKhoaDaoTao.xlsx" />
     <None Include="Properties\PublishProfiles\FTPProfile.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />

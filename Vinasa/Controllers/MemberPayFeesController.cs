@@ -67,69 +67,89 @@ namespace Vinasa.Controllers
         {
             int addRow = 0;
             var dongPhiList = new List<DongPhi>();
-            if (Request != null)
+            HttpPostedFileBase file = Request.Files["UploadedFile"];
+            string fileName = file.FileName;
+            string extension = Path.GetExtension(fileName).ToLower();
+            if (extension != ".xls" && extension != ".xlsx" && extension != ".csv")
             {
-                HttpPostedFileBase file = Request.Files["UploadedFile"];
-                if ((file != null) && (file.ContentLength > 0) && !string.IsNullOrEmpty(file.FileName))
-                {
-                    string fileName = file.FileName;
-                    string fileContentType = file.ContentType;
-                    byte[] fileBytes = new byte[file.ContentLength];
-                    var data = file.InputStream.Read(fileBytes, 0, Convert.ToInt32(file.ContentLength));
-
-                    using (var package = new ExcelPackage(file.InputStream))
-                    {
-                        var currentSheet = package.Workbook.Worksheets;
-                        var workSheet = currentSheet.First();
-                        var noOfCol = workSheet.Dimension.End.Column;
-                        var noOfRow = workSheet.Dimension.End.Row;
-                        if (noOfCol != 9)
-                        {
-                            Session["ViewBag.Success"] = null;
-                            Session["ViewBag.Column"] = "Số cột dữ liệu của file không đúng mẫu, vui lòng tải mẫu Excel và thử lại !";
-                        }
-                        else
-                        {
-                            for (int rowIterator = 2; rowIterator <= noOfRow; rowIterator++)
-                            {
-
-                                var participants = new DongPhi();
-                                participants.MaSoThue = workSheet.Cells[rowIterator, 2].Value.ToString();
-                                participants.TenCongTy = workSheet.Cells[rowIterator, 3].Value.ToString();
-                                participants.NguoiNhanPhieuThu = workSheet.Cells[rowIterator, 4].Value.ToString();
-                                participants.Sdt = workSheet.Cells[rowIterator, 5].Value.ToString();
-                                participants.NgayChuyenTien = Convert.ToDateTime(workSheet.Cells[rowIterator, 6].Value);
-                                participants.NgayGuiPhieuThu = Convert.ToDateTime(workSheet.Cells[rowIterator, 7].Value);
-                                participants.SoTienDong = Convert.ToInt32(workSheet.Cells[rowIterator, 8].Value);
-                                participants.GhiChu = Convert.ToString(workSheet.Cells[rowIterator, 9].Value);
-                                dongPhiList.Add(participants);
-                                addRow++;
-                            }
-                            Session["ViewBag.Column"] = null;
-                            Session["ViewBag.Success"] = addRow;
-                        }
-                    }
-                }
+                Session["ViewBag.Success"] = null;
+                Session["ViewBag.Column"] = null;
+                Session["ViewBag.Size"] = null;
+                Session["ViewBag.File"] = "Chỉ hỗ trợ các tệp có đuôi .xls; .xlsx; .csv!";
             }
-            using (_db)
+            else
             {
-                try
+                if (file.ContentLength > 1024 * 1024 * 100)
                 {
-                    foreach (var item in dongPhiList)
-                    {
-                        _db.DongPhis.Add(item);
-                    }
-                    _db.SaveChanges();
+                    Session["ViewBag.Success"] = null;
+                    Session["ViewBag.Column"] = null;
+                    Session["ViewBag.Size"] = "Dung lượng file tải lên không vượt quá 100MB";
                 }
-                catch (DbEntityValidationException e)
+                else
                 {
-                    foreach (var eve in e.EntityValidationErrors)
+                    if (Request != null)
                     {
-                        Console.WriteLine("Entity of type \"{0}\" in state \"{1}\" has the following validation errors:",
-                            eve.Entry.Entity.GetType().Name, eve.Entry.State);
-                        throw new HttpException(eve.Entry.Entity.GetType().Name);
+                        if ((file != null) && (file.ContentLength > 0) && !string.IsNullOrEmpty(file.FileName))
+                        {
+                            string fileContentType = file.ContentType;
+                            byte[] fileBytes = new byte[file.ContentLength];
+                            var data = file.InputStream.Read(fileBytes, 0, Convert.ToInt32(file.ContentLength));
+
+                            using (var package = new ExcelPackage(file.InputStream))
+                            {
+                                var currentSheet = package.Workbook.Worksheets;
+                                var workSheet = currentSheet.First();
+                                var noOfCol = workSheet.Dimension.End.Column;
+                                var noOfRow = workSheet.Dimension.End.Row;
+                                if (noOfCol != 9)
+                                {
+                                    Session["ViewBag.Success"] = null;
+                                    Session["ViewBag.Column"] = "Số cột dữ liệu của file không đúng mẫu, vui lòng tải mẫu Excel và thử lại !";
+                                }
+                                else
+                                {
+                                    for (int rowIterator = 2; rowIterator <= noOfRow; rowIterator++)
+                                    {
+
+                                        var participants = new DongPhi();
+                                        participants.MaSoThue = workSheet.Cells[rowIterator, 2].Value.ToString();
+                                        participants.TenCongTy = workSheet.Cells[rowIterator, 3].Value.ToString();
+                                        participants.NguoiNhanPhieuThu = workSheet.Cells[rowIterator, 4].Value.ToString();
+                                        participants.Sdt = workSheet.Cells[rowIterator, 5].Value.ToString();
+                                        participants.NgayChuyenTien = Convert.ToDateTime(workSheet.Cells[rowIterator, 6].Value);
+                                        participants.NgayGuiPhieuThu = Convert.ToDateTime(workSheet.Cells[rowIterator, 7].Value);
+                                        participants.SoTienDong = Convert.ToInt32(workSheet.Cells[rowIterator, 8].Value);
+                                        participants.GhiChu = Convert.ToString(workSheet.Cells[rowIterator, 9].Value);
+                                        dongPhiList.Add(participants);
+                                        addRow++;
+                                    }
+                                    Session["ViewBag.Column"] = null;
+                                    Session["ViewBag.Success"] = addRow;
+                                }
+                            }
+                        }
                     }
-                    throw new HttpException(e.ToString());
+                    using (_db)
+                    {
+                        try
+                        {
+                            foreach (var item in dongPhiList)
+                            {
+                                _db.DongPhis.Add(item);
+                            }
+                            _db.SaveChanges();
+                        }
+                        catch (DbEntityValidationException e)
+                        {
+                            foreach (var eve in e.EntityValidationErrors)
+                            {
+                                Console.WriteLine("Entity of type \"{0}\" in state \"{1}\" has the following validation errors:",
+                                    eve.Entry.Entity.GetType().Name, eve.Entry.State);
+                                throw new HttpException(eve.Entry.Entity.GetType().Name);
+                            }
+                            throw new HttpException(e.ToString());
+                        }
+                    }
                 }
             }
             return RedirectToAction("ManagePayFees", "MemberPayFees");

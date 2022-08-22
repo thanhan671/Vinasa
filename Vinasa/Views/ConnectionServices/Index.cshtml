@@ -258,3 +258,69 @@
     </div>
     Session["ViewBag.Success"] = null;
 }
+@if (Session["ViewBag.Size"] != null)
+{
+    <button type="button" hidden class="btn btn-lg btn-block btn-outline-success mb-2" id="import-success"
+            data-toggle="modal" data-target="#Success">
+        Success
+    </button>
+    <script>
+        window.onload = function () {
+            document.getElementById('import-success').click();
+        }
+    </script>
+    <!-- Modal -->
+    <div class="modal fade text-left" id="Success" tabindex="-1" role="dialog" aria-labelledby="myModalLabel34" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content alert alert-danger">
+                <div class="modal-header">
+                    <h3 class="modal-title" id="myModalLabel34">THÔNG BÁO !</h3>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="col-12">
+                        <div>
+                            <strong>@Session["ViewBag.Size"].ToString()</strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    Session["ViewBag.Size"] = null;
+}
+@if (Session["ViewBag.File"] != null)
+{
+    <button type="button" hidden class="btn btn-lg btn-block btn-outline-success mb-2" id="import-success"
+            data-toggle="modal" data-target="#Success">
+        Success
+    </button>
+    <script>
+        window.onload = function () {
+            document.getElementById('import-success').click();
+        }
+    </script>
+    <!-- Modal -->
+    <div class="modal fade text-left" id="Success" tabindex="-1" role="dialog" aria-labelledby="myModalLabel34" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content alert alert-danger">
+                <div class="modal-header">
+                    <h3 class="modal-title" id="myModalLabel34">THÔNG BÁO !</h3>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="col-12">
+                        <div>
+                            <strong>@Session["ViewBag.File"].ToString()</strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    Session["ViewBag.File"] = null;
+}
