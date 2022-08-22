@@ -131,87 +131,106 @@ namespace Vinasa.Controllers
             int addRow = 0;
             int rowExist = 0;
             var icParticipantsList = new List<THAMGIAHOINGHIQUOCTE>();
-            if (Request != null)
+            HttpPostedFileBase file = Request.Files["UploadedFile"];
+            string fileName = file.FileName;
+            string extension = Path.GetExtension(fileName).ToLower();
+            if (extension != ".xls" && extension != ".xlsx" && extension != ".csv")
             {
-                HttpPostedFileBase file = Request.Files["UploadedFile"];
-                if ((file != null) && (file.ContentLength > 0) && !string.IsNullOrEmpty(file.FileName))
+                Session["ViewBag.Success"] = null;
+                Session["ViewBag.Column"] = null;
+                Session["ViewBag.Size"] = null;
+                Session["ViewBag.File"] = "Chỉ hỗ trợ các tệp có đuôi .xls; .xlsx; .csv!";
+            }
+            else
+            {
+                if (file.ContentLength > 1024 * 1024 * 2)
                 {
-                    string fileName = file.FileName;
-                    string fileContentType = file.ContentType;
-                    byte[] fileBytes = new byte[file.ContentLength];
-                    var data = file.InputStream.Read(fileBytes, 0, Convert.ToInt32(file.ContentLength));
-                    using (var package = new ExcelPackage(file.InputStream))
+                    Session["ViewBag.Success"] = null;
+                    Session["ViewBag.Column"] = null;
+                    Session["ViewBag.Size"] = "Dung lượng file tải lên không vượt quá 2MB";
+                }
+                else {
+                    if (Request != null)
                     {
-                        var currentSheet = package.Workbook.Worksheets;
-                        var workSheet = currentSheet.First();
-                        var noOfCol = workSheet.Dimension.End.Column;
-                        var noOfRow = workSheet.Dimension.End.Row;
-                        if(noOfCol!= 15)
+                        if ((file != null) && (file.ContentLength > 0) && !string.IsNullOrEmpty(file.FileName))
                         {
-                            Session["ViewBag.Success"] = null;
-                            Session["ViewBag.Column"] = "Số cột dữ liệu của file không đúng mẫu, vui lòng tải mẫu Excel và thử lại !";
-                        }
-                        else
-                        {
-                            for (int rowIterator = 2; rowIterator <= noOfRow; rowIterator++)
+                            string fileContentType = file.ContentType;
+                            byte[] fileBytes = new byte[file.ContentLength];
+                            var data = file.InputStream.Read(fileBytes, 0, Convert.ToInt32(file.ContentLength));
+                            using (var package = new ExcelPackage(file.InputStream))
                             {
-                                string tenDonVi = workSheet.Cells[rowIterator, 1].Value.ToString();
-                                var THAMGIAHOINGHI = _db.THAMGIAHOINGHIQUOCTEs
-                                    .FirstOrDefault(t => t.TenDonVi == tenDonVi && t.HoiNghiQT_ID == id);
-                                if (THAMGIAHOINGHI == null)
+                                var currentSheet = package.Workbook.Worksheets;
+                                var workSheet = currentSheet.First();
+                                var noOfCol = workSheet.Dimension.End.Column;
+                                var noOfRow = workSheet.Dimension.End.Row;
+                                if (noOfCol != 15)
                                 {
-                                    var participants = new THAMGIAHOINGHIQUOCTE();
-                                    participants.TenDonVi = workSheet.Cells[rowIterator, 1].Value.ToString();
-                                    participants.DonViChungToiLa = workSheet.Cells[rowIterator, 2].Value.ToString();
-                                    participants.DiaChi = workSheet.Cells[rowIterator, 3].Value.ToString();
-                                    participants.DienThoai = workSheet.Cells[rowIterator, 4].Value.ToString();
-                                    participants.DaiDienLienHe = workSheet.Cells[rowIterator, 5].Value.ToString();
-                                    participants.ChucVu = workSheet.Cells[rowIterator, 6].Value.ToString();
-                                    participants.DiDong = workSheet.Cells[rowIterator, 7].Value.ToString();
-                                    participants.Email = workSheet.Cells[rowIterator, 8].Value.ToString();
-                                    participants.DangKyThamDu = Convert.ToBoolean(workSheet.Cells[rowIterator, 9].Value);
-                                    participants.DangKyPhatBieu = Convert.ToBoolean(workSheet.Cells[rowIterator, 10].Value);
-                                    participants.DangKyGianHangTrienLam = Convert.ToBoolean(workSheet.Cells[rowIterator, 11].Value);
-                                    participants.DangKyBusinessMatchingOnline = Convert.ToBoolean(workSheet.Cells[rowIterator, 12].Value);
-                                    participants.DangKyBusinessMatchingOffline = Convert.ToBoolean(workSheet.Cells[rowIterator, 13].Value);
-                                    participants.DangKyTaiTro = Convert.ToBoolean(workSheet.Cells[rowIterator, 14].Value);
-                                    participants.DangKyQuangCao = Convert.ToBoolean(workSheet.Cells[rowIterator, 15].Value);
-                                    participants.HoiNghiQT_ID = id;
-                                    icParticipantsList.Add(participants);
-                                    addRow++;
+                                    Session["ViewBag.Success"] = null;
+                                    Session["ViewBag.Column"] = "Số cột dữ liệu của file không đúng mẫu, vui lòng tải mẫu Excel và thử lại !";
                                 }
                                 else
                                 {
-                                    rowExist++;
+                                    for (int rowIterator = 2; rowIterator <= noOfRow; rowIterator++)
+                                    {
+                                        string tenDonVi = workSheet.Cells[rowIterator, 1].Value.ToString();
+                                        var THAMGIAHOINGHI = _db.THAMGIAHOINGHIQUOCTEs
+                                            .FirstOrDefault(t => t.TenDonVi == tenDonVi && t.HoiNghiQT_ID == id);
+                                        if (THAMGIAHOINGHI == null)
+                                        {
+                                            var participants = new THAMGIAHOINGHIQUOCTE();
+                                            participants.TenDonVi = workSheet.Cells[rowIterator, 1].Value.ToString();
+                                            participants.DonViChungToiLa = workSheet.Cells[rowIterator, 2].Value.ToString();
+                                            participants.DiaChi = workSheet.Cells[rowIterator, 3].Value.ToString();
+                                            participants.DienThoai = workSheet.Cells[rowIterator, 4].Value.ToString();
+                                            participants.DaiDienLienHe = workSheet.Cells[rowIterator, 5].Value.ToString();
+                                            participants.ChucVu = workSheet.Cells[rowIterator, 6].Value.ToString();
+                                            participants.DiDong = workSheet.Cells[rowIterator, 7].Value.ToString();
+                                            participants.Email = workSheet.Cells[rowIterator, 8].Value.ToString();
+                                            participants.DangKyThamDu = Convert.ToBoolean(workSheet.Cells[rowIterator, 9].Value);
+                                            participants.DangKyPhatBieu = Convert.ToBoolean(workSheet.Cells[rowIterator, 10].Value);
+                                            participants.DangKyGianHangTrienLam = Convert.ToBoolean(workSheet.Cells[rowIterator, 11].Value);
+                                            participants.DangKyBusinessMatchingOnline = Convert.ToBoolean(workSheet.Cells[rowIterator, 12].Value);
+                                            participants.DangKyBusinessMatchingOffline = Convert.ToBoolean(workSheet.Cells[rowIterator, 13].Value);
+                                            participants.DangKyTaiTro = Convert.ToBoolean(workSheet.Cells[rowIterator, 14].Value);
+                                            participants.DangKyQuangCao = Convert.ToBoolean(workSheet.Cells[rowIterator, 15].Value);
+                                            participants.HoiNghiQT_ID = id;
+                                            icParticipantsList.Add(participants);
+                                            addRow++;
+                                        }
+                                        else
+                                        {
+                                            rowExist++;
+                                        }
+                                    }
+                                    Session["ViewBag.Column"] = null;
+                                    Session["ViewBag.Success"] = addRow;
+                                    Session["ViewBag.Exist"] = rowExist;
                                 }
                             }
-                            Session["ViewBag.Column"] = null;
-                            Session["ViewBag.Success"] = addRow;
-                            Session["ViewBag.Exist"] = rowExist;
                         }
                     }
-                }
-            }
-            using (_db)
-            {
-                try
-                {
-                    foreach (var item in icParticipantsList)
+                    using (_db)
                     {
-                        _db.THAMGIAHOINGHIQUOCTEs.Add(item);
-                    }
-                    _db.SaveChanges();
+                        try
+                        {
+                            foreach (var item in icParticipantsList)
+                            {
+                                _db.THAMGIAHOINGHIQUOCTEs.Add(item);
+                            }
+                            _db.SaveChanges();
 
-                }
-                catch (DbEntityValidationException e)
-                {
-                    foreach (var eve in e.EntityValidationErrors)
-                    {
-                        Console.WriteLine("Entity of type \"{0}\" in state \"{1}\" has the following validation errors:",
-                            eve.Entry.Entity.GetType().Name, eve.Entry.State);
-                        throw new HttpException(eve.Entry.Entity.GetType().Name);
+                        }
+                        catch (DbEntityValidationException e)
+                        {
+                            foreach (var eve in e.EntityValidationErrors)
+                            {
+                                Console.WriteLine("Entity of type \"{0}\" in state \"{1}\" has the following validation errors:",
+                                    eve.Entry.Entity.GetType().Name, eve.Entry.State);
+                                throw new HttpException(eve.Entry.Entity.GetType().Name);
+                            }
+                            throw new HttpException(e.ToString());
+                        }
                     }
-                    throw new HttpException(e.ToString());
                 }
             }
             return RedirectToAction("Details", "IC", new { id });
