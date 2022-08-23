@@ -42,7 +42,7 @@ namespace Vinasa.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID, MaSoThue, Nam, SoTienDong")] KyPhi kyPhi)
+        public ActionResult Edit([Bind(Include = "ID, MaSoThue, TenCongTy, Nam, SoTienDong")] KyPhi kyPhi)
         {
             if (ModelState.IsValid)
             {
@@ -66,72 +66,88 @@ namespace Vinasa.Controllers
         public ActionResult ImportExcel(FormCollection formCollection)
         {
             int addRow = 0;
-            int rowExist = 0;
             var kyPhiList = new List<KyPhi>();
-            if (Request != null)
+            HttpPostedFileBase file = Request.Files["UploadedFile"];
+            string fileName = file.FileName;
+            string extension = Path.GetExtension(fileName).ToLower();
+            if (extension != ".xls" && extension != ".xlsx" && extension != ".csv")
             {
-                HttpPostedFileBase file = Request.Files["UploadedFile"];
-                if ((file != null) && (file.ContentLength > 0) && !string.IsNullOrEmpty(file.FileName))
+                Session["ViewBag.Success"] = null;
+                Session["ViewBag.Column"] = null;
+                Session["ViewBag.Size"] = null;
+                Session["ViewBag.File"] = "Chỉ hỗ trợ các tệp có đuôi .xls; .xlsx; .csv!";
+            }
+            else
+            {
+                if (file.ContentLength > 1024 * 1024 * 100)
                 {
-                    string fileName = file.FileName;
-                    string fileContentType = file.ContentType;
-                    byte[] fileBytes = new byte[file.ContentLength];
-                    var data = file.InputStream.Read(fileBytes, 0, Convert.ToInt32(file.ContentLength));
-
-                    using (var package = new ExcelPackage(file.InputStream))
+                    Session["ViewBag.Success"] = null;
+                    Session["ViewBag.Column"] = null;
+                    Session["ViewBag.Size"] = "Dung lượng file tải lên không vượt quá 100MB";
+                }
+                else
+                {
+                    if (Request != null)
                     {
-                        var currentSheet = package.Workbook.Worksheets;
-                        var workSheet = currentSheet.First();
-                        var noOfCol = workSheet.Dimension.End.Column;
-                        var noOfRow = workSheet.Dimension.End.Row;
-                        for (int rowIterator = 2; rowIterator <= noOfRow; rowIterator++)
+                        if ((file != null) && (file.ContentLength > 0) && !string.IsNullOrEmpty(file.FileName))
                         {
-                            string maSoThue = workSheet.Cells[rowIterator, 2].Value.ToString();
-                            string tenCongTy = workSheet.Cells[rowIterator, 3].Value.ToString();
+                            string fileContentType = file.ContentType;
+                            byte[] fileBytes = new byte[file.ContentLength];
+                            var data = file.InputStream.Read(fileBytes, 0, Convert.ToInt32(file.ContentLength));
 
-                            var kyPhi = _db.KyPhis
-                                .FirstOrDefault(t => t.MaSoThue == maSoThue && t.TenCongTy == tenCongTy);
-                            if (kyPhi == null)
+                            using (var package = new ExcelPackage(file.InputStream))
                             {
-                                var participants = new KyPhi();
-                                participants.MaSoThue = workSheet.Cells[rowIterator, 2].Value.ToString();
-                                participants.TenCongTy = workSheet.Cells[rowIterator, 3].Value.ToString();
-                                participants.Nam = Convert.ToInt32(workSheet.Cells[rowIterator, 4].Value);
-                                participants.SoTienDong = Convert.ToInt32(workSheet.Cells[rowIterator, 5].Value);
-                                kyPhiList.Add(participants);
-                                addRow++;
+                                var currentSheet = package.Workbook.Worksheets;
+                                var workSheet = currentSheet.First();
+                                var noOfCol = workSheet.Dimension.End.Column;
+                                var noOfRow = workSheet.Dimension.End.Row;
+                                if (noOfCol != 5)
+                                {
+                                    Session["ViewBag.Success"] = null;
+                                    Session["ViewBag.Column"] = "Số cột dữ liệu của file không đúng mẫu, vui lòng tải mẫu Excel và thử lại !";
+                                }
+                                else
+                                {
+                                    for (int rowIterator = 2; rowIterator <= noOfRow; rowIterator++)
+                                    {
+
+                                        var participants = new KyPhi();
+                                        participants.MaSoThue = workSheet.Cells[rowIterator, 2].Value.ToString();
+                                        participants.TenCongTy = workSheet.Cells[rowIterator, 3].Value.ToString();
+                                        participants.Nam = Convert.ToInt32(workSheet.Cells[rowIterator, 4].Value);
+                                        participants.SoTienDong = Convert.ToInt32(workSheet.Cells[rowIterator, 5].Value);
+                                        kyPhiList.Add(participants);
+                                        addRow++;
+                                    }
+                                    Session["ViewBag.Column"] = null;
+                                    Session["ViewBag.Success"] = addRow;
+                                }
                             }
-                            else
+                        }
+                    }
+                    using (_db)
+                    {
+                        try
+                        {
+                            foreach (var item in kyPhiList)
                             {
-                                rowExist++;
+                                _db.KyPhis.Add(item);
                             }
+                            _db.SaveChanges();
+                        }
+                        catch (DbEntityValidationException e)
+                        {
+                            foreach (var eve in e.EntityValidationErrors)
+                            {
+                                Console.WriteLine("Entity of type \"{0}\" in state \"{1}\" has the following validation errors:",
+                                    eve.Entry.Entity.GetType().Name, eve.Entry.State);
+                                throw new HttpException(eve.Entry.Entity.GetType().Name);
+                            }
+                            throw new HttpException(e.ToString());
                         }
                     }
                 }
             }
-            using (_db)
-            {
-                try
-                {
-                    foreach (var item in kyPhiList)
-                    {
-                        _db.KyPhis.Add(item);
-                    }
-                    _db.SaveChanges();
-                }
-                catch (DbEntityValidationException e)
-                {
-                    foreach (var eve in e.EntityValidationErrors)
-                    {
-                        Console.WriteLine("Entity of type \"{0}\" in state \"{1}\" has the following validation errors:",
-                            eve.Entry.Entity.GetType().Name, eve.Entry.State);
-                        throw new HttpException(eve.Entry.Entity.GetType().Name);
-                    }
-                    throw new HttpException(e.ToString());
-                }
-            }
-            Session["ViewBag.Success"] = addRow;
-            Session["ViewBag.Exist"] = rowExist;
             return RedirectToAction("ManageFeesPeriod", "MemberFeePeriod");
         }
         public FileResult Download()

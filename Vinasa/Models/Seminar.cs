@@ -26,13 +26,13 @@ namespace Vinasa.Models
         [Display(Name = "Thời Gian Diễn Ra")]
         [Required(ErrorMessage = "Vui lòng điền trường này!")]
         [DataType(DataType.Date)]
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy hh:mm:ss tt}")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy}")]
         public DateTime OpenDate { get; set; }
 
         [Display(Name = "Thời Gian Kết Thúc")]
         [Required(ErrorMessage = "Vui lòng điền trường này!")]
         [DataType(DataType.Date)]
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy hh:mm:ss tt}")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy}")]
         public DateTime CloseDate { get; set; }
 
         [Display(Name = "Địa Điểm Diễn Ra")]

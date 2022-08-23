@@ -96,7 +96,7 @@
                 @Html.ValidationMessageFor(model => model.DienThoai, "", new { @class = "text-danger" })
             </div>
             <div class="input-wrapper">
-                @Html.EditorFor(model => model.GhiChu, new { htmlAttributes = new { @class = "ip-form", @required = "required" } })
+                <input class="ip-form" type="text" contenteditable="true" @Html.TextBoxFor(m => m.GhiChu)
                 <label class="lb-form" for="name">Ghi Chú</label>
             </div>
         </form>

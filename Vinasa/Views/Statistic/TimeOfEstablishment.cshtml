@@ -51,7 +51,7 @@
                     <option value="5">25 Năm</option>
                 </select>
             </div>
-            <table class="table table-bordered" id="dataTableTime" width="100%" cellspacing="0">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                 <thead>
                     <tr>
                         <th>
@@ -100,7 +100,7 @@
     <script type="text/javascript" src="https://unpkg.com/xlsx@0.15.1/dist/xlsx.full.min.js"></script>
     <script>
         function html_table_to_excel(type) {
-            var data = document.getElementById('dataTableTime');
+            var data = document.getElementById('dataTable');
 
             var file = XLSX.utils.table_to_book(data, { sheet: "sheet1" });
 

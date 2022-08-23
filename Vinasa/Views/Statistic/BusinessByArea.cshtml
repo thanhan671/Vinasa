@@ -41,7 +41,7 @@
     </div>
     <div class="card-body">
         <div class="table-responsive">
-            <table class="table table-bordered" id="dataTableArea" width="100%" cellspacing="0">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                 <thead>
                     <tr>
                         <th>
@@ -72,7 +72,7 @@
 <script type="text/javascript" src="https://unpkg.com/xlsx@0.15.1/dist/xlsx.full.min.js"></script>
 <script>
     function html_table_to_excel(type) {
-        var data = document.getElementById('dataTableArea');
+        var data = document.getElementById('dataTable');
 
         var file = XLSX.utils.table_to_book(data, { sheet: "sheet1" });
 

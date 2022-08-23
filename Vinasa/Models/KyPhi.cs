@@ -22,7 +22,6 @@ namespace Vinasa.Models
 
         [Required(ErrorMessage = "Vui lòng điền trường này!")]
         [StringRequired(ErrorMessage = "Vui lòng điền trường này!")]
-        [RegularExpression(@"^[0-9]*$", ErrorMessage = "Không hợp lệ")]
         public string MaSoThue { get; set; }
 
         [Required(ErrorMessage = "Vui lòng điền trường này!")]
@@ -32,6 +31,10 @@ namespace Vinasa.Models
         [Required(ErrorMessage = "Vui lòng điền trường này!")]
         [StringRequired(ErrorMessage = "Vui lòng điền trường này!")]
         public int Nam { get; set; }
+
+        [Required(ErrorMessage = "Vui lòng điền trường này!")]
+        [StringRequired(ErrorMessage = "Vui lòng điền trường này!")]
+        [Range(0, int.MaxValue, ErrorMessage = "Giá trị phải lớn hơn hoặc bằng 0")]
         public decimal SoTienDong { get; set; }
     }
 }

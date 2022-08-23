@@ -93,99 +93,128 @@ namespace Vinasa.Controllers
             int addRow = 0;
             int rowExist = 0;
             var memberlist = new List<HOIVIEN>();
-            if (Request != null)
+            HttpPostedFileBase file = Request.Files["UploadedFile"];
+            string fileName = file.FileName;
+            string extension = Path.GetExtension(fileName).ToLower();
+            if (extension != ".xls" && extension != ".xlsx" && extension != ".csv")
             {
-                HttpPostedFileBase file = Request.Files["UploadedFile"];
-                if ((file != null) && (file.ContentLength > 0) && !string.IsNullOrEmpty(file.FileName))
+                Session["ViewBag.Success"] = null;
+                Session["ViewBag.Column"] = null;
+                Session["ViewBag.Size"] = null;
+                Session["ViewBag.File"] = "Chỉ hỗ trợ các tệp có đuôi .xls; .xlsx; .csv!";
+            }
+            else
+            {
+                if (file.ContentLength > 1024 * 1024 * 100)
                 {
-                    string fileName = file.FileName;
-                    string fileContentType = file.ContentType;
-                    byte[] fileBytes = new byte[file.ContentLength];
-                    var data = file.InputStream.Read(fileBytes, 0, Convert.ToInt32(file.ContentLength));
-                    using (var package = new ExcelPackage(file.InputStream))
+                    Session["ViewBag.Success"] = null;
+                    Session["ViewBag.Column"] = null;
+                    Session["ViewBag.Size"] = "Dung lượng file tải lên không vượt quá 100MB";
+                }
+                else
+                {
+                    if (Request != null)
                     {
-                        var currentSheet = package.Workbook.Worksheets;
-                        var workSheet = currentSheet.First();
-                        var noOfCol = workSheet.Dimension.End.Column;
-                        var noOfRow = workSheet.Dimension.End.Row;
-                        for (int rowIterator = 2; rowIterator <= noOfRow; rowIterator++)
+                        if ((file != null) && (file.ContentLength > 0) && !string.IsNullOrEmpty(file.FileName))
                         {
-                            string maSoThue = workSheet.Cells[rowIterator, 2].Value.ToString();
-                            string tenDonVi = workSheet.Cells[rowIterator, 3].Value.ToString();
-                            var hoiVien = _db.HOIVIENs
-                                .FirstOrDefault(t => t.MaSoThue == maSoThue && t.TenTiengViet == tenDonVi);
-                            if (hoiVien == null)
+                            string fileContentType = file.ContentType;
+                            byte[] fileBytes = new byte[file.ContentLength];
+                            var data = file.InputStream.Read(fileBytes, 0, Convert.ToInt32(file.ContentLength));
+                            using (var package = new ExcelPackage(file.InputStream))
                             {
-                                var member = new HOIVIEN();
-                                member.MaSoThue = workSheet.Cells[rowIterator, 2].Value.ToString();
-                                member.TenTiengViet = workSheet.Cells[rowIterator, 3].Value.ToString();
-                                member.TenTiengAnh = workSheet.Cells[rowIterator, 4].Value.ToString();
-                                member.TenVietTat = workSheet.Cells[rowIterator, 5].Value.ToString();
-                                member.NgayThanhLap = Convert.ToDateTime(workSheet.Cells[rowIterator, 6].Value);
-                                member.Website = workSheet.Cells[rowIterator, 7].Value.ToString();
-                                member.SdtCongTy = workSheet.Cells[rowIterator, 8].Value.ToString();
-                                member.EmailCongTy = workSheet.Cells[rowIterator, 9].Value.ToString();
-                                member.DiaChiGiaoDich = workSheet.Cells[rowIterator, 10].Value.ToString();
-                                member.DiaChiTrenChungTu = workSheet.Cells[rowIterator, 11].Value.ToString();
-                                member.SoLuongNhanVien = Convert.ToInt32(workSheet.Cells[rowIterator, 12].Value);
-                                member.SoLuongLapTrinhVien = Convert.ToInt32(workSheet.Cells[rowIterator, 13].Value);
-                                member.ThiTruongNoiDia = workSheet.Cells[rowIterator, 14].Value.ToString();
-                                member.ThiTruongQuocTe = workSheet.Cells[rowIterator, 15].Value.ToString();
-                                member.LinhVucHoatDong = workSheet.Cells[rowIterator, 16].Value.ToString();
-                                member.LanhDao = workSheet.Cells[rowIterator, 17].Value.ToString();
-                                member.ChucDanhLanhDao = workSheet.Cells[rowIterator, 18].Value.ToString();
-                                member.SdtLanhDao = workSheet.Cells[rowIterator, 19].Value.ToString();
-                                member.EmailLanhDao = workSheet.Cells[rowIterator, 20].Value.ToString();
-                                member.DaiDienMarketing = workSheet.Cells[rowIterator, 21].Value.ToString();
-                                member.ChucNangMarketing = workSheet.Cells[rowIterator, 22].Value.ToString();
-                                member.SdtMarketing = workSheet.Cells[rowIterator, 23].Value.ToString();
-                                member.EmailMarketing = workSheet.Cells[rowIterator, 24].Value.ToString();
-                                member.DaiDienNhanSu = workSheet.Cells[rowIterator, 25].Value.ToString();
-                                member.ChucDanhNhanSu = workSheet.Cells[rowIterator, 26].Value.ToString();
-                                member.SdtNhanSu = workSheet.Cells[rowIterator, 27].Value.ToString();
-                                member.EmailNhanSu = workSheet.Cells[rowIterator, 28].Value.ToString();
-                                member.DaiDienKeToan = workSheet.Cells[rowIterator, 29].Value.ToString();
-                                member.ChucDanhKeToan = workSheet.Cells[rowIterator, 30].Value.ToString();
-                                member.SdtKeToan = workSheet.Cells[rowIterator, 31].Value.ToString();
-                                member.EmailKeToan = workSheet.Cells[rowIterator, 32].Value.ToString();
-                                member.Fanpage = workSheet.Cells[rowIterator, 33].Value.ToString();
-                                member.ThoiGianGiaNhap = Convert.ToDateTime(workSheet.Cells[rowIterator, 34].Value);
-                                member.KhuVuc = Convert.ToInt32(workSheet.Cells[rowIterator, 35].Value);
-                                member.GhiChu = Convert.ToString(workSheet.Cells[rowIterator, 36].Value);
-                                memberlist.Add(member);
-                                addRow++;
+                                var currentSheet = package.Workbook.Worksheets;
+                                var workSheet = currentSheet.First();
+                                var noOfCol = workSheet.Dimension.End.Column;
+                                var noOfRow = workSheet.Dimension.End.Row;
+                                if (noOfCol != 36)
+                                {
+                                    Session["ViewBag.Success"] = null;
+                                    Session["ViewBag.Column"] = "Số cột dữ liệu của file không đúng mẫu, vui lòng tải mẫu Excel và thử lại !";
+                                }
+                                else
+                                {
+                                    for (int rowIterator = 2; rowIterator <= noOfRow; rowIterator++)
+                                    {
+                                        string maSoThue = workSheet.Cells[rowIterator, 2].Value.ToString();
+                                        string tenDonVi = workSheet.Cells[rowIterator, 3].Value.ToString();
+                                        var hoiVien = _db.HOIVIENs
+                                            .FirstOrDefault(t => t.MaSoThue == maSoThue && t.TenTiengViet == tenDonVi);
+                                        if (hoiVien == null)
+                                        {
+                                            var member = new HOIVIEN();
+                                            member.MaSoThue = workSheet.Cells[rowIterator, 2].Value.ToString();
+                                            member.TenTiengViet = workSheet.Cells[rowIterator, 3].Value.ToString();
+                                            member.TenTiengAnh = workSheet.Cells[rowIterator, 4].Value.ToString();
+                                            member.TenVietTat = workSheet.Cells[rowIterator, 5].Value.ToString();
+                                            member.NgayThanhLap = Convert.ToDateTime(workSheet.Cells[rowIterator, 6].Value);
+                                            member.Website = workSheet.Cells[rowIterator, 7].Value.ToString();
+                                            member.SdtCongTy = workSheet.Cells[rowIterator, 8].Value.ToString();
+                                            member.EmailCongTy = workSheet.Cells[rowIterator, 9].Value.ToString();
+                                            member.DiaChiGiaoDich = workSheet.Cells[rowIterator, 10].Value.ToString();
+                                            member.DiaChiTrenChungTu = workSheet.Cells[rowIterator, 11].Value.ToString();
+                                            member.SoLuongNhanVien = Convert.ToInt32(workSheet.Cells[rowIterator, 12].Value);
+                                            member.SoLuongLapTrinhVien = Convert.ToInt32(workSheet.Cells[rowIterator, 13].Value);
+                                            member.ThiTruongNoiDia = workSheet.Cells[rowIterator, 14].Value.ToString();
+                                            member.ThiTruongQuocTe = workSheet.Cells[rowIterator, 15].Value.ToString();
+                                            member.LinhVucHoatDong = workSheet.Cells[rowIterator, 16].Value.ToString();
+                                            member.LanhDao = workSheet.Cells[rowIterator, 17].Value.ToString();
+                                            member.ChucDanhLanhDao = workSheet.Cells[rowIterator, 18].Value.ToString();
+                                            member.SdtLanhDao = workSheet.Cells[rowIterator, 19].Value.ToString();
+                                            member.EmailLanhDao = workSheet.Cells[rowIterator, 20].Value.ToString();
+                                            member.DaiDienMarketing = workSheet.Cells[rowIterator, 21].Value.ToString();
+                                            member.ChucNangMarketing = workSheet.Cells[rowIterator, 22].Value.ToString();
+                                            member.SdtMarketing = workSheet.Cells[rowIterator, 23].Value.ToString();
+                                            member.EmailMarketing = workSheet.Cells[rowIterator, 24].Value.ToString();
+                                            member.DaiDienNhanSu = workSheet.Cells[rowIterator, 25].Value.ToString();
+                                            member.ChucDanhNhanSu = workSheet.Cells[rowIterator, 26].Value.ToString();
+                                            member.SdtNhanSu = workSheet.Cells[rowIterator, 27].Value.ToString();
+                                            member.EmailNhanSu = workSheet.Cells[rowIterator, 28].Value.ToString();
+                                            member.DaiDienKeToan = workSheet.Cells[rowIterator, 29].Value.ToString();
+                                            member.ChucDanhKeToan = workSheet.Cells[rowIterator, 30].Value.ToString();
+                                            member.SdtKeToan = workSheet.Cells[rowIterator, 31].Value.ToString();
+                                            member.EmailKeToan = workSheet.Cells[rowIterator, 32].Value.ToString();
+                                            member.Fanpage = workSheet.Cells[rowIterator, 33].Value.ToString();
+                                            member.ThoiGianGiaNhap = Convert.ToDateTime(workSheet.Cells[rowIterator, 34].Value);
+                                            member.KhuVuc = Convert.ToInt32(workSheet.Cells[rowIterator, 35].Value);
+                                            member.GhiChu = Convert.ToString(workSheet.Cells[rowIterator, 36].Value);
+                                            memberlist.Add(member);
+                                            addRow++;
+                                        }
+                                        else
+                                        {
+                                            rowExist++;
+                                        }
+                                    }
+                                    Session["ViewBag.Column"] = null;
+                                    Session["ViewBag.Success"] = addRow;
+                                    Session["ViewBag.Exist"] = rowExist;
+                                }
                             }
-                            else
+                        }
+                    }
+                    using (_db)
+                    {
+                        try
+                        {
+                            foreach (var item in memberlist)
                             {
-                                rowExist++;
+                                _db.HOIVIENs.Add(item);
                             }
+                            _db.SaveChanges();
+                        }
+                        catch (DbEntityValidationException e)
+                        {
+                            foreach (var eve in e.EntityValidationErrors)
+                            {
+                                Console.WriteLine("Entity of type \"{0}\" in state \"{1}\" has the following validation errors:",
+                                    eve.Entry.Entity.GetType().Name, eve.Entry.State);
+                                throw new HttpException(eve.Entry.Entity.GetType().Name);
+                            }
+                            throw new HttpException(e.ToString());
                         }
                     }
                 }
             }
-            using (_db)
-            {
-                try
-                {
-                    foreach (var item in memberlist)
-                    {
-                        _db.HOIVIENs.Add(item);
-                    }
-                    _db.SaveChanges();
-                }
-                catch (DbEntityValidationException e)
-                {
-                    foreach (var eve in e.EntityValidationErrors)
-                    {
-                        Console.WriteLine("Entity of type \"{0}\" in state \"{1}\" has the following validation errors:",
-                            eve.Entry.Entity.GetType().Name, eve.Entry.State);
-                        throw new HttpException(eve.Entry.Entity.GetType().Name);
-                    }
-                    throw new HttpException(e.ToString());
-                }
-            }
-            Session["ViewBag.Success"] = addRow;
-            Session["ViewBag.Exist"] = rowExist;
             return RedirectToAction("ManageMember", "Member", new { area = " " });
         }
 
