@@ -174,9 +174,9 @@ namespace Vinasa.Controllers
                                 {
                                     for (int rowIterator = 2; rowIterator <= noOfRow; rowIterator++)
                                     {
-                                        string Hoten = workSheet.Cells[rowIterator, 1].Value.ToString();
+                                        string hoTen = workSheet.Cells[rowIterator, 1].Value.ToString();
                                         var THAMGIAKHOAHOC = _db.THAMGIAKHOAHOCs
-                                            .FirstOrDefault(t => t.HoTen == Hoten && t.IdKhoaHoc == id);
+                                            .FirstOrDefault(t => t.HoTen == hoTen && t.IdKhoaHoc == id);
                                         if (THAMGIAKHOAHOC == null)
                                         {
                                             var participants = new THAMGIAKHOAHOC();
