@@ -42,7 +42,7 @@
                     @Html.ValidationMessageFor(m => m.TenVietTat, "", new { @class = "text-danger" })
                 </div>
                 <div class="input-wrapper">
-                    <input class="ip-form" type="text" contenteditable="true" required @Html.TextBoxFor(m => m.NgayThanhLap)
+                    @Html.TextBoxFor(m => m.NgayThanhLap, "{0:yyyy-MM-dd}", new { @class = "ip-form", @type = "date", @required = "required" })
                     <label class="lb-form" for="name">Ngày Thành Lập</label>
                 </div>
                 <div class="message-error">
@@ -126,7 +126,7 @@
                     @Html.ValidationMessageFor(m => m.Fanpage, "", new { @class = "text-danger" })
                 </div>
                 <div class="input-wrapper">
-                    <input class="ip-form" type="text" contenteditable="true" required @Html.TextBoxFor(m => m.ThoiGianGiaNhap)
+                    @Html.TextBoxFor(m => m.ThoiGianGiaNhap, "{0:yyyy-MM-dd}", new { @class = "ip-form", @type = "date", @required = "required" })
                     <label class="lb-form" for="name">Thời Gian Gia Nhập</label>
                 </div>
                 <div class="message-error">
