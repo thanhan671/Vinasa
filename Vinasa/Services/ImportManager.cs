@@ -31,9 +31,9 @@ namespace Vinasa.Services
             var stream = importExcelFile.InputStream;
 
             string extension = Path.GetExtension(importExcelFile.FileName);
-            if (extension != ".xls" && extension != ".xlsx" && extension != ".csv")
+            if (extension != ".xls" && extension != ".xlsx")
             {
-                throw new System.Exception("Chỉ hỗ trợ các tệp có đuôi .xls; .xlsx; .csv!");
+                throw new System.Exception("Chỉ hỗ trợ các tệp có đuôi .xls; .xlsx !");
             }
             else if (stream.Length > 1024 * 1024 * 100)
             {
@@ -136,19 +136,19 @@ namespace Vinasa.Services
                             break;
 
                         case "Đăng ký hội thảo":
-                            participant.RegistrySeminar = (cellValue == "có");
+                            participant.RegistrySeminar = (cellValue == "1");
                             break;
 
                         case "Đăng ký Business Matching":
-                            participant.RegistryBusinessMatching = (cellValue == "có");
+                            participant.RegistryBusinessMatching = (cellValue == "1");
                             break;
 
                         case "Đăng ký gian hàng triển lãm":
-                            participant.RegistryExhibition = (cellValue == "có");
+                            participant.RegistryExhibition = (cellValue == "1");
                             break;
 
                         case "Đăng ký vé tham dự":
-                            participant.RegistryTicket = (cellValue == "có");
+                            participant.RegistryTicket = (cellValue == "1");
                             break;
                     }
                 }
@@ -173,9 +173,9 @@ namespace Vinasa.Services
             var stream = importExcelFile.InputStream;
 
             string extension = Path.GetExtension(importExcelFile.FileName);
-            if (extension != ".xls" && extension != ".xlsx" && extension != ".csv")
+            if (extension != ".xls" && extension != ".xlsx")
             {
-                throw new System.Exception("Chỉ hỗ trợ các tệp có đuôi .xls; .xlsx; .csv!");
+                throw new System.Exception("Chỉ hỗ trợ các tệp có đuôi .xls; .xlsx !");
             }
             else if (stream.Length > 1024 * 1024 * 100)
             {

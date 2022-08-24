@@ -70,12 +70,12 @@ namespace Vinasa.Controllers
             HttpPostedFileBase file = Request.Files["UploadedFile"];
             string fileName = file.FileName;
             string extension = Path.GetExtension(fileName).ToLower();
-            if (extension != ".xls" && extension != ".xlsx" && extension != ".csv")
+            if (extension != ".xls" && extension != ".xlsx")
             {
                 Session["ViewBag.Success"] = null;
                 Session["ViewBag.Column"] = null;
                 Session["ViewBag.Size"] = null;
-                Session["ViewBag.File"] = "Chỉ hỗ trợ các tệp có đuôi .xls; .xlsx; .csv!";
+                Session["ViewBag.File"] = "Chỉ hỗ trợ các tệp có đuôi .xls; .xlsx !";
             }
             else
             {
