@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Web;
 using Vinasa.DAL;
 using Vinasa.Models;
 
@@ -25,12 +26,26 @@ namespace Vinasa.Services
         #endregion
 
         #region Methods
-        public virtual async Task<Tuple<int, int>> ImportSeminarParticipantFromXlsx(int seminarId, Stream stream)
+        public virtual async Task<Tuple<int, int>> ImportSeminarParticipantFromXlsx(int seminarId, HttpPostedFileBase importExcelFile)
         {
+            var stream = importExcelFile.InputStream;
+
+            string extension = Path.GetExtension(importExcelFile.FileName);
+            if (extension != ".xls" && extension != ".xlsx" && extension != ".csv")
+            {
+                throw new System.Exception("Chỉ hỗ trợ các tệp có đuôi .xls; .xlsx; .csv!");
+            }
+            else if (stream.Length > 1024 * 1024 * 100)
+            {
+                throw new System.Exception("Dung lượng file tải lên không vượt quá 100MB");
+            }
+
+
             var workbook = new XSSFWorkbook(stream);
             var worksheet = workbook.GetSheetAt(0);
             if (worksheet == null)
                 throw new System.Exception("No worksheet found");
+
             var poz = 0;
             Dictionary<string, int> manager = new Dictionary<string, int>();
             while (true)
@@ -153,8 +168,20 @@ namespace Vinasa.Services
             return new Tuple<int, int>(addedRows, existedRows);
         }
 
-        public virtual async Task<Tuple<int, int>> ImportNguoiNhanGiaiThuongsFromXlsx(int giaiThuongId, Stream stream)
+        public virtual async Task<Tuple<int, int>> ImportNguoiNhanGiaiThuongsFromXlsx(int giaiThuongId, HttpPostedFileBase importExcelFile)
         {
+            var stream = importExcelFile.InputStream;
+
+            string extension = Path.GetExtension(importExcelFile.FileName);
+            if (extension != ".xls" && extension != ".xlsx" && extension != ".csv")
+            {
+                throw new System.Exception("Chỉ hỗ trợ các tệp có đuôi .xls; .xlsx; .csv!");
+            }
+            else if (stream.Length > 1024 * 1024 * 100)
+            {
+                throw new System.Exception("Dung lượng file tải lên không vượt quá 100MB");
+            }
+
             var workbook = new XSSFWorkbook(stream);
             var worksheet = workbook.GetSheetAt(0);
             if (worksheet == null)

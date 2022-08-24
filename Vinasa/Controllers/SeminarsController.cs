@@ -131,7 +131,7 @@ namespace Vinasa.Controllers
 
         [HttpPost, ActionName("ImportExcel")]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> ImportExcel(int? id, HttpPostedFileBase importexcelfile)
+        public async Task<ActionResult> ImportExcel(int? id, HttpPostedFileBase importExcelFile)
         {
             if (id == null)
             {
@@ -140,9 +140,9 @@ namespace Vinasa.Controllers
 
             try
             {
-                if (importexcelfile != null && importexcelfile.ContentLength > 0)
+                if (importExcelFile != null && importExcelFile.ContentLength > 0)
                 {
-                    var tuple = await _importManager.ImportSeminarParticipantFromXlsx((int)id, importexcelfile.InputStream);
+                    var tuple = await _importManager.ImportSeminarParticipantFromXlsx((int)id, importExcelFile);
                     Session["ViewBag.Success"] = tuple.Item1;
                     Session["ViewBag.Exist"] = tuple.Item2;
                 }

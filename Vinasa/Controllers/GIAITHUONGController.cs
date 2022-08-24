@@ -142,7 +142,7 @@ namespace Vinasa.Controllers
                 if (importexcelfile != null && importexcelfile.ContentLength > 0)
                 {
 
-                    var tuple = await _importManager.ImportNguoiNhanGiaiThuongsFromXlsx((int)id, importexcelfile.InputStream);
+                    var tuple = await _importManager.ImportNguoiNhanGiaiThuongsFromXlsx((int)id, importexcelfile);
                     Session["ViewBag.Success"] = tuple.Item1;
                     Session["ViewBag.Exist"] = tuple.Item2;
                 }
