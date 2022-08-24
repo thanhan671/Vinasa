@@ -273,7 +273,7 @@ namespace Vinasa.Controllers
 
             foreach (var item in tmp)
             {
-                if ((DateTime.Now - item.NgayThanhLap).Value.TotalDays / 365 <= time)
+                if ((DateTime.Now.Year - item.NgayThanhLap.Value.Year) == time)
                     result.Add(item);
             }
             return result;
