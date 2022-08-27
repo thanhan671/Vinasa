@@ -28,6 +28,8 @@
           <Property Name="NgayGuiPhieuThu" Type="datetime" Nullable="false" />
           <Property Name="SoTienDong" Type="money" Nullable="false" />
           <Property Name="GhiChu" Type="nvarchar(max)" />
+          <Property Name="DiaChiGhiPhieuThu" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="DiaChiGuiPhieuThu" Type="nvarchar(max)" Nullable="false" />
         </EntityType>
         <EntityType Name="GIAITHUONG">
           <Key>
@@ -954,6 +956,8 @@
           <Property Name="NgayGuiPhieuThu" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="SoTienDong" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
           <Property Name="GhiChu" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DiaChiGhiPhieuThu" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DiaChiGuiPhieuThu" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="KyPhi">
           <Key>
@@ -1300,6 +1304,8 @@
           <EntitySetMapping Name="DongPhis">
             <EntityTypeMapping TypeName="SEP25Team16Model.DongPhi">
               <MappingFragment StoreEntitySet="DongPhi">
+                <ScalarProperty Name="DiaChiGuiPhieuThu" ColumnName="DiaChiGuiPhieuThu" />
+                <ScalarProperty Name="DiaChiGhiPhieuThu" ColumnName="DiaChiGhiPhieuThu" />
                 <ScalarProperty Name="GhiChu" ColumnName="GhiChu" />
                 <ScalarProperty Name="SoTienDong" ColumnName="SoTienDong" />
                 <ScalarProperty Name="NgayGuiPhieuThu" ColumnName="NgayGuiPhieuThu" />

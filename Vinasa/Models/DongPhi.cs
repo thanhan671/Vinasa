@@ -8,7 +8,7 @@ using Vinasa.Validation;
 
 namespace Vinasa.Models
 {
-    
+   
     public partial class DongPhi
     {
         public int ID { get; set; }
@@ -45,5 +45,13 @@ namespace Vinasa.Models
         [Range(0, int.MaxValue, ErrorMessage = "Giá trị phải lớn hơn hoặc bằng 0")]
         public decimal SoTienDong { get; set; }
         public string GhiChu { get; set; }
+
+        [Required(ErrorMessage = "Vui lòng điền trường này!")]
+        [StringRequired(ErrorMessage = "Vui lòng điền trường này!")]
+        public string DiaChiGhiPhieuThu { get; set; }
+
+        [Required(ErrorMessage = "Vui lòng điền trường này!")]
+        [StringRequired(ErrorMessage = "Vui lòng điền trường này!")]
+        public string DiaChiGuiPhieuThu { get; set; }
     }
 }

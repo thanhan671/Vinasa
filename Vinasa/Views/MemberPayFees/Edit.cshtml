@@ -26,6 +26,14 @@
                 @Html.ValidationMessageFor(m => m.TenCongTy, "", new { @class = "text-danger" })
             </div>
             <div class="input-wrapper">
+                @Html.EditorFor(m => m.DiaChiGhiPhieuThu, new { htmlAttributes = new { @class = "ip-form", @required = "required" } })
+                <label class="lb-form" for="tax">Địa Chỉ Ghi Trên Phiếu Thu</label>
+            </div>
+            <div class="input-wrapper">
+                @Html.EditorFor(m => m.DiaChiGuiPhieuThu, new { htmlAttributes = new { @class = "ip-form", @required = "required" } })
+                <label class="lb-form" for="tax">Địa chỉ Gửi Phiếu Thu</label>
+            </div>
+            <div class="input-wrapper">
                 @Html.EditorFor(m => m.NguoiNhanPhieuThu, new { htmlAttributes = new { @class = "ip-form", @required = "required" } })
                 <label class="lb-form" for="tax">Người nhận phiếu thu</label>
             </div>

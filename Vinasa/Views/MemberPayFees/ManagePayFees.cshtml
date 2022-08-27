@@ -73,6 +73,8 @@
                     <tr>
                         <th>Mã Số Thuế</th>
                         <th>Tên Công Ty</th>
+                        <th>Địa Chỉ Ghi Trên Phiếu Thu</th>
+                        <th>Địa Chỉ Gửi Phiếu Thu</th>
                         <th>Người Nhận Phiếu Thu</th>
                         <th>Điện Thoại</th>
                         <th>Ngày Chuyển Tiền</th>
@@ -88,50 +90,56 @@
                 <tbody>
                     @foreach (var item in Model)
                     {
-                        <tr>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.MaSoThue)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.TenCongTy)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.NguoiNhanPhieuThu)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Sdt)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.NgayChuyenTien)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.NgayGuiPhieuThu)
-                            </td>
-                            <td>
-                                @item.SoTienDong.ToString("#,##0.###")
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.GhiChu)
-                            </td>
-                            <td class="td-action" style="display:flex; justify-content:space-around; align-items:center">
-                                @if ((int)Session["AccountType"] == 1)
-                                {
-                                    <li class="action-item" style="list-style-type: none; font-size: 18px">
-                                        <a class="action-icon" href=@Url.Action("Edit", "MemberPayFees", new { id = @item.ID })>
-                                            <i class="fa-solid fa-pen-to-square icon"></i>
-                                        </a>
-                                    </li>
-                                    <li class="action-item" style="list-style-type:none; font-size: 18px">
-                                        <a id="deleteItem" class="deleteItem" data-target="#myModal"
-                                           data-toggle="modal"
-                                           data-path="@Url.Action("Delete", "MemberPayFees", new { id = item.ID })"
-                                           data-form-method="post">
-                                            <i class="fa-solid fa-trash-can icon"></i>
-                                        </a>
-                                    </li>
-                                }
-                            </td>
-                        </tr>
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.MaSoThue)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TenCongTy)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DiaChiGhiPhieuThu)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DiaChiGuiPhieuThu)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.NguoiNhanPhieuThu)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Sdt)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.NgayChuyenTien)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.NgayGuiPhieuThu)
+                        </td>
+                        <td>
+                            @item.SoTienDong.ToString("#,##0.###")
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.GhiChu)
+                        </td>
+                        <td class="td-action" style="display:flex; justify-content:space-around; align-items:center">
+                            @if ((int)Session["AccountType"] == 1)
+                            {
+                                <li class="action-item" style="list-style-type: none; font-size: 18px">
+                                    <a class="action-icon" href=@Url.Action("Edit", "MemberPayFees", new { id = @item.ID })>
+                                        <i class="fa-solid fa-pen-to-square icon"></i>
+                                    </a>
+                                </li>
+                                <li class="action-item" style="list-style-type:none; font-size: 18px">
+                                    <a id="deleteItem" class="deleteItem" data-target="#myModal"
+                                       data-toggle="modal"
+                                       data-path="@Url.Action("Delete", "MemberPayFees", new { id = item.ID })"
+                                       data-form-method="post">
+                                        <i class="fa-solid fa-trash-can icon"></i>
+                                    </a>
+                                </li>
+                            }
+                        </td>
+                    </tr>
                     }
                 </tbody>
             </table>

@@ -42,7 +42,7 @@ namespace Vinasa.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID, MaSoThue, TenCongTy, NguoiNhanPhieuThu, Sdt, NgayChuyenTien, NgayGuiPhieuThu, SoTienDong, GhiChu")] DongPhi dongPhi)
+        public ActionResult Edit([Bind(Include = "ID, MaSoThue, TenCongTy, DiaChiGhiPhieuThu, DiaChiGuiPhieuThu, NguoiNhanPhieuThu, Sdt, NgayChuyenTien, NgayGuiPhieuThu, SoTienDong, GhiChu")] DongPhi dongPhi)
         {
             if (ModelState.IsValid)
             {
@@ -101,7 +101,7 @@ namespace Vinasa.Controllers
                                 var workSheet = currentSheet.First();
                                 var noOfCol = workSheet.Dimension.End.Column;
                                 var noOfRow = workSheet.Dimension.End.Row;
-                                if (noOfCol != 9)
+                                if (noOfCol != 11)
                                 {
                                     Session["ViewBag.Success"] = null;
                                     Session["ViewBag.Column"] = "Số cột dữ liệu của file không đúng mẫu, vui lòng tải mẫu Excel và thử lại !";
@@ -114,12 +114,14 @@ namespace Vinasa.Controllers
                                         var participants = new DongPhi();
                                         participants.MaSoThue = workSheet.Cells[rowIterator, 2].Value.ToString();
                                         participants.TenCongTy = workSheet.Cells[rowIterator, 3].Value.ToString();
-                                        participants.NguoiNhanPhieuThu = workSheet.Cells[rowIterator, 4].Value.ToString();
-                                        participants.Sdt = workSheet.Cells[rowIterator, 5].Value.ToString();
-                                        participants.NgayChuyenTien = Convert.ToDateTime(workSheet.Cells[rowIterator, 6].Value);
-                                        participants.NgayGuiPhieuThu = Convert.ToDateTime(workSheet.Cells[rowIterator, 7].Value);
-                                        participants.SoTienDong = Convert.ToInt32(workSheet.Cells[rowIterator, 8].Value);
-                                        participants.GhiChu = Convert.ToString(workSheet.Cells[rowIterator, 9].Value);
+                                        participants.DiaChiGhiPhieuThu = workSheet.Cells[rowIterator, 4].Value.ToString();
+                                        participants.DiaChiGuiPhieuThu = workSheet.Cells[rowIterator, 5].Value.ToString();
+                                        participants.NguoiNhanPhieuThu = workSheet.Cells[rowIterator, 6].Value.ToString();
+                                        participants.Sdt = workSheet.Cells[rowIterator, 7].Value.ToString();
+                                        participants.NgayChuyenTien = Convert.ToDateTime(workSheet.Cells[rowIterator, 8].Value);
+                                        participants.NgayGuiPhieuThu = Convert.ToDateTime(workSheet.Cells[rowIterator, 9].Value);
+                                        participants.SoTienDong = Convert.ToInt32(workSheet.Cells[rowIterator, 10].Value);
+                                        participants.GhiChu = Convert.ToString(workSheet.Cells[rowIterator, 11].Value);
                                         dongPhiList.Add(participants);
                                         addRow++;
                                     }
