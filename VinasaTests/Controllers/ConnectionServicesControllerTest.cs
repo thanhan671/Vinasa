@@ -48,39 +48,6 @@ namespace VinasaTests.Controllers
             var con = new ConnectionServicesController();
             var result0 = con.Edit(0) as HttpNotFoundResult;
             Assert.IsNotNull(result0);
-
-            var db = new SEP25Team16Entities2();
-            var connectSevices = db.SUDUNGDICHVUKETNOIs.First();
-            var result = con.Edit(connectSevices.ID) as ViewResult;
-
-            Assert.IsNotNull(result);
-
-            var model = result.Model as SUDUNGDICHVUKETNOI;
-            Assert.IsNotNull(model);
-            Assert.AreEqual(connectSevices.MaSoThue, model.MaSoThue);
-            Assert.AreEqual(connectSevices.TenCongTy, model.TenCongTy);
-            Assert.AreEqual(connectSevices.NgayBatDauHopDong, model.NgayBatDauHopDong);
-            Assert.AreEqual(connectSevices.NgayKetThucHopDong, model.NgayKetThucHopDong);
-            Assert.AreEqual(connectSevices.TenDichVu, model.TenDichVu);
-            Assert.AreEqual(connectSevices.GiaGoc, model.GiaGoc);
-            Assert.AreEqual(connectSevices.GiaUuDai, model.GiaUuDai);
-            Assert.AreEqual(connectSevices.ChiecKhauVinasa, model.ChiecKhauVinasa);
-            Assert.AreEqual(connectSevices.TenNguoiLienHe, model.TenNguoiLienHe);
-            Assert.AreEqual(connectSevices.ChucDanh, model.ChucDanh);
-            Assert.AreEqual(connectSevices.Email, model.Email);
-            Assert.AreEqual(connectSevices.DienThoai, model.DienThoai);
-            Assert.AreEqual(connectSevices.GhiChu, model.GhiChu);
-        }
-        [TestMethod]
-        public void DeletelTest()
-        {
-            var db = new SEP25Team16Entities2();
-            var con = new ConnectionServicesController();
-
-            var connectSevices = db.SUDUNGDICHVUKETNOIs.First();
-            var result = con.Delete(connectSevices.ID) as RedirectToRouteResult;
-
-            Assert.IsNotNull(result);
         }
     }
 }

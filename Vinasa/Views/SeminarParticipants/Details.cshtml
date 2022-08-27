@@ -75,7 +75,7 @@
         </div>
     </form>
     <div class="button-form f-r">
-        <button class="button-lc" id="cancel" onclick="location.href = 'javascript:history.go(-1)'">Quay Lại</button>
+        <button class="button-lc" id="cancel" onclick="location.href = '@Url.Action("Details", "Seminars", new { id = Model.SeminarId})'">Quay Lại</button>
     </div>
 </div>
 

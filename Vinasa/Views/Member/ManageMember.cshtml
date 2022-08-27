@@ -140,7 +140,7 @@
                                         </a>
                                     </li>
                                     <li class="action-item" style="list-style-type:none; font-size: 18px">
-                                        <a id="deleteItem" class="deleteItem" data-target="#myModal"
+                                        <a id="deleteItem" class="deleteItem" data-target="#myModalDelete"
                                            data-toggle="modal"
                                            data-path="@Url.Action("Delete", "Member", new { id = item.ID })"
                                            data-form-method="post">
@@ -301,7 +301,7 @@
     </div>
     Session["ViewBag.File"] = null;
 }
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<div class="modal fade" id="myModalDelete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">

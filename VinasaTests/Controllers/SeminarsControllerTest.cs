@@ -7,31 +7,32 @@ using System.Web;
 using System.Web.Mvc;
 using Vinasa.Controllers;
 using Vinasa.Models;
+
 namespace VinasaTests.Controllers
 {
     [TestClass]
-    public class ICControllerTest
+    public class SeminarsControllerTest
     {
         [TestMethod]
         public void IndexTest()
         {
 
-            var con = new ICController();
+            var con = new SeminarsController();
 
             var result = con.Index() as ViewResult;
             Assert.IsNotNull(result);
 
-            var model = result.Model as List<HOINGHIQUOCTE>;
+            var model = result.Model as List<Seminar>;
             Assert.IsNotNull(result);
 
             var db = new SEP25Team16Entities2();
-            Assert.AreEqual(db.HOINGHIQUOCTEs.Count(), model.Count);
+            Assert.AreEqual(db.Seminars.Count(), model.Count);
         }
         [TestMethod]
         public void CreateTest()
         {
 
-            var con = new ICController();
+            var con = new SeminarsController();
 
             var result = con.Create() as ViewResult;
 
@@ -41,43 +42,44 @@ namespace VinasaTests.Controllers
         public void DetailTest()
         {
             var db = new SEP25Team16Entities2();
-            var con = new ICController();
+            var con = new SeminarsController();
 
-            var ic = db.HOINGHIQUOCTEs.First();
-            var result = con.Details(ic.ID) as ViewResult;
+            var ic = db.Seminars.First();
+            var result = con.Details(ic.Id) as ViewResult;
 
             Assert.IsNotNull(result);
         }
         [TestMethod]
         public void EditTest()
         {
-            var con = new ICController();
+            var con = new SeminarsController();
             var result0 = con.Edit(0) as HttpNotFoundResult;
             Assert.IsNotNull(result0);
 
             var db = new SEP25Team16Entities2();
-            var ic = db.HOINGHIQUOCTEs.First();
-            var result = con.Edit(ic.ID) as ViewResult;
+            var semi = db.Seminars.First();
+            var result = con.Edit(semi.Id) as ViewResult;
 
             Assert.IsNotNull(result);
 
-            var model = result.Model as HOINGHIQUOCTE;
+            var model = result.Model as Seminar;
             Assert.IsNotNull(model);
-            Assert.AreEqual(ic.Ten, model.Ten);
-            Assert.AreEqual(ic.DiaDiem, model.DiaDiem);
-            Assert.AreEqual(ic.ThoiGianBatDau, model.ThoiGianBatDau);
-            Assert.AreEqual(ic.ThoiGianKetThuc, model.ThoiGianKetThuc);
+            Assert.AreEqual(semi.Title, model.Title);
+            Assert.AreEqual(semi.OpenDate, model.OpenDate);
+            Assert.AreEqual(semi.CloseDate, model.CloseDate);
+            Assert.AreEqual(semi.Address, model.Address);
         }
         [TestMethod]
         public void DeleteTest()
         {
             var db = new SEP25Team16Entities2();
-            var con = new ICController();
+            var con = new SeminarsController();
 
-            var ic = db.HOINGHIQUOCTEs.First();
-            var result = con.DeleteSelected(ic.ID) as PartialViewResult;
+            var ic = db.Seminars.First();
+            var result = con.DeleteSelected(ic.Id) as PartialViewResult;
 
             Assert.IsNotNull(result);
         }
+
     }
 }

@@ -103,6 +103,16 @@
     <Compile Include="Controllers\OtherServicesControllerTest.cs" />
     <Compile Include="Controllers\ConnectionServicesControllerTest.cs" />
     <Compile Include="Controllers\ICControllerTest.cs" />
+    <Compile Include="Controllers\GIAITHUONGControllerTest.cs" />
+    <Compile Include="Controllers\SeminarsControllerTest.cs" />
+    <Compile Include="Controllers\AdminControllerTest.cs" />
+    <Compile Include="Controllers\MemberControllerTest.cs" />
+    <Compile Include="Controllers\CourseParticipantsControllerTest.cs" />
+    <Compile Include="Controllers\ICParticipantsControllerTest.cs" />
+    <Compile Include="Controllers\NGUOINHANGIAITHUONGControllerTest.cs" />
+    <Compile Include="Controllers\MemberFeePeriodControllerTest.cs" />
+    <Compile Include="Controllers\MemberPayFeesControllerTest.cs" />
+    <Compile Include="Controllers\SeminarParticipantsControllerTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

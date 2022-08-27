@@ -72,12 +72,12 @@ namespace VinasaTests.Controllers
             Assert.AreEqual(otherSevices.GhiChu, model.GhiChu);
         }
         [TestMethod]
-        public void DeletelTest()
+        public void DeleteTest()
         {
             var db = new SEP25Team16Entities2();
             var con = new OtherServicesController();
 
-            var otherSevices = db.SUDUNGDICHVUKETNOIs.First();
+            var otherSevices = db.SUDUNGDICHVUKHACs.First();
             var result = con.DeleteSelected(otherSevices.ID) as PartialViewResult;
 
             Assert.IsNotNull(result);

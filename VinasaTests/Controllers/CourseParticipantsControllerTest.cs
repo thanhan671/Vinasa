@@ -11,40 +11,30 @@ using Vinasa.Models;
 namespace VinasaTests.Controllers
 {
     [TestClass]
-    public class CourseControllerTest
+    public class CourseParticipantsControllerTest
     {
         [TestMethod]
         public void IndexTest()
         {
 
-            var con = new CourseController();
+            var con = new CourseParticipantsController();
 
             var result = con.Index() as ViewResult;
             Assert.IsNotNull(result);
 
-            var model = result.Model as List<KHOAHOC>;
+            var model = result.Model as List<THAMGIAKHOAHOC>;
             Assert.IsNotNull(result);
 
             var db = new SEP25Team16Entities2();
-            Assert.AreEqual(db.KHOAHOCs.Count(), model.Count);
-        }
-        [TestMethod]
-        public void CreateTest()
-        {
-
-            var con = new CourseController();
-
-            var result = con.Create() as ViewResult;
-
-            Assert.IsNotNull(result);
+            Assert.AreEqual(db.THAMGIAKHOAHOCs.Count(), model.Count);
         }
         [TestMethod]
         public void DetailTest()
         {
             var db = new SEP25Team16Entities2();
-            var con = new CourseController();
+            var con = new CourseParticipantsController();
 
-            var cource = db.KHOAHOCs.First();
+            var cource = db.THAMGIAKHOAHOCs.First();
             var result = con.Details(cource.Id) as ViewResult;
 
             Assert.IsNotNull(result);
@@ -52,33 +42,33 @@ namespace VinasaTests.Controllers
         [TestMethod]
         public void EditTest()
         {
-            var con = new CourseController();
+            var con = new CourseParticipantsController();
             var result0 = con.Edit(0) as HttpNotFoundResult;
             Assert.IsNotNull(result0);
 
             var db = new SEP25Team16Entities2();
-            var cource = db.KHOAHOCs.First();
+            var cource = db.THAMGIAKHOAHOCs.First();
             var result = con.Edit(cource.Id) as ViewResult;
 
             Assert.IsNotNull(result);
 
-            var model = result.Model as KHOAHOC;
+            var model = result.Model as THAMGIAKHOAHOC;
             Assert.IsNotNull(model);
-            Assert.AreEqual(cource.TenKhoaDaoTao, model.TenKhoaDaoTao);
-            Assert.AreEqual(cource.NgayBatDau, model.NgayBatDau);
-            Assert.AreEqual(cource.NgayKetThuc, model.NgayKetThuc);
-            Assert.AreEqual(cource.HinhThuc, model.HinhThuc);
-            Assert.AreEqual(cource.TenGiangVien, model.TenGiangVien);
-            Assert.AreEqual(cource.DiaDiem, model.DiaDiem);
-            Assert.AreEqual(cource.HocPhi, model.HocPhi);
+            Assert.AreEqual(cource.HoTen, model.HoTen);
+            Assert.AreEqual(cource.CongTyToChucCoQuan, model.CongTyToChucCoQuan);
+            Assert.AreEqual(cource.ChucDanh, model.ChucDanh);
+            Assert.AreEqual(cource.Email, model.Email);
+            Assert.AreEqual(cource.Sdt, model.Sdt);
+            Assert.AreEqual(cource.SoLuongHocVien, model.SoLuongHocVien);
+            Assert.AreEqual(cource.HoiVienVinasa, model.HoiVienVinasa);
         }
         [TestMethod]
         public void DeleteTest()
         {
             var db = new SEP25Team16Entities2();
-            var con = new CourseController();
+            var con = new CourseParticipantsController();
 
-            var cource = db.KHOAHOCs.First();
+            var cource = db.THAMGIAKHOAHOCs.First();
             var result = con.DeleteSelected(cource.Id) as PartialViewResult;
 
             Assert.IsNotNull(result);
