@@ -42,19 +42,26 @@
                         <th>
                             Thời Gian Thành Lập
                         </th>
+                        <th>
+                            Số Năm Thành Lập
+                        </th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach (var item in Model)
                     {
-        <tr>
-            <td class="column-2">
-                @item.TenTiengViet
-            </td>
-            <td>
-                @item.NgayThanhLap.ToString("dd/MM/yyyy")
-            </td>
-        </tr>}
+                        <tr>
+                            <td class="column-2">
+                                @item.TenTiengViet
+                            </td>
+                            <td>
+                                @item.NgayThanhLap.ToString("dd/MM/yyyy")
+                            </td>
+                            <td>
+                                @(DateTime.Now.Year - item.NgayThanhLap.Year) Năm
+                            </td>
+                        </tr>
+                     }
                 </tbody>
             </table>
         </div>
