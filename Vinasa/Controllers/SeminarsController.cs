@@ -29,7 +29,7 @@ namespace Vinasa.Controllers
         // GET: Seminars
         public ActionResult Index()
         {
-            return View(_db.Seminars.ToList());
+            return View(_db.Seminars.OrderByDescending(it => it.Id).ToList());
         }
 
         // GET: Seminars/Details/5

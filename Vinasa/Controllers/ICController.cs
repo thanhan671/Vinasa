@@ -22,7 +22,7 @@ namespace Vinasa.Controllers
         // GET: Course
         public ActionResult Index()
         {
-            return View(_db.HOINGHIQUOCTEs.ToList());
+            return View(_db.HOINGHIQUOCTEs.OrderByDescending(it => it.ID).ToList());
         }
 
         public ActionResult Details(int? id)

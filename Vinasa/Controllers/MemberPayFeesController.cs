@@ -22,7 +22,7 @@ namespace Vinasa.Controllers
         // GET: MemberFees
         public ActionResult ManagePayFees()
         {
-            return View(_db.DongPhis.ToList());
+            return View(_db.DongPhis.OrderByDescending(it => it.ID).ToList());
         }
         public ActionResult Edit(int? id)
         {

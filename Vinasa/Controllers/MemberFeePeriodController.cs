@@ -22,7 +22,7 @@ namespace Vinasa.Controllers
         // GET: MemberPayPeriod
         public ActionResult ManageFeesPeriod()
         {
-            return View(_db.KyPhis.ToList());
+            return View(_db.KyPhis.OrderByDescending(it => it.ID).ToList());
         }
         public ActionResult Edit(int? id)
         {

@@ -28,7 +28,7 @@ namespace Vinasa.Controllers
         // GET: GiaiThuong
         public ActionResult Index()
         {
-            return View(_db.GIAITHUONG.ToList());
+            return View(_db.GIAITHUONG.OrderByDescending(it => it.Id).ToList());
         }
 
         // GET: GiaiThuong/Details/5

@@ -104,15 +104,20 @@ namespace Vinasa.Controllers
             switch (id)
             {
                 case 1:
-                    business = db.HOIVIENs.Where(it => it.SoLuongNhanVien <= 500).ToList();
+                    business = db.HOIVIENs.Where(it => it.SoLuongNhanVien <= 10).ToList();
                     break;
                 case 2:
-                    business = db.HOIVIENs.Where(it => it.SoLuongNhanVien <= 1000).ToList();
+                    business = db.HOIVIENs.Where(it => it.SoLuongNhanVien > 10 && it.SoLuongNhanVien <= 50).ToList();
                     break;
                 case 3:
-                    business = db.HOIVIENs.Where(it => it.SoLuongNhanVien >= 1500).ToList();
+                    business = db.HOIVIENs.Where(it => it.SoLuongNhanVien > 50 && it.SoLuongNhanVien <= 200).ToList();
                     break;
-
+                case 4:
+                    business = db.HOIVIENs.Where(it => it.SoLuongNhanVien > 200 && it.SoLuongNhanVien <= 500).ToList();
+                    break;
+                case 5:
+                    business = db.HOIVIENs.Where(it => it.SoLuongNhanVien > 500).ToList();
+                    break;
             }
             ViewBag.filterId = id;
             return View(business);

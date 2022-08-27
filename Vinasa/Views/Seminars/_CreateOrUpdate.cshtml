@@ -29,7 +29,7 @@
     @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
 </div>
 <div class="button-form">
-    <input type="button" class="button-cancel" onclick="location.href = 'javascript:history.go(-1)'" value="Hủy" />
+    <input type="button" class="button-cancel" onclick="location.href = '@Url.Action("Index", "Seminars")'" value="Hủy" />
     <button class="button-lc">Xác Nhận</button>
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
