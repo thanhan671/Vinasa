@@ -23,7 +23,7 @@ namespace Vinasa.Controllers
         // GET: Admin
         public ActionResult ManageAccount()
         {
-            return View(_db.TAIKHOANADMINs.ToList());
+            return View(_db.TAIKHOANADMINs.OrderByDescending(it => it.ID).ToList());
         }
 
         [HttpGet]

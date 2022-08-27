@@ -44,7 +44,7 @@ namespace Vinasa.Controllers
                 return HttpNotFound();
             }
 
-            giaiThuong.NguoiNhanGiaiThuong = _db.NGUOINHANGIAITHUONG.Where(m => m.GiaiThuongId == giaiThuong.Id).ToList();
+            giaiThuong.NguoiNhanGiaiThuong = _db.NGUOINHANGIAITHUONG.Where(m => m.GiaiThuongId == giaiThuong.Id).OrderByDescending(it => it.Id).ToList();
 
             return View(giaiThuong);
         }

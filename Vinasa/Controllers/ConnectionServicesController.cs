@@ -23,7 +23,7 @@ namespace Vinasa.Controllers
         // GET: ConnectionServices
         public ActionResult Index()
         {
-            return View(_db.SUDUNGDICHVUKETNOIs.ToList());
+            return View(_db.SUDUNGDICHVUKETNOIs.OrderByDescending(it => it.ID).ToList());
         }
         public ActionResult Details(int? id)
         {

@@ -37,7 +37,7 @@ namespace Vinasa.Controllers
                 return HttpNotFound();
             }
 
-            course.THAMGIAKHOAHOCs = _db.THAMGIAKHOAHOCs.Where(m => m.IdKhoaHoc == course.Id).ToList();
+            course.THAMGIAKHOAHOCs = _db.THAMGIAKHOAHOCs.Where(m => m.IdKhoaHoc == course.Id).OrderByDescending(it => it.Id).ToList();
 
             return View(course);
         }

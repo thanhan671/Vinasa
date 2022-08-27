@@ -19,7 +19,7 @@ namespace Vinasa.Controllers
         // GET: OtherServices
         public ActionResult Index()
         {
-            return View(_db.SUDUNGDICHVUKHACs.ToList());
+            return View(_db.SUDUNGDICHVUKHACs.OrderByDescending(it => it.ID).ToList());
         }
         public ActionResult Details(int? id)
         {

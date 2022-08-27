@@ -37,7 +37,7 @@ namespace Vinasa.Controllers
                 return HttpNotFound();
             }
 
-            ic.THAMGIAHOINGHIQUOCTEs = _db.THAMGIAHOINGHIQUOCTEs.Where(m => m.HoiNghiQT_ID == ic.ID).ToList();
+            ic.THAMGIAHOINGHIQUOCTEs = _db.THAMGIAHOINGHIQUOCTEs.Where(m => m.HoiNghiQT_ID == ic.ID).OrderByDescending(it => it.ID).ToList();
 
             return View(ic);
         }
