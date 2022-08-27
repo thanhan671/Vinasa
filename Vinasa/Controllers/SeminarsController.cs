@@ -45,7 +45,7 @@ namespace Vinasa.Controllers
                 return HttpNotFound();
             }
 
-            seminar.SeminarParticipants = _db.SeminarParticipants.Where(m => m.SeminarId == seminar.Id).ToList();
+            seminar.SeminarParticipants = _db.SeminarParticipants.Where(m => m.SeminarId == seminar.Id).OrderByDescending(it => it.Id).ToList();
 
             return View(seminar);
         }
