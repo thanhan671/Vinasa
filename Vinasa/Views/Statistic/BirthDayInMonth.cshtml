@@ -1,18 +1,17 @@
-﻿
-@{
-    ViewBag.Title = "BirthDayInMonth";
-    Layout = "~/Views/Shared/sbadmin.cshtml";
-}
-
-
+﻿@{ ViewBag.Title = "BirthDayInMonth";
+    Layout = "~/Views/Shared/sbadmin.cshtml"; }
 <!-- Page Heading -->
 <h1 class="h3 mb-2 text-gray-800">Thống Kê</h1>
-
 <!-- DataTales Example -->
 <div class="card shadow mb-4">
     <div class="card-header py-3" style=" display: flex; justify-content: space-between; align-items: center;">
         <div class="left-content">
             <h6 class="m-0 font-weight-bold text-primary" style="color: #19315D ">Thống Kê Danh Sách Hội Viên Có Sinh Nhật Trong Tháng</h6>
+        </div>
+        <div class="right-content">
+            <button type="button" id="exportexcel" name="exportexcel" class="button-download" style=" width: 200px;" data-target="#myModal" data-toggle="modal">
+                Export File Excel
+            </button>
         </div>
     </div>
     <div class="card-body">
@@ -46,41 +45,64 @@
                     </tr>
                 </thead>
                 <tbody>
-
                     @foreach (var item in Model)
                     {
-                        <tr>
-                            <td class="column-2">
-                                @item.TenTiengViet
-                            </td>
-                            <td>
-                                @item.NgayThanhLap.ToString("dd/MM/yyyy")
-                            </td>
-                        </tr>
-                    }
+        <tr>
+            <td class="column-2">
+                @item.TenTiengViet
+            </td>
+            <td>
+                @item.NgayThanhLap.ToString("dd/MM/yyyy")
+            </td>
+        </tr>}
                 </tbody>
             </table>
         </div>
     </div>
 </div>
-
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel">
+                    THÔNG BÁO !
+                </h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </div>
+            <div class="modal-body">
+                Xác nhận tải xuống thống kê này ?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Hủy</button>
+                <button type="submit" class="button-lc" id="export_button" data-dismiss="modal">Xác nhận</button>
+            </div>
+        </div>
+    </div>
+</div>
 @section Scripts {
     <script type="text/javascript">
-
         $(function () {
             $('#dataTable_filter').prepend($('#dropdown-filter')).clone();
             $('#filter-fade').remove();
-
             $('#dropdown-filter').val(@ViewBag.filterId);
-
             $('#dropdown-filter').on('change', function () {
                 const id = $(this).val();
                 var url = '@Url.Action("BirthDayInMonth", "Statistic", new { id = "__id__" })';
                 window.location.href = url.replace('__id__', id);
             })
         })
-
+    </script>
+    <script type="text/javascript" src="https://unpkg.com/xlsx@0.15.1/dist/xlsx.full.min.js"></script>
+    <script>
+        function html_table_to_excel(type) {
+            var data = document.getElementById('dataTable');
+            var file = XLSX.utils.table_to_book(data, { sheet: "sheet1" });
+            XLSX.write(file, { bookType: type, bookSST: true, type: 'base64' });
+            XLSX.writeFile(file, 'ThongKeTheoSinhNhat.' + type);
+        }
+        const export_button = document.getElementById('export_button');
+        export_button.addEventListener('click', () => {
+            html_table_to_excel('xlsx');
+        });
     </script>
 }
-
-

@@ -1,0 +1,60 @@
+﻿@model Vinasa.Models.KyPhi
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/sbadmin.cshtml";
+}
+
+@using (Html.BeginForm("Edit", "MemberFeePeriod", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="container col-11 centerPage">
+        <h5 class="heading">Sửa Thông Tin Kỳ Phí Của Doanh Nghiệp</h5>
+        <form class="form-field form-inputs" method="post" enctype="multipart/form-data">
+            <div class="input-wrapper">
+                @Html.EditorFor(m => m.MaSoThue, new { htmlAttributes = new { @class = "ip-form", @required = "required" } })
+                <label class="lb-form" for="tax">Mã số thuế</label>
+            </div>
+            <div class="message-error">
+                @Html.ValidationMessageFor(m => m.MaSoThue, "", new { @class = "text-danger" })
+            </div>
+            <div class="input-wrapper">
+                @Html.EditorFor(m => m.TenCongTy, new { htmlAttributes = new { @class = "ip-form", @required = "required" } })
+                <label class="lb-form" for="tax">Tên công ty</label>
+            </div>
+            <div class="message-error">
+                @Html.ValidationMessageFor(m => m.TenCongTy, "", new { @class = "text-danger" })
+            </div>
+            <div class="input-wrapper">
+                @Html.EditorFor(m => m.Nam, new { htmlAttributes = new { @class = "ip-form", @required = "required" } })
+                <label class="lb-form" for="tax">Năm</label>
+            </div>
+            <div class="message-error">
+                @Html.ValidationMessageFor(m => m.Nam, "", new { @class = "text-danger" })
+            </div>
+            <div class="input-wrapper">
+                @Html.EditorFor(m => m.SoTienDong, new { htmlAttributes = new { @class = "ip-form", @required = "required" } })
+                <label class="lb-form" for="tax">Số Tiền Đóng</label>
+            </div>
+            <div class="message-error">
+                @Html.ValidationMessageFor(m => m.SoTienDong, "", new { @class = "text-danger" })
+            </div>
+        </form>
+        <div class="button-form">
+            <button class="button-cancel" onclick="location.href='@Url.Action("ManageFeesPeriod", "MemberFeePeriod")'" type="button" name="cancel">Huỷ</button>
+            <button class="button-lc" type="submit" name="save">Xác Nhận</button>
+        </div>
+    </div>
+}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+
+    $('#cancel').click(function () {
+        location.href = 'javascript:history.go(-1)';
+    })
+
+</script>
+@if (TempData["Message"] != null)
+{
+    <p class="alert alert-success" id="successMessage">@TempData["Message"]</p>
+}

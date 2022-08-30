@@ -49,7 +49,7 @@ namespace Vinasa.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,TenKhoaDaotao,NgayBatDau,NgayKetThuc,HinhThuc,TenGiangVien,DiaDiem,HocPhi")] KHOAHOC khoaHoc)
+        public ActionResult Create([Bind(Include = "Id,TenKhoaDaoTao,NgayBatDau,NgayKetThuc,HinhThuc,TenGiangVien,DiaDiem,HocPhi")] KHOAHOC khoaHoc)
         {
             if (ModelState.IsValid)
             {
@@ -131,71 +131,100 @@ namespace Vinasa.Controllers
             int addRow = 0;
             int rowExist = 0;
             var courseParticipantsList = new List<THAMGIAKHOAHOC>();
-            if (Request != null)
+            HttpPostedFileBase file = Request.Files["UploadedFile"];
+            string fileName = file.FileName;
+            string extension = Path.GetExtension(fileName).ToLower();
+            if (extension != ".xls" && extension != ".xlsx" && extension != ".csv")
             {
-                HttpPostedFileBase file = Request.Files["UploadedFile"];
-                if ((file != null) && (file.ContentLength > 0) && !string.IsNullOrEmpty(file.FileName))
+                Session["ViewBag.Success"] = null;
+                Session["ViewBag.Column"] = null;
+                Session["ViewBag.Size"] = null;
+                Session["ViewBag.File"] = "Chỉ hỗ trợ các tệp có đuôi .xls; .xlsx; .csv!";
+            }
+            else
+            {
+                if (file.ContentLength > 1024 * 1024 * 100)
                 {
-                    string fileName = file.FileName;
-                    string fileContentType = file.ContentType;
-                    byte[] fileBytes = new byte[file.ContentLength];
-                    var data = file.InputStream.Read(fileBytes, 0, Convert.ToInt32(file.ContentLength));
-                    using (var package = new ExcelPackage(file.InputStream))
+                    Session["ViewBag.Success"] = null;
+                    Session["ViewBag.Column"] = null;
+                    Session["ViewBag.Size"] = "Dung lượng file tải lên không vượt quá 100MB";
+                }
+                else
+                {
+                    if (Request != null)
                     {
-                        var currentSheet = package.Workbook.Worksheets;
-                        var workSheet = currentSheet.First();
-                        var noOfCol = workSheet.Dimension.End.Column;
-                        var noOfRow = workSheet.Dimension.End.Row;
-                        for (int rowIterator = 2; rowIterator <= noOfRow; rowIterator++)
+                        if ((file != null) && (file.ContentLength > 0) && !string.IsNullOrEmpty(file.FileName))
                         {
-                            string Hoten = workSheet.Cells[rowIterator, 2].Value.ToString();
-                            var THAMGIAKHOAHOC = _db.THAMGIAKHOAHOCs
-                                .FirstOrDefault(t => t.HoTen == Hoten && t.IdKhoaHoc == id);
-                            if (THAMGIAKHOAHOC == null)
+                            string fileContentType = file.ContentType;
+                            byte[] fileBytes = new byte[file.ContentLength];
+                            var data = file.InputStream.Read(fileBytes, 0, Convert.ToInt32(file.ContentLength));
+                            using (var package = new ExcelPackage(file.InputStream))
                             {
-                                var participants = new THAMGIAKHOAHOC();
-                                participants.HoTen = workSheet.Cells[rowIterator, 2].Value.ToString();
-                                participants.CongTyToChucCoQuan = workSheet.Cells[rowIterator, 3].Value.ToString();
-                                participants.ChucDanh = workSheet.Cells[rowIterator, 4].Value.ToString();
-                                participants.Email = workSheet.Cells[rowIterator, 5].Value.ToString();
-                                participants.Sdt = workSheet.Cells[rowIterator, 6].Value.ToString();
-                                participants.SoLuongHocVien = Convert.ToInt32(workSheet.Cells[rowIterator, 7].Value);
-                                participants.HoiVienVinasa = Convert.ToBoolean(workSheet.Cells[rowIterator, 8].Value);
-                                participants.IdKhoaHoc = id;
-                                courseParticipantsList.Add(participants);
-                                addRow++;
+                                var currentSheet = package.Workbook.Worksheets;
+                                var workSheet = currentSheet.First();
+                                var noOfCol = workSheet.Dimension.End.Column;
+                                var noOfRow = workSheet.Dimension.End.Row;
+                                if (noOfCol != 7)
+                                {
+                                    Session["ViewBag.Success"] = null;
+                                    Session["ViewBag.Column"] = "Số cột dữ liệu của file không đúng mẫu, vui lòng tải mẫu Excel và thử lại !";
+                                }
+                                else
+                                {
+                                    for (int rowIterator = 2; rowIterator <= noOfRow; rowIterator++)
+                                    {
+                                        string Hoten = workSheet.Cells[rowIterator, 1].Value.ToString();
+                                        var THAMGIAKHOAHOC = _db.THAMGIAKHOAHOCs
+                                            .FirstOrDefault(t => t.HoTen == Hoten && t.IdKhoaHoc == id);
+                                        if (THAMGIAKHOAHOC == null)
+                                        {
+                                            var participants = new THAMGIAKHOAHOC();
+                                            participants.HoTen = workSheet.Cells[rowIterator, 1].Value.ToString();
+                                            participants.CongTyToChucCoQuan = workSheet.Cells[rowIterator, 2].Value.ToString();
+                                            participants.ChucDanh = workSheet.Cells[rowIterator, 3].Value.ToString();
+                                            participants.Email = workSheet.Cells[rowIterator, 4].Value.ToString();
+                                            participants.Sdt = workSheet.Cells[rowIterator, 5].Value.ToString();
+                                            participants.SoLuongHocVien = Convert.ToInt32(workSheet.Cells[rowIterator, 6].Value);
+                                            participants.HoiVienVinasa = Convert.ToBoolean(workSheet.Cells[rowIterator, 7].Value);
+                                            participants.IdKhoaHoc = id;
+                                            courseParticipantsList.Add(participants);
+                                            addRow++;
+                                        }
+                                        else
+                                        {
+                                            rowExist++;
+                                        }
+                                    }
+                                    Session["ViewBag.Column"] = null;
+                                    Session["ViewBag.Success"] = addRow;
+                                    Session["ViewBag.Exist"] = rowExist;
+                                }
                             }
-                            else
+                        }
+                    }
+                    using (_db)
+                    {
+                        try
+                        {
+                            foreach (var item in courseParticipantsList)
                             {
-                                rowExist++;
+                                _db.THAMGIAKHOAHOCs.Add(item);
                             }
+                            _db.SaveChanges();
+                        }
+                        catch (DbEntityValidationException e)
+                        {
+                            foreach (var eve in e.EntityValidationErrors)
+                            {
+                                Console.WriteLine("Entity of type \"{0}\" in state \"{1}\" has the following validation errors:",
+                                    eve.Entry.Entity.GetType().Name, eve.Entry.State);
+                                throw new HttpException(eve.Entry.Entity.GetType().Name);
+                            }
+                            throw new HttpException(e.ToString());
                         }
                     }
                 }
             }
-            using (_db)
-            {
-                try
-                {
-                    foreach (var item in courseParticipantsList)
-                    {
-                        _db.THAMGIAKHOAHOCs.Add(item);
-                    }
-                    _db.SaveChanges();
-                }
-                catch (DbEntityValidationException e)
-                {
-                    foreach (var eve in e.EntityValidationErrors)
-                    {
-                        Console.WriteLine("Entity of type \"{0}\" in state \"{1}\" has the following validation errors:",
-                            eve.Entry.Entity.GetType().Name, eve.Entry.State);
-                        throw new HttpException(eve.Entry.Entity.GetType().Name);
-                    }
-                    throw new HttpException(e.ToString());
-                }
-            }
-            Session["ViewBag.Success"] = addRow;
-            Session["ViewBag.Exist"] = rowExist;
             return RedirectToAction("Details", "Course", new { id });
         }
 

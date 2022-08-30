@@ -31,6 +31,8 @@
         <EntityTypeShape EntityType="SEP25Team16Model.SUDUNGDICHVUKHAC" Width="1.5" PointX="2.75" PointY="10.875" />
         <EntityTypeShape EntityType="SEP25Team16Model.C__MigrationHistory" Width="1.5" PointX="8.375" PointY="0.75" />
         <EntityTypeShape EntityType="SEP25Team16Model.HoiPhi" Width="1.5" PointX="12.375" PointY="13.75" />
+        <EntityTypeShape EntityType="SEP25Team16Model.DongPhi" Width="1.5" PointX="14.375" PointY="13.75" />
+        <EntityTypeShape EntityType="SEP25Team16Model.KyPhi" Width="1.5" PointX="10.375" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

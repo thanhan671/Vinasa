@@ -150,6 +150,7 @@ namespace Vinasa.Controllers
             }
             catch (Exception exc)
             {
+                Session["ViewBag.Error"] = exc.Message;
                 return RedirectToAction(nameof(Details), new { id = id, erorr = exc });
             }
         }
