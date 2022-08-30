@@ -17,7 +17,7 @@ namespace Vinasa.Models
     using System.Web;
     using Vinasa.Validation;
 
-    public partial class SUDUNGDICHVUKHAC : IValidatableObject
+    public partial class SUDUNGDICHVUKHAC
     {
         public int ID { get; set; }
 
@@ -44,12 +44,12 @@ namespace Vinasa.Models
         [StringRequired(ErrorMessage = "Vui lòng điền trường này!")]
         public string TenDichVuKhac { get; set; }
 
-		[Required(ErrorMessage = "Vui lòng điền trường này!")]
+        [Required(ErrorMessage = "Vui lòng điền trường này!")]
         [StringRequired(ErrorMessage = "Vui lòng điền trường này!")]
         [Range(0, int.MaxValue, ErrorMessage = "Giá trị phải lớn hơn hoặc bằng 0")]
         public int GiaGoc { get; set; }
 
-		[Required(ErrorMessage = "Vui lòng điền trường này!")]
+        [Required(ErrorMessage = "Vui lòng điền trường này!")]
         [StringRequired(ErrorMessage = "Vui lòng điền trường này!")]
         [Range(0, int.MaxValue, ErrorMessage = "Giá trị phải lớn hơn hoặc bằng 0")]
         public int GiaUuDai { get; set; }

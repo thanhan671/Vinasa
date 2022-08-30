@@ -114,9 +114,9 @@ namespace Vinasa.Controllers
                             string taxNumber = workSheet.Cells[rowIterator, 2].Value.ToString();
                             string companyName = workSheet.Cells[rowIterator, 3].Value.ToString();
 
-                            var maSoThue = _db.SUDUNGDICHVUKHACs
+                            var dichVuKhac = _db.SUDUNGDICHVUKHACs
                                 .FirstOrDefault(t => t.MaSoThue == taxNumber && t.TenCongTy == companyName);
-                            if (maSoThue == null)
+                            if (dichVuKhac == null)
                             {
                                 var participants = new SUDUNGDICHVUKHAC();
                                 participants.MaSoThue = workSheet.Cells[rowIterator, 2].Value.ToString();

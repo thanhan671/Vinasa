@@ -75,10 +75,12 @@
                     @Html.DropDownListFor(m => m.TrangThai, Model.StatusList, new { @class = "form-control select-region" })
                 </div>
             </form>
-        </div>
-        <div class="button-form">
-            <button class="button-cancel" onclick="location.href='@Url.Action("ManageAccount", "Admin")'" type="button" name="cancel">Huỷ</button>
-            <button class="button-lc" type="submit" name="save">Xác Nhận</button>
+
+            <div class="button-form">
+                <button class="button-cancel" onclick="location.href='@Url.Action("ManageAccount", "Admin")'" type="button" name="cancel">Huỷ</button>
+                <button class="button-lc" type="submit" name="save">Xác Nhận</button>
+            </div>
+
         </div>
     </div>}
 @if (ViewBag.Message != null)
@@ -90,8 +92,6 @@
     </script>
 }
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-@*<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
-    <script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>*@
 
 <script>
              $('#enter').click(function () {
